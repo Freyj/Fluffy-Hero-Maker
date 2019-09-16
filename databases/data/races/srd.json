@@ -1,0 +1,247 @@
+[
+  {
+    "name": "Hill Dwarf",
+    "abilities_plus_one": ["Wisdom"],
+    "abilities_plus_two": ["Constitution"],
+    "languages_added": ["Dwarvish"],
+    "bonus_languages": 0,
+    "skill_proficiencies_added": ["Athletics"],
+    "speed": {
+      "walking": 25,
+      "flying": 0,
+      "burrowing": 0,
+      "climbing": 0,
+      "swimming": 0
+    },
+    "age_bracket": "40,500",
+    "racial_traits": [
+      {
+        "name": "Dwarven Toughness",
+        "description": "Our hit point maximum increases by 1, and it increases by 1 every time you gain a level."
+      },
+      {
+        "name": "Dwarven Resilience",
+        "description": "You have advantage on saving throws against poison, and you have resistance against poison damage."
+      },
+      {
+        "name":"Stonecunning",
+        "description": "Whenever you make an Intelligence(History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check"
+      }
+    ],
+    "vision": ["Darkvision 60ft"],
+    "spells_to_add": [],
+    "weapon_proficiencies_added": ["Battleaxe", "Handaxe", "Light Hammer", "Warhammer"],
+    "tool_proficiency_choice_nb": 1,
+    "tool_proficiency_choice_list": ["Smith Tools", "Brewer Supplies", "Mason Tools"],
+    "cantrip_choice_nb": 0,
+    "cantrip_choice_list": [],
+    "size": "Medium",
+    "racial_traits_choices": [],
+    "armor_proficiencies_added": [],
+    "skill_proficiency_choice_nb": 0,
+    "skill_proficiency_choices": []
+  },
+  {
+    "name": "High Elf",
+    "abilities_plus_one": ["Intelligence"],
+    "abilities_plus_two": ["Dexterity"],
+    "languages_added": ["Elvish"],
+    "bonus_languages": 1,
+    "skill_proficiencies_added": ["Perception"],
+    "speed": {
+      "walking": 30,
+      "flying": 0,
+      "burrowing": 0,
+      "climbing": 0,
+      "swimming": 0
+    },
+    "age_bracket": "100,750",
+    "racial_traits": [
+      {
+        "name": "Fey Ancestry",
+        "description": "You have advantage on saving throws against being charmed, and magic can’t put you to sleep."
+      },
+      {
+        "name": "Trance",
+        "description": "Elves don’t need to sleep. Instead, they meditate deeply, remaining semiconscious, for 4 hours a day. (The Common word for such meditation is “trance.”) While meditating, you can dream after a fashion; such dreams are actually mental exercises \nthat have become reflexive through years of practice. After resting in this way, you gain the same benefit that a human does from 8 hours of sleep."
+      }
+    ],
+    "vision": ["Darkvision 60ft"],
+    "spells_to_add": [],
+    "weapon_proficiencies_added": ["Longsword", "Short sword", "Short bow", "Longbow"],
+    "tool_proficiency_choice_nb": 0,
+    "tool_proficiency_choice_list": [],
+    "cantrip_choice_nb": 1,
+    "cantrip_choice_list": ["Acid Splash", "Chill Touch", "Dancing Lights", "Fire Bolt", "Light", "Mage Hand", "Mending", "Message", "Minor Illusion", "Poison Spray", "Prestidigitation", "Ray of Frost", "Shocking Grasp", "True Strike" ],
+    "size": "Medium",
+    "racial_traits_choices": [],
+    "armor_proficiencies_added": [],
+    "skill_proficiency_choice_nb": 0,
+    "skill_proficiency_choices": []
+  },
+  {
+    "name": "Lightfoot Halfling",
+    "abilities_plus_one": ["Charisma"],
+    "abilities_plus_two": ["Dexterity"],
+    "languages_added": ["Halfling"],
+    "bonus_languages": 0,
+    "skill_proficiencies_added": [],
+    "speed": {
+      "walking": 25,
+      "flying": 0,
+      "burrowing": 0,
+      "climbing": 0,
+      "swimming": 0
+    },
+    "age_bracket": "20,150",
+    "racial_traits": [
+      {
+        "name": "Lucky",
+        "description": "When you roll a 1 on the d20 for an attack roll, ability check, or saving throw, you can re-roll the die and must use the new roll."
+      },
+      {
+        "name": "Brave",
+        "description": "You have advantage on saving throws against being frightened. "
+      },
+      {
+        "name": "Halfling Nimbleness",
+        "description": "You can move through the space of any creature that is of a size larger than yours."
+      },
+      {
+        "name": "Naturally Stealthy",
+        "description": "You can attempt to hide even when you are obscured only by a creature that is at least one size larger than you."
+      }
+    ],
+    "vision": [],
+    "spells_to_add": [],
+    "weapon_proficiencies_added": [],
+    "tool_proficiency_choice_nb": 0,
+    "tool_proficiency_choice_list": [],
+    "cantrip_choice_nb": 0,
+    "cantrip_choice_list": [],
+    "size": "Small",
+    "racial_traits_choices": [],
+    "armor_proficiencies_added": [],
+    "skill_proficiency_choice_nb": 0,
+    "skill_proficiency_choices": []
+  },
+  {
+    "name": "Human",
+    "abilities_plus_one": ["Charisma", "Dexterity", "Strength", "Constitution", "Intelligence", "Wisdom"],
+    "abilities_plus_two": [],
+    "languages_added": [],
+    "bonus_languages": 1,
+    "skill_proficiencies_added": [],
+    "speed": {
+      "walking": 30,
+      "flying": 0,
+      "burrowing": 0,
+      "climbing": 0,
+      "swimming": 0
+    },
+    "age_bracket": "20,100",
+    "racial_traits": [],
+    "vision": [],
+    "spells_to_add": [],
+    "weapon_proficiencies_added": [],
+    "tool_proficiency_choice_nb": 0,
+    "tool_proficiency_choice_list": [],
+    "cantrip_choice_nb": 0,
+    "cantrip_choice_list": [],
+    "size": "Medium",
+    "racial_traits_choices": [],
+    "armor_proficiencies_added": [],
+    "skill_proficiency_choice_nb": 0,
+    "skill_proficiency_choices": []
+  },
+  {
+    "name": "Dragonborn",
+    "abilities_plus_one": ["Charisma"],
+    "abilities_plus_two": ["Strength"],
+    "languages_added": ["Draconic"],
+    "bonus_languages": 0,
+    "skill_proficiencies_added": [],
+    "speed": {
+      "walking": 30,
+      "flying": 0,
+      "burrowing": 0,
+      "climbing": 0,
+      "swimming": 0
+    },
+    "age_bracket": "15,80",
+    "racial_traits": [],
+    "vision": [],
+    "spells_to_add": [],
+    "weapon_proficiencies_added": [],
+    "tool_proficiency_choice_nb": 0,
+    "tool_proficiency_choice_list": [],
+    "cantrip_choice_nb": 0,
+    "cantrip_choice_list": [],
+    "size": "Medium",
+    "racial_traits_choices": [
+      {
+        "name": "Draconic Ancestry",
+        "description": "You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table.",
+        "link": "Breath Weapon, Damage Resistance",
+        "choice_list": ["Black", "Blue", "Brass", "Bronze", "Copper", "Gold", "Green", "Red", "Silver", "White"]
+      },
+      {
+        "name": "Breath Weapon",
+        "description": "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful",
+        "link": "Draconic Ancestry",
+        "choice_list": ["5 by 30 ft. line (Dex. save)", "5 by 30 ft. line (Dex. save)","5 by 30 ft. line (Dex. save)","5 by 30 ft. line (Dex. save)","5 by 30 ft. line (Dex. save)", "15 ft. cone (Dex. save)", "15 ft. cone (Dex. save)", "15 ft. cone (Dex. save)", "15 ft. cone (Dex. save)", "15 ft. cone (Dex. save)"]
+      },
+      {
+        "name": "Damage Resistance",
+        "description": "You have resistance to the damage type associated with your draconic ancestry.",
+        "link": "Draconic Ancestry",
+        "choice_list": ["Acid", "Lightning", "Fire", "Lightning", "Acid", "Fire", "Poison", "Fire", "Cold", "Cold"]
+      }
+    ],
+    "armor_proficiencies_added": [],
+    "skill_proficiency_choice_nb": 0,
+    "skill_proficiency_choices": []
+  },
+  {
+    "name": "Rock Gnome",
+    "abilities_plus_one": ["Constitution"],
+    "abilities_plus_two": ["Intelligence"],
+    "languages_added": ["Gnomish"],
+    "bonus_languages": 0,
+    "skill_proficiencies_added": [],
+    "speed": {
+      "walking": 25,
+      "flying": 0,
+      "burrowing": 0,
+      "climbing": 0,
+      "swimming": 0
+    },
+    "age_bracket": "40,500",
+    "racial_traits": [
+      {
+        "name": "Gnomish Cunning",
+        "description": "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic."
+      },
+      {
+        "name": "Artificer's Lore",
+        "description": "Whenever you make an Intelligence (History) check related to magic items, alchemical objects, or technological devices, you can add twice your proficiency bonus, instead of any proficiency bonus you normally apply."
+      },
+      {
+        "name": "Tinker",
+        "description": "You have proficiency with artisan’s tools (tinker’s tools). Using those tools, you can spend 1 hour and 10 gp worth of materials to construct a Tiny clockwork device (AC 5, 1 hp). The device ceases to function after 24 hours (unless you spend 1 hour repairing it to keep the device functioning), or when you use your action to dismantle it; at that time, you can reclaim the materials used to create it. You can have up to three such devices active at a time. When you create a device, choose one of the following options: Clockwork Toy. This toy is a clockwork animal, monster, or person, such as a frog, mouse, bird, dragon, or soldier. When placed on the ground, the toy moves 5 feet across the ground on each of your turns in a random direction. It makes noises as appropriate to the creature it represents. Fire Starter. The device produces a miniature flame, which you can use to light a candle, torch, or campfire. Using the device requires your action. Music Box. When opened, this music box plays a single song at a moderate volume. The box stops playing when it reaches the song’s end or when it is closed."
+      }
+    ],
+    "vision": ["Darkvision 60 ft"],
+    "spells_to_add": [],
+    "weapon_proficiencies_added": [],
+    "tool_proficiency_choice_nb": 0,
+    "tool_proficiency_choice_list": [],
+    "cantrip_choice_nb": 0,
+    "cantrip_choice_list": [],
+    "size": "Small",
+    "racial_traits_choices": [],
+    "armor_proficiencies_added": [],
+    "skill_proficiency_choice_nb": 0,
+    "skill_proficiency_choices": []
+  }
+]

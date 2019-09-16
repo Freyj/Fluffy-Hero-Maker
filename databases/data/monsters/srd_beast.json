@@ -1,0 +1,95 @@
+[
+  {
+    "name": "Allosaurus",
+    "size": "Large",
+    "alignment": "Unaligned",
+    "monster_type": "Beast",
+    "strength": 19,
+    "dexterity": 13,
+    "constitution": 17,
+    "intelligence": 2,
+    "wisdom": 12,
+    "charisma": 5,
+    "walking_speed": 60,
+    "climbing_speed": 0,
+    "burrowing_speed": 0,
+    "flying_speed": 0,
+    "swimming_speed": 0,
+    "save_throw_strength": 0,
+    "save_throw_dexterity": 0,
+    "save_throw_constitution": 0,
+    "save_throw_intelligence": 0,
+    "save_throw_wisdom": 0,
+    "save_throw_charisma": 0,
+    "armor_class": 13,
+    "hit_points": 51,
+    "hit_dice": "6d10 + 18",
+    "passive_perception": 15,
+    "xp": 450,
+    "challenge": 2,
+    "damage_immunities": [],
+    "damage_resistance": [],
+    "condition_immunities": [],
+    "senses": [],
+    "languages_spoken": [],
+    "languages_understood": [],
+    "actions":
+    [],
+    "legendary_actions_number": 0,
+    "legendary_actions": [],
+    "attacks":
+    [
+      {
+        "name": "Bite",
+        "type": "Melee",
+        "hit_bonus": 6,
+        "target": "one target",
+        "specials": "reach 5ft",
+        "damage": "15 (2d10 + 4) piercing damage",
+        "on_hit": ""
+      },
+      {
+        "name": "Claw",
+        "type": "Melee",
+        "hit_bonus": 6,
+        "target": "one target",
+        "specials": "reach 5ft",
+        "damage": "8 (1d8 +4) slashing damage",
+        "on_hit": ""
+      }
+    ],
+    "traits":
+    [
+      {
+        "name": "Pounce",
+        "effect": "If the allosaurus moves at least 30 feet straight toward a creature and then hits it with a claw attack on the same turn, that target must succeed on a DC 13 Strength saving throw or be knocked prone. If the target is prone, the allosaurus can make one bite attack against it as a bonus action."
+      }
+    ],
+    "cantrips": [],
+    "spells_lvl1": [],
+    "spell_slots_lvl1": 0,
+    "spells_lvl2": [],
+    "spell_slots_lvl2": 0,
+    "spells_lvl3": [],
+    "spell_slots_lvl3": 0,
+    "spells_lvl4": [],
+    "spell_slots_lvl4": 0,
+    "spells_lvl5": [],
+    "spell_slots_lvl5": 0,
+    "spells_lvl6": [],
+    "spell_slots_lvl6": 0,
+    "spells_lvl7": [],
+    "spell_slots_lvl7": 0,
+    "spells_lvl8": [],
+    "spell_slots_lvl8": 0,
+    "spells_lvl9": [],
+    "spell_slots_lvl9": 0,
+    "description": "The allosaurus is a predator possessing great size, strength, and speed. It can run down almost any prey over open ground, pouncing to pull creatures down with its wicked claws.",
+    "skills": [
+      {
+        "name": "Perception",
+        "bonus": 5
+      }
+    ]
+  }
+]

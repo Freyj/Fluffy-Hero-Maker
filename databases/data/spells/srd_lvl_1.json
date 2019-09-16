@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Alarm",
+    "school": "Abjuration",
+    "casting time": "1 minute",
+    "ritual": "yes",
+    "range": "30 feet",
+    "target": "",
+    "components": "V, S, M (a tiny bell and a piece of fine silver wire)",
+    "duration": "8 hours",
+    "saving throw": "",
+    "concentration": "",
+    "description": "\tYou set an alarm against unwanted intrusion.\n\tChoose a door, a window, or an area within range that is no larger than a 20-foot cube.\n\tUntil the spell ends, an alarm alerts you whenever a Tiny or larger creature touches or enters the warded area.\n\tWhen you cast the spell, you can designate creatures that won’t set off the alarm.\n\tYou also choose whether the alarm is mental or audible.\n\tA mental alarm alerts you with a ping in your mind if you are within 1 mile of the warded area.\n\tThis ping awakens you if you are sleeping.\n\tAn audible alarm produces the sound of a hand bell for 10 seconds within 60 feet.",
+    "upgrade": "",
+    "level": 1
+  },
+  {
+    "name": "Burning Hands",
+    "school": "Evocation",
+    "casting time": "1 action",
+    "ritual":  "",
+    "range": "self (15-foot cone)",
+    "target": "",
+    "components": "V,S",
+    "Duration": "Instantaneous",
+    "saving throw": "",
+    "concentration": "",
+    "description": "As you hold your hands with thumbs touching and fingers spread, a thin sheet of flames shoots forth from your outstretched fingertips. Each creature in a 15-foot cone must make a Dexterity saving throw. A creature takes 3d6 fire damage on a failed save, or half as much damage on a successful one. The fire ignites any flammable objects in the area that aren't being worn or carried.",
+    "upgrade": "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st.",
+    "level": 1
+  }
+]

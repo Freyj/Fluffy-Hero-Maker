@@ -1,0 +1,34 @@
+{
+  "name": "",
+  "abilities_plus_one": [],
+  "abilities_plus_two": [],
+  "languages_added": [],
+  "bonus_languages": 0,
+  "skill_proficiencies_added": [],
+  "speed": {
+    "walking": 30,
+    "flying": 0,
+    "burrowing": 0,
+    "climbing": 0,
+    "swimming": 0
+  },
+  "age_bracket": "0,0",
+  "racial_traits": [
+    {
+      "name":"",
+      "description": ""
+    }
+  ],
+  "vision": [],
+  "spells_to_add": [],
+  "weapon_proficiencies_added": [],
+  "tool_proficiency_choice_nb": 0,
+  "tool_proficiency_choice_list": [],
+  "cantrip_choice_nb": 0,
+  "cantrip_choice_list": [],
+  "size": "",
+  "racial_traits_choices": [],
+  "armor_proficiencies_added": [],
+  "skill_proficiency_choice_nb": 0,
+  "skill_proficiency_choices": []
+}

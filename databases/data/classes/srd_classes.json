@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Fighter",
+    "hit_dice": 10,
+    "weapon_proficiencies_to_add": ["Simple Weapons", "Martial Weapons"],
+    "skill_proficiency_choices": {
+      "number": 2,
+      "skill_list": ["Acrobatics", "Animal Handling", "Athletics", "History", "Insight", "Intimidation",
+        "Perception", "Survival"]
+    },
+    "class_features": [
+      {
+        "name": "Second Wind",
+        "description": "You have a limited well of stamina you can draw upon to protect yourself from harm. On your turn, you can use a bonus action to regain hit points equal to 1d10 + your fighter level.Once you use this feature, you must finish a short or long rest before you can use it again."
+      }
+    ],
+    "class_feature_choices": [
+      {
+        "name":"Fighting Style",
+        "description": "Choose one of the following options. You can't choose the same style twice, even if you later get to choose again.",
+        "choice_table": {
+          "Archery": "You gain a +2 bonus on attack rolls you make with ranged weapons"
+        ,
+          "Defender": "When wearing armor, you gain a +1 bonus to AC.",
+          "Dueling": "When wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon.",
+          "Great Weapon Fighting": "When you roll a 1 or 2 on a damage die for an attack you make with a weapon held in two hands, you can re-roll the die and must use the new roll, even if it a 1 or a 2. The weapon must have the two-handed or versatile property for you to gain this benefit",
+          "Mariner": "As long as you are not wearing heavy armor or wearing a shield, you have a swimming speed and a climbing speed equal to your normal speed, and you gain a +1 bonus to AC.",
+          "Protection": "When a creature you can see attacks a target other than you that is within 5 feet of you, you can use your reaction to impose disadvantage on the attack roll. You must be wielding a shield.",
+          "Two Weapon Fighting": "When you engage in two-weapon fighting, you can add your ability modifier to the damage of the second Attack. "
+        }
+      }
+    ],
+    "armor_proficiencies_to_add": ["Light Armor", "Medium Armor", "Heavy Armor", "Shields"]
+  }
+]

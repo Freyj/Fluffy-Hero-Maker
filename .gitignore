@@ -1,0 +1,5 @@
+*.pyc
+.idea/*
+.vscode/*
+venv/*
+/main/dnd5_db.db

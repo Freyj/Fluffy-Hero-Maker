@@ -1,0 +1,90 @@
+[
+  {
+    "name": "Aarakocra",
+    "restricted": ""
+  },
+  {
+    "name": "Abyssal",
+    "restricted": ""
+  },
+  {
+    "name": "Aquan",
+    "restricted": ""
+  },
+  {
+    "name": "Auran",
+    "restricted": ""
+  },
+  {
+    "name": "Celestial",
+    "restricted": ""
+  },
+  {
+    "name": "Deep Speech",
+    "restricted": ""
+  },
+  {
+    "name": "Draconic",
+    "restricted": ""
+  },
+  {
+    "name": "Druidic",
+    "restricted": "Druid class"
+  },
+  {
+    "name": "Dwarvish",
+    "restricted": ""
+  },
+  {
+    "name": "Elven",
+    "restricted": ""
+  },
+  {
+    "name": "Giant",
+    "restricted": ""
+  },
+  {
+    "name": "Gnomish",
+    "restricted": ""
+  },
+  {
+    "name": "Goblin",
+    "restricted": ""
+  },
+  {
+    "name": "Gnoll",
+    "restricted": ""
+  },
+  {
+    "name": "Halfling",
+    "restricted": ""
+  },
+  {
+    "name": "Ignan",
+    "restricted": ""
+  },
+  {
+    "name": "Infernal",
+    "restricted": ""
+  },
+  {
+    "name": "Orc",
+    "restricted": ""
+  },
+  {
+    "name": "Primordial",
+    "restricted": ""
+  },
+  {
+    "name": "Sylvan",
+    "restricted": ""
+  },
+  {
+    "name": "Terran",
+    "restricted": ""
+  },
+  {
+    "name": "Undercommon",
+    "restricted": ""
+  }
+]

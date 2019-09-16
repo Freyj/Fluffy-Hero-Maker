@@ -1,0 +1,325 @@
+[
+  {
+    "name": "Couatl",
+    "size": "M",
+    "alignment": "Lawful Good",
+    "monster_type": "Celestial",
+    "strength": 16,
+    "dexterity": 20,
+    "constitution": 17,
+    "intelligence": 18,
+    "wisdom": 20,
+    "charisma": 18,
+    "walking_speed": 30,
+    "climbing_speed": 0,
+    "burrowing_speed": 0,
+    "flying_speed": 90,
+    "swimming_speed": 0,
+    "save_throw_strength": 0,
+    "save_throw_dexterity": 0,
+    "save_throw_constitution": 5,
+    "save_throw_intelligence": 0,
+    "save_throw_wisdom": 7,
+    "save_throw_charisma": 6,
+    "armor_class": 19,
+    "hit_points": 97,
+    "hit_dice": "13d8 + 39",
+    "passive_perception": 15,
+    "xp": 1100,
+    "challenge": 4,
+    "damage_immunities": ["Psychic", "Bludgeoning, Piercing and Slashing from non-magical attacks"],
+    "damage_resistance": ["Radiant"],
+    "condition_immunities": [],
+    "senses": ["Truesight 120ft"],
+    "languages_spoken": ["All", "Telepathy 120ft"],
+    "languages_understood": [],
+    "actions":
+    [
+      {
+        "name": "Change Shape",
+        "description": "The couatl magically polymorphs into a humanoid or beast that has a challenge rating equal to or less than its own, or back into its true form. It reverts to its true form if it dies. Any equipment it is wearing or carrying is absorbed or borne by the new form (the couatl's choice). In a new form, the couatl retains its game statistics and ability to speak, but its AC, movement modes, Strength, Dexterity, and other actions are replaced by those of the new form, and it gains any statistics and capabilities (except class features, legendary actions, and lair actions) that the new form has but that it lacks. If the new form has a bite attack, the couatl can use its bite in that form."
+      },
+      {
+        "name": "Change ",
+        "description": "The couatl mag."
+      }
+    ],
+    "legendary_actions": [],
+    "attacks":
+    [
+      {
+        "name": "Bite",
+        "type": "Melee",
+        "hit_bonus": 8,
+        "target": "one creature",
+        "specials": "reach 5ft",
+        "damage": "8 (1d6 + 5) piercing damage",
+        "on_hit": "The target must succeed on a DC 13 Constitution saving throw or be poisoned for 24 hours. Until this poison ends, the target is unconscious. Another creature can use an action to shake the target awake."
+      },
+      {
+        "name": "Constrict",
+        "type": "Melee",
+        "hit_bonus": 6,
+        "target": "one Medium or smaller creature",
+        "specials": "reach 10ft",
+        "damage": "10 (2d6 + 3) bludgeoning damage",
+        "on_hit": "The target is grappled (escape DC 15). Until this grapple ends, the target is restrained and the couatl can't constrict another target. "
+      }
+    ],
+    "traits":
+    [
+      {
+        "name": "Innate Spellcasting",
+        "effect": "The couatl's spellcasting ability is Charisma (spell save DC 14)"
+      },
+      {
+        "name": "Magic Weapons",
+        "effect": "The couatl's weapon attacks are magical."
+      },
+      {
+        "name": "Shielded Mind",
+        "effect": "The couatl is immune to scrying and to any effect that would sense its emotions, read its thoughts, or detect its location. "
+      }
+    ],
+    "cantrips": ["Detect Evil and Good", "Detect Magic", "Detect Thoughts"],
+    "spells_lvl1": ["Bless", "Create Food and Water", "Cure Wounds", "Lesser Restoration", "Protection from Poison", "Sanctuary", "Shield"],
+    "spell_slots_lvl1": 3,
+    "spells_lvl2": ["Dream", "Greater Restoration", "Scrying"],
+    "spell_slots_lvl2": 1,
+    "spells_lvl3": [],
+    "spell_slots_lvl3": 0,
+    "spells_lvl4": [],
+    "spell_slots_lvl4": 0,
+    "spells_lvl5": [],
+    "spell_slots_lvl5": 0,
+    "spells_lvl6": [],
+    "spell_slots_lvl6": 0,
+    "spells_lvl7": [],
+    "spell_slots_lvl7": 0,
+    "spells_lvl8": [],
+    "spell_slots_lvl8": 0,
+    "spells_lvl9": [],
+    "spell_slots_lvl9": 0,
+    "description": "Couatls are benevolent serpentine beings of great intellect and insight. Their brilliantly colored wings and gentle manner speak to their celestial origins. Couatls were created as guardians and caretakers by a benevolent god not worshiped since the dawn of time, and which is forgotten now by all but the couatls themselves. Most of the divine mandates given to these beings are long since fulfilled or failed. However, a number of couatls still watch over ancient power, await fulfillment of prophecy, or safeguard the heirs of creatures they once guided and protected. Regardless of a couatl's task, it prefers to remain hidden, revealing itself only as a last resort. Truth Tellers. A couatl can't lie, but it can withhold information, answer questions vaguely, or allow others to jump to the wrong conclusions if doing so is necessary to protect something, to keep promises, or to hide the secret of its existence. Ancient and Few. A couatl can live for ages without sustenance, even surviving without air, but these creatures can die of disease or the passage of time. A couatl can sense its end up to a century beforehand, but it has no insight into the manner of its demise. If a couatl has already accomplished what it set out to do, it accepts its fate. However, if its imminent death endangers the completion of its goals, it actively seeks out another couatl with which to produce offspring. The mating ritual of couatls is a beautiful and elaborate dance of magic and light, which results in a gem-like egg from which a new couatl hatches. The parent that sought out the mate raises the newborn couatl and instructs it as to its duties, so that it can complete whatever task the parent leaves unfinished."
+  },
+  {
+    "name": "Deva",
+    "size": "Medium",
+    "alignment": "Lawful Good",
+    "monster_type": "Celestial",
+    "strength": 18,
+    "dexterity": 18,
+    "constitution": 18,
+    "intelligence": 17,
+    "wisdom": 20,
+    "charisma": 20,
+    "walking_speed": 30,
+    "climbing_speed": 0,
+    "burrowing_speed": 0,
+    "flying_speed": 90,
+    "swimming_speed": 0,
+    "save_throw_strength": 0,
+    "save_throw_dexterity": 0,
+    "save_throw_constitution": 0,
+    "save_throw_intelligence": 0,
+    "save_throw_wisdom": 9,
+    "save_throw_charisma": 9,
+    "armor_class": 17,
+    "hit_points": 136,
+    "hit_dice": "16d8 + 64",
+    "passive_perception": 19,
+    "xp": 5900,
+    "challenge": 10,
+    "damage_immunities": [],
+    "damage_resistance": ["Radiant", "Bludgeoning, Piercing, and Slashing from nonmagical attacks"],
+    "condition_immunities": ["Charmed", "Exhaustion", "Frightened"],
+    "senses": ["Darkvision 120ft"],
+    "languages_spoken": ["All", "Telepathy 120ft"],
+    "languages_understood": [],
+    "actions":
+    [
+      {
+        "name": "Multi-attack",
+        "description": "The deva makes two melee attacks."
+      },
+      {
+        "name": "Healing Touch",
+        "description": "(3/Day). The deva touches another creature. The target magically regains 20 (4d8 + 2) hit points and is freed from any curse, disease, poison, blindness, or deafness."
+      },
+      {
+        "name": "Change Shape",
+        "effect": "The deva magically polymorphs into a humanoid or beast that has a challenge rating equal to or less than its own, or back into its true form. It reverts to its true form if it dies. Any equipment it is wearing or carrying is absorbed or borne by the new form (the deva's choice). In a new form, the deva retains its game statistics and ability to speak, but its AC, movement modes, Strength, Dexterity, and special senses are replaced by those of the new form, and it gains any statistics and capabilities (except class features, legendary actions, and lair actions) that the new form has but that it lacks."
+      }
+    ],
+    "legendary_actions_number": 0,
+    "legendary_actions":
+    [
+      {
+        "name": "",
+        "description": ""
+      }
+    ],
+    "attacks":
+    [
+      {
+        "name": "Mace",
+        "type": "Melee",
+        "hit_bonus": 8,
+        "target": "one taget",
+        "specials": "reach 5ft",
+        "damage": "7 (1d6 + 4) bludgeoning damage plus 18 (4d8) radiant damage",
+        "on_hit": ""
+      }
+    ],
+    "traits":
+    [
+      {
+        "name": "Angelic Weapons",
+        "effect": "The deva's weapon attacks are magical. When the deva hits with any weapon, the weapon deals an extra 4d8 radiant damage (included in the attack)."
+      },
+      {
+        "name": "Innate Spellcasting",
+        "effect": "The deva's spellcasting ability is Charisma (spell save DC 17). The deva can innately cast the following spells, requiring only verbal components: At will: Detect Evil and Good, 1/day each: Commune, Raise dead."
+      },
+      {
+        "name": "Magic Resistance",
+        "effect": "The deva has advantage on saving throws against spells and other magical effects."
+      }
+    ],
+    "cantrips": [],
+    "spells_lvl1": ["Detect Evil and Good"],
+    "spell_slots_lvl1": 0,
+    "spells_lvl2": [],
+    "spell_slots_lvl2": 0,
+    "spells_lvl3": [],
+    "spell_slots_lvl3": 0,
+    "spells_lvl4": [],
+    "spell_slots_lvl4": 0,
+    "spells_lvl5": ["Commune", "Raise Dead"],
+    "spell_slots_lvl5": 0,
+    "spells_lvl6": [],
+    "spell_slots_lvl6": 0,
+    "spells_lvl7": [],
+    "spell_slots_lvl7": 0,
+    "spells_lvl8": [],
+    "spell_slots_lvl8": 0,
+    "spells_lvl9": [],
+    "spell_slots_lvl9": 0,
+    "description": "Devas are angels that act as divine messengers or agents to the Material Plane, the Shadowfell, and the Feywild and that can assume a form appropriate to the realm they are sent to. Legend tells of angels that take mortal form for years, lending aid, hope, and courage to goodhearted folk. A deva can take any shape, although it prefers to appear to mortals as an innocuous humanoid or animal. When circumstances require that it cast off its guise, a deva is a beautiful humanoid-like creature with silvery skin. Its hair and eyes gleam with an unearthly luster, and large feathery wings unfurl from its shoulder blades ",
+    "skills": [
+      {
+        "name": "Insight",
+        "bonus": 9
+      },
+      {
+        "name": "Perception",
+        "bonus": 9
+      }
+    ]
+  },
+  {
+    "name": "Planetar",
+    "size": "Large",
+    "alignment": "Lawful Good",
+    "monster_type": "Celestial",
+    "strength": 24,
+    "dexterity": 20,
+    "constitution": 24,
+    "intelligence": 19,
+    "wisdom": 22,
+    "charisma": 25,
+    "walking_speed": 40,
+    "climbing_speed": 0,
+    "burrowing_speed": 0,
+    "flying_speed": 120,
+    "swimming_speed": 0,
+    "save_throw_strength": 0,
+    "save_throw_dexterity": 0,
+    "save_throw_constitution": 12,
+    "save_throw_intelligence": 0,
+    "save_throw_wisdom": 11,
+    "save_throw_charisma": 12,
+    "armor_class": 19,
+    "hit_points": 200,
+    "hit_dice": "16d10 + 112",
+    "passive_perception": 21,
+    "xp": 15000,
+    "challenge": 16,
+    "damage_immunities": [],
+    "damage_resistance": ["Radiant", "Bludgeoning, Piercing, and Slashing from nonmagical attacks"],
+    "condition_immunities": ["Charmed", "Exhaustion", "Frightened"],
+    "senses": ["Truesight 120ft"],
+    "languages_spoken": ["All", "Telepathy 120ft"],
+    "languages_understood": [],
+    "actions":
+    [
+      {
+        "name": "Multi-attack",
+        "description": "The planetar makes two melee attacks."
+      },
+      {
+        "name": "Healing Touch",
+        "description": "(4/Day). The planetar touches another creature. The target magically regains 30 (6d8 + 3) hit points and is freed from any curse, disease, poison, blindness, or deafness."
+      }
+    ],
+    "legendary_actions_number": 0,
+    "legendary_actions": [],
+    "attacks":
+    [
+      {
+        "name": "Greatsword",
+        "type": "Melee",
+        "hit_bonus": 12,
+        "target": "one target",
+        "specials": "reach 5ft",
+        "damage": "21 (4d6 + 7) slashing damage plus 22 (5d8) radiant damage.",
+        "on_hit": ""
+      }
+    ],
+    "traits":
+    [
+      {
+        "name": "Angelic Weapons",
+        "effect": "The planetar's weapon attacks are magical. When the planetar hits with any weapon, the weapon deals an extra 5d8 radiant damage (included in the attack)."
+      },
+      {
+        "name": "Divine Awareness",
+        "effect": "The planetar knows if it hears a lie."
+      },
+      {
+        "name": "Innate Spellcasting",
+        "effect": "The planetar's spellcasting ability is Charisma (spell save DC 20). The planetar can innately cast the following spells, requiring no material components: At will: detect evil and good, invisibility (self only) , 3/day each: blade barrier, dispel evil and good, flame strike, raise dead , 1/day each: commune, control weather, insect plague."
+      },
+      {
+        "name": "Magic Resistance",
+        "effect": "The planetar has advantage on saving throws against spells and other magical effects."
+      }
+    ],
+    "cantrips": [],
+    "spells_lvl1": [],
+    "spell_slots_lvl1": 0,
+    "spells_lvl2": [],
+    "spell_slots_lvl2": 0,
+    "spells_lvl3": [],
+    "spell_slots_lvl3": 0,
+    "spells_lvl4": [],
+    "spell_slots_lvl4": 0,
+    "spells_lvl5": [],
+    "spell_slots_lvl5": 0,
+    "spells_lvl6": [],
+    "spell_slots_lvl6": 0,
+    "spells_lvl7": [],
+    "spell_slots_lvl7": 0,
+    "spells_lvl8": [],
+    "spell_slots_lvl8": 0,
+    "spells_lvl9": [],
+    "spell_slots_lvl9": 0,
+    "description": "Planetars act as the weapons of the gods they serve, presenting a tangible representation of their deities' might. A planetar can call down rain to relieve a drought, or can loose an insect plague to devour crops. A planetar's celestial ears detect every falsehood, and its radiant eyes see through every deception. Planetars are muscular and hairless and have opalescent green skin and white-feathered wings. They tower over most humanoids, brandishing immense swords with grace. Sometimes sent to aid powerful mortals on important tasks for good, planetars are especially fond of missions that involve battling fiends.",
+    "skills": [
+      {
+        "name": "Perception",
+        "bonus": 11
+      }
+    ]
+  }
+]

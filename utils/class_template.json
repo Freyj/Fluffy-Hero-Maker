@@ -1,0 +1,23 @@
+{
+  "name": "",
+  "hit_dice": 6,
+  "weapon_proficiencies_to_add": [],
+  "skill_proficiency_choices": {
+    "number": 0,
+    "skill_list": []
+  },
+  "class_features": [
+    {
+      "name": "",
+      "description": ""
+    }
+  ],
+  "class_feature_choices": [
+    {
+      "name":"",
+      "description": "",
+      "choice_table": []
+    }
+  ],
+  "armor_proficiencies_to_add": []
+}
