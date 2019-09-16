@@ -129,9 +129,11 @@ class Dnd5Character(Character):
 
     def adjust_attributes_for_race(self):
         for i in self.race.abilities_plus_one:
-            self.attributes[i] += 1
+            if i is not '':
+                self.attributes[i] += 1
         for i in self.race.abilities_plus_two:
-            self.attributes[i] += 2
+            if i is not '':
+                self.attributes[i] += 2
 
     def adjust_armor_from_class(self):
         for proficiency in self.dnd_class.armor_proficiencies_to_add:
