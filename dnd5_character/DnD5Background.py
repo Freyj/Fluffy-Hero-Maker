@@ -6,6 +6,7 @@ class DnD5Background:
         self.bonus_languages = 0
         self.equipment = ""
         self.feature = ""
+        self.description = ""
         self.feature_description = ""
         self.feature_choice = ""
         self.feature_choice_table = []

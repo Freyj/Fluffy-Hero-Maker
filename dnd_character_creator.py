@@ -115,22 +115,21 @@ def dnd_character_creation():
             confirm = input().strip()
             if confirm == "yes":
                 dnd_character.set_race(race)
-                print("You have chosen the race: " + dnd_character.race.name)
+                print("You have chosen the race: " + race.name)
                 choice_not_validated = False
 
     # Racial trait choices
-    racial_traits_choices_nb = race.racial_traits_to_choose["number"]
-    racial_traits_choices_list = race.racial_traits_to_choose["traits"]
+    racial_traits_choices_nb, racial_traits_choices_list = race.get_racial_traits()
     if racial_traits_choices_nb > 0:
         print("This race offers traits to choose from: ")
         for i in range(racial_traits_choices_nb):
             print(racial_traits_choices_list[i]["name"])
 
     # Racial tool choices
-    tool_choices_nb = race.tool_proficiency_choices["number"]
-    tool_choices = race.tool_proficiency_choices["tool_proficiency"]
+    tool_choices_nb, tool_choices = race.get_racial_tools()
     if tool_choices_nb > 0:
-        print("Your race offers tool proficiency choices: pick " + str(tool_choices_nb) + " choices among the following list: ")
+        print("Your race offers tool proficiency choices: pick "
+              + str(tool_choices_nb) + " choices among the following list: ")
         print(list_to_str(tool_choices))
         tool_choice = input().strip()
         for i in range(tool_choices_nb):
@@ -140,8 +139,7 @@ def dnd_character_creation():
             dnd_character.tool_proficiencies.add(tool_choice)
 
     # Racial cantrip choices
-    cantrip_choice_nb = race.cantrips_choice["number"]
-    cantrip_choice_list = race.cantrips_choice["cantrips"]
+    cantrip_choice_nb, cantrip_choice_list = race.get_racial_cantrips()
     if cantrip_choice_nb > 0:
         print("Your race offers cantrip choices: pick " + str(cantrip_choice_nb) + " choices among the following list: ")
         print(list_to_str(cantrip_choice_list))
@@ -153,8 +151,7 @@ def dnd_character_creation():
             dnd_character.add_cantrip(cantrip_choice)
 
     # Skill choice from race possibilities
-    skill_choice_number = dnd_character.race.skill_proficiency_choices["number"]
-    skill_choice_options = dnd_character.race.skill_proficiency_choices["skill_proficiencies"]
+    skill_choice_number, skill_choice_options = race.get_racial_skills_choices()
     if skill_choice_number > 0:
         print("You have bonus proficiencies, pick " + str(skill_choice_number)
               + " among the following:\n" + list_to_str(skill_choice_options))
@@ -170,15 +167,15 @@ def dnd_character_creation():
         print("You have bonus languages, pick " + str(dnd_character.race.bonus_languages)
               + " among the following:\n" + list_to_str(unrestricted_language_list))
         language_choices = []
-        for i in range(dnd_character.race.bonus_languages):
+        for i in range(race.bonus_languages):
             lang_choice = input().strip()
             if is_valid_choice(unrestricted_language_list, lang_choice):
                 language_choices.append(lang_choice)
         dnd_character.set_bonus_languages(language_choices)
 
     # Age choice
-    print("Pick your age, " + dnd_character.race.name +
-          " are usually between " + dnd_character.race.age_bracket[0] + " and " + dnd_character.race.age_bracket[1]
+    print("Pick your age, " + race.name +
+          " are usually between " + race.age_bracket[0] + " and " + race.age_bracket[1]
           + " years old.")
     age_choice = input()
     dnd_character.set_age(age_choice)
@@ -193,12 +190,20 @@ def dnd_character_creation():
     #  Background choice
     print("Choose your background:\n" + list_to_str(background_name_list))
     background_choice = input().strip()
-    while not is_valid_choice(background_name_list, background_choice):
-        background_choice = input().strip()
-    background = get_background_by_name(background_choice)
+    background_accepted = False
+    while not background_accepted:
+        while not is_valid_choice(background_name_list, background_choice):
+            background_choice = input().strip()
+        background = get_background_by_name(background_choice)
+        print("Description: " + background.description)
+        print("Background Feature: " + background.feature_description)
+        print("Do you accept this background?")
+        accept = input().strip()
+        if accept == 'yes':
+            background_accepted = True
     dnd_character.set_background(background)
 
-    if background.feature_choice is not None:
+    if background.feature_choice is not '':
         print("Your background has the following feature: " + background.feature_choice +
               "you can choose from the following table: ")
         print(list_to_str_with_number_and_line(background.feature_choice_table))
