@@ -18,16 +18,36 @@
       {
         "name":"Fighting Style",
         "description": "Choose one of the following options. You can't choose the same style twice, even if you later get to choose again.",
-        "choice_table": {
-          "Archery": "You gain a +2 bonus on attack rolls you make with ranged weapons"
-        ,
-          "Defender": "When wearing armor, you gain a +1 bonus to AC.",
-          "Dueling": "When wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon.",
-          "Great Weapon Fighting": "When you roll a 1 or 2 on a damage die for an attack you make with a weapon held in two hands, you can re-roll the die and must use the new roll, even if it a 1 or a 2. The weapon must have the two-handed or versatile property for you to gain this benefit",
-          "Mariner": "As long as you are not wearing heavy armor or wearing a shield, you have a swimming speed and a climbing speed equal to your normal speed, and you gain a +1 bonus to AC.",
-          "Protection": "When a creature you can see attacks a target other than you that is within 5 feet of you, you can use your reaction to impose disadvantage on the attack roll. You must be wielding a shield.",
-          "Two Weapon Fighting": "When you engage in two-weapon fighting, you can add your ability modifier to the damage of the second Attack. "
-        }
+        "choice_table": [
+          {
+            "name": "Archery",
+            "description": "You gain a +2 bonus on attack rolls you make with ranged weapons"
+          },
+          {
+            "name": "Defender",
+            "description": "When wearing armor, you gain a +1 bonus to AC."
+          },
+          {
+            "name": "Dueling",
+            "description": "When wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon."
+          },
+          {
+            "name": "Great Weapon Fighting",
+            "description": "When you roll a 1 or 2 on a damage die for an attack you make with a weapon held in two hands, you can re-roll the die and must use the new roll, even if it a 1 or a 2. The weapon must have the two-handed or versatile property for you to gain this benefit"
+          },
+          {
+            "name": "Mariner",
+            "description": "As long as you are not wearing heavy armor or wearing a shield, you have a swimming speed and a climbing speed equal to your normal speed, and you gain a +1 bonus to AC."
+          },
+          {
+            "name": "Protection",
+            "description": "When a creature you can see attacks a target other than you that is within 5 feet of you, you can use your reaction to impose disadvantage on the attack roll. You must be wielding a shield."
+          },
+          {
+            "name": "Two Weapon Fighting",
+            "description": "When you engage in two-weapon fighting, you can add your ability modifier to the damage of the second Attack."
+          }
+        ]
       }
     ],
     "armor_proficiencies_to_add": ["Light Armor", "Medium Armor", "Heavy Armor", "Shields"]

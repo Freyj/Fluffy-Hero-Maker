@@ -16,7 +16,12 @@
     {
       "name":"",
       "description": "",
-      "choice_table": []
+      "choice_table": [
+        {
+          "name": "",
+          "description":  ""
+        }
+      ]
     }
   ],
   "armor_proficiencies_to_add": []

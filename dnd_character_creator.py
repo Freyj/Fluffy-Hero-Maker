@@ -151,7 +151,6 @@ def dnd_character_creation():
                 print("Choose a cantrip that is in the list above")
                 cantrip_choice = input().strip()
             dnd_character.add_cantrip(cantrip_choice)
-            print(dnd_character.cantrips)
 
     # Skill choice from race possibilities
     skill_choice_number = dnd_character.race.skill_proficiency_choices["number"]
