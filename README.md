@@ -10,8 +10,10 @@ It uses json files to fill its databases, and the only files on this are from da
 To add data, you can find templates of the json structures in the **utils** directory.
 
 ## How do I run it?
+You need python 3.7 installed on your machine.
 Ideally, just launching ```python3 cli_main.py``` should do the trick.
 This is only in command-line interface for now, graphics are a pest.
+[also, this has only been tested on a linux machine with an Ubuntu distribution, so no guarantees]
 
 ## What can I do with it?
 You can create a character, picking a name, race, and class. 
@@ -29,7 +31,7 @@ A lot.
 Because this world needs more fluffy things. Also it is a partially wrong name, as it is more of a fluffy-helper than a fluffy-hero-maker, but eh.
 
 ## Danger zone
-* HJigh risk of things changing a lot because this is very flimsy.
+* High risk of things changing a lot because this is very flimsy.
 * Also, high probability of bugs
 
 ## Licensing
