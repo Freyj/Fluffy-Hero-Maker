@@ -34,4 +34,5 @@ Because this world needs more fluffy things. Also it is a partially wrong name, 
 
 ## Licensing
 Not exactly sure yet how I license this, so for now, it's ALL MINE and you're allowed to look at it and be amazed (or shocked).
-(keeping this as a note for later : https://www.gnu.org/licenses/gpl-howto.html)
+(keeping this as a note for later : https://www.gnu.org/licenses/gpl-howto.html).
+(Of course, the SRD is not mine.)
