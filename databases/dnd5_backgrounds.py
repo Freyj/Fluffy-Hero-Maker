@@ -13,8 +13,8 @@ CREATE_BACKGROUND_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_backgrounds
                                 background_description, feature_description, feature_choice, feature_choice_table)'''
 
 INSERT_BACKGROUND_INTO_REQUEST = '''INSERT INTO dnd5_backgrounds(name, skill_proficiencies, bonus_languages, equipment, 
-                                feature, personality_traits, ideals, bonds, flaws, feature_description, 
-                                background_description, feature_choice, feature_choice_table) 
+                                feature, personality_traits, ideals, bonds, flaws, background_description,
+                                feature_description, feature_choice, feature_choice_table) 
                                 values (?,?,?,?,?,?,?,?,?,?,?,?,?)'''
 
 DROP_BACKGROUND_TABLE_REQUEST = '''DROP TABLE IF EXISTS dnd5_backgrounds'''
@@ -46,8 +46,8 @@ def get_all_backgrounds_from_json():
                                list_to_str(background["ideals"]),
                                list_to_str(background["bonds"]),
                                list_to_str(background["flaws"]),
-                               background["feature_description"],
                                background["background_description"],
+                               background["feature_description"],
                                background["feature_choice"],
                                list_to_str(background["feature_choice_table"]))
                     backgrounds.append(element)
@@ -86,8 +86,10 @@ def get_background_by_name(background_name):
             background.bonds = record[8].split('., ')
             background.flaws = record[9].split('., ')
             background.description = record[10]
-            background.feature_choice = record[11]
-            background.feature_choice_table = record[12].split('.,')
+            background.feature_description = record[11]
+            if record[12] is not '':
+                background.feature_choice = record[12]
+                background.feature_choice_table = record[13].split('.,')
         connection.close()
         return background
     return None

@@ -1,4 +1,4 @@
-from utils.utilities import list_to_str, dict_to_str, dict_to_str_for_speed
+from utils.utilities import list_to_str, dict_to_str_for_speed
 
 
 class DnD5Race:
@@ -74,6 +74,30 @@ class DnD5Race:
             result_string += "\t\t" + i["description"] + "\n"
         result_string = result_string[:-2]
         return result_string
+
+    def get_racial_traits(self):
+        """returns a tuple of racial traits choice number and racial traits choices description"""
+        racial_traits_choices_nb = self.racial_traits_to_choose["number"]
+        racial_traits_choices_list = self.racial_traits_to_choose["traits"]
+        return racial_traits_choices_nb, racial_traits_choices_list
+
+    def get_racial_tools(self):
+        """returns a tuple of racial tools choice number and racial tools choices description"""
+        tool_choices_nb = self.tool_proficiency_choices["number"]
+        tool_choices = self.tool_proficiency_choices["tool_proficiency"]
+        return tool_choices_nb, tool_choices
+
+    def get_racial_cantrips(self):
+        """returns a tuple of racial cantrips choice number and racial cantrips choices description"""
+        cantrip_choice_nb = self.cantrips_choice["number"]
+        cantrip_choice_list = self.cantrips_choice["cantrips"]
+        return cantrip_choice_nb, cantrip_choice_list
+
+    def get_racial_skills_choices(self):
+        """returns a tuple of racial skill proficiencies choice number and racial proficiencies choices description"""
+        skill_choice_number = self.skill_proficiency_choices["number"]
+        skill_choice_options = self.skill_proficiency_choices["skill_proficiencies"]
+        return skill_choice_number, skill_choice_options
 
     def to_cli_string(self):
         resulting_string = "Race name: " + self.name + "\n"
