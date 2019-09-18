@@ -13,3 +13,10 @@ class DnD5Spell:
         self.upgrade = ""
         self.ritual = ""
 
+    def cli_description_string(self):
+        resulting_string = ""
+        string_list = self.description.split('.')[:-1]
+        for i in string_list:
+            i = i.strip()
+            resulting_string += "\t" + i + ".\n"
+        return resulting_string
