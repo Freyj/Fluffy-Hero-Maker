@@ -56,6 +56,9 @@ def cli_display(character):
         known_spells = "\t" + list_to_str(character.spells)
         print(known_spells)
 
+    print("Class Features: ")
+    print(character.dnd_class.class_features_to_string())
+
     print("Personality traits: " + list_to_str(character.personality_traits))
     print("Bonds: " + list_to_str(character.bonds))
     print("Flaws: " + list_to_str(character.flaws))

@@ -42,9 +42,22 @@ class DnD5Class:
     def to_cli_string(self):
         resulting_string = "Class: " + self.name + "\n"
         resulting_string += "Hit Dice: " + str(self.hit_dice) + "\n"
-        # class_features = self.display_class_features_with_description()
-        # resulting_string += class_features
-        resulting_string += list_to_str(self.class_features)
+        class_features_string = self.class_features_to_string()
+        resulting_string += "Class Features:\n" + class_features_string
         resulting_string += "\nWeapon Proficiencies: " + list_to_str(self.weapon_proficiencies_to_add)
         resulting_string += "\nArmor Proficiencies: " + list_to_str(self.armor_proficiencies_to_add)
+        return resulting_string
+
+    def class_features_to_string(self):
+        resulting_string = ''
+        for feature in self.class_features:
+            resulting_string += '\t' + feature["name"] + '\n'
+            description_string = ''
+            split_desc = feature["description"].split('.')
+            for desc in split_desc:
+                if desc is not '':
+                    desc = desc.strip() + '.'
+                    description_string += "\t\t" + desc + "\n"
+            resulting_string += description_string
+        resulting_string = resulting_string[:-1]
         return resulting_string
