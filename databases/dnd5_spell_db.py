@@ -35,13 +35,12 @@ def get_number_of_spells_in_db():
 
 def insert_dnd5_spell_data():
     if get_number_of_spells_in_db() == 0:
-        for i in range(10):
-            spells = get_all_spells_from_json()
-            if len(spells) > 0:
-                connection = sqlite3.connect('dnd5_db.db')
-                connection.executemany(INSERT_SPELLS_INTO_REQUEST, spells)
-                connection.commit()
-                connection.close()
+        spells = get_all_spells_from_json()
+        if len(spells) > 0:
+            connection = sqlite3.connect('dnd5_db.db')
+            connection.executemany(INSERT_SPELLS_INTO_REQUEST, spells)
+            connection.commit()
+            connection.close()
     else:
         print("Spells already in database")
 

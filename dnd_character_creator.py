@@ -202,12 +202,10 @@ def dnd_character_creation():
         if accept == 'yes':
             background_accepted = True
     dnd_character.set_background(background)
-
     if background.feature_choice is not '':
         print("Your background has the following feature: " + background.feature_choice +
               "you can choose from the following table: ")
         print(list_to_str_with_number_and_line(background.feature_choice_table))
-
     if background.bonus_languages > 0:
         print("You have " + str(background.bonus_languages) + " bonus languages to pick: ")
         print(list_to_str(language_list))
@@ -270,7 +268,7 @@ def dnd_character_creation():
             confirm = input().strip()
             if confirm == "yes":
                 dnd_character.set_class(dnd_class)
-                print("You have chosen the class: " + dnd_character.dnd_class.name)
+                print("You have chosen the class: " + dnd_class.name)
                 choice_not_validated = False
 
     # Cantrip and spells choice from class
@@ -283,7 +281,7 @@ def dnd_character_creation():
             class_cantrip_choice))
         for i in range(class_cantrip_choice_nb):
             choice = input().strip()
-            dnd_character.add_cantrip(choice, class_cantrip_choice)
+            dnd_character.add_cantrip(choice)
     # Spell lvl 1
     class_spell_choice_nb = dnd_character.dnd_class.level_one_choice["number"]
     class_spell_choice = dnd_character.dnd_class.level_one_choice["spells"]
