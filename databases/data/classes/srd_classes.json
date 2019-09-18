@@ -16,7 +16,7 @@
     ],
     "class_feature_choices": [
       {
-        "name":"Fighting Style",
+        "name": "Fighting Style",
         "description": "Choose one of the following options. You can't choose the same style twice, even if you later get to choose again.",
         "choice_table": [
           {

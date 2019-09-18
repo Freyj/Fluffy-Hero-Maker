@@ -9,14 +9,14 @@ CLASS_DATA_DIR = 'databases/data/classes/'
 
 CREATE_CLASS_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_classes 
                                 (id integer primary key, name text not null, hit_dice, weapon_proficiencies_to_add,
-                                skill_proficiency_choices_number, skill_proficiency_choices_list, class_features, 
-                                class_feature_choices_names, class_feature_choices_lists, class_feature_choices_number,
-                                armor_proficiencies)'''
+                                skill_proficiency_choices_number, skill_proficiency_choices_list, class_feature_names, 
+                                class_feature_descriptions, class_feature_choices_names, class_feature_choices_lists, 
+                                class_feature_choices_number, armor_proficiencies)'''
 
 INSERT_CLASS_INTO_REQUEST = '''INSERT INTO dnd5_classes(name, hit_dice, weapon_proficiencies_to_add, 
-                                class_features, armor_proficiencies, skill_proficiency_choices_number, 
-                                skill_proficiency_choices_list) 
-                                values (?,?,?,?,?,?,?)'''
+                                class_feature_names, class_feature_descriptions, armor_proficiencies, 
+                                skill_proficiency_choices_number, skill_proficiency_choices_list) 
+                                values (?,?,?,?,?,?,?,?)'''
 
 DROP_CLASS_TABLE_REQUEST = '''DROP TABLE IF EXISTS dnd5_classes'''
 
@@ -38,10 +38,19 @@ def get_all_classes_from_json():
             with open(file_path) as fd:
                 json_data = json.load(fd)
                 for dnd_class in json_data:
+                    class_feature_names = ''
+                    class_feature_descriptions = ''
+                    for feature in dnd_class["class_features"]:
+                        class_feature_names += feature["name"] + ';'
+                        class_feature_descriptions += feature["description"] + ';'
+                    # remove last comma
+                    class_feature_names = class_feature_names[:-1]
+                    class_feature_descriptions = class_feature_descriptions[:-1]
                     element = (dnd_class["name"],
                                dnd_class["hit_dice"],
                                list_to_str(dnd_class["weapon_proficiencies_to_add"]),
-                               list_to_str(dnd_class["class_features"]),
+                               class_feature_names,
+                               class_feature_descriptions,
                                list_to_str(dnd_class["armor_proficiencies_to_add"]),
                                dnd_class["skill_proficiency_choices"]["number"],
                                list_to_str(dnd_class["skill_proficiency_choices"]["skill_list"])
@@ -61,7 +70,6 @@ def look_for_class_by_name(name):
         connection.close()
         return dnd_class
     return None
-
 
 
 def get_all_classes_names():
@@ -88,9 +96,18 @@ def change_record_into_class(record):
                 "number": record[4],
                 "skill_proficiencies": record[5].split(', ')
             }
-        dnd_class.class_features = record[6].split(', ')
-        if record[10] is not '':
-            dnd_class.armor_proficiencies_to_add = record[10].split(', ')
+
+        class_feature_names = record[6].split(';')
+        class_feature_descriptions = record[7].split(';')
+        for i in range(len(class_feature_names)):
+            class_feature = {
+                "name": class_feature_names[i],
+                "description": class_feature_descriptions[i]
+            }
+            dnd_class.class_features.append(class_feature)
+
+        if record[11] is not '':
+            dnd_class.armor_proficiencies_to_add = record[11].split(', ')
         return dnd_class
     return None
 
