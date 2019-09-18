@@ -19,7 +19,7 @@ def list_roll_dice(die_type, dice_number):
 
 def roll_die(die_type):
     """"Roll a die of a die type and returns the resulting integer"""
-    result = random.randint(0, die_type)
+    result = random.randint(1, die_type)
     return result
 
 
