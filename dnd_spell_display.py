@@ -12,7 +12,7 @@ def cli_display(spell):
     print("Duration: " + spell.duration)
     print("Components: " + spell.components)
     print("Concentration: " + spell.concentration)
-    print("Description:\n" + spell.description)
+    print("Description:\n" + spell.cli_description_string())
     print("At higher levels:\n" + spell.upgrade)
 
 
