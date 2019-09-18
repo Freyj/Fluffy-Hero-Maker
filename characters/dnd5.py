@@ -126,6 +126,7 @@ class Dnd5Character(Character):
     def add_class_bonuses(self):
         self.adjust_armor_from_class()
         self.adjust_weapon_from_class()
+        self.adjust_tools_from_class()
 
     def adjust_attributes_for_race(self):
         for i in self.race.abilities_plus_one:
@@ -139,6 +140,10 @@ class Dnd5Character(Character):
         for proficiency in self.dnd_class.armor_proficiencies_to_add:
             if is_valid_choice(ARMOR_PROFICIENCIES, proficiency):
                 self.armor_proficiencies.add(proficiency)
+
+    def adjust_tools_from_class(self):
+        for proficiency in self.dnd_class.tool_proficiencies_to_add:
+            self.tool_proficiencies.add(proficiency)
 
     def add_cantrip(self, cantrip):
         self.cantrips.add(cantrip)

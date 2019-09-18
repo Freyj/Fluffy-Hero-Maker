@@ -100,7 +100,7 @@ class DnD5Race:
         return skill_choice_number, skill_choice_options
 
     def to_cli_string(self):
-        resulting_string = "Race name: " + self.name + "\n"
+        resulting_string = "Race: " + self.name + "\n"
         resulting_string += "Size: " + self.size + "\n"
         resulting_string += "Abilities augmented by 1: " + list_to_str(self.abilities_plus_one) + "\n"
         resulting_string += "Abilities augmented by 2: " + list_to_str(self.abilities_plus_two) + "\n"

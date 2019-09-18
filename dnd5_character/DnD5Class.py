@@ -16,6 +16,7 @@ class DnD5Class:
         }
         self.armor_proficiencies_to_add = []
         self.weapon_proficiencies_to_add = []
+        self.tool_proficiencies_to_add = []
         self.class_features = []
         self.feature_choices = []
         self.level = 1
@@ -46,6 +47,8 @@ class DnD5Class:
         resulting_string += "Class Features:\n" + class_features_string
         resulting_string += "\nWeapon Proficiencies: " + list_to_str(self.weapon_proficiencies_to_add)
         resulting_string += "\nArmor Proficiencies: " + list_to_str(self.armor_proficiencies_to_add)
+        if len(self.tool_proficiencies_to_add) > 0:
+            resulting_string += "\nTool Proficiencies: " + list_to_str(self.tool_proficiencies_to_add)
         return resulting_string
 
     def class_features_to_string(self):

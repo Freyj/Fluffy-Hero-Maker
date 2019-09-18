@@ -11,12 +11,12 @@ CREATE_CLASS_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_classes
                                 (id integer primary key, name text not null, hit_dice, weapon_proficiencies_to_add,
                                 skill_proficiency_choices_number, skill_proficiency_choices_list, class_feature_names, 
                                 class_feature_descriptions, class_feature_choices_names, class_feature_choices_lists, 
-                                class_feature_choices_number, armor_proficiencies)'''
+                                class_feature_choices_number, armor_proficiencies, tool_proficiencies)'''
 
 INSERT_CLASS_INTO_REQUEST = '''INSERT INTO dnd5_classes(name, hit_dice, weapon_proficiencies_to_add, 
                                 class_feature_names, class_feature_descriptions, armor_proficiencies, 
-                                skill_proficiency_choices_number, skill_proficiency_choices_list) 
-                                values (?,?,?,?,?,?,?,?)'''
+                                skill_proficiency_choices_number, skill_proficiency_choices_list, tool_proficiencies) 
+                                values (?,?,?,?,?,?,?,?,?)'''
 
 DROP_CLASS_TABLE_REQUEST = '''DROP TABLE IF EXISTS dnd5_classes'''
 
@@ -53,7 +53,8 @@ def get_all_classes_from_json():
                                class_feature_descriptions,
                                list_to_str(dnd_class["armor_proficiencies_to_add"]),
                                dnd_class["skill_proficiency_choices"]["number"],
-                               list_to_str(dnd_class["skill_proficiency_choices"]["skill_list"])
+                               list_to_str(dnd_class["skill_proficiency_choices"]["skill_list"]),
+                               list_to_str(dnd_class["tool_proficiencies_to_add"])
                                )
                     classes.append(element)
     return classes
@@ -108,6 +109,9 @@ def change_record_into_class(record):
 
         if record[11] is not '':
             dnd_class.armor_proficiencies_to_add = record[11].split(', ')
+
+        if record[12] is not '':
+            dnd_class.tool_proficiencies_to_add = record[12].split(', ')
         return dnd_class
     return None
 
