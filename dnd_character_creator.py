@@ -10,6 +10,7 @@ from utils.utilities import is_valid_choice, list_to_str, dict_to_str, list_to_s
 def cli_display(character):
     """Displays the character chosen in stdout through prints"""
     print("Name: " + character.name)
+    print("Hit Points: " + str(character.hit_points))
     print("Race: " + character.race.name)
     print("Class: " + character.dnd_class.name)
     print("Background: " + character.background)
@@ -354,6 +355,9 @@ def dnd_character_creation():
                     print("\t" + j)
             choice = input()
             dnd_character.dnd_class.choose_feature(features[i]["name"], choice)
+
+    # Calculate HP at the end
+    dnd_character.calc_hp_first_lvl()
 
     # Display character
     cli_display(dnd_character)

@@ -4,6 +4,7 @@ from utils.utilities import list_to_str, dict_to_str_for_speed
 class DnD5Race:
     def __init__(self, name):
         self.name = name
+        self.hit_dice = 4
         self.abilities_plus_two = []
         self.abilities_plus_one = []
         self.abilities_choice_plus_one = {
