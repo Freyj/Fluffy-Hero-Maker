@@ -57,10 +57,12 @@ class Dnd5Character(Character):
         self.flaws = []
         self.equipment = ""
         self.features = []
+        self.hit_points = 0
+        self.level = 1
 
     def get_attribute_mod(self, attribute):
         value = self.attributes[attribute]
-        mod = (value - 10) / 2
+        mod = floor((value - 10) / 2)
         return mod
 
     def set_attributes(self, attributes):
@@ -78,6 +80,11 @@ class Dnd5Character(Character):
             }
         else:
             print("Error in the assignment of attributes:\nPossibly the number of attributes is wrong.")
+
+    def calc_hp_first_lvl(self):
+        """"Calculates hit points of character from first level, based on hit die of class and constitution
+        modifier. Does not take into account other bonuses"""
+        self.hit_points = self.dnd_class.hit_dice + self.get_attribute_mod("Constitution")
 
     def set_race(self, race):
         self.race = race
