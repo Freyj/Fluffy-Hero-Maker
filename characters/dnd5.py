@@ -199,7 +199,8 @@ class Dnd5Character(Character):
             "weapon_proficiencies": list_to_str(self.weapon_proficiencies),
             "age": self.age,
             "vision": list_to_str(self.vision),
-            "proficiency_bonus": self.proficiency_bonus
+            "proficiency_bonus": self.proficiency_bonus,
+            "hit_points": self.hit_points
         }
         return json.dumps(character_dict)
 

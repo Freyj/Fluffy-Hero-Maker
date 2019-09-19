@@ -119,7 +119,7 @@ class DnD5Race:
         if len(self.spells_to_add) > 0:
             resulting_string += "Bonus spells: " + list_to_str(self.spells_to_add)
         if len(self.weapon_proficiencies_to_add) > 0:
-            resulting_string += "Weapon Proficiencies:" + list_to_str(self.weapon_proficiencies_to_add)
+            resulting_string += "Weapon Proficiencies: " + list_to_str(self.weapon_proficiencies_to_add)
         if self.racial_traits_to_choose["number"] > 0:
             resulting_string += "Racial Traits to Choose from:"
             print(self.racial_traits_to_choose)
