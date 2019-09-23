@@ -12,7 +12,7 @@ CREATE_CLASS_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_classes
                                 skill_proficiency_choices_number, skill_proficiency_choices_list, class_feature_names, 
                                 class_feature_descriptions, armor_proficiencies,
                                 tool_proficiencies, class_feature_choices_names, class_feature_choices_descriptions,
-                                class_feature_choices_tables)'''
+                                class_feature_choices_tables, saving_throws_proficiencies)'''
 
 # 1: name
 # 2: hit_dice
@@ -30,8 +30,8 @@ INSERT_CLASS_INTO_REQUEST = '''INSERT INTO dnd5_classes(name, hit_dice, weapon_p
                                 class_feature_names, class_feature_descriptions, armor_proficiencies, 
                                 skill_proficiency_choices_number, skill_proficiency_choices_list, tool_proficiencies,
                                 class_feature_choices_names, class_feature_choices_descriptions,
-                                class_feature_choices_tables) 
-                                values (?,?,?,?,?,?,?,?,?,?,?,?)'''
+                                class_feature_choices_tables, saving_throws_proficiencies) 
+                                values (?,?,?,?,?,?,?,?,?,?,?,?,?)'''
 
 DROP_CLASS_TABLE_REQUEST = '''DROP TABLE IF EXISTS dnd5_classes'''
 
@@ -88,7 +88,8 @@ def get_all_classes_from_json():
                                list_to_str(dnd_class["tool_proficiencies_to_add"]),
                                class_feature_choices_names,
                                class_feature_choices_descriptions,
-                               class_feature_choices_tables
+                               class_feature_choices_tables,
+                               list_to_str(dnd_class["saving_throws_proficiencies"])
                                )
                     classes.append(element)
     return classes
@@ -168,7 +169,7 @@ def change_record_into_class(record):
                     "choice_table": feature_choices_table
                 }
                 dnd_class.class_feature_choices.append(feat_choice)
-
+                dnd_class.saving_throws = record[13].split(', ')
         return dnd_class
     return None
 

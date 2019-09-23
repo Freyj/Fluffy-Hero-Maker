@@ -33,6 +33,7 @@ class Dnd5Character(Character):
             "Wisdom": self.get_modifier("Wisdom"),
             "Charisma": self.get_modifier("Charisma"),
         }
+        self.proficient_saving_throws = []
         self.languages = {"Common"}
         self.skill_proficiencies = set([])
         self.tool_proficiencies = set([])
@@ -134,6 +135,7 @@ class Dnd5Character(Character):
         self.adjust_armor_from_class()
         self.adjust_weapon_from_class()
         self.adjust_tools_from_class()
+        self.adjust_saving_throws_from_class()
 
     def adjust_attributes_for_race(self):
         for i in self.race.abilities_plus_one:
@@ -151,6 +153,11 @@ class Dnd5Character(Character):
     def adjust_tools_from_class(self):
         for proficiency in self.dnd_class.tool_proficiencies_to_add:
             self.tool_proficiencies.add(proficiency)
+
+    def adjust_saving_throws_from_class(self):
+        self.proficient_saving_throws = self.dnd_class.saving_throws
+        for saving_throw in self.dnd_class.saving_throws:
+            self.saving_throws[saving_throw] += self.proficiency_bonus
 
     def add_cantrip(self, cantrip):
         self.cantrips.add(cantrip)
