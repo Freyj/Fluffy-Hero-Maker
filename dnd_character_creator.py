@@ -341,18 +341,15 @@ def dnd_character_creation():
         print("You gain the following tool proficiencies: " + list_to_str(tools_options))
 
     # Check for choices of class feature
-    features = dnd_character.dnd_class.feature_choices
+    features = dnd_character.dnd_class.class_feature_choices
     if len(features) > 0:
         for i in range(len(features)):
             print("You get the following feature: " + features[i]["name"])
             print(features[i]["description"])
             choices = features[i]["choice_table"]
-            if isinstance(choices, dict):
-                for j in choices:
-                    print("\t" + j + ": " + features[i]["choice_table"][j])
-            else:
-                for j in choices:
-                    print("\t" + j)
+            for j in choices:
+                print("\t" + j["name"])
+                print("\t\t" + j["description"])
             choice = input()
             dnd_character.dnd_class.choose_feature(features[i]["name"], choice)
 
