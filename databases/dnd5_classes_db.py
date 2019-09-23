@@ -10,13 +10,28 @@ CLASS_DATA_DIR = 'databases/data/classes/'
 CREATE_CLASS_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_classes 
                                 (id integer primary key, name text not null, hit_dice, weapon_proficiencies_to_add,
                                 skill_proficiency_choices_number, skill_proficiency_choices_list, class_feature_names, 
-                                class_feature_descriptions, class_feature_choices_names, class_feature_choices_lists, 
-                                class_feature_choices_number, armor_proficiencies, tool_proficiencies)'''
+                                class_feature_descriptions, armor_proficiencies,
+                                tool_proficiencies, class_feature_choices_names, class_feature_choices_descriptions,
+                                class_feature_choices_tables)'''
 
+# 1: name
+# 2: hit_dice
+# 3: weapon_proficiencies_to_add
+# 4: class_feature_names
+# 5: class_feature_descriptions
+# 6: armor_proficiencies
+# 7: skill_proficiency_choices_number
+# 8: skill_proficiency_choices_list
+# 9: tool_proficiencies
+# 10: class_feature_choices_names
+# 11: class_feature_choices_descriptions
+# 12: class_feature_choices_tables
 INSERT_CLASS_INTO_REQUEST = '''INSERT INTO dnd5_classes(name, hit_dice, weapon_proficiencies_to_add, 
                                 class_feature_names, class_feature_descriptions, armor_proficiencies, 
-                                skill_proficiency_choices_number, skill_proficiency_choices_list, tool_proficiencies) 
-                                values (?,?,?,?,?,?,?,?,?)'''
+                                skill_proficiency_choices_number, skill_proficiency_choices_list, tool_proficiencies,
+                                class_feature_choices_names, class_feature_choices_descriptions,
+                                class_feature_choices_tables) 
+                                values (?,?,?,?,?,?,?,?,?,?,?,?)'''
 
 DROP_CLASS_TABLE_REQUEST = '''DROP TABLE IF EXISTS dnd5_classes'''
 
@@ -46,6 +61,22 @@ def get_all_classes_from_json():
                     # remove last comma
                     class_feature_names = class_feature_names[:-1]
                     class_feature_descriptions = class_feature_descriptions[:-1]
+                    class_feature_choices = dnd_class["class_feature_choices"]
+                    class_feature_choices_names = ""
+                    class_feature_choices_descriptions = ""
+                    class_feature_choices_tables = ""
+                    for feature in class_feature_choices:
+                        class_feature_choices_names += feature["name"] + ';'
+                        class_feature_choices_descriptions += feature["description"] + ';'
+                        class_feature_choices_table = feature["choice_table"]
+                        for choice in class_feature_choices_table:
+                            name = choice["name"]
+                            description = choice["description"]
+                            class_feature_choices_tables += name + "/" + description + ";"
+                        class_feature_choices_tables = class_feature_choices_tables[:-1] + "#"
+                    class_feature_choices_names = class_feature_choices_names[:-1]
+                    class_feature_choices_descriptions = class_feature_choices_descriptions[:-1]
+                    class_feature_choices_tables = class_feature_choices_tables[:-1]
                     element = (dnd_class["name"],
                                dnd_class["hit_dice"],
                                list_to_str(dnd_class["weapon_proficiencies_to_add"]),
@@ -54,7 +85,10 @@ def get_all_classes_from_json():
                                list_to_str(dnd_class["armor_proficiencies_to_add"]),
                                dnd_class["skill_proficiency_choices"]["number"],
                                list_to_str(dnd_class["skill_proficiency_choices"]["skill_list"]),
-                               list_to_str(dnd_class["tool_proficiencies_to_add"])
+                               list_to_str(dnd_class["tool_proficiencies_to_add"]),
+                               class_feature_choices_names,
+                               class_feature_choices_descriptions,
+                               class_feature_choices_tables
                                )
                     classes.append(element)
     return classes
@@ -107,11 +141,34 @@ def change_record_into_class(record):
             }
             dnd_class.class_features.append(class_feature)
 
-        if record[11] is not '':
-            dnd_class.armor_proficiencies_to_add = record[11].split(', ')
+        if record[8] is not '':
+            dnd_class.armor_proficiencies_to_add = record[8].split(', ')
 
-        if record[12] is not '':
-            dnd_class.tool_proficiencies_to_add = record[12].split(', ')
+        if record[9] is not '':
+            dnd_class.tool_proficiencies_to_add = record[9].split(', ')
+
+        if record[10] is not '':
+            feature_choices_names = record[10].split(';')
+            feature_choices_descriptions = record[11].split(';')
+            feature_choices_lists = record[12].split('#')
+            feature_choices_table = []
+            for i in range(len(feature_choices_names)):
+                table = feature_choices_lists[i].split(';')
+                for item in table:
+                    resulting_choices = item.split('/')
+                    choice = {
+                        "name": resulting_choices[0],
+                        "description": resulting_choices[1]
+                    }
+                    feature_choices_table.append(choice)
+
+                feat_choice = {
+                    "name": feature_choices_names[i],
+                    "description": feature_choices_descriptions[i],
+                    "choice_table": feature_choices_table
+                }
+                dnd_class.class_feature_choices.append(feat_choice)
+
         return dnd_class
     return None
 

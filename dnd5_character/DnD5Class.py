@@ -18,7 +18,7 @@ class DnD5Class:
         self.weapon_proficiencies_to_add = []
         self.tool_proficiencies_to_add = []
         self.class_features = []
-        self.feature_choices = []
+        self.class_feature_choices = []
         self.level = 1
         self.cantrips_choice = {
             "number": 0,
@@ -37,8 +37,23 @@ class DnD5Class:
         self.level_six_slots = 0
         self.class_features = []
 
-    def choose_feature(self, feature_name, feature_choice):
-        pass
+    def choose_feature(self, feature_name, choice):
+        feature = self.find_choice_in_features(feature_name, choice)
+        if feature != {}:
+            self.class_features.append(feature)
+
+    def find_choice_in_features(self, feature_name, choice):
+        result = {}
+        for feature in self.class_feature_choices:
+            if feature["name"] is feature_name:
+                for item in feature["choice_table"]:
+                    if choice == item["name"]:
+                        description = item["description"]
+                        result = {
+                            "name": feature_name + ': ' + choice,
+                            "description": description
+                        }
+        return result
 
     def to_cli_string(self):
         resulting_string = "Class: " + self.name + "\n"
@@ -49,6 +64,8 @@ class DnD5Class:
         resulting_string += "\nArmor Proficiencies: " + list_to_str(self.armor_proficiencies_to_add)
         if len(self.tool_proficiencies_to_add) > 0:
             resulting_string += "\nTool Proficiencies: " + list_to_str(self.tool_proficiencies_to_add)
+        class_feature_choices_string = self.class_feature_choices_to_string()
+        resulting_string += "\nClass Feature Choices:\n" + class_feature_choices_string
         return resulting_string
 
     def class_features_to_string(self):
@@ -63,4 +80,14 @@ class DnD5Class:
                     description_string += "\t\t" + desc + "\n"
             resulting_string += description_string
         resulting_string = resulting_string[:-1]
+        return resulting_string
+
+    def class_feature_choices_to_string(self):
+        resulting_string = ""
+        for choice in self.class_feature_choices:
+            resulting_string += '\t' + choice["name"] + ': ' + choice["description"] + '\n'
+            for item in choice["choice_table"]:
+                resulting_string += '\t\t' + item["name"] + '\n'
+                resulting_string += '\t\t\t' + item["description"] + '\n'
+            resulting_string = resulting_string[:-2]
         return resulting_string
