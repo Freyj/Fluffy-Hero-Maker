@@ -52,7 +52,9 @@
     ],
     "armor_proficiencies_to_add": ["Light Armor", "Medium Armor", "Heavy Armor", "Shields"],
     "tool_proficiencies_to_add": [],
-    "saving_throws_proficiencies": ["Strength", "Constitution"]
+    "saving_throws_proficiencies": ["Strength", "Constitution"],
+    "added_equipment": [],
+    "equipment_choice": [["Chain mail", "Leather Armor, Longbow, 20 arrows"], ["Martial Weapon, Shield", "Two Martial Weapons"],["Light Crossbow, 20 bolts", "Two Handaxes"], ["Dungeoneer's Pack", "Explorer's Pack"]]
   },
   {
     "name": "Rogue",
@@ -80,7 +82,9 @@
     "class_feature_choices": [],
     "armor_proficiencies_to_add": ["Light armor"],
     "tool_proficiencies_to_add": ["Thieves Tools"],
-    "saving_throws_proficiencies": ["Dexterity", "Intelligence"]
+    "saving_throws_proficiencies": ["Dexterity", "Intelligence"],
+    "added_equipment": ["Thieves' Tools", "Leather Armor", "Two Daggers"],
+    "equipment_choice": [["Rapier", "Shortsword"], ["Shortbow, Quiver of 20 arrows", "Shortsword"],["Burglar's Pack", "Dungeoneer's Pack", "Explorer's Pack"]]
   },
   {
     "name": "Barbarian",
@@ -103,6 +107,8 @@
     "class_feature_choices": [],
     "armor_proficiencies_to_add": ["Light Armor", "Medium Armor", "Shields"],
     "tool_proficiencies_to_add": [],
-    "saving_throws_proficiencies": ["Strength", "Constitution"]
+    "saving_throws_proficiencies": ["Strength", "Constitution"],
+    "added_equipment": ["Explorer's Pack", "Four Javelins"],
+    "equipment_choice": [["Greataxe", "Martial Melee Weapon"], ["Two Handaxes", "Simple Weapon"]]
   }
 ]

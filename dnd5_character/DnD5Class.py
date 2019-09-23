@@ -37,6 +37,8 @@ class DnD5Class:
         self.level_six_slots = 0
         self.class_features = []
         self.saving_throws = []
+        self.added_equipment = []
+        self.equipment_choice = []
 
     def choose_feature(self, feature_name, choice):
         feature = self.find_choice_in_features(feature_name, choice)
