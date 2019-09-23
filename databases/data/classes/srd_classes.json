@@ -51,7 +51,8 @@
       }
     ],
     "armor_proficiencies_to_add": ["Light Armor", "Medium Armor", "Heavy Armor", "Shields"],
-    "tool_proficiencies_to_add": []
+    "tool_proficiencies_to_add": [],
+    "saving_throws_proficiencies": ["Strength", "Constitution"]
   },
   {
     "name": "Rogue",
@@ -78,28 +79,30 @@
     ],
     "class_feature_choices": [],
     "armor_proficiencies_to_add": ["Light armor"],
-    "tool_proficiencies_to_add": ["Thieves Tools"]
+    "tool_proficiencies_to_add": ["Thieves Tools"],
+    "saving_throws_proficiencies": ["Dexterity", "Intelligence"]
   },
   {
-  "name": "Barbarian",
-  "hit_dice": 12,
-  "weapon_proficiencies_to_add": ["Simple Weapons", "Martial Weapons"],
-  "skill_proficiency_choices": {
-    "number": 2,
-    "skill_list": ["Animal Handling", "Athletics", "Intimidation", "Nature", "Perception", "Survival"]
-  },
-  "class_features": [
-    {
-      "name": "Rage",
-      "description": "In battle, you fight with primal ferocity. On your turn, you can enter a rage as a bonus action.While raging, you gain the following benefits if you aren't wearing heavy armor:    You have advantage on Strength checks and Strength saving throws.    When you make a melee weapon attack using Strength, you gain a bonus to the damage roll that increases as you gain levels as a barbarian, as shown in the Rage Damage column of the Barbarian table.    You have resistance to bludgeoning, piercing, and slashing damage.If you are able to cast spells, you can't cast them or concentrate on them while raging.Your rage lasts for 1 minute. It ends early if you are knocked srd:unconscious or if your turn ends and you haven't attacked a hostile creature since your last turn or taken damage since then. You can also end your rage on your turn as a bonus action.Once you have raged the number of times shown for your barbarian level in the Rages column of the Barbarian table, you must finish a long rest before you can rage again."
+    "name": "Barbarian",
+    "hit_dice": 12,
+    "weapon_proficiencies_to_add": ["Simple Weapons", "Martial Weapons"],
+    "skill_proficiency_choices": {
+      "number": 2,
+      "skill_list": ["Animal Handling", "Athletics", "Intimidation", "Nature", "Perception", "Survival"]
     },
-    {
-      "name": "Unarmored Defense",
-      "description": "While you are not wearing any armor, your Armor Class equals 10 + your Dexterity modifier + your Constitution modifier. You can use a shield and still gain this benefit."
-    }
-  ],
-  "class_feature_choices": [],
-  "armor_proficiencies_to_add": ["Light Armor", "Medium Armor", "Shields"],
-  "tool_proficiencies_to_add": []
-}
+    "class_features": [
+      {
+        "name": "Rage",
+        "description": "In battle, you fight with primal ferocity. On your turn, you can enter a rage as a bonus action.While raging, you gain the following benefits if you aren't wearing heavy armor:    You have advantage on Strength checks and Strength saving throws.    When you make a melee weapon attack using Strength, you gain a bonus to the damage roll that increases as you gain levels as a barbarian, as shown in the Rage Damage column of the Barbarian table.    You have resistance to bludgeoning, piercing, and slashing damage.If you are able to cast spells, you can't cast them or concentrate on them while raging.Your rage lasts for 1 minute. It ends early if you are knocked srd:unconscious or if your turn ends and you haven't attacked a hostile creature since your last turn or taken damage since then. You can also end your rage on your turn as a bonus action.Once you have raged the number of times shown for your barbarian level in the Rages column of the Barbarian table, you must finish a long rest before you can rage again."
+      },
+      {
+        "name": "Unarmored Defense",
+        "description": "While you are not wearing any armor, your Armor Class equals 10 + your Dexterity modifier + your Constitution modifier. You can use a shield and still gain this benefit."
+      }
+    ],
+    "class_feature_choices": [],
+    "armor_proficiencies_to_add": ["Light Armor", "Medium Armor", "Shields"],
+    "tool_proficiencies_to_add": [],
+    "saving_throws_proficiencies": ["Strength", "Constitution"]
+  }
 ]

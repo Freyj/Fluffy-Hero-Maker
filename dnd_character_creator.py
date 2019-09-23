@@ -34,6 +34,7 @@ def cli_display(character):
           + "(" + str(character.get_modifier("Charisma")) + ")")
 
     print("Saving Throws: " + character.saving_throws_to_str())
+    print("Saving Throws Proficiencies: " + list_to_str(character.proficient_saving_throws))
     language_string = "Languages: " + list_to_str(character.languages)
     print(language_string)
     skill_proficiency_string = "Skill proficiencies: " + list_to_str(character.skill_proficiencies)
