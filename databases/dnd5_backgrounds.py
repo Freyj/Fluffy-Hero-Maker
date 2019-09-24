@@ -20,13 +20,29 @@ INSERT_BACKGROUND_INTO_REQUEST = '''INSERT INTO dnd5_backgrounds(name, skill_pro
 DROP_BACKGROUND_TABLE_REQUEST = '''DROP TABLE IF EXISTS dnd5_backgrounds'''
 
 
+def get_number_of_backgrounds_in_db():
+    """Returns an integer of the number of backgrounds in the database"""
+    connection = sqlite3.connect('dnd5_db.db')
+    cursor = connection.cursor()
+    select_request = '''SELECT count() from dnd5_backgrounds'''
+    cursor.execute(select_request)
+    number_of_rows = cursor.fetchone()[0]
+    connection.close()
+    return number_of_rows
+
+
 def insert_dnd5_background():
-    backgrounds = get_all_backgrounds_from_json()
-    if len(backgrounds) > 0:
-        connection = sqlite3.connect('dnd5_db.db')
-        connection.executemany(INSERT_BACKGROUND_INTO_REQUEST, backgrounds)
-        connection.commit()
-        connection.close()
+    if get_number_of_backgrounds_in_db() == 0:
+        backgrounds = get_all_backgrounds_from_json()
+        if len(backgrounds) > 0:
+            connection = sqlite3.connect('dnd5_db.db')
+            connection.executemany(INSERT_BACKGROUND_INTO_REQUEST, backgrounds)
+            connection.commit()
+            connection.close()
+        else:
+            print("Json folder of backgrounds is empty.")
+    else:
+        print("Backgrounds already in Database")
 
 
 def get_all_backgrounds_from_json():
