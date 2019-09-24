@@ -96,7 +96,6 @@ def get_background_by_name(background_name):
             background.bonus_languages = record[3]
             background.equipment = record[4]
             background.feature = record[5]
-            print(record[5])
             background.personality_traits = record[6].split('., ')
             background.ideals = record[7].split('., ')
             background.bonds = record[8].split('., ')
