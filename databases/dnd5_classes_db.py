@@ -139,6 +139,7 @@ def get_all_classes_names():
 
 def change_record_into_class(record):
     if record is not None:
+        print(record)
         dnd_class = DnD5Class("temp")
         dnd_class.name = record[1]
         dnd_class.hit_dice = record[2]
@@ -186,7 +187,7 @@ def change_record_into_class(record):
                     "choice_table": feature_choices_table
                 }
                 dnd_class.class_feature_choices.append(feat_choice)
-                dnd_class.saving_throws = record[13].split(', ')
+        dnd_class.saving_throws = record[13].split(', ')
         return dnd_class
     return None
 
