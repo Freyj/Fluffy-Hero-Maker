@@ -200,8 +200,7 @@ def dnd_character_creation():
         while not is_valid_choice(background_name_list, background_choice):
             background_choice = input().strip()
         background = get_background_by_name(background_choice)
-        print("Description: " + background.description)
-        print("Background Feature: " + background.feature_description)
+        print(background.to_string())
         print("Do you accept this background?")
         accept = input().strip()
         if accept == 'yes':
