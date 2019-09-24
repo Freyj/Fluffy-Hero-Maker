@@ -15,6 +15,8 @@ def insert_dnd5_language():
         connection.executemany("INSERT INTO languages(name, restricted) values (?,?)", languages)
         connection.commit()
         connection.close()
+    else:
+        print("Languages already in database")
 
 
 def get_all_languages_from_json(file_name):

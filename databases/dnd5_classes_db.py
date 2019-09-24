@@ -36,13 +36,30 @@ INSERT_CLASS_INTO_REQUEST = '''INSERT INTO dnd5_classes(name, hit_dice, weapon_p
 DROP_CLASS_TABLE_REQUEST = '''DROP TABLE IF EXISTS dnd5_classes'''
 
 
+def get_number_of_classes_in_db():
+    """Returns an integer of the number of classes in the database"""
+    connection = sqlite3.connect('dnd5_db.db')
+    cursor = connection.cursor()
+
+    select_request = '''SELECT count() from dnd5_classes'''
+    cursor.execute(select_request)
+    number_of_rows = cursor.fetchone()[0]
+    connection.close()
+    return number_of_rows
+
+
 def insert_dnd5_classes():
-    classes = get_all_classes_from_json()
-    if len(classes) > 0:
-        connection = sqlite3.connect('dnd5_db.db')
-        connection.executemany(INSERT_CLASS_INTO_REQUEST, classes)
-        connection.commit()
-        connection.close()
+    if get_number_of_classes_in_db() == 0:
+        classes = get_all_classes_from_json()
+        if len(classes) > 0:
+            connection = sqlite3.connect('dnd5_db.db')
+            connection.executemany(INSERT_CLASS_INTO_REQUEST, classes)
+            connection.commit()
+            connection.close()
+        else:
+            print("Json folder of classes is empty.")
+    else:
+        print("Classes already in Database")
 
 
 def get_all_classes_from_json():
