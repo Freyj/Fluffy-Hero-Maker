@@ -68,8 +68,9 @@ class DnD5Class:
         if len(self.tool_proficiencies_to_add) > 0:
             resulting_string += "\nTool Proficiencies: " + list_to_str(self.tool_proficiencies_to_add)
         resulting_string += "\nSaving Throws: " + list_to_str(self.saving_throws)
-        class_feature_choices_string = self.class_feature_choices_to_string()
-        resulting_string += "\nClass Feature Choices:\n" + class_feature_choices_string
+        if len(self.class_feature_choices) > 0:
+            class_feature_choices_string = self.class_feature_choices_to_string()
+            resulting_string += "\nClass Feature Choices:\n" + class_feature_choices_string
         return resulting_string
 
     def class_features_to_string(self):

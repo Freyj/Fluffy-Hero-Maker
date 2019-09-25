@@ -1,3 +1,6 @@
+from utils.utilities import list_to_str
+
+
 class DnD5Background:
     def __init__(self, name):
         self.name = name
@@ -14,3 +17,24 @@ class DnD5Background:
         self.ideals = []
         self.bonds = []
         self.flaws = []
+
+    def to_string(self):
+        resulting_string = 'Description of the background:\n'
+        description_table = self.description.split('.')
+        for i in description_table:
+            resulting_string += '\t' + i.strip() + '\n'
+        resulting_string = resulting_string[:-2]
+        resulting_string += 'Feature: ' + self.feature + '\n'
+        feature_desc_table = self.feature_description.split('.')
+        for i in feature_desc_table:
+            resulting_string += '\t' + i.strip() + '\n'
+        resulting_string = resulting_string[:-2]
+        if len(self.skill_proficiencies) > 0:
+            resulting_string += 'Skill Proficiencies offered: '
+            resulting_string += list_to_str(self.skill_proficiencies) + '\n'
+        if len(self.tool_proficiencies) > 0:
+            resulting_string += 'Tool Proficiencies offered: '
+            resulting_string += list_to_str(self.tool_proficiencies) + '\n'
+        if self.bonus_languages > 0:
+            resulting_string += 'You have ' + str(self.bonus_languages) + ' bonus languages to pick.'
+        return resulting_string

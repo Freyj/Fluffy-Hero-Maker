@@ -142,6 +142,8 @@ def insert_dnd5_monster_data():
                                    monsters)
             connection.commit()
             connection.close()
+    else:
+        print("Monsters already in database")
 
 
 def get_monster_by_name(monster_name):
