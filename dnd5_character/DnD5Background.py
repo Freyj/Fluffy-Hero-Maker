@@ -7,7 +7,7 @@ class DnD5Background:
         self.skill_proficiencies = []
         self.tool_proficiencies = []
         self.bonus_languages = 0
-        self.equipment = ""
+        self.equipment = []
         self.feature = ""
         self.description = ""
         self.feature_description = ""
@@ -36,5 +36,8 @@ class DnD5Background:
             resulting_string += 'Tool Proficiencies offered: '
             resulting_string += list_to_str(self.tool_proficiencies) + '\n'
         if self.bonus_languages > 0:
-            resulting_string += 'You have ' + str(self.bonus_languages) + ' bonus languages to pick.'
+            resulting_string += 'Number of bonus languages: ' + str(self.bonus_languages) + '\n'
+        if len(self.equipment) > 0:
+            resulting_string += "Equipment: " + list_to_str(self.equipment) + '\n'
+        resulting_string = resulting_string[:-2]
         return resulting_string

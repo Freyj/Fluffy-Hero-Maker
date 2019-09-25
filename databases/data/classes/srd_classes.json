@@ -52,7 +52,9 @@
     ],
     "armor_proficiencies_to_add": ["Light Armor", "Medium Armor", "Heavy Armor", "Shields"],
     "tool_proficiencies_to_add": [],
-    "saving_throws_proficiencies": ["Strength", "Constitution"]
+    "saving_throws_proficiencies": ["Strength", "Constitution"],
+    "added_equipment": [],
+    "equipment_choice": "Chain Mail/Leather Armor, Longbow, 20 arrows#Martial Weapon, Shield/Two Martial Weapons#Light Crossbow, 20 bolts/Two Handaxes#Dungeoneer Pack/Explorer Pack"
   },
   {
     "name": "Rogue",
@@ -80,7 +82,9 @@
     "class_feature_choices": [],
     "armor_proficiencies_to_add": ["Light armor"],
     "tool_proficiencies_to_add": ["Thieves Tools"],
-    "saving_throws_proficiencies": ["Dexterity", "Intelligence"]
+    "saving_throws_proficiencies": ["Dexterity", "Intelligence"],
+    "added_equipment": ["Thieves' Tools", "Leather Armor", "Two Daggers"],
+    "equipment_choice": "Rapier/Short Sword#Shortbow, Quiver, 20 arrows/Short Sword#Burglar Pack/Dungeoneer Pack/Explorer Pack"
   },
   {
     "name": "Barbarian",
@@ -103,74 +107,89 @@
     "class_feature_choices": [],
     "armor_proficiencies_to_add": ["Light Armor", "Medium Armor", "Shields"],
     "tool_proficiencies_to_add": [],
-    "saving_throws_proficiencies": ["Strength", "Constitution"]
+    "saving_throws_proficiencies": ["Strength", "Constitution"],
+    "added_equipment": ["Explorer's Pack", "Four Javelins"],
+    "equipment_choice": "Greataxe/Martial Melee Weapon#Two Handaxes/Simple Weapon"
   },
   {
-  "name": "Paladin",
-  "hit_dice": 10,
-  "weapon_proficiencies_to_add": ["Simple Weapons", "Martial Weapons"],
-  "skill_proficiency_choices": {
-    "number": 2,
-    "skill_list": ["Athletics", "Insight", "Intimidation", "Medicine", "Persuasion", "Religion"]
-  },
-  "class_features": [
-    {
-      "name": "Divine Sense",
-      "description": "The presence of strong evil registers on your senses like a noxious odor, and powerful good rings like heavenly music in your ears. As an action, you can open your awareness to detect such forces. Until the end of your next turn, you know the location of any celestial, fiend, or undead within 60 feet of you that is not behind total cover. You know the type (celestial, fiend, or undead) of any being whose presence you sense, but not its identity (the vampire Count Strahd von Zarovich, for instance). Within the same radius, you also detect the presence of any place or object that has been consecrated or desecrated, as with the srd:hallow spell.You can use this feature a number of times equal to 1 + your Charisma modifier. When you finish a long rest, you regain all expended uses."
-    },
-    {
-      "name": "Lay on Hands",
-      "description": "Your blessed touch can heal wounds. You have a pool of healing power that replenishes when you take a long rest. With that pool, you can restore a total number of hit points equal to your paladin level × 5.As an action, you can touch a creature and draw power from the pool to restore a number of hit points to that creature, up to the maximum amount remaining in your pool.Alternatively, you can expend 5 hit points from your pool of healing to cure the target of one disease or neutralize one poison affecting it. You can cure multiple diseases and neutralize multiple poisons with a single use of Lay on Hands, expending hit points separately for each one.This feature has no effect on undead and constructs."
-    }
-  ],
-  "class_feature_choices": [
-    {
-      "name":"",
-      "description": "",
-      "choice_table": [
-        {
-          "name": "",
-          "description":  ""
-        }
+    "name": "Paladin",
+    "hit_dice": 10,
+    "weapon_proficiencies_to_add": ["Simple Weapons", "Martial Weapons"],
+    "skill_proficiency_choices": {
+      "number": 2,
+      "skill_list": [
+        "Athletics",
+        "Insight",
+        "Intimidation",
+        "Medicine",
+        "Persuasion",
+        "Religion"
       ]
-    }
-  ],
-  "armor_proficiencies_to_add": ["Light Armor", "Medium Armor", "Heavy Armor", "Shields"],
-  "tool_proficiencies_to_add": [],
-  "saving_throws_proficiencies": ["Wisdom", "Charisma"]
-},
+    },
+    "class_features": [
+      {
+        "name": "Divine Sense",
+        "description": "The presence of strong evil registers on your senses like a noxious odor, and powerful good rings like heavenly music in your ears. As an action, you can open your awareness to detect such forces. Until the end of your next turn, you know the location of any celestial, fiend, or undead within 60 feet of you that is not behind total cover. You know the type (celestial, fiend, or undead) of any being whose presence you sense, but not its identity (the vampire Count Strahd von Zarovich, for instance). Within the same radius, you also detect the presence of any place or object that has been consecrated or desecrated, as with the srd:hallow spell.You can use this feature a number of times equal to 1 + your Charisma modifier. When you finish a long rest, you regain all expended uses."
+      },
+      {
+        "name": "Lay on Hands",
+        "description": "Your blessed touch can heal wounds. You have a pool of healing power that replenishes when you take a long rest. With that pool, you can restore a total number of hit points equal to your paladin level × 5.As an action, you can touch a creature and draw power from the pool to restore a number of hit points to that creature, up to the maximum amount remaining in your pool.Alternatively, you can expend 5 hit points from your pool of healing to cure the target of one disease or neutralize one poison affecting it. You can cure multiple diseases and neutralize multiple poisons with a single use of Lay on Hands, expending hit points separately for each one.This feature has no effect on undead and constructs."
+      }
+    ],
+    "class_feature_choices": [
+      {
+        "name": "",
+        "description": "",
+        "choice_table": [
+          {
+            "name": "",
+            "description":  ""
+          }
+        ]
+      }
+    ],
+    "armor_proficiencies_to_add": ["Light Armor", "Medium Armor", "Heavy Armor", "Shields"],
+    "tool_proficiencies_to_add": [],
+    "saving_throws_proficiencies": ["Wisdom", "Charisma"],
+    "added_equipment": ["Chain Mail", "Holy Symbol"],
+    "equipment_choice": "Martial Weapon, Shield/Two Martial Weapons#Five Javelins/Simple Melee Weapon#Priest Pack/Explorer Pack"
+  },
   {
-  "name": "Monk",
-  "hit_dice": 8,
-  "weapon_proficiencies_to_add": ["Simple Weapons", "Shortswords"],
-  "skill_proficiency_choices": {
-    "number": 2,
-    "skill_list": ["Acrobatics", "Athletics", "History", "Insight", "Religion", "Stealth"]
-  },
-  "class_features": [
-    {
-      "name": "Unarmored Defense",
-      "description": "Beginning at 1st level, while you are wearing no armor and not wielding a shield, your AC equals 10 + your Dexterity modifier + your Wisdom modifier."
+    "name": "Monk",
+    "hit_dice": 8,
+    "weapon_proficiencies_to_add": ["Simple Weapons", "Shortswords"],
+    "skill_proficiency_choices": {
+      "number": 2,
+      "skill_list": ["Acrobatics", "Athletics", "History", "Insight", "Religion", "Stealth"]
     },
-    {
-      "name": "Martial Arts",
-      "description": "At 1st level, your practice of martial arts gives you mastery of combat styles that use unarmed strikes and monk weapons, which are shortswords and any simple melee weapons that don't have the two-handed or heavy property.You gain the following benefits while you are unarmed or wielding only monk weapons and you aren't wearing armor or wielding a shield:    You can use Dexterity instead of Strength for the attack and damage rolls of your unarmed strikes and monk weapons.    You can roll a d4 in place of the normal damage of your unarmed strike or monk weapon. This die changes as you gain monk levels, ashown in the Martial Arts column of the Monk table.    When you use the Attack action with an unarmed strike or a monk weapon on your turn, you can make one unarmed strike as a bonus action. For example, if you take the Attack action and attack with a quarterstaff, you can also make an unarmed strike as a bonus action, assuming you haven't already taken a bonus action this turn.Certain monasteries use specialized forms of the monk weapons. For example, you might use a club that is two lengths of wood connected by a short chain (called a nunchaku) or a sickle with a shorter, straighter blade (called a kama). Whatever name you use for a monk weapon, you can use the game statistics provided for the weapon."
-    }
-  ],
-  "class_feature_choices": [
-    {
-      "name":"",
-      "description": "",
-      "choice_table": [
-        {
-          "name": "",
-          "description":  ""
-        }
-      ]
-    }
-  ],
-  "armor_proficiencies_to_add": [],
-  "tool_proficiencies_to_add": [],
-  "saving_throws_proficiencies": ["Strength", "Dexterity"]
-}
+    "class_features": [
+      {
+        "name": "Unarmored Defense",
+        "description": "Beginning at 1st level, while you are wearing no armor and not wielding a shield, your AC equals 10 + your Dexterity modifier + your Wisdom modifier."
+      },
+      {
+        "name": "Martial Arts",
+        "description": "At 1st level, your practice of martial arts gives you mastery of combat styles that use unarmed strikes and monk weapons, which are shortswords and any simple melee weapons that don't have the two-handed or heavy property.You gain the following benefits while you are unarmed or wielding only monk weapons and you aren't wearing armor or wielding a shield:    You can use Dexterity instead of Strength for the attack and damage rolls of your unarmed strikes and monk weapons.    You can roll a d4 in place of the normal damage of your unarmed strike or monk weapon. This die changes as you gain monk levels, ashown in the Martial Arts column of the Monk table.    When you use the Attack action with an unarmed strike or a monk weapon on your turn, you can make one unarmed strike as a bonus action. For example, if you take the Attack action and attack with a quarterstaff, you can also make an unarmed strike as a bonus action, assuming you haven't already taken a bonus action this turn.Certain monasteries use specialized forms of the monk weapons. For example, you might use a club that is two lengths of wood connected by a short chain (called a nunchaku) or a sickle with a shorter, straighter blade (called a kama). Whatever name you use for a monk weapon, you can use the game statistics provided for the weapon."
+
+      }
+    ],
+    "class_feature_choices": [
+      {
+        "name": "",
+        "description": "",
+        "choice_table": [
+          {
+            "description": "",
+            "name": ""
+          }
+        ]
+      }
+    ],
+    "tool_proficiencies_to_add": [],
+    "armor_proficiencies_to_add": [],
+    "saving_throws_proficiencies": ["Strength", "Dexterity"],
+    "added_equipment": ["10 darts"],
+    "equipment_choice": "Short Sword/Simple Weapon#Dungeoneer Pack/Explorer Pack"
+  }
 ]
+

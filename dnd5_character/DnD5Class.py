@@ -37,6 +37,8 @@ class DnD5Class:
         self.level_six_slots = 0
         self.class_features = []
         self.saving_throws = []
+        self.added_equipment = []
+        self.equipment_choice = []
 
     def choose_feature(self, feature_name, choice):
         feature = self.find_choice_in_features(feature_name, choice)
@@ -69,6 +71,19 @@ class DnD5Class:
         if len(self.class_feature_choices) > 0:
             class_feature_choices_string = self.class_feature_choices_to_string()
             resulting_string += "\nClass Feature Choices:\n" + class_feature_choices_string
+        resulting_string += '\nEquipment offered: '
+        if len(self.added_equipment) > 0:
+            resulting_string += '\n\t'
+            resulting_string += list_to_str(self.added_equipment)
+        if self.equipment_choice != '':
+            resulting_string += '\n'
+            choices = self.equipment_choice.split('#')
+            for choice in choices:
+                options = choice.split('/')
+                resulting_string += '\t'
+                for option in options:
+                    resulting_string += option + ' or '
+                resulting_string = resulting_string[:-4] + '\n'
         return resulting_string
 
     def class_features_to_string(self):

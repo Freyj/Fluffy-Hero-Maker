@@ -4,7 +4,7 @@ from databases.dnd5_classes_db import insert_dnd5_classes, get_all_classes_names
 from databases.dnd5_languages_db import get_all_languages, get_all_unrestricted_languages, insert_dnd5_language
 from databases.dnd5_races_db import get_all_races_names, look_for_race_by_name, insert_dnd5_race
 from dnd5_character.dnd5_constants import GENERATION_TYPES
-from utils.utilities import is_valid_choice, list_to_str, dict_to_str, list_to_str_with_number_and_line
+from utils.utilities import is_valid_choice, list_to_str, dict_to_str, list_to_str_with_number_and_line, get_modifier
 
 
 def cli_display(character):
@@ -21,17 +21,17 @@ def cli_display(character):
 
     # Todo: change this into a function for attributes str result (like saving throws)
     print("Attributes:\n\tStrength: "
-          + str(character.attributes["Strength"]) + "(" + str(character.get_modifier("Strength")) + ")"
+          + str(character.attributes["Strength"]) + "(" + str(get_modifier(character.attributes["Strength"])) + ")"
           + "\n\tDexterity: " + str(character.attributes["Dexterity"]) + "("
-          + str(character.get_modifier("Dexterity")) + ")"
+          + str(get_modifier(character.attributes["Dexterity"])) + ")"
           + "\n\tConstitution: " + str(character.attributes["Constitution"])
-          + "(" + str(character.get_modifier("Constitution")) + ")"
+          + "(" + str(get_modifier(character.attributes["Constitution"])) + ")"
           + "\n\tIntelligence: " + str(character.attributes["Intelligence"])
-          + "(" + str(character.get_modifier("Intelligence")) + ")"
+          + "(" + str(get_modifier(character.attributes["Intelligence"])) + ")"
           + "\n\tWisdom: " + str(character.attributes["Wisdom"]) + "("
-          + str(character.get_modifier("Wisdom")) + ")"
+          + str(get_modifier(character.attributes["Wisdom"])) + ")"
           + "\n\tCharisma: " + str(character.attributes["Charisma"])
-          + "(" + str(character.get_modifier("Charisma")) + ")")
+          + "(" + str(get_modifier(character.attributes["Charisma"])) + ")")
 
     print("Saving Throws: " + character.saving_throws_to_str())
     print("Saving Throws Proficiencies: " + list_to_str(character.proficient_saving_throws))
@@ -65,6 +65,8 @@ def cli_display(character):
     print("Bonds: " + list_to_str(character.bonds))
     print("Flaws: " + list_to_str(character.flaws))
     print("Ideals: " + list_to_str(character.ideals))
+    print("Equipment:")
+    print(character.equipment_to_string())
 
 
 def dnd_character_creation():
@@ -355,6 +357,21 @@ def dnd_character_creation():
 
     # Calculate HP at the end
     dnd_character.calc_hp_first_lvl()
+
+    # Equipment choice
+    equipment_choices = len(dnd_character.dnd_class.equipment_choice)
+    if equipment_choices != '':
+        choices = dnd_character.dnd_class.equipment_choice.split('#')
+        for choice in choices:
+            print("Choose one of these options: ")
+            options = choice.split('/')
+            opt_str = ''
+            for option in options:
+                opt_str += option + ' or '
+            opt_str = opt_str[:-3]
+            print(opt_str)
+            eq_choice = input().strip()
+            dnd_character.add_equipment(eq_choice)
 
     # Display character
     cli_display(dnd_character)
