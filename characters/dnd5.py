@@ -1,12 +1,11 @@
 import json
 import os
-from math import floor
 
 from characters.character import Character
 
 from dnd5_character.dnd5_constants import ALIGNMENTS, ARMOR_PROFICIENCIES
 
-from utils.utilities import is_valid_choice, generate_attributes, list_to_str
+from utils.utilities import is_valid_choice, generate_attributes, list_to_str, get_modifier
 
 
 class Dnd5Character(Character):
@@ -26,12 +25,12 @@ class Dnd5Character(Character):
             "walking": 30
         }
         self.saving_throws = {
-            "Strength": self.get_modifier("Strength"),
-            "Dexterity": self.get_modifier("Dexterity"),
-            "Constitution": self.get_modifier("Constitution"),
-            "Intelligence": self.get_modifier("Intelligence"),
-            "Wisdom": self.get_modifier("Wisdom"),
-            "Charisma": self.get_modifier("Charisma"),
+            "Strength": get_modifier(self.attributes["Strength"]),
+            "Dexterity": get_modifier(self.attributes["Dexterity"]),
+            "Constitution": get_modifier(self.attributes["Constitution"]),
+            "Intelligence": get_modifier(self.attributes["Intelligence"]),
+            "Wisdom": get_modifier(self.attributes["Wisdom"]),
+            "Charisma": get_modifier(self.attributes["Charisma"]),
         }
         self.proficient_saving_throws = []
         self.languages = {"Common"}
@@ -61,11 +60,6 @@ class Dnd5Character(Character):
         self.hit_points = 0
         self.level = 1
 
-    def get_attribute_mod(self, attribute):
-        value = self.attributes[attribute]
-        mod = floor((value - 10) / 2)
-        return mod
-
     def set_attributes(self, attributes):
         """"Set the characters attributes, from a list of 6 integers"""
         if type(attributes) is list and len(attributes) is 6:
@@ -85,7 +79,7 @@ class Dnd5Character(Character):
     def calc_hp_first_lvl(self):
         """"Calculates hit points of character from first level, based on hit die of class and constitution
         modifier. Does not take into account other bonuses"""
-        self.hit_points = self.dnd_class.hit_dice + self.get_attribute_mod("Constitution")
+        self.hit_points = self.dnd_class.hit_dice + get_modifier(self.attributes["Constitution"])
 
     def set_race(self, race):
         self.race = race
@@ -229,9 +223,6 @@ class Dnd5Character(Character):
     def adjust_weapon_from_class(self):
         for proficiency in self.dnd_class.weapon_proficiencies_to_add:
             self.weapon_proficiencies.add(proficiency)
-
-    def get_modifier(self, attribute):
-        return floor((self.attributes[attribute] - 10) / 2)
 
     def saving_throws_to_str(self):
         saving_throw_str = "\n\tStrength: " + str(self.saving_throws["Strength"])
