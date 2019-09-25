@@ -55,7 +55,7 @@ class Dnd5Character(Character):
         self.ideals = []
         self.bonds = []
         self.flaws = []
-        self.equipment = ""
+        self.equipment = []
         self.features = []
         self.hit_points = 0
         self.level = 1
@@ -95,7 +95,7 @@ class Dnd5Character(Character):
             self.skill_proficiencies.add(i)
         for i in dnd_background.tool_proficiencies:
             self.tool_proficiencies.add(i)
-        self.equipment += dnd_background.equipment
+        self.equipment.extend(dnd_background.equipment)
 
     def set_alignment(self, alignment):
         if is_valid_choice(ALIGNMENTS, alignment):
@@ -130,6 +130,8 @@ class Dnd5Character(Character):
         self.adjust_weapon_from_class()
         self.adjust_tools_from_class()
         self.adjust_saving_throws_from_class()
+        if len(self.dnd_class.added_equipment) > 0:
+            self.equipment.extend(self.dnd_class.added_equipment)
 
     def adjust_attributes_for_race(self):
         for i in self.race.abilities_plus_one:
@@ -138,6 +140,10 @@ class Dnd5Character(Character):
         for i in self.race.abilities_plus_two:
             if i is not '':
                 self.attributes[i] += 2
+
+    def add_equipment(self, item):
+        if item != '':
+            self.equipment.append(item)
 
     def adjust_armor_from_class(self):
         for proficiency in self.dnd_class.armor_proficiencies_to_add:
@@ -241,3 +247,16 @@ class Dnd5Character(Character):
         attributes_str += "\n\tWisdom: " + str(self.attributes["Wisdom"])
         attributes_str += "\n\tCharisma: " + str(self.attributes["Charisma"])
         return attributes_str
+
+    def equipment_to_string(self):
+        """Displays a string representing the equipment of the character"""
+        equipment_str = ""
+        item_counter = 0
+        for item in self.equipment:
+            equipment_str += item + ", "
+            item_counter += 1
+            if item_counter % 5  == 0:
+                equipment_str += "\n"
+        equipment_str.strip()
+        equipment_str = equipment_str[:-2]
+        return equipment_str
