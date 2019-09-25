@@ -1,4 +1,5 @@
 import json
+from math import floor
 
 from utils.dice_roller import keep_n_highest, sum_roll_dice
 
@@ -79,6 +80,14 @@ def generate_attributes(generation_type, stats=None):
                     random_attributes.append(roll)
     if generation_type == 4:
         random_attributes = stats
+    if generation_type == 5:
+        valid_results = False
+        while not valid_results:
+            random_attributes = []
+            for i in range(6):
+                random_attributes.append(keep_n_highest(6, 4))
+            valid_results = 3 <= sum_modifiers(random_attributes) <= 7
+
     if random_attributes:
         attributes = {
             "Strength": random_attributes[0],
@@ -89,6 +98,18 @@ def generate_attributes(generation_type, stats=None):
             "Charisma": random_attributes[5]
         }
     return attributes
+
+
+def get_modifier(attribute):
+    return floor((attribute - 10) / 2)
+
+
+def sum_modifiers(stats):
+    """Makes the sum of the various modifiers of stats to check the total bonuses"""
+    mod_total = 0
+    for item in stats:
+        mod_total += get_modifier(item)
+    return mod_total
 
 
 def string_to_list_of_objects(objectstring):

@@ -4,7 +4,7 @@ import sqlite3
 
 from dnd5_monsters.dnd5_monster import DnD5Monster
 from utils.dice_roller import roll_die
-from utils.utilities import list_to_str, dict_to_str
+from utils.utilities import list_to_str
 
 MONSTER_DATA_DIR = 'databases/data/monsters/'
 
