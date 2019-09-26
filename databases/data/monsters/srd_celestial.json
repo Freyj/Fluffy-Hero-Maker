@@ -321,5 +321,364 @@
         "bonus": 11
       }
     ]
-  }
+  },
+  {
+    "name": "Solar",
+    "size": "Large",
+    "alignment": "Lawful Good",
+    "monster_type": "Celestial",
+    "strength": 26,
+    "dexterity": 22,
+    "constitution": 26,
+    "intelligence": 25,
+    "wisdom": 25,
+    "charisma": 30,
+    "walking_speed": 50,
+    "climbing_speed": 0,
+    "burrowing_speed": 0,
+    "flying_speed": 150,
+    "swimming_speed": 0,
+    "save_throw_strength": 0,
+    "save_throw_dexterity": 0,
+    "save_throw_constitution": 0,
+    "save_throw_intelligence": 14,
+    "save_throw_wisdom": 14,
+    "save_throw_charisma": 17,
+    "armor_class": 21,
+    "hit_points": 243,
+    "hit_dice": "18d10 + 144",
+    "passive_perception": 24,
+    "xp": 33000,
+    "challenge": 21,
+    "damage_immunities": ["Necrotic", "Poison"],
+    "damage_resistance": ["Radiant", "Bludgeoning, Piercing, and Slashing from nonmagical attacks"],
+    "condition_immunities": ["Charmed", "Exhaustion", "Frightened", "Poisoned"],
+    "senses": ["Truesight 120ft"],
+    "languages_spoken": ["All", "Telepathy 120ft"],
+    "languages_understood": [],
+    "actions":
+    [
+      {
+        "name": "Multi-attack",
+        "description": "The solar makes two greatsword attacks"
+      },
+      {
+        "name": "Flying Sword",
+        "description": "The solar releases its greatsword to hover magically in an unoccupied space within 5 feet of it. If the solar can see the sword, the solar can mentally command it as a bonus action to fly up to 50 feet and either make oneattack against a target or return to the solar’s hands. If the hovering sword is targeted by any effect, the solar is considered to be holding it. The hovering sword falls if the solar dies."
+      },
+      {
+        "name": "Healing Touch",
+        "description": "(4/Day). The solar touches another creature. The target magically regains 40 (8d8 + 4) hit points and is freed from any curse, disease, poison, blindness, or deafness."
+      }
+    ],
+    "legendary_actions_number": 3,
+    "legendary_actions":
+    [
+      {
+        "name": "Teleport",
+        "description": "The solar magically teleports, along with any equipment it is wearing or carrying, up to 120 feet to an unoccupied space it can see."
+      },
+      {
+        "name": "Searing Burst",
+        "description": "(Costs 2 Actions).The solar emits magical, divine energy. Each creature of its choice in a 10‐foot radius must make a DC 23 Dexterity saving throw, taking 14 (4d6) fire damage plus 14 (4d6) radiant damage on a failed save, or half as much damage on a successful one."
+      },
+      {
+        "name": "Blinding Gaze",
+        "description": "(Costs 3 Actions).The solar targets one creature it can see within 30 feet of it. If the target can see it, the target must succeed on a DC 15 Constitution saving throw or be blinded until magic such as the lesser restoration spell removes the blindness."
+      }
+    ],
+    "attacks":
+    [
+      {
+        "name": "Greatsword",
+        "type": "Melee",
+        "hit_bonus": 15,
+        "target": "one target",
+        "specials": "reach 5ft",
+        "damage": "22 (4d6 + 8) slashing damage plus 27 (6d8) radiant damage.",
+        "on_hit": ""
+      },
+      {
+        "name": "Slaying Longbow",
+        "type": "Ranged",
+        "hit_bonus": 13,
+        "target": "one target",
+        "specials": "range 150/600ft",
+        "damage": "15 (2d8 + 6) piercing damage plus 27 (6d8) radiant damage.",
+        "on_hit": "If the target is a creature that has 100 hit points or fewer, it must succeed on a DC 15 Constitution saving throw or die."
+      }
+    ],
+    "traits":
+    [
+      {
+        "name": "Angelic Weapons",
+        "effect": "The solar’s weapon attacks are magical. When the solar hits with any weapon, the weapon deals an extra 6d8 radiant damage (included in the attack)."
+      },
+      {
+        "name": "Divine Awareness",
+        "effect": "The solar knows if it hears a lie."
+      },
+      {
+        "name": "Innate Spellcasting",
+        "effect": "The solar’s spellcasting ability is Charisma (spell save DC 25). It can innately cast the following spells, requiring no material components: At will: detect evil and good, invisibility (self only) 3/day each: blade barrier, dispel evil and good, resurrection 1/day each: commune, control weather"
+      },
+      {
+        "name": "Magic Resistance",
+        "effect": "The solar has advantage on saving throws against spells and other magical effects"
+      }
+    ],
+    "cantrips": [],
+    "spells_lvl1": [],
+    "spell_slots_lvl1": 0,
+    "spells_lvl2": [],
+    "spell_slots_lvl2": 0,
+    "spells_lvl3": [],
+    "spell_slots_lvl3": 0,
+    "spells_lvl4": [],
+    "spell_slots_lvl4": 0,
+    "spells_lvl5": [],
+    "spell_slots_lvl5": 0,
+    "spells_lvl6": [],
+    "spell_slots_lvl6": 0,
+    "spells_lvl7": [],
+    "spell_slots_lvl7": 0,
+    "spells_lvl8": [],
+    "spell_slots_lvl8": 0,
+    "spells_lvl9": [],
+    "spell_slots_lvl9": 0,
+    "description": "",
+    "skills": [
+      {
+        "name": "Perception",
+        "bonus": 14
+      }
+    ]
+  },
+  {
+    "name": "Unicorn",
+    "size": "Large",
+    "alignment": "Lawful Good",
+    "monster_type": "Celestial",
+    "strength": 18,
+    "dexterity": 14,
+    "constitution": 15,
+    "intelligence": 11,
+    "wisdom": 17,
+    "charisma": 16,
+    "walking_speed": 50,
+    "climbing_speed": 0,
+    "burrowing_speed": 0,
+    "flying_speed": 0,
+    "swimming_speed": 0,
+    "save_throw_strength": 0,
+    "save_throw_dexterity": 0,
+    "save_throw_constitution": 0,
+    "save_throw_intelligence": 0,
+    "save_throw_wisdom": 0,
+    "save_throw_charisma": 0,
+    "armor_class": 12,
+    "hit_points": 67,
+    "hit_dice": "9d10 + 18",
+    "passive_perception": 13,
+    "xp": 1800,
+    "challenge": 5,
+    "damage_immunities": ["Poison"],
+    "damage_resistance": [],
+    "condition_immunities": ["Charmed", "Paralyzed", "Poisoned"],
+    "senses": ["Darkvision 60 ft."],
+    "languages_spoken": ["Celestial", "Elvish", "Sylvan", "Telepathy 60 ft"],
+    "languages_understood": [],
+    "actions":
+    [
+      {
+        "name": "Multiattack",
+        "description": "The unicorn makes two attacks: one with its hooves and one with its horn. "
+      },
+      {
+        "name": "Healing Touch",
+        "description": "(3/Day). The unicorn touches another creature with its horn. The target magically regains 11 (2d8 + 2) hit points. In addition, the touch removes all diseases and neutralizes all poisons afflicting the target."
+      },
+      {
+        "name": "Teleport",
+        "description": "(1/Day). The unicorn magically teleports itself and up to three willing creatures it can see within 5 feet of it, along with any equipment they are wearing or carrying, to a location the unicorn is familiar with, up to 1 mile away."
+      }
+    ],
+    "legendary_actions_number": 3,
+    "legendary_actions":
+    [
+      {
+        "name": "Hooves",
+        "description": "The unicorn makes one attack with its hooves."
+      },
+      {
+        "name": "Shimmering Shield",
+        "description": "(Costs 2 Actions). The unicorn creates a shimmering, magical field around itself or another creature it can see within 60 feet of it. The target gains a +2 bonus to AC until the end of the unicorn's next turn."
+      },
+      {
+        "name": "Heal Self",
+        "description": "(Costs 3 Actions). The unicorn magically regains 11 (2d8 + 2) hit points."
+      }
+    ],
+    "attacks":
+    [
+      {
+        "name": "Hooves",
+        "type": "Melee",
+        "hit_bonus": 7,
+        "target": "on target",
+        "specials": "reach 5 ft",
+        "damage": "11 (2d6 + 4) bludgeoning damage",
+        "on_hit": ""
+      },
+      {
+        "name": "Horn",
+        "type": "Melee",
+        "hit_bonus": 7,
+        "target": "on target",
+        "specials": "reach 5 ft",
+        "damage": "8 (1d8 + 4) piercing damage",
+        "on_hit": ""
+      }
+    ],
+    "traits":
+    [
+      {
+        "name": "Charge",
+        "effect": "If the unicorn moves at least 20 feet straight toward a target and then hits it with a horn attack on the same turn, the target takes an extra 9 (2d8) piercing damage. If the target is a creature, it must succeed on a DC 15 Strength saving throw or be knocked prone."
+      },
+      {
+        "name": "Magic Resistance",
+        "description": "The unicorn has advantage on saving throws against spells and other magical effects."
+      },
+      {
+        "name": "Magic Weapons",
+        "description": "The unicorn's weapon attacks are magical. "
+      },
+      {
+        "name": "Innate Spellcasting",
+        "description": "The unicorn's innate spellcasting ability is Charisma (spell save DC 14). The unicorn can innately cast the following spells, requiring no components:At will: detect evil and good, druidcraft, pass without trace1/day each: calm emotions, dispel evil and good, entangle "
+      }
+    ],
+    "cantrips": [],
+    "spells_lvl1": [],
+    "spell_slots_lvl1": 0,
+    "spells_lvl2": [],
+    "spell_slots_lvl2": 0,
+    "spells_lvl3": [],
+    "spell_slots_lvl3": 0,
+    "spells_lvl4": [],
+    "spell_slots_lvl4": 0,
+    "spells_lvl5": [],
+    "spell_slots_lvl5": 0,
+    "spells_lvl6": [],
+    "spell_slots_lvl6": 0,
+    "spells_lvl7": [],
+    "spell_slots_lvl7": 0,
+    "spells_lvl8": [],
+    "spell_slots_lvl8": 0,
+    "spells_lvl9": [],
+    "spell_slots_lvl9": 0,
+    "description": "Unicorns dwell in enchanted forests. Unrelated to the horses it resembles, a unicorn is a celestial creature that wanders sylvan realms, its white form glimmering like starlight.A unicorn's brow sports a single spiraling horn of ivory whose magical touch can heal the sick and the injured. Its ears catch the words and whispers of the creatures that share its domain, and it knows the tongues of elves and sylvan folk. Unicorns allow good-hearted creatures to enter their woods to hunt or gather food, but they hold evil ever at bay. Foul-hearted creatures seldom leave a unicorn's domain alive.Divine Guardians. Good deities placed unicorns on the Material Plane to ward away evil and preserve and protect sacred places. Most unicorns protect a bounded realm such as an enchanted forest. However, the gods sometimes send a unicorn to guard sacred artifacts or protect specific creatures. When the forces of darkness strike against an individual the gods wish to protect, they might send that individual to a unicorn's forest, where evil creatures pursue at their peril.Unicorns most often serve deities of the forest and woodlands, including the gods of benevolent fey. Although all unicorns have natural healing power, some serve the gods in greater capacities, performing miracles normally reserved for high priests.Forest Lords. A unicorn's forest is a celestial realm where nothing that occurs beneath the sun-dappled leaves escapes the creature's notice. A unicorn hears each breathy tune sung by the elves that reside amid the treetops. It senses where every caterpillar spins its cocoon, each leaf and branch upon which a bright butterfly rests its tired wings.In a unicorn's forest, a sense of calm pervades. From wolves and foxes to birds, squirrels, and tiny insects, the creatures of a unicorn's domain seem quite tame. Pixies, sprites, satyrs, dryads, and other normally mercurial fey loyally serve a unicorn when they dwell within its woods. Under a unicorn's protection, creatures feel safe from the threat of encroaching civilization and the insidious spread of evil.A unicorn roams its domain constantly, moving ever so carefully so as not to disturb other denizens. A creature might catch a passing glimpse of the unicorn then suddenly see nothing but the wild woods.Sacred Horns. A unicorn's horn is the focus of its power, a shard of divine magic wrought in spiraling ivory. Wands of unicorn horn channel powerful magic, while unicorn horn weapons strike with divine force. Wizards can work powdered unicorn horn into potent potions and scroll ink, or use it as a component in eldritch rituals. However, any creature that takes a role, no matter how small, in slaying a unicorn is likely to become the target of divine retribution.Blessed Mounts. When darkness and evil threaten to overwhelm the mortal world, the gods sometimes see fit to pair a unicorn mount with a champion. A paladin astride a unicorn is a sign of the gods' direct intervention in the affairs of the mortal realm. It is a holy alliance made to cleave the heads from demons and banish devils back to the Nine Hells.As long as the troubled times of darkness persist, the unicorn stays by the champion, its horn shining brightly to drive back the night. However, if the gods' champion falls from grace or turns from the cause of righteousness and good, the unicorn departs, never to return. ",
+    "skills": [
+      {
+        "name": "",
+        "bonus": 0
+      }
+    ]
+  },
+  {
+  "name": "Pegasus",
+  "size": "Large",
+  "alignment": "Chaotic Good",
+  "monster_type": "Celestial",
+  "strength": 18,
+  "dexterity": 15,
+  "constitution": 16,
+  "intelligence": 10,
+  "wisdom": 15,
+  "charisma": 13,
+  "walking_speed": 60,
+  "climbing_speed": 0,
+  "burrowing_speed": 0,
+  "flying_speed": 90,
+  "swimming_speed": 0,
+  "save_throw_strength": 0,
+  "save_throw_dexterity": 4,
+  "save_throw_constitution": 0,
+  "save_throw_intelligence": 0,
+  "save_throw_wisdom": 4,
+  "save_throw_charisma": 3,
+  "armor_class": 12,
+  "hit_points": 59,
+  "hit_dice": "7d10 + 21",
+  "passive_perception": 16,
+  "xp": 450,
+  "challenge": 2,
+  "damage_immunities": [],
+  "damage_resistance": [],
+  "condition_immunities": [],
+  "senses": [],
+  "languages_spoken": [],
+  "languages_understood": ["Celestial", "Common", "Elvish", "Sylvan"],
+  "actions":
+  [
+    {
+      "name": "",
+      "description": ""
+    }
+  ],
+  "legendary_actions_number": 0,
+  "legendary_actions":
+  [
+    {
+      "name": "name",
+      "description": "description"
+    }
+  ],
+  "attacks":
+  [
+    {
+      "name": "Hooves",
+      "type": "Melee",
+      "hit_bonus": 6,
+      "target": "one target",
+      "specials": "reach 5ft",
+      "damage": "11 (2d6 + 4) bludgeoning damage",
+      "on_hit": ""
+    }
+  ],
+  "traits":
+  [
+    {
+      "name": "",
+      "effect": ""
+    }
+  ],
+  "cantrips": [],
+  "spells_lvl1": [],
+  "spell_slots_lvl1": 0,
+  "spells_lvl2": [],
+  "spell_slots_lvl2": 0,
+  "spells_lvl3": [],
+  "spell_slots_lvl3": 0,
+  "spells_lvl4": [],
+  "spell_slots_lvl4": 0,
+  "spells_lvl5": [],
+  "spell_slots_lvl5": 0,
+  "spells_lvl6": [],
+  "spell_slots_lvl6": 0,
+  "spells_lvl7": [],
+  "spell_slots_lvl7": 0,
+  "spells_lvl8": [],
+  "spell_slots_lvl8": 0,
+  "spells_lvl9": [],
+  "spell_slots_lvl9": 0,
+  "description": "The white winged horses known as pegasi soar through the skies, a vision of grace and majesty. When they touch down on solid ground, they linger only for a moment, drinking from mountain springs and pristine lakes. Any sound or sign of another creature startles them, sending them off to fly once more among the clouds.Noble Mounts. Pegasi are highly prized as swift and reliable steeds, being faster and less temperamental than griffons, hippogriffs, and wyverns. However, these wild and shy creatures are as intelligent as humanoids, and so can't be traditionally broken and tamed. A pegasus must be persuaded to serve a good-aligned creature as a mount, but when it does so, it forges a life-long bond with its new companion.Born of the Planes. Pegasi trace their origins to the Olympian Glades of Arborea, where they soar through the skies of that plane and serve as faithful mounts to the Seldarine, the pantheon of elven gods. These gods have been known to send pegasi to the Material Plane to aid those in need.Pegasi Nests. Pegasi mate for life, build their nests in hard-to-reach locations, and give birth to live young. ",
+  "skills": [
+    {
+      "name": "Perception",
+      "bonus": 6
+    }
+  ]
+}
 ]

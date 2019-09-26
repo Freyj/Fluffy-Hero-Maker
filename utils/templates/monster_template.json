@@ -1,97 +1,95 @@
-[
-  {
-    "name": "",
-    "size": "",
-    "alignment": "",
-    "monster_type": "",
-    "strength": 0,
-    "dexterity": 0,
-    "constitution": 0,
-    "intelligence": 0,
-    "wisdom": 0,
-    "charisma": 0,
-    "walking_speed": 0,
-    "climbing_speed": 0,
-    "burrowing_speed": 0,
-    "flying_speed": 0,
-    "swimming_speed": 0,
-    "save_throw_strength": 0,
-    "save_throw_dexterity": 0,
-    "save_throw_constitution": 0,
-    "save_throw_intelligence": 0,
-    "save_throw_wisdom": 0,
-    "save_throw_charisma": 0,
-    "armor_class": 0,
-    "hit_points": 0,
-    "hit_dice": "",
-    "passive_perception": 10,
-    "xp": 100,
-    "challenge": 0,
-    "damage_immunities": [],
-    "damage_resistance": [],
-    "condition_immunities": [],
-    "senses": [],
-    "languages_spoken": [],
-    "languages_understood": [],
-    "actions":
-    [
-      {
-        "name": "",
-        "description": ""
-      }
-    ],
-    "legendary_actions_number": 0,
-    "legendary_actions":
-    [
-      {
-        "name": "name",
-        "description": "description"
-      }
-    ],
-    "attacks":
-    [
-      {
-        "name": "",
-        "type": "",
-        "hit_bonus": 0,
-        "target": "",
-        "specials": "",
-        "damage": "",
-        "on_hit": ""
-      }
-    ],
-    "traits":
-    [
-      {
-        "name": "",
-        "effect": ""
-      }
-    ],
-    "cantrips": [],
-    "spells_lvl1": [],
-    "spell_slots_lvl1": 0,
-    "spells_lvl2": [],
-    "spell_slots_lvl2": 0,
-    "spells_lvl3": [],
-    "spell_slots_lvl3": 0,
-    "spells_lvl4": [],
-    "spell_slots_lvl4": 0,
-    "spells_lvl5": [],
-    "spell_slots_lvl5": 0,
-    "spells_lvl6": [],
-    "spell_slots_lvl6": 0,
-    "spells_lvl7": [],
-    "spell_slots_lvl7": 0,
-    "spells_lvl8": [],
-    "spell_slots_lvl8": 0,
-    "spells_lvl9": [],
-    "spell_slots_lvl9": 0,
-    "description": "",
-      "skills": [
-      {
-        "name": "",
-        "bonus": 0
-      }
-    ]
-  }
-]
+{
+  "name": "",
+  "size": "",
+  "alignment": "",
+  "monster_type": "",
+  "strength": 0,
+  "dexterity": 0,
+  "constitution": 0,
+  "intelligence": 0,
+  "wisdom": 0,
+  "charisma": 0,
+  "walking_speed": 0,
+  "climbing_speed": 0,
+  "burrowing_speed": 0,
+  "flying_speed": 0,
+  "swimming_speed": 0,
+  "save_throw_strength": 0,
+  "save_throw_dexterity": 0,
+  "save_throw_constitution": 0,
+  "save_throw_intelligence": 0,
+  "save_throw_wisdom": 0,
+  "save_throw_charisma": 0,
+  "armor_class": 0,
+  "hit_points": 0,
+  "hit_dice": "",
+  "passive_perception": 10,
+  "xp": 100,
+  "challenge": 0,
+  "damage_immunities": [],
+  "damage_resistance": [],
+  "condition_immunities": [],
+  "senses": [],
+  "languages_spoken": [],
+  "languages_understood": [],
+  "actions":
+  [
+    {
+      "name": "",
+      "description": ""
+    }
+  ],
+  "legendary_actions_number": 0,
+  "legendary_actions":
+  [
+    {
+      "name": "name",
+      "description": "description"
+    }
+  ],
+  "attacks":
+  [
+    {
+      "name": "",
+      "type": "",
+      "hit_bonus": 0,
+      "target": "",
+      "specials": "",
+      "damage": "",
+      "on_hit": ""
+    }
+  ],
+  "traits":
+  [
+    {
+      "name": "",
+      "effect": ""
+    }
+  ],
+  "cantrips": [],
+  "spells_lvl1": [],
+  "spell_slots_lvl1": 0,
+  "spells_lvl2": [],
+  "spell_slots_lvl2": 0,
+  "spells_lvl3": [],
+  "spell_slots_lvl3": 0,
+  "spells_lvl4": [],
+  "spell_slots_lvl4": 0,
+  "spells_lvl5": [],
+  "spell_slots_lvl5": 0,
+  "spells_lvl6": [],
+  "spell_slots_lvl6": 0,
+  "spells_lvl7": [],
+  "spell_slots_lvl7": 0,
+  "spells_lvl8": [],
+  "spell_slots_lvl8": 0,
+  "spells_lvl9": [],
+  "spell_slots_lvl9": 0,
+  "description": "",
+  "skills": [
+    {
+      "name": "",
+      "bonus": 0
+    }
+  ]
+}
