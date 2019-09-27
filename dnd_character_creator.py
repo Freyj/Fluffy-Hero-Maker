@@ -90,13 +90,17 @@ def dnd_character_creation():
     choosing_attributes = True
     while choosing_attributes:
         print("How do you want the stats to be generated ?\n" + dict_to_str(GENERATION_TYPES))
-        generation = input()
+        generation = ""
+        while not generation.isdigit():
+            generation = input()
         attributes = []
         if int(generation) == 4:
             print("Please input the 6 stats you want to use in order, for Strength, Dexterity, Constitution, "
                   "Intelligence, Wisdom, and Charisma")
             while len(attributes) < 6:
-                att = input()
+                att = ""
+                while not att.isdigit():
+                    att = input()
                 int_att = int(att)
                 if int_att < 5 or int_att > 20:
                     print("Your attributes should not go lower than 5 or higher than 20")
@@ -226,38 +230,43 @@ def dnd_character_creation():
     print("You may choose one of these personality traits or type your own: ")
     print(list_to_str_with_number_and_line(background.personality_traits))
     personality_choice = input().strip()
-    if int(personality_choice) < len(background.personality_traits) + 1:
-        dnd_character.personality_traits.append(background.personality_traits[int(personality_choice)-1])
+    if personality_choice.isdigit():
+        if int(personality_choice) < len(background.personality_traits) + 1:
+            dnd_character.personality_traits.append(background.personality_traits[int(personality_choice)-1])
     else:
         dnd_character.personality_traits.append(personality_choice)
     print("You may choose a second personality trait")
     personality_choice = input().strip()
-    if int(personality_choice) < len(background.personality_traits) + 1:
-        dnd_character.personality_traits.append(background.personality_traits[int(personality_choice)-1])
+    if personality_choice.isdigit():
+        if int(personality_choice) < len(background.personality_traits) + 1:
+            dnd_character.personality_traits.append(background.personality_traits[int(personality_choice)-1])
     else:
         dnd_character.personality_traits.append(personality_choice)
     # choose ideal
     print("You may choose one of these ideals or type your own: ")
     print(list_to_str_with_number_and_line(background.ideals))
     ideal_choice = input().strip()
-    if int(ideal_choice) < len(background.ideals) + 1:
-        dnd_character.ideals.append(background.ideals[int(ideal_choice)-1])
+    if ideal_choice.isdigit():
+        if int(ideal_choice) < len(background.ideals) + 1:
+            dnd_character.ideals.append(background.ideals[int(ideal_choice)-1])
     else:
         dnd_character.ideals.append(ideal_choice)
     # choose bond
     print("You may choose one of these bonds or type your own: ")
     print(list_to_str_with_number_and_line(background.bonds))
     bond_choice = input().strip()
-    if int(bond_choice) < len(background.bonds) + 1:
-        dnd_character.bonds.append(background.bonds[int(bond_choice)-1])
+    if bond_choice.isdigit():
+        if int(bond_choice) < len(background.bonds) + 1:
+            dnd_character.bonds.append(background.bonds[int(bond_choice)-1])
     else:
         dnd_character.ideals.append(bond_choice)
     # choose flaw
     print("You may choose one of these flaws or type your own: ")
     print(list_to_str_with_number_and_line(background.flaws))
     flaw_choice = input().strip()
-    if int(flaw_choice) < len(background.flaws) + 1:
-        dnd_character.flaws.append(background.flaws[int(flaw_choice)-1])
+    if flaw_choice.isdigit():
+        if int(flaw_choice) < len(background.flaws) + 1:
+            dnd_character.flaws.append(background.flaws[int(flaw_choice)-1])
     else:
         dnd_character.flaws.append(flaw_choice)
 
