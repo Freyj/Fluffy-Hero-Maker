@@ -226,13 +226,13 @@ def dnd_character_creation():
     print("You may choose one of these personality traits or type your own: ")
     print(list_to_str_with_number_and_line(background.personality_traits))
     personality_choice = input().strip()
-    if int(personality_choice) < len(background.personality_traits):
+    if int(personality_choice) < len(background.personality_traits) + 1:
         dnd_character.personality_traits.append(background.personality_traits[int(personality_choice)-1])
     else:
         dnd_character.personality_traits.append(personality_choice)
     print("You may choose a second personality trait")
     personality_choice = input().strip()
-    if int(personality_choice) < len(background.personality_traits):
+    if int(personality_choice) < len(background.personality_traits) + 1:
         dnd_character.personality_traits.append(background.personality_traits[int(personality_choice)-1])
     else:
         dnd_character.personality_traits.append(personality_choice)
@@ -240,7 +240,7 @@ def dnd_character_creation():
     print("You may choose one of these ideals or type your own: ")
     print(list_to_str_with_number_and_line(background.ideals))
     ideal_choice = input().strip()
-    if int(ideal_choice) < len(background.ideals):
+    if int(ideal_choice) < len(background.ideals) + 1:
         dnd_character.ideals.append(background.ideals[int(ideal_choice)-1])
     else:
         dnd_character.ideals.append(ideal_choice)
@@ -248,7 +248,7 @@ def dnd_character_creation():
     print("You may choose one of these bonds or type your own: ")
     print(list_to_str_with_number_and_line(background.bonds))
     bond_choice = input().strip()
-    if int(bond_choice) < len(background.bonds):
+    if int(bond_choice) < len(background.bonds) + 1:
         dnd_character.bonds.append(background.bonds[int(bond_choice)-1])
     else:
         dnd_character.ideals.append(bond_choice)
@@ -256,7 +256,7 @@ def dnd_character_creation():
     print("You may choose one of these flaws or type your own: ")
     print(list_to_str_with_number_and_line(background.flaws))
     flaw_choice = input().strip()
-    if int(flaw_choice) < len(background.flaws):
+    if int(flaw_choice) < len(background.flaws) + 1:
         dnd_character.flaws.append(background.flaws[int(flaw_choice)-1])
     else:
         dnd_character.flaws.append(flaw_choice)
