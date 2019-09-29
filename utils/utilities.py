@@ -12,16 +12,6 @@ def is_valid_choice(item_list, item):
     return False
 
 
-def list_to_str(table_choice):
-    """Creates a string from a list of string and returns it"""
-    choice_string = ""
-    for i in table_choice:
-        choice_string += str(i) + ", "
-    # remove excess comma and space
-    choice_string = choice_string[:-2]
-    return choice_string
-
-
 def list_to_str_with_number_and_line(table):
     """Creates a string from a list of strings and returns it
         with pretty printing and newlines already included"""

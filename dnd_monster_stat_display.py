@@ -1,6 +1,6 @@
 from databases.dnd5_monster_db import insert_dnd5_monster_data, get_monster_by_name, get_number_of_monsters_in_db, \
     get_all_monsters_names_from_db, get_all_monsters_names_by_type, get_random_monster
-from utils.utilities import list_to_str, attacks_string_to_display_string
+from utils.utilities import attacks_string_to_display_string
 
 
 def cli_display(monster):
@@ -16,11 +16,11 @@ def cli_display(monster):
     print("Passive Perception: " + str(monster.passive_perception))
 
     if len(monster.damage_immunities) > 0 and monster.damage_immunities[0] != '':
-        print("Damage Immunities: " + list_to_str(monster.damage_immunities))
+        print("Damage Immunities: " + ", ".join(monster.damage_immunities))
     if len(monster.damage_resistances) > 0 and monster.damage_resistances[0] != '':
-        print("Damage Resistances: " + list_to_str(monster.damage_resistances))
+        print("Damage Resistances: " + ", ".join(monster.damage_resistances))
     if len(monster.condition_immunities) > 0 and monster.condition_immunities[0] != '':
-        print("Condition Immunities :" + list_to_str(monster.condition_immunities))
+        print("Condition Immunities :" + ", ".join(monster.condition_immunities))
 
     print("Attributes:\n\tStrength: " + str(monster.attributes["Strength"]) + "\n\tDexterity: " +
           str(monster.attributes["Dexterity"]) + "\n\tConstitution: " + str(monster.attributes["Constitution"]) +
@@ -41,38 +41,38 @@ def cli_display(monster):
         print("Charisma Saving Throw: +" + str((monster.saving_throws["Charisma"])))
 
     if len(monster.senses) > 0 and monster.senses[0] != '':
-        print("Senses: " + list_to_str(monster.senses))
+        print("Senses: " + ", ".join(monster.senses))
     if len(monster.languages_spoken) > 0 and monster.languages_spoken[0] != '':
-        print("Languages spoken: " + list_to_str(monster.languages_spoken))
+        print("Languages spoken: " + ", ".join(monster.languages_spoken))
     if len(monster.languages_understood) > 0 and monster.languages_understood[0] != '':
-        print("Languages understood: " + list_to_str(monster.languages_understood))
+        print("Languages understood: " + ", ".join(monster.languages_understood))
     if monster.spells_lvl_1["slot_number"] > 0:
         print("Spell slots of level 1: " + str(monster.spells_lvl_1["slot_number"]))
-        print("Available spells of level 1: " + list_to_str(monster.spells_lvl_1["spells"]))
+        print("Available spells of level 1: " + ", ".join(monster.spells_lvl_1["spells"]))
     if monster.spells_lvl_2["slot_number"] > 0:
         print("Spell slots of level 2: " + str(monster.spells_lvl_2["slot_number"]))
-        print("Available spells of level 2: " + list_to_str(monster.spells_lvl_2["spells"]))
+        print("Available spells of level 2: " + ", ".join(monster.spells_lvl_2["spells"]))
     if monster.spells_lvl_3["slot_number"] > 0:
         print("Spell slots of level 3: " + str(monster.spells_lvl_3["slot_number"]))
-        print("Available spells of level 3: " + list_to_str(monster.spells_lvl_3["spells"]))
+        print("Available spells of level 3: " + ", ".join(monster.spells_lvl_3["spells"]))
     if monster.spells_lvl_4["slot_number"] > 0:
         print("Spell slots of level 4: " + str(monster.spells_lvl_4["slot_number"]))
-        print("Available spells of level 4: " + list_to_str(monster.spells_lvl_4["spells"]))
+        print("Available spells of level 4: " + ", ".join(monster.spells_lvl_4["spells"]))
     if monster.spells_lvl_5["slot_number"] > 0:
         print("Spell slots of level 5: " + str(monster.spells_lvl_5["slot_number"]))
-        print("Available spells of level 5: " + list_to_str(monster.spells_lvl_5["spells"]))
+        print("Available spells of level 5: " + ", ".join(monster.spells_lvl_5["spells"]))
     if monster.spells_lvl_6["slot_number"] > 0:
         print("Spell slots of level 6: " + str(monster.spells_lvl_6["slot_number"]))
-        print("Available spells of level 6: " + list_to_str(monster.spells_lvl_6["spells"]))
+        print("Available spells of level 6: " + ", ".join(monster.spells_lvl_6["spells"]))
     if monster.spells_lvl_7["slot_number"] > 0:
         print("Spell slots of level 7: " + str(monster.spells_lvl_7["slot_number"]))
-        print("Available spells of level 7: " + list_to_str(monster.spells_lvl_7["spells"]))
+        print("Available spells of level 7: " + ", ".join(monster.spells_lvl_7["spells"]))
     if monster.spells_lvl_8["slot_number"] > 0:
         print("Spell slots of level 8: " + str(monster.spells_lvl_8["slot_number"]))
-        print("Available spells of level 8: " + list_to_str(monster.spells_lvl_8["spells"]))
+        print("Available spells of level 8: " + ", ".join(monster.spells_lvl_8["spells"]))
     if monster.spells_lvl_9["slot_number"] > 0:
         print("Spell slots of level 9: " + str(monster.spells_lvl_9["slot_number"]))
-        print("Available spells of level 9: " + list_to_str(monster.spells_lvl_9["spells"]))
+        print("Available spells of level 9: " + ", ".join(monster.spells_lvl_9["spells"]))
     print("Description:\n\t" + monster.description.replace('. ', '.\n\t'))
     if len(monster.attacks) > 0:
         print("Attacks:" + attacks_string_to_display_string(monster.attacks))
@@ -94,12 +94,12 @@ def dnd_monster_stat_display():
     if choice is "2":
         print("The database contains " + str(get_number_of_monsters_in_db()) + " monsters.")
         print("The database contains the following monsters: ")
-        print(list_to_str(get_all_monsters_names_from_db()))
+        print(", ".join(get_all_monsters_names_from_db()))
     if choice is "3":
         print("Choose a type of monster")
         monster_type = input().strip()
         print("The database contains the following monsters of type " + monster_type + ".")
-        print(list_to_str(get_all_monsters_names_by_type(monster_type)))
+        print(", ".join(get_all_monsters_names_by_type(monster_type)))
     if choice is "4":
         print("Find a random monster")
         cli_display(get_random_monster())

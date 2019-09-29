@@ -5,7 +5,7 @@ from characters.character import Character
 
 from dnd5_character.dnd5_constants import ALIGNMENTS, ARMOR_PROFICIENCIES
 
-from utils.utilities import is_valid_choice, generate_attributes, list_to_str, get_modifier
+from utils.utilities import is_valid_choice, generate_attributes, get_modifier
 
 
 class Dnd5Character(Character):
@@ -199,13 +199,13 @@ class Dnd5Character(Character):
             "class": self.dnd_class.name,
             "size": self.size,
             "attributes": self.attributes,
-            "languages": list_to_str(self.languages),
-            "skill_proficiencies": list_to_str(self.skill_proficiencies),
-            "tool_proficiencies": list_to_str(self.tool_proficiencies),
-            "armor_proficiencies": list_to_str(self.armor_proficiencies),
-            "weapon_proficiencies": list_to_str(self.weapon_proficiencies),
+            "languages": ", ".join(self.languages),
+            "skill_proficiencies": ", ".join(self.skill_proficiencies),
+            "tool_proficiencies": ", ".join(self.tool_proficiencies),
+            "armor_proficiencies": ", ".join(self.armor_proficiencies),
+            "weapon_proficiencies": ", ".join(self.weapon_proficiencies),
             "age": self.age,
-            "vision": list_to_str(self.vision),
+            "vision": ", ".join(self.vision),
             "proficiency_bonus": self.proficiency_bonus,
             "hit_points": self.hit_points
         }

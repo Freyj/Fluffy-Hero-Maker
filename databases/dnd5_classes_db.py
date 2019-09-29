@@ -3,7 +3,6 @@ import os
 import sqlite3
 
 from dnd5_character.DnD5Class import DnD5Class
-from utils.utilities import list_to_str
 
 CLASS_DATA_DIR = 'databases/data/classes/'
 
@@ -101,18 +100,18 @@ def get_all_classes_from_json():
                     class_feature_choices_tables = class_feature_choices_tables[:-1]
                     element = (dnd_class["name"],
                                dnd_class["hit_dice"],
-                               list_to_str(dnd_class["weapon_proficiencies_to_add"]),
+                               ", ".join(dnd_class["weapon_proficiencies_to_add"]),
                                class_feature_names,
                                class_feature_descriptions,
-                               list_to_str(dnd_class["armor_proficiencies_to_add"]),
+                               ", ".join(dnd_class["armor_proficiencies_to_add"]),
                                dnd_class["skill_proficiency_choices"]["number"],
-                               list_to_str(dnd_class["skill_proficiency_choices"]["skill_list"]),
-                               list_to_str(dnd_class["tool_proficiencies_to_add"]),
+                               ", ".join(dnd_class["skill_proficiency_choices"]["skill_list"]),
+                               ", ".join(dnd_class["tool_proficiencies_to_add"]),
                                class_feature_choices_names,
                                class_feature_choices_descriptions,
                                class_feature_choices_tables,
-                               list_to_str(dnd_class["saving_throws_proficiencies"]),
-                               list_to_str(dnd_class["added_equipment"]),
+                               ", ".join(dnd_class["saving_throws_proficiencies"]),
+                               ", ".join(dnd_class["added_equipment"]),
                                dnd_class["equipment_choice"]
                                )
                     classes.append(element)

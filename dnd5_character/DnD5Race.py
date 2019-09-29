@@ -1,4 +1,4 @@
-from utils.utilities import list_to_str, dict_to_str_for_speed
+from utils.utilities import dict_to_str_for_speed
 
 
 class DnD5Race:
@@ -103,30 +103,28 @@ class DnD5Race:
     def to_cli_string(self):
         resulting_string = "Race: " + self.name + "\n"
         resulting_string += "Size: " + self.size + "\n"
-        resulting_string += "Abilities augmented by 1: " + list_to_str(self.abilities_plus_one) + "\n"
-        resulting_string += "Abilities augmented by 2: " + list_to_str(self.abilities_plus_two) + "\n"
+        resulting_string += "Abilities augmented by 1: " + ", ".join(self.abilities_plus_one) + "\n"
+        resulting_string += "Abilities augmented by 2: " + ", ".join(self.abilities_plus_two) + "\n"
         if len(self.languages) > 0:
-            resulting_string += "Languages added: " + list_to_str(self.languages) + "\n"
+            resulting_string += "Languages added: " + ", ".join(self.languages) + "\n"
         if self.bonus_languages > 0:
             resulting_string += "Bonus language choices: " + str(self.bonus_languages) + "\n"
         if len(self.skill_proficiencies) > 0:
-            resulting_string += "Skill proficiencies added: " + list_to_str(self.skill_proficiencies) + "\n"
+            resulting_string += "Skill proficiencies added: " + ", ".join(self.skill_proficiencies) + "\n"
         resulting_string += "Speed:\n" + dict_to_str_for_speed(self.speed)
-        resulting_string += "Vision: " + list_to_str(self.vision) + "\n"
+        resulting_string += "Vision: " + ", ".join(self.vision) + "\n"
         resulting_string += "Age from " + self.age_bracket[0] + " to " + self.age_bracket[1] + "\n"
         if len(self.racial_traits) > 0:
             resulting_string += "Racial traits:\n" + self.racial_traits_to_string() + "\n"
         if len(self.spells_to_add) > 0:
-            resulting_string += "Bonus spells: " + list_to_str(self.spells_to_add)
+            resulting_string += "Bonus spells: " + ", ".join(self.spells_to_add)
         if len(self.weapon_proficiencies_to_add) > 0:
-            resulting_string += "Weapon Proficiencies: " + list_to_str(self.weapon_proficiencies_to_add)
+            resulting_string += "Weapon Proficiencies: " + ", ".join(self.weapon_proficiencies_to_add)
         if self.racial_traits_to_choose["number"] > 0:
-            resulting_string += "Racial Traits to Choose from:"
-            print(self.racial_traits_to_choose)
+            resulting_string += "Racial Traits to Choose from:\n"
             for i in range(len(self.racial_traits_to_choose["traits"])):
-                print(self.racial_traits_to_choose["traits"][i]["name"])
-                print(self.racial_traits_to_choose["traits"][i]["description"])
-                print(self.racial_traits_to_choose["traits"][i]["links"])
-                print(list_to_str(self.racial_traits_to_choose["traits"][i]["list"]))
-
+                resulting_string += "\tName: " + self.racial_traits_to_choose["traits"][i]["name"] + "\n"
+                resulting_string += "\tDescription: " + self.racial_traits_to_choose["traits"][i]["description"] + "\n"
+                resulting_string += "\tLinked to: " + self.racial_traits_to_choose["traits"][i]["links"] + "\n"
+                resulting_string += "\tChoices: " + ", ".join(self.racial_traits_to_choose["traits"][i]["list"]) + "\n"
         return resulting_string

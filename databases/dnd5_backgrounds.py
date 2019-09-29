@@ -3,7 +3,6 @@ import os
 import sqlite3
 
 from dnd5_character.DnD5Background import DnD5Background
-from utils.utilities import list_to_str
 
 BACKGROUND_DATA_DIR = 'databases/data/backgrounds/'
 
@@ -54,18 +53,18 @@ def get_all_backgrounds_from_json():
                 json_data = json.load(fd)
                 for background in json_data:
                     element = (background["name"],
-                               list_to_str(background["skill_proficiencies"]),
+                               ", ".join(background["skill_proficiencies"]),
                                background["bonus_languages"],
                                background["equipment"],
                                background["feature"],
-                               list_to_str(background["personality_traits"]),
-                               list_to_str(background["ideals"]),
-                               list_to_str(background["bonds"]),
-                               list_to_str(background["flaws"]),
+                               ", ".join(background["personality_traits"]),
+                               ", ".join(background["ideals"]),
+                               ", ".join(background["bonds"]),
+                               ", ".join(background["flaws"]),
                                background["background_description"],
                                background["feature_description"],
                                background["feature_choice"],
-                               list_to_str(background["feature_choice_table"]))
+                               ", ".join(background["feature_choice_table"]))
                     backgrounds.append(element)
     return backgrounds
 

@@ -3,25 +3,50 @@ import os
 import sqlite3
 
 from dnd5_character.DnD5Race import DnD5Race
-from utils.utilities import list_to_str, str_to_list
+from utils.utilities import str_to_list
 
 RACE_DATA_DIR = 'databases/data/races/'
+
+# field numbers for memory
+# 1: name
+# 2: abilities_plus_two
+# 3: abilities_plus_one,
+# 4: languages_added,
+# 5: bonus_languages,
+# 6: skill_proficiencies_added,
+# 7: walking_speed,
+# 8: flying_speed,
+# 9: burrowing_speed,
+# 10: climbing_speed,
+# 11: swimming_speed,
+# 12: age_bracket,
+# 13: racial_traits_names,
+# 14: racial_traits_descriptions,
+# 15: vision,
+# 16: spells_to_add,
+# 17: weapon_proficiencies_to_add,
+# 18: tool_proficiencies_number,
+# 19: tool_proficiencies_choices,
+# 20: cantrip_choices_number
+# 21: cantrip_choices,
+# 22: size,
+# 23: racial_trait_choices,
+# 24: armor_proficiencies_to_add
 
 CREATE_RACE_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_races (id integer primary key, name text, 
 abilities_plus_two, abilities_plus_one, languages_added, bonus_languages, skill_proficiencies_added, walking_speed, 
 flying_speed, burrowing_speed, climbing_speed, swimming_speed, age_bracket, racial_traits_names, 
 racial_traits_descriptions, vision, spells_to_add, weapon_proficiencies_to_add, tool_proficiencies_number, 
-tool_proficiencies_choices, cantrip_choices_number numeric, cantrip_choices, size, racial_traits_choices_lists, 
-racial_traits_choices_names, racial_traits_choices_links, racial_traits_choices_descriptions, armor_proficiencies_to_add) '''
+tool_proficiencies_choices, cantrip_choices_number numeric, cantrip_choices, size, racial_trait_choices, 
+armor_proficiencies_to_add)'''
 
 
 INSERT_RACE_INTO_REQUEST = '''INSERT INTO dnd5_races (name, abilities_plus_two, abilities_plus_one, languages_added, 
 bonus_languages, skill_proficiencies_added, walking_speed, flying_speed, burrowing_speed, climbing_speed, 
 swimming_speed, age_bracket, racial_traits_names, racial_traits_descriptions, vision, spells_to_add, 
 weapon_proficiencies_to_add, tool_proficiencies_number, tool_proficiencies_choices, cantrip_choices_number, 
-cantrip_choices, size, racial_traits_choices_lists, racial_traits_choices_names, racial_traits_choices_links, 
-racial_traits_choices_descriptions, armor_proficiencies_to_add) values 
-(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) '''
+cantrip_choices, size, racial_trait_choices, armor_proficiencies_to_add) values 
+(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) '''
 
 DROP_RACE_TABLE_REQUEST = '''DROP TABLE IF EXISTS dnd5_races'''
 
@@ -83,46 +108,39 @@ def get_all_races_from_json_directory():
                         racial_trait_descriptions.append(dnd_race["racial_traits"][i]["description"].replace(',', ';'))
                     # deal with racial traits choices
                     choices_list = dnd_race["racial_traits_choices"]
-                    racial_traits_choices_lists = []
-                    racial_traits_choices_names = []
-                    racial_traits_choices_links = []
-                    racial_traits_choices_descriptions = []
-                    for i in range(len(choices_list)):
-                        choices_list[i]["description"].strip(';')
-                        racial_traits_choices_descriptions.append(choices_list[i]["description"].replace(',', ';'))
-                        choices_list[i]["name"].strip(';')
-                        racial_traits_choices_names.append(choices_list[i]["name"].replace(',', ';'))
-                        choices_list[i]["link"].strip(';')
-                        racial_traits_choices_links.append(choices_list[i]["link"].replace(',', ';'))
-                        racial_traits_choices_lists.append(choices_list[i]["choice_list"])
-
+                    racial_trait_choices = ""
+                    for choice in choices_list:
+                        racial_trait_choices += choice["name"] + "%"
+                        racial_trait_choices += choice["description"] + '#'
+                        racial_trait_choices += choice["link"] + "?"
+                        for j in choice["choice_list"]:
+                            racial_trait_choices += j + "/"
+                        racial_trait_choices = racial_trait_choices[:-1] + "&"
+                    racial_trait_choices = racial_trait_choices[:-1]
                     element = (dnd_race["name"],
-                               list_to_str(dnd_race["abilities_plus_one"]),
-                               list_to_str(dnd_race["abilities_plus_two"]),
-                               list_to_str(dnd_race["languages_added"]),
+                               ", ".join(dnd_race["abilities_plus_one"]),
+                               ", ".join(dnd_race["abilities_plus_two"]),
+                               ", ".join(dnd_race["languages_added"]),
                                dnd_race["bonus_languages"],
-                               list_to_str(dnd_race["skill_proficiencies_added"]),
+                               ", ".join(dnd_race["skill_proficiencies_added"]),
                                dnd_race["speed"]["walking"],
                                dnd_race["speed"]["flying"],
                                dnd_race["speed"]["burrowing"],
                                dnd_race["speed"]["climbing"],
                                dnd_race["speed"]["swimming"],
                                dnd_race["age_bracket"],
-                               list_to_str(racial_trait_names),
-                               list_to_str(racial_trait_descriptions),
-                               list_to_str(dnd_race["vision"]),
-                               list_to_str(dnd_race["spells_to_add"]),
-                               list_to_str(dnd_race["weapon_proficiencies_added"]),
+                               ", ".join(racial_trait_names),
+                               ", ".join(racial_trait_descriptions),
+                               ", ".join(dnd_race["vision"]),
+                               ", ".join(dnd_race["spells_to_add"]),
+                               ", ".join(dnd_race["weapon_proficiencies_added"]),
                                dnd_race["tool_proficiency_choice_nb"],
-                               list_to_str(dnd_race["tool_proficiency_choice_list"]),
+                               ", ".join(dnd_race["tool_proficiency_choice_list"]),
                                dnd_race["cantrip_choice_nb"],
-                               list_to_str(dnd_race["cantrip_choice_list"]),
+                               ", ".join(dnd_race["cantrip_choice_list"]),
                                dnd_race["size"],
-                               list_to_str(racial_traits_choices_lists),
-                               list_to_str(racial_traits_choices_names),
-                               list_to_str(racial_traits_choices_links),
-                               list_to_str(racial_traits_choices_descriptions),
-                               list_to_str(dnd_race["armor_proficiencies_added"])
+                               racial_trait_choices,
+                               ", ".join(dnd_race["armor_proficiencies_added"])
                                )
                     races.append(element)
     return races
@@ -142,7 +160,6 @@ def look_for_race_by_name(name):
 
 
 def change_record_into_race(record):
-    # print(record)
     if record is not None:
         race = DnD5Race("temp")
         race.name = record[1]
@@ -196,22 +213,32 @@ def change_record_into_race(record):
             }
         race.size = record[22]
         if record[23] is not '':
-            racial_traits_choices_lists = str_to_list(record[23])
-            racial_traits_choices_names = str_to_list(record[24])
-            racial_traits_choices_links = str_to_list(record[25])
-            racial_traits_choices_descriptions = str_to_list(record[26])
-            for i in range(len(racial_traits_choices_names)):
-                race.racial_traits_to_choose["number"] += 1
-                race.racial_traits_to_choose["traits"].append(
-                    {
-                        "name": racial_traits_choices_names[i],
-                        "description": racial_traits_choices_descriptions[i],
-                        "links": racial_traits_choices_links[i],
-                        "list": racial_traits_choices_lists[i]
-                    }
-                )
-        if record[27] is not '':
-            race.armor_proficiencies = str_to_list(record[27])
+            racial_traits_choices = record[23]
+            race.racial_traits_to_choose = parse_racial_traits_choices(racial_traits_choices)
+        if record[24] is not '':
+            race.armor_proficiencies = str_to_list(record[24])
         return race
     return None
 
+
+def parse_racial_traits_choices(racial_traits_choices):
+    """Parse a string representing racial traits choices as :
+    Name%Description#Links?Choice1/ChoiceN&
+    and returns the racial traits choices as the DnD5Race class needs"""
+    result =  {
+        "number": 0,
+        "traits": []
+    }
+    choices = racial_traits_choices.split('&')
+    for choice in choices:
+        item = {}
+        name_and_rest = choice.split('%')
+        item["name"] = name_and_rest[0]
+        description_and_rest = name_and_rest[1].split('#')
+        item["description"] = description_and_rest[0]
+        links_and_rest = description_and_rest[1].split('?')
+        item["links"] = links_and_rest[0]
+        item["list"] = links_and_rest[1].split('/')
+        result["number"] += 1
+        result["traits"].append(item)
+    return result

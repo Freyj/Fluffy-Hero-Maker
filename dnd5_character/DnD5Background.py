@@ -1,4 +1,3 @@
-from utils.utilities import list_to_str
 
 
 class DnD5Background:
@@ -31,13 +30,13 @@ class DnD5Background:
         resulting_string = resulting_string[:-2]
         if len(self.skill_proficiencies) > 0:
             resulting_string += 'Skill Proficiencies offered: '
-            resulting_string += list_to_str(self.skill_proficiencies) + '\n'
+            resulting_string += ", ".join(self.skill_proficiencies) + '\n'
         if len(self.tool_proficiencies) > 0:
             resulting_string += 'Tool Proficiencies offered: '
-            resulting_string += list_to_str(self.tool_proficiencies) + '\n'
+            resulting_string += ", ".join(self.tool_proficiencies) + '\n'
         if self.bonus_languages > 0:
             resulting_string += 'Number of bonus languages: ' + str(self.bonus_languages) + '\n'
         if len(self.equipment) > 0:
-            resulting_string += "Equipment: " + list_to_str(self.equipment) + '\n'
+            resulting_string += "Equipment: " + ", ".join(self.equipment) + '\n'
         resulting_string = resulting_string[:-2]
         return resulting_string
