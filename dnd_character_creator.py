@@ -4,7 +4,7 @@ from databases.dnd5_classes_db import insert_dnd5_classes, get_all_classes_names
 from databases.dnd5_languages_db import get_all_languages, get_all_unrestricted_languages, insert_dnd5_language
 from databases.dnd5_races_db import get_all_races_names, look_for_race_by_name, insert_dnd5_race
 from dnd5_character.dnd5_constants import GENERATION_TYPES
-from utils.utilities import is_valid_choice, list_to_str, dict_to_str, list_to_str_with_number_and_line, get_modifier
+from utils.utilities import is_valid_choice, dict_to_str, list_to_str_with_number_and_line, get_modifier
 
 
 def cli_display(character):
@@ -17,7 +17,7 @@ def cli_display(character):
     print("Alignment: " + character.alignment)
     print("Size: " + character.size)
     print("Age: " + str(character.age))
-    print("Vision: " + list_to_str(character.vision))
+    print("Vision: " + ", ".join(character.vision))
 
     # Todo: change this into a function for attributes str result (like saving throws)
     print("Attributes:\n\tStrength: "
@@ -34,37 +34,37 @@ def cli_display(character):
           + "(" + str(get_modifier(character.attributes["Charisma"])) + ")")
 
     print("Saving Throws: " + character.saving_throws_to_str())
-    print("Saving Throws Proficiencies: " + list_to_str(character.proficient_saving_throws))
-    language_string = "Languages: " + list_to_str(character.languages)
+    print("Saving Throws Proficiencies: " + ", ".join(character.proficient_saving_throws))
+    language_string = "Languages: " + ", ".join(character.languages)
     print(language_string)
-    skill_proficiency_string = "Skill proficiencies: " + list_to_str(character.skill_proficiencies)
+    skill_proficiency_string = "Skill proficiencies: " + ", ".join(character.skill_proficiencies)
     print(skill_proficiency_string)
     if len(character.tool_proficiencies) > 0:
-        tool_proficiency_string = "Tool proficiencies: " + list_to_str(character.tool_proficiencies)
+        tool_proficiency_string = "Tool proficiencies: " + ", ".join(character.tool_proficiencies)
         print(tool_proficiency_string)
     if len(character.armor_proficiencies) > 0:
-        armor_proficiency_string = "Armor proficiencies: " + list_to_str(character.armor_proficiencies)
+        armor_proficiency_string = "Armor proficiencies: " + ", ".join(character.armor_proficiencies)
         print(armor_proficiency_string)
     if len(character.weapon_proficiencies) > 0:
-        weapon_proficiency_string = "Weapon proficiencies: " + list_to_str(character.weapon_proficiencies)
+        weapon_proficiency_string = "Weapon proficiencies: " + ", ".join(character.weapon_proficiencies)
         print(weapon_proficiency_string)
     print(character.race.racial_traits_to_string())
     if len(character.cantrips) > 0:
         print("Known Cantrips: ")
-        known_cantrips = "\t" + list_to_str(character.cantrips)
+        known_cantrips = "\t" + ", ".join(character.cantrips)
         print(known_cantrips)
     if len(character.spells) > 0:
         print("Known Spells: ")
-        known_spells = "\t" + list_to_str(character.spells)
+        known_spells = "\t" + ", ".join(character.spells)
         print(known_spells)
 
     print("Class Features: ")
     print(character.dnd_class.class_features_to_string())
 
-    print("Personality traits: " + list_to_str(character.personality_traits))
-    print("Bonds: " + list_to_str(character.bonds))
-    print("Flaws: " + list_to_str(character.flaws))
-    print("Ideals: " + list_to_str(character.ideals))
+    print("Personality traits: " + ", ".join(character.personality_traits))
+    print("Bonds: " + ", ".join(character.bonds))
+    print("Flaws: " + ", ".join(character.flaws))
+    print("Ideals: " + ", ".join(character.ideals))
     print("Equipment:")
     print(character.equipment_to_string())
 
@@ -116,7 +116,7 @@ def dnd_character_creation():
     # Race choice
     choice_not_validated = True
     while choice_not_validated:
-        print("Choose your race:\n" + list_to_str(race_name_list))
+        print("Choose your race:\n" + ", ".join(race_name_list))
         race_choice = input().strip()
         if is_valid_choice(race_name_list, race_choice):
             race = look_for_race_by_name(race_choice)
@@ -141,7 +141,7 @@ def dnd_character_creation():
     if tool_choices_nb > 0:
         print("Your race offers tool proficiency choices: pick "
               + str(tool_choices_nb) + " choices among the following list: ")
-        print(list_to_str(tool_choices))
+        print(", ".join(tool_choices))
         tool_choice = input().strip()
         for i in range(tool_choices_nb):
             while not is_valid_choice(tool_choices, tool_choice):
@@ -153,7 +153,7 @@ def dnd_character_creation():
     cantrip_choice_nb, cantrip_choice_list = race.get_racial_cantrips()
     if cantrip_choice_nb > 0:
         print("Your race offers cantrip choices: pick " + str(cantrip_choice_nb) + " choices among the following list: ")
-        print(list_to_str(cantrip_choice_list))
+        print(", ".join(cantrip_choice_list))
         cantrip_choice = input().strip()
         for i in range(cantrip_choice_nb):
             while not is_valid_choice(cantrip_choice_list, cantrip_choice):
@@ -165,7 +165,7 @@ def dnd_character_creation():
     skill_choice_number, skill_choice_options = race.get_racial_skills_choices()
     if skill_choice_number > 0:
         print("You have bonus proficiencies, pick " + str(skill_choice_number)
-              + " among the following:\n" + list_to_str(skill_choice_options))
+              + " among the following:\n" + ", ".join(skill_choice_options))
         proficiency_choices = []
         for i in range(skill_choice_number):
             prof_choice = input().strip()
@@ -176,7 +176,7 @@ def dnd_character_creation():
     # Language choice from race possibilities
     if dnd_character.race.bonus_languages > 0:
         print("You have bonus languages, pick " + str(dnd_character.race.bonus_languages)
-              + " among the following:\n" + list_to_str(unrestricted_language_list))
+              + " among the following:\n" + ", ".join(unrestricted_language_list))
         language_choices = []
         for i in range(race.bonus_languages):
             lang_choice = input().strip()
@@ -199,7 +199,7 @@ def dnd_character_creation():
     dnd_character.set_alignment(alignment_choice.strip())
 
     #  Background choice
-    print("Choose your background:\n" + list_to_str(background_name_list))
+    print("Choose your background:\n" + ", ".join(background_name_list))
     background_choice = input().strip()
     background_accepted = False
     while not background_accepted:
@@ -218,7 +218,7 @@ def dnd_character_creation():
         print(list_to_str_with_number_and_line(background.feature_choice_table))
     if background.bonus_languages > 0:
         print("You have " + str(background.bonus_languages) + " bonus languages to pick: ")
-        print(list_to_str(language_list))
+        print(", ".join(language_list))
         while background.bonus_languages > 0:
             language_choices = []
             language_input = input().strip()
@@ -273,7 +273,7 @@ def dnd_character_creation():
     # Class choice
     choice_not_validated = True
     while choice_not_validated:
-        print("Choose your class:\n" + list_to_str(classes_list))
+        print("Choose your class:\n" + ", ".join(classes_list))
         class_choice = input().strip()
         if is_valid_choice(classes_list, class_choice):
             dnd_class = look_for_class_by_name(class_choice)
@@ -292,7 +292,7 @@ def dnd_character_creation():
     class_cantrip_choice = dnd_character.dnd_class.cantrips_choice["cantrips"]
     if class_cantrip_choice_nb > 0:
         print("You can choose " + str(
-            class_cantrip_choice_nb) + " cantrip(s) from the following list:\n" + list_to_str(
+            class_cantrip_choice_nb) + " cantrip(s) from the following list:\n" + ", ".join(
             class_cantrip_choice))
         for i in range(class_cantrip_choice_nb):
             choice = input().strip()
@@ -302,7 +302,7 @@ def dnd_character_creation():
     class_spell_choice = dnd_character.dnd_class.level_one_choice["spells"]
     if class_cantrip_choice_nb > 0:
         print("You can choose " + str(
-            class_spell_choice_nb) + " spell(s) from the following list:\n" + list_to_str(
+            class_spell_choice_nb) + " spell(s) from the following list:\n" + ", ".join(
             class_spell_choice))
         for i in range(class_spell_choice_nb):
             choice = input().strip()
@@ -312,9 +312,9 @@ def dnd_character_creation():
     skill_choices = dnd_character.dnd_class.skill_proficiency_choices["number"]
     skill_options = dnd_character.dnd_class.skill_proficiency_choices["skill_proficiencies"]
     if skill_choices > 0:
-        print("You already have these proficiencies: " + list_to_str(dnd_character.skill_proficiencies))
+        print("You already have these proficiencies: " + ", ".join(dnd_character.skill_proficiencies))
         print("You have bonus proficiencies, pick " + str(skill_choices)
-              + " among the following:\n" + list_to_str(skill_options))
+              + " among the following:\n" + ", ".join(skill_options))
         proficiency_choices = set([])
         chosen_skills = skill_choices
         while chosen_skills > 0:
@@ -338,7 +338,7 @@ def dnd_character_creation():
     tools_options = dnd_character.dnd_class.tool_proficiency_choices["tool_proficiencies"]
     if tool_choices > 0 and tool_choices != len(tools_options):
         if len(dnd_character.tool_proficiencies) > 0:
-            print("You already have these tool proficiencies: " + list_to_str(dnd_character.tool_proficiencies))
+            print("You already have these tool proficiencies: " + ", ".join(dnd_character.tool_proficiencies))
         print("You can choose " + str(tool_choices) + " tool proficiencies among the following:\n"
               + tools_options)
         tool_prof_choices = []
@@ -349,7 +349,7 @@ def dnd_character_creation():
         dnd_character.set_bonus_tool_proficiencies(tool_prof_choices)
     elif tool_choices > 0:
         dnd_character.set_bonus_tool_proficiencies(tools_options)
-        print("You gain the following tool proficiencies: " + list_to_str(tools_options))
+        print("You gain the following tool proficiencies: " + ", ".join(tools_options))
 
     # Check for choices of class feature
     features = dnd_character.dnd_class.class_feature_choices

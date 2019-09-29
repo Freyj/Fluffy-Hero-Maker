@@ -4,7 +4,7 @@ import sqlite3
 
 from dnd5_monsters.dnd5_monster import DnD5Monster
 from utils.dice_roller import roll_die
-from utils.utilities import list_to_str
+
 
 MONSTER_DATA_DIR = 'databases/data/monsters/'
 
@@ -87,33 +87,33 @@ def get_all_monsters_from_json():
                                monster["passive_perception"],  # 25
                                monster["xp"],
                                monster["challenge"],
-                               list_to_str(monster["damage_immunities"]),
-                               list_to_str(monster["damage_resistance"]),
-                               list_to_str(monster["condition_immunities"]),  # 30
-                               list_to_str(monster["senses"]),
-                               list_to_str(monster["languages_spoken"]),
-                               list_to_str(monster["languages_understood"]),
-                               list_to_str(monster["actions"]),
+                               ", ".join(monster["damage_immunities"]),
+                               ", ".join(monster["damage_resistance"]),
+                               ", ".join(monster["condition_immunities"]),  # 30
+                               ", ".join(monster["senses"]),
+                               ", ".join(monster["languages_spoken"]),
+                               ", ".join(monster["languages_understood"]),
+                               ", ".join(monster["actions"]),
                                attacks_string,  # 35
-                               list_to_str(monster["traits"]),
-                               list_to_str(monster["cantrips"]),
-                               list_to_str(monster["spells_lvl1"]),
+                               ", ".join(monster["traits"]),
+                               ", ".join(monster["cantrips"]),
+                               ", ".join(monster["spells_lvl1"]),
                                monster["spell_slots_lvl1"],
-                               list_to_str(monster["spells_lvl2"]),
+                               ", ".join(monster["spells_lvl2"]),
                                monster["spell_slots_lvl2"],  # 40
-                               list_to_str(monster["spells_lvl3"]),
+                               ", ".join(monster["spells_lvl3"]),
                                monster["spell_slots_lvl3"],
-                               list_to_str(monster["spells_lvl4"]),
+                               ", ".join(monster["spells_lvl4"]),
                                monster["spell_slots_lvl4"],
-                               list_to_str(monster["spells_lvl5"]),  # 45
+                               ", ".join(monster["spells_lvl5"]),  # 45
                                monster["spell_slots_lvl5"],
-                               list_to_str(monster["spells_lvl6"]),
+                               ", ".join(monster["spells_lvl6"]),
                                monster["spell_slots_lvl6"],
-                               list_to_str(monster["spells_lvl7"]),
+                               ", ".join(monster["spells_lvl7"]),
                                monster["spell_slots_lvl7"],  # 50
-                               list_to_str(monster["spells_lvl8"]),
+                               ", ".join(monster["spells_lvl8"]),
                                monster["spell_slots_lvl8"],
-                               list_to_str(monster["spells_lvl9"]),
+                               ", ".join(monster["spells_lvl9"]),
                                monster["spell_slots_lvl9"],
                                monster["description"]
                                )

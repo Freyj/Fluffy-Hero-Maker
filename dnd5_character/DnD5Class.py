@@ -1,4 +1,3 @@
-from utils.utilities import list_to_str
 
 
 class DnD5Class:
@@ -63,18 +62,18 @@ class DnD5Class:
         resulting_string += "Hit Dice: " + str(self.hit_dice) + "\n"
         class_features_string = self.class_features_to_string()
         resulting_string += "Class Features:\n" + class_features_string
-        resulting_string += "\nWeapon Proficiencies: " + list_to_str(self.weapon_proficiencies_to_add)
-        resulting_string += "\nArmor Proficiencies: " + list_to_str(self.armor_proficiencies_to_add)
+        resulting_string += "\nWeapon Proficiencies: " + ", ".join(self.weapon_proficiencies_to_add)
+        resulting_string += "\nArmor Proficiencies: " + ", ".join(self.armor_proficiencies_to_add)
         if len(self.tool_proficiencies_to_add) > 0:
-            resulting_string += "\nTool Proficiencies: " + list_to_str(self.tool_proficiencies_to_add)
-        resulting_string += "\nSaving Throws: " + list_to_str(self.saving_throws)
+            resulting_string += "\nTool Proficiencies: " + ", ".join(self.tool_proficiencies_to_add)
+        resulting_string += "\nSaving Throws: " + ", ".join(self.saving_throws)
         if len(self.class_feature_choices) > 0:
             class_feature_choices_string = self.class_feature_choices_to_string()
             resulting_string += "\nClass Feature Choices:\n" + class_feature_choices_string
         resulting_string += '\nEquipment offered: '
         if len(self.added_equipment) > 0:
             resulting_string += '\n\t'
-            resulting_string += list_to_str(self.added_equipment)
+            resulting_string += ", ".join(self.added_equipment)
         if self.equipment_choice != '':
             resulting_string += '\n'
             choices = self.equipment_choice.split('#')

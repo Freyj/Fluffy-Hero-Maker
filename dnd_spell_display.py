@@ -1,6 +1,5 @@
 from databases.dnd5_spell_db import insert_dnd5_spell_data, look_for_spell_by_name, get_number_of_spells_in_db, \
     get_all_spell_names_from_db, get_all_spell_names_of_level, get_random_spell, get_spells_of_school
-from utils.utilities import list_to_str
 
 
 def cli_display(spell):
@@ -32,14 +31,14 @@ def dnd_spell_display():
     if choice is "2":
         print("The database contains " + str(get_number_of_spells_in_db()) + " spells.")
         print("The database contains the following spells: ")
-        print(list_to_str(get_all_spell_names_from_db()))
+        print(", ".join(get_all_spell_names_from_db()))
     if choice is "3":
         print("Choose a level")
         level = input().strip()
-        print(list_to_str(get_all_spell_names_of_level(int(level))))
+        print(", ".join(get_all_spell_names_of_level(int(level))))
     if choice is "4":
         cli_display(get_random_spell())
     if choice is "5":
         print("Pick a school to find the spells of")
         school_choice = input().strip()
-        print(list_to_str((get_spells_of_school(school_choice))))
+        print(", ".join((get_spells_of_school(school_choice))))
