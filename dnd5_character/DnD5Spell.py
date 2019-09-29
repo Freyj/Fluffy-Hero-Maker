@@ -20,4 +20,4 @@ class DnD5Spell:
         for i in string_list:
             i = i.strip()
             resulting_string += "\t" + i + ".\n"
-        return resulting_string
+        return resulting_string[:-2]

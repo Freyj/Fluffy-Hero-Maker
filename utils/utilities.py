@@ -1,4 +1,3 @@
-import json
 from math import floor
 
 from utils.dice_roller import keep_n_highest, sum_roll_dice
