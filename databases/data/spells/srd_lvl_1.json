@@ -2,6 +2,7 @@
   {
     "name": "Alarm",
     "school": "Abjuration",
+    "classes":["Ranger", "Ritual Caster", "Wizard"],
     "casting time": "1 minute",
     "ritual": "yes",
     "range": "30 feet",
@@ -17,6 +18,7 @@
   {
     "name": "Animal Friendship",
     "school": "Enchantment",
+    "classes":["Bard", "Druid", "Ranger", "Ritual Caster"],
     "casting time": "1 action",
     "ritual": "",
     "range": "30 feet",
@@ -32,6 +34,7 @@
   {
     "name": "Bane",
     "school": "Enchantment",
+    "classes":["Bard", "Cleric", "Paladin"],
     "casting time": "1 action ",
     "ritual": "",
     "range": "30 feet",
@@ -47,6 +50,7 @@
   {
     "name": "Bless",
     "school": "Enchantment",
+    "classes":["Cleric", "Paladin"],
     "casting time": "1 action ",
     "ritual": "",
     "range": "30 feet",
@@ -62,6 +66,7 @@
   {
     "name": "Burning Hands",
     "school": "Evocation",
+    "classes":["Cleric", "Sorcerer", "Warlock", "Wizard"],
     "casting time": "1 action",
     "ritual":  "",
     "range": "self (15-foot cone)",
@@ -77,6 +82,7 @@
   {
     "name": "Charm Person",
     "school": "Enchantment",
+    "classes":["Bard", "Cleric","Druid", "Sorcerer", "Warlock", "Wizard"],
     "casting time": "1 action",
     "ritual": "",
     "range": "30 feet",
@@ -92,6 +98,7 @@
   {
     "name": "Color Spray",
     "school": "Illusion",
+    "classes":["Sorcerer", "Wizard"],
     "casting time": "1 action ",
     "ritual": "",
     "range": "Self",
@@ -107,6 +114,7 @@
   {
     "name": "Command",
     "school": "Enchantment",
+    "classes":["Cleric","Paladin", "Warlock"],
     "casting time": "1 action",
     "ritual": "",
     "range": "60 feet",
@@ -122,6 +130,7 @@
   {
     "name": "Comprehend Languages",
     "school": "Divination",
+    "classes":["Bard","Ritual Caster", "Sorcerer", "Warlock", "Wizard"],
     "casting time": "1 action",
     "ritual": "yes",
     "range": "Self",
@@ -137,6 +146,7 @@
   {
     "name": "Create or Destroy Water",
     "school": "Transmutation",
+    "classes":["Cleric", "Druid"],
     "casting time": "1 action",
     "ritual": "",
     "range": "30 feet",
@@ -152,6 +162,7 @@
   {
     "name": "Cure Wounds",
     "school": "Evocation",
+    "classes":["Bard", "Cleric", "Druid","Paladin", "Ranger"],
     "casting time": "1 action ",
     "ritual": "",
     "range": "Touch",
@@ -167,29 +178,47 @@
   {
     "name": "Detect Evil and Good",
     "school": "Divination",
+    "classes":["Cleric","Paladin"],
     "casting time": "1 action",
     "ritual": "",
     "range": "Self",
     "target": "",
     "components": "V,S",
-    "duration": "",
+    "duration": "Up to 10 minutes",
     "saving throw": "",
-    "concentration": "",
+    "concentration": "yes",
     "description": "For the duration, you know if there is an aberration, celestial, elemental, fey, fiend, or undead within 30 feet of you, as well as where the creature is located. Similarly, you know if there is a place or object within 30 feet of you that has been magically consecrated or desecrated. The spell can penetrate most barriers, but it is blocked by 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt.",
+    "upgrade": "",
+    "level": 1
+  },
+  {
+    "name": "Detect Magic",
+    "school": "Divination",
+    "classes":["Bard", "Cleric", "Druid", "Paladin", "Ranger","Ritual Caster", "Sorcerer", "Wizard"],
+    "casting time": "1 action",
+    "ritual": "yes",
+    "range": "Self",
+    "target": "",
+    "components": "V, S",
+    "duration": "Up to 10 minutes",
+    "saving throw": "",
+    "concentration": "yes",
+    "description": "For the duration, you sense the presence of magic within 30 feet of you. If you sense magic in this way, you can use your action to see a faint aura around any visible creature or object in the area that bears magic, and you learn its school of magic, if any. The spell can penetrate most barriers, but it is blocked by 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt.",
     "upgrade": "",
     "level": 1
   },
   {
     "name": "Detect Poison and Disease",
     "school": "Divination",
+    "classes":["Cleric", "Druid", "Paladin", "Ranger","Ritual Caster"],
     "casting time": "1 action",
     "ritual": "yes",
     "range": "Self",
     "target": "",
     "components": "V, S, M (A yew leaf.)",
-    "duration": "",
+    "duration": "Up to 10 minutes",
     "saving throw": "",
-    "concentration": "",
+    "concentration": "yes",
     "description": "For the duration, you can sense the presence and location of poisons, poisonous creatures, and diseases within 30 feet of you. You also identify the kind of poison, poisonous creature, or disease in each case. The spell can penetrate most barriers, but it is blocked by 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt.",
     "upgrade": "",
     "level": 1
@@ -197,6 +226,7 @@
   {
     "name": "Disguise Self",
     "school": "Illusion",
+    "classes":["Bard", "Cleric", "Sorcerer", "Wizard"],
     "casting time": "1 action",
     "ritual": "yes",
     "range": "Self",
@@ -212,6 +242,7 @@
   {
     "name": "Divine Favor",
     "school": "Evocation",
+    "classes":["Cleric","Paladin"],
     "casting time": "1 bonus action",
     "ritual": "",
     "range": "Self",
@@ -227,6 +258,7 @@
   {
     "name": "Entangle",
     "school": "Conjuration",
+    "classes":["Druid"],
     "casting time": "1 action",
     "ritual": "",
     "range": "",
@@ -242,6 +274,7 @@
   {
     "name": "Expeditious Retreat",
     "school": "Transmutation",
+    "classes":["Sorcerer", "Warlock", "Wizard"],
     "casting time": "1 bonus action",
     "ritual": "",
     "range": "",
@@ -257,6 +290,7 @@
   {
     "name": "Faerie Fire",
     "school": "Evocation",
+    "classes":["Bard", "Cleric","Druid", "Warlock"],
     "casting time": "1 action",
     "ritual": "",
     "range": "60 feet",
@@ -272,6 +306,7 @@
   {
     "name": "False Life",
     "school": "Necromancy",
+    "classes":["Sorcerer", "Wizard"],
     "casting time": "1 action",
     "ritual": "",
     "range": "Self",
@@ -287,6 +322,7 @@
   {
     "name": "Feather Fall",
     "school": "Transmutation",
+    "classes":["Bard", "Sorcerer", "Wizard"],
     "casting time": "1 reaction",
     "ritual": "",
     "range": "60 feet",
@@ -302,6 +338,7 @@
   {
     "name": "Find Familiar",
     "school": "Conjuration",
+    "classes":["Wizard"],
     "casting time": "1 hour",
     "ritual": "yes",
     "range": "10 feet",
@@ -317,6 +354,7 @@
   {
     "name": "Floating Disk",
     "school": "Conjuration",
+    "classes":["Ritual Caster", "Wizard"],
     "casting time": "1 action",
     "ritual": "yes",
     "range": "30 feet",
@@ -332,6 +370,7 @@
   {
     "name": "Fog Cloud",
     "school": "Conjuration",
+    "classes":["Cleric", "Druid", "Ranger", "Sorcerer", "Wizard"],
     "casting time": "1 action",
     "ritual": "",
     "range": "120 feet",
@@ -347,6 +386,7 @@
   {
     "name": "Grease",
     "school": "Conjuration",
+    "classes":["Wizard"],
     "casting time": "1 action",
     "ritual": "",
     "range": "60 feet",
@@ -362,6 +402,7 @@
   {
     "name": "Guiding Bolt",
     "school": "Evocation",
+    "classes":["Cleric"],
     "casting time": "1 action",
     "ritual": "",
     "range": "120 feet",
@@ -377,6 +418,7 @@
   {
     "name": "Healing Word",
     "school": "Evocation",
+    "classes":["Bard", "Cleric","Druid"],
     "casting time": "1 bonus action",
     "ritual": "",
     "range": "60 feet",
@@ -392,6 +434,7 @@
   {
     "name": "Hellish Rebuke",
     "school": "Evocation",
+    "classes":["Paladin", "Warlock"],
     "casting time": "1 reaction, which you take in response to being damaged by a creature within 60 feet of you that you can see",
     "ritual": "",
     "range": "60 feet",
@@ -407,6 +450,7 @@
   {
     "name": "Heroism",
     "school": "Enchantment",
+    "classes":["Bard", "Paladin"],
     "casting time": "1 action ",
     "ritual": "",
     "range": "Touch",
@@ -422,6 +466,7 @@
   {
     "name": "Hideous Laughter",
     "school": "Enchantment",
+    "classes":["Bard", "Warlock", "Wizard"],
     "casting time": "1 action ",
     "ritual": "",
     "range": "30 feet",
@@ -437,6 +482,7 @@
   {
     "name": "Hunter's Mark",
     "school": "Divination",
+    "classes":["Paladin", "Ranger"],
     "casting time": "1 bonus action ",
     "ritual": "",
     "range": "90 feet",
@@ -452,6 +498,7 @@
   {
     "name": "Identify",
     "school": "Divination",
+    "classes":["Bard", "Cleric","Ritual Caster", "Wizard"],
     "casting time": "1 minute",
     "ritual": "yes",
     "range": "Touch",
@@ -467,6 +514,7 @@
   {
     "name": "Illusory Script",
     "school": "Illusion",
+    "classes":["Bard","Ritual Caster", "Warlock", "Wizard"],
     "casting time": "1 minute",
     "ritual": "yes",
     "range": "Touch",
@@ -482,6 +530,7 @@
   {
     "name": "Inflict Wounds",
     "school": "Necromancy",
+    "classes":["Cleric"],
     "casting time": "1 action",
     "ritual": "",
     "range": "Touch",
@@ -497,6 +546,7 @@
   {
     "name": "Jump",
     "school": "Transmutation",
+    "classes":["Druid", "Ranger", "Sorcerer", "Wizard"],
     "casting time": "1 action",
     "ritual": "",
     "range": "Touch",
@@ -512,6 +562,7 @@
   {
     "name": "Longstrider",
     "school": "Transmutation",
+    "classes":["Bard", "Druid", "Ranger", "Wizard"],
     "casting time": "1 action",
     "ritual": "",
     "range": "Touch",
@@ -527,6 +578,7 @@
   {
     "name": "Mage Armor",
     "school": "Abjuration",
+    "classes":["Sorcerer", "Wizard"],
     "casting time": "1 action",
     "ritual": "",
     "range": "Touch",
@@ -542,6 +594,7 @@
   {
     "name": "Magic Missile",
     "school": "Evocation",
+    "classes":["Sorcerer", "Wizard"],
     "casting time": "1 action",
     "ritual": "",
     "range": "120 feet",
@@ -557,6 +610,7 @@
   {
     "name": "Protection from Evil and Good",
     "school": "Abjuration",
+    "classes":["Cleric","Paladin", "Warlock", "Wizard"],
     "casting time": "1 action",
     "ritual": "",
     "range": "Touch",
@@ -572,6 +626,7 @@
   {
     "name": "Purify Food and Drink",
     "school": "Transmutation",
+    "classes":["Cleric", "Druid", "Paladin","Ritual Caster"],
     "casting time": "1 action",
     "ritual": "",
     "range": "10 feet",
@@ -587,6 +642,7 @@
   {
     "name": "Sanctuary",
     "school": "Abjuration",
+    "classes":["Cleric","Paladin"],
     "casting time": "1 bonus acton",
     "ritual": "",
     "range": "30 feet",
@@ -602,6 +658,7 @@
   {
     "name": "Shield",
     "school": "Abjuration",
+    "classes":["Sorcerer", "Wizard"],
     "casting time": "1 reaction, which you take when you are hit by an attack or targeted by the magic missile spell",
     "ritual": "",
     "range": "Self",
@@ -617,6 +674,7 @@
   {
     "name": "Shield of Faith",
     "school": "Abjuration",
+    "classes":["Cleric","Paladin"],
     "casting time": "1 bonus action",
     "ritual": "",
     "range": "60 feet",
@@ -629,9 +687,10 @@
     "upgrade": "",
     "level": 1
   },
-    {
+  {
     "name": "Silent Image",
     "school": "Illusion",
+    "classes":["Bard", "Sorcerer", "Wizard"],
     "casting time": "1 action",
     "ritual": "",
     "range": "60 feet",
@@ -644,9 +703,10 @@
     "upgrade": "",
     "level": 1
   },
-    {
+  {
     "name": "Sleep",
     "school": "Enchantment",
+    "classes":["Bard", "Sorcerer", "Warlock", "Wizard"],
     "casting time": "1 action",
     "ritual": "",
     "range": "90 feet",
@@ -659,9 +719,10 @@
     "upgrade": "When you cast this spell using a spell slot of 2nd level or higher, roll an additional 2d8 for each slot level above 1st.",
     "level": 1
   },
-    {
+  {
     "name": "Speak with Animals",
     "school": "Divination",
+    "classes":["Bard", "Cleric","Druid","Paladin", "Ranger","Ritual Caster"],
     "casting time": "1 action",
     "ritual": "",
     "range": "Self",
@@ -674,9 +735,10 @@
     "upgrade": "",
     "level": 1
   },
-    {
+  {
     "name": "Thunderwave",
     "school": "Evocation",
+    "classes":["Bard", "Cleric","Druid", "Sorcerer", "Wizard"],
     "casting time": "1 action",
     "ritual": "",
     "range": "Self(15-foot cone)",
@@ -689,9 +751,10 @@
     "upgrade": "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d8 for each slot level above 1st.",
     "level": 1
   },
-    {
+  {
     "name": "Unseen Servant",
     "school": "Conjuration",
+    "classes":["Bard","Ritual Caster", "Warlock", "Wizard"],
     "casting time": "1 action",
     "ritual": "yes",
     "range": "60 feet",

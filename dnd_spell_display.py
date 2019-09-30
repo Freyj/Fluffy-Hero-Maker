@@ -1,5 +1,6 @@
 from databases.dnd5_spell_db import insert_dnd5_spell_data, look_for_spell_by_name, get_number_of_spells_in_db, \
-    get_all_spell_names_from_db, get_all_spell_names_of_level, get_random_spell, get_spells_of_school
+    get_all_spell_names_from_db, get_all_spell_names_of_level, get_random_spell, get_spells_of_school, \
+    get_all_spells_of_class, get_all_spells_of_class_and_level
 
 
 def cli_display(spell):
@@ -18,7 +19,8 @@ def cli_display(spell):
 def dnd_spell_display():
     insert_dnd5_spell_data()
     print("For a specific spell, type 1, 2 to get all spell names in the database, 3 to get all spells of a certain "
-          "level type, 4 for a random spell, 5 to get all spells of a certain school")
+          "level type, 4 for a random spell, 5 to get all spells of a certain school, 6 to get all spells of a certain"
+          " class, 7 to get all spells of a certain class and level")
     choice = input()
     if choice is "1":
         print("Please give the name of the spell you are looking for:")
@@ -42,3 +44,13 @@ def dnd_spell_display():
         print("Pick a school to find the spells of")
         school_choice = input().strip()
         print(", ".join((get_spells_of_school(school_choice))))
+    if choice is "6":
+        print("Pick a class to find the spells associated with it")
+        class_choice = input().strip()
+        print(", ".join(get_all_spells_of_class(class_choice)))
+    if choice is "7":
+        print("Pick a class to find the spells associated with it")
+        class_choice = input().strip()
+        print("Choose a level")
+        level_choice = input().strip()
+        print(", ".join(get_all_spells_of_class_and_level(class_choice, level_choice)))

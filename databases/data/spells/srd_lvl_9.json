@@ -2,6 +2,7 @@
   {
     "name": "Astral Projection",
     "school": "Necromancy",
+    "classes":["Cleric", "Warlock", "Wizard"],
     "casting time": "1 hour",
     "ritual": "",
     "range": "10 feet",
@@ -17,6 +18,7 @@
   {
     "name": "Foresight",
     "school": "Divination",
+    "classes":["Bard", "Druid", "Warlock", "Wizard"],
     "casting time": "1 minute",
     "ritual": "",
     "range": "Touch",
@@ -32,6 +34,7 @@
   {
     "name": "Gate",
     "school": "Conjuration",
+    "classes":["Cleric", "Sorcerer", "Wizard"],
     "casting time": "1 action",
     "ritual": "",
     "range": "60 feet",
@@ -47,6 +50,7 @@
   {
     "name": "Imprisonment",
     "school": "Abjuration",
+    "classes":["Warlock", "Wizard"],
     "casting time": "1 minute",
     "ritual": "",
     "range": "30 feet",
@@ -62,6 +66,7 @@
   {
     "name": "Mass Heal",
     "school": "Evocation",
+    "classes":["Cleric"],
     "casting time": "1 action",
     "ritual": "",
     "range": "60 feet",
@@ -77,6 +82,7 @@
   {
     "name": "Meteor Swarm",
     "school": "Evocation",
+    "classes":["Sorcerer", "Wizard"],
     "casting time": "1 action",
     "ritual": "",
     "range": "1 mile",
@@ -92,7 +98,8 @@
   {
     "name": "Power Word Kill",
     "school": "Enchantment",
-    "casting time": "",
+    "classes":["Bard", "Sorcerer", "Warlock", "Wizard"],
+    "casting time": "1 action",
     "ritual": "",
     "range": "60 feet",
     "target": "one creature",
@@ -107,6 +114,7 @@
   {
     "name": "Prismatic Wall",
     "school": "Abjuration",
+    "classes":["Wizard"],
     "casting time": "1 action",
     "ritual": "",
     "range": "60 feet",
@@ -122,6 +130,7 @@
   {
     "name": "Shapechange",
     "school": "Transmutation",
+    "classes":["Druid", "Wizard"],
     "casting time": "1 action",
     "ritual": "",
     "range": "Self",
@@ -137,6 +146,7 @@
   {
     "name": "Storm of Vengeance",
     "school": "Conjuration",
+    "classes":["Druid"],
     "casting time": "1 action",
     "ritual": "",
     "range": "Sight",
@@ -152,6 +162,7 @@
   {
     "name": "Time Stop",
     "school": "Transmutation",
+    "classes":["Sorcerer", "Wizard"],
     "casting time": "1 action",
     "ritual": "",
     "range": "Self",
@@ -167,6 +178,7 @@
   {
     "name": "True Polymorph",
     "school": "Transmutation",
+    "classes":["Bard", "Warlock", "Wizard"],
     "casting time": "1 action",
     "ritual": "",
     "range": "30 feet",
@@ -182,6 +194,7 @@
   {
     "name": "True Resurrection",
     "school": "Necromancy",
+    "classes":["Cleric", "Druid"],
     "casting time": "",
     "ritual": "1 hour",
     "range": "Touch",
@@ -197,6 +210,7 @@
   {
     "name": "Weird",
     "school": "Illusion",
+    "classes":["Wizard"],
     "casting time": "1 action",
     "ritual": "",
     "range": "",
@@ -212,6 +226,7 @@
   {
     "name": "Wish",
     "school": "Conjuration",
+    "classes":["Sorcerer", "Wizard"],
     "casting time": "1 action",
     "ritual": "",
     "range": "Self",
