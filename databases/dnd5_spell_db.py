@@ -7,15 +7,29 @@ from utils.dice_roller import roll_die
 
 SPELL_DATA_DIR = 'databases/data/spells/'
 
+
 CREATE_SPELL_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_spells 
                         (id integer primary key, name text not null, school text, saving_throw text,
                          casting_time text, ritual text, range text, components text, duration text,
-                         level integer, description text, need_concentration text, upgrade text
+                         level integer, description text, need_concentration text, upgrade text, classes text
                          )'''
 
+# 1: name
+# 2: school
+# 3: saving_throw,
+# 4: casting_time
+# 5: ritual
+# 6: range
+# 7: components
+# 8: duration
+# 9: level
+# 10: description
+# 11: need_concentration
+# 12: upgrade
+# 13: classes
 INSERT_SPELLS_INTO_REQUEST = '''INSERT INTO dnd5_spells
                             (name, school, saving_throw, casting_time, ritual, range, components, duration, level, 
-                            description, need_concentration, upgrade) values (?,?,?,?,?,?,?,?,?,?,?,?)'''
+                            description, need_concentration, upgrade, classes) values (?,?,?,?,?,?,?,?,?,?,?,?,?)'''
 
 
 DROP_SPELL_TABLE_REQUEST = '''DROP TABLE IF EXISTS dnd5_spells'''
@@ -65,6 +79,7 @@ def get_all_spells_from_json():
                                spell["description"],
                                spell["concentration"],
                                spell["upgrade"],
+                               ",".join(spell["classes"])
                                )
                     spells.append(element)
     return spells
@@ -79,6 +94,7 @@ def get_all_spell_names_from_db():
     records = cursor.fetchall()
     for i in records:
         names.append(i[0])
+    connection.close()
     return names
 
 
@@ -91,6 +107,33 @@ def get_all_spell_names_of_level(level):
     records = cursor.fetchall()
     for i in records:
         names.append(i[0])
+    connection.close()
+    return names
+
+
+def get_all_spells_of_class(spell_class):
+    names = []
+    connection = sqlite3.connect('dnd5_db.db')
+    cursor = connection.cursor()
+    select_request = '''SELECT name FROM dnd5_spells WHERE instr(classes, (?))'''
+    cursor.execute(select_request, (spell_class,))
+    records = cursor.fetchall()
+    for i in records:
+        names.append(i[0])
+    connection.close()
+    return names
+
+
+def get_all_spells_of_class_and_level(spell_class, level):
+    names = []
+    connection = sqlite3.connect('dnd5_db.db')
+    cursor = connection.cursor()
+    select_request = '''SELECT name FROM dnd5_spells WHERE instr(classes, (?)) AND level = (?)'''
+    cursor.execute(select_request, (spell_class, level))
+    records = cursor.fetchall()
+    for i in records:
+        names.append(i[0])
+    connection.close()
     return names
 
 
@@ -123,6 +166,7 @@ def get_spells_of_school(school_choice):
     records = cursor.fetchall()
     for i in records:
         names.append(i[0])
+    connection.close()
     return names
 
 
@@ -155,5 +199,6 @@ def change_record_into_spell(record):
         spell.description = record[10]
         spell.concentration = record[11]
         spell.upgrade = record[12]
+        spell.classes = record[13].split(',')
         return spell
     return None

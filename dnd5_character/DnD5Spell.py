@@ -12,6 +12,7 @@ class DnD5Spell:
         self.concentration = ""
         self.upgrade = ""
         self.ritual = ""
+        self.classes = []
 
     def cli_description_string(self):
         resulting_string = ""
