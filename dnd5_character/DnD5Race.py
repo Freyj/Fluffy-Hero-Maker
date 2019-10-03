@@ -115,7 +115,7 @@ class DnD5Race:
         resulting_string += "Vision: " + ", ".join(self.vision) + "\n"
         resulting_string += "Age from " + self.age_bracket[0] + " to " + self.age_bracket[1] + "\n"
         if len(self.racial_traits) > 0:
-            resulting_string += "Racial traits:\n" + self.racial_traits_to_string() + "\n"
+            resulting_string += "Racial traits:\n" + self.racial_traits_to_string()
         if len(self.spells_to_add) > 0:
             resulting_string += "Bonus spells: " + ", ".join(self.spells_to_add)
         if len(self.weapon_proficiencies_to_add) > 0:
