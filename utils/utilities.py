@@ -1,7 +1,6 @@
-import json
 from math import floor
 
-from utils.dice_roller import keep_n_highest, sum_roll_dice
+from utils.dice_roller import keep_n_highest_sum, sum_roll_dice
 
 
 def is_valid_choice(item_list, item):
@@ -54,7 +53,7 @@ def generate_attributes(generation_type, stats=None):
     random_attributes = []
     if generation_type == 1:
         for i in range(6):
-            random_attributes.append(keep_n_highest(6, 4))
+            random_attributes.append(keep_n_highest_sum(6, 4))
     if generation_type == 2:
         random_attributes = []
         for i in range(6):
@@ -75,7 +74,7 @@ def generate_attributes(generation_type, stats=None):
         while not valid_results:
             random_attributes = []
             for i in range(6):
-                random_attributes.append(keep_n_highest(6, 4))
+                random_attributes.append(keep_n_highest_sum(6, 4))
             valid_results = 3 <= sum_modifiers(random_attributes) <= 7
 
     if random_attributes:

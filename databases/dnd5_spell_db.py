@@ -170,7 +170,26 @@ def get_spells_of_school(school_choice):
     return names
 
 
+def get_all_schools():
+    """Returns a list of the schools of magic as strings from the database"""
+    schools = []
+    connection = sqlite3.connect('dnd5_db.db')
+    cursor = connection.cursor()
+    select_request = '''SELECT DISTINCT school from dnd5_spells'''
+    cursor.execute(select_request)
+    records = cursor.fetchall()
+    for i in records:
+        schools.append(i[0])
+    connection.close()
+    return schools
+
+
 def look_for_spell_by_name(name):
+    """
+    Returns a spell from his name
+    :parameter name: a string representing the name of the spell
+    :return DnD5Spell object with the data of the spell
+    """
     spell = DnD5Spell("test")
     if name != "":
         connection = sqlite3.connect('dnd5_db.db')
@@ -185,6 +204,11 @@ def look_for_spell_by_name(name):
 
 
 def change_record_into_spell(record):
+    """"
+    Turns a record into a spell object
+    :parameter record: the database record as a tuple representing a spell
+    :return DnD5Spell object with the proper data
+    """
     spell = DnD5Spell("temp")
     if record is not None:
         spell.name = record[1]

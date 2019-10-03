@@ -1,6 +1,6 @@
 from databases.dnd5_spell_db import insert_dnd5_spell_data, look_for_spell_by_name, get_number_of_spells_in_db, \
     get_all_spell_names_from_db, get_all_spell_names_of_level, get_random_spell, get_spells_of_school, \
-    get_all_spells_of_class, get_all_spells_of_class_and_level
+    get_all_spells_of_class, get_all_spells_of_class_and_level, get_all_schools
 
 
 def cli_display(spell):
@@ -11,9 +11,11 @@ def cli_display(spell):
     print("Range: " + spell.range)
     print("Duration: " + spell.duration)
     print("Components: " + spell.components)
-    print("Concentration: " + spell.concentration)
+    if spell.concentration is not "":
+        print("Concentration: " + spell.concentration)
     print("Description:\n" + spell.cli_description_string())
-    print("At higher levels:\n" + spell.upgrade)
+    if spell.upgrade is not "":
+        print("At higher levels:\n" + spell.upgrade)
 
 
 def dnd_spell_display():
@@ -41,6 +43,8 @@ def dnd_spell_display():
     if choice is "4":
         cli_display(get_random_spell())
     if choice is "5":
+        print("There are the following schools of magic: ")
+        print(", ".join(get_all_schools()))
         print("Pick a school to find the spells of")
         school_choice = input().strip()
         print(", ".join((get_spells_of_school(school_choice))))

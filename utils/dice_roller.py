@@ -23,7 +23,7 @@ def roll_die(die_type):
     return result
 
 
-def keep_n_highest(die_type, dice_number):
+def keep_n_highest_sum(die_type, dice_number):
     """" Rolls a number of dice of a die type and returns the sum
     of the n-1 highest dice"""
     full_roll = list_roll_dice(die_type, dice_number)
