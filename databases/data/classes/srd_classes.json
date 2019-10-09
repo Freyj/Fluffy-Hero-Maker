@@ -59,7 +59,8 @@
       "number": 0,
       "class_list": ""
     },
-    "spells_to_add": 0
+    "spells_to_add": 0,
+    "level_one_spell_slots": 0
   },
   {
     "name": "Rogue",
@@ -94,7 +95,8 @@
       "number": 0,
       "class_list": ""
     },
-    "spells_to_add": 0
+    "spells_to_add": 0,
+    "level_one_spell_slots": 0
   },
   {
     "name": "Barbarian",
@@ -124,7 +126,8 @@
       "number": 0,
       "class_list": ""
     },
-    "spells_to_add": 0
+    "spells_to_add": 0,
+    "level_one_spell_slots": 0
   },
   {
     "name": "Paladin",
@@ -172,7 +175,8 @@
       "number": 0,
       "class_list": ""
     },
-    "spells_to_add": 0
+    "spells_to_add": 0,
+    "level_one_spell_slots": 0
   },
   {
     "name": "Monk",
@@ -214,7 +218,8 @@
       "number": 0,
       "class_list": ""
     },
-    "spells_to_add": 0
+    "spells_to_add": 0,
+    "level_one_spell_slots": 0
   },
   {
     "name": "Wizard",
@@ -255,7 +260,46 @@
       "number": 3,
       "class_list": "Wizard"
     },
-    "spells_to_add": 6
+    "spells_to_add": 6,
+    "level_one_spell_slots": 2
+  },
+  {
+    "name": "Sorcerer",
+    "hit_dice": 6,
+    "weapon_proficiencies_to_add": ["Dagger", "Darts", "Sling", "Quarterstaff", "Light Crossbow"],
+    "skill_proficiency_choices": {
+      "number": 2,
+      "skill_list": ["Arcana", "Deception", "Insight", "Intimidation", "Persuasion", "Religion"]
+    },
+    "class_features": [
+      {
+        "name": "Spellcasting",
+        "description": "An event in your past, or in the life of a parent or ancestor, left an indelible mark on you, infusing you with arcane magic. This font of magic, whatever its origin, fuels your spells.CantripsAt 1st level, you know four cantrips of your choice from the srd:sorcerer-spells list. You learn additional sorcerer cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Sorcerer table.Spell SlotsThe Sorcerer table shows how many spell slots you have to cast your spells of 1st level and higher. To cast one of these sorcerer spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.For example, if you know the 1st-level spell burning hands and have a 1st-level and a 2nd-level spell slot available, you can cast burning hands using either slot.Spells Known of 1st Level and HigherYou know two 1st-level spells of your choice from the srd:sorcerer-spells list.The Spells Known column of the Sorcerer table shows when you learn more sorcerer spells of your choice. Each of these spells must be of a level for which you have spell slots. For instance, when you reach 3rd level in this class, you can learn one new spell of 1st or 2nd level.Additionally, when you gain a level in this class, you can choose one of the sorcerer spells you know and replace it with another spell from the sorcerer spell list, which also must be of a level for which you have spell slots.Spellcasting AbilityCharisma is your spellcasting ability for your sorcerer spells, since the power of your magic relies on your ability to project your will into the world. You use your Charisma whenever a spell refers to your spellcasting ability. In addition, you use your Charisma modifier when setting the saving throw DC for a sorcerer spell you cast and when making an attack roll with one.    Spell save DC = 8 + your proficiency bonus + your Charisma modifier    Spell attack modifier = your proficiency bonus + your Charisma modifierSpellcasting FocusYou can use an arcane focus as a spellcasting focus for your sorcerer spells."
+      }
+    ],
+    "class_feature_choices": [
+      {
+        "name":"Sorcerous Origin",
+        "description": "Choose a sorcerous origin, which describes the source of your innate magical power, such as Draconic Bloodline.Your choice grants you features when you choose it at 1st level and again at 6th, 14th, and 18th level.",
+        "choice_table": [
+          {
+            "name": "Draconic Bloodline",
+            "description":  "Your innate magic comes from draconic magic that was mingled with your blood or that of your ancestors. Most often, sorcerers with this origin trace their descent back to a mighty sorcerer of ancient times who made a bargain with a dragon or who might even have claimed a dragon parent. Some of these bloodlines are well established in the world, but most are obscure. Any given sorcerer could be the first of a new bloodline, as a result of a pact or some other exceptional circumstance.Dragon AncestorAt 1st level, you choose one type of dragon as your ancestor. The damage type associated with each dragon is used by features you gain later.Draconic Ancestry Dragon Damage TypeBlack Acid Blue Lightning Brass Fire Bronze Lightning Copper Acid Gold Fire Green Poison Red Fire Silver Cold White ColdYou can speak, read, and write Draconic. Additionally, whenever you make a Charisma check when interacting with dragons, your proficiency bonus is doubled if it applies to the check.Draconic ResilienceAs magic flows through your body, it causes physical traits of your dragon ancestors to emerge. At 1st level, your hit point maximum increases by 1 and increases by 1 again whenever you gain a level in this class.Additionally, parts of your skin are covered by a thin sheen of dragon-like scales. When you aren't wearing armor, your AC equals 13 + your Dexterity modifier."
+          }
+        ]
+      }
+    ],
+    "armor_proficiencies_to_add": [],
+    "tool_proficiencies_to_add": [],
+    "saving_throws_proficiencies": ["Constitution", "Charisma"],
+    "added_equipment": ["Two daggers"],
+    "equipment_choice": "Light Crossbow, 20 bolts/Simple Weapon#Component Pouch/Arcane Focus#Dungeoneer Pack/Explorer Pack",
+    "cantrips_to_add": {
+      "number": 4,
+      "class_list": "Sorcerer"
+    },
+    "spells_to_add": 2,
+    "level_one_spell_slots": 2
   }
 ]
 
