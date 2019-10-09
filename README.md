@@ -11,9 +11,12 @@ To add data, you can find templates of the json structures in the **utils** dire
 
 ## How do I run it?
 - You need python 3.7 installed on your machine.
-- Ideally, just launching ```python3 cli_main.py``` should do the trick.
+- Ideally, just launching ```python3 cli_main.py -debug``` should do the trick.
 *This is only in command-line interface for now, graphical interfaces are a pest.*
 - *[also, this has only been tested on a linux machine with an Ubuntu distribution, so no guarantees]*
+
+The -debug option is required to have the database for now, at least on the first launch. If you make any addition in 
+json files or want to update the database, you need to leave the -debug option on.
 
 ## What can I do with it?
 You can create a character, picking a name, race, class, and background. 
