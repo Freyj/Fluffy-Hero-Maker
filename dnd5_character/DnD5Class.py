@@ -126,4 +126,5 @@ class DnD5Class:
     def spells_to_string(self):
         resulting_string = "You can choose " + str(self.level_one_choice["number"]) + " spells:\n"
         resulting_string += ", ".join(self.level_one_choice["spells"])
+        resulting_string += "You will have " + str(self.level_one_slots) + " slots for level one spells."
         return resulting_string

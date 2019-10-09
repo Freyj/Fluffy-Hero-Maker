@@ -13,7 +13,7 @@ CREATE_CLASS_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_classes
                                 class_feature_descriptions, armor_proficiencies,
                                 tool_proficiencies, class_feature_choices_names, class_feature_choices_descriptions,
                                 class_feature_choices_tables, saving_throws_proficiencies, added_equipment, 
-                                equipment_choices, cantrip_number, spell_class_list ,spells_1_number)'''
+                                equipment_choices, cantrip_number, spell_class_list, spells_1_number, spells_1_slots)'''
 
 # 1: name
 # 2: hit_dice
@@ -33,13 +33,14 @@ CREATE_CLASS_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_classes
 # 16: cantrip number
 # 17: spell class list
 # 18: spells number lvl 1
+# 19: spell sloots of lvl 1
 INSERT_CLASS_INTO_REQUEST = '''INSERT INTO dnd5_classes(name, hit_dice, weapon_proficiencies_to_add, 
                                 class_feature_names, class_feature_descriptions, armor_proficiencies, 
                                 skill_proficiency_choices_number, skill_proficiency_choices_list, tool_proficiencies,
                                 class_feature_choices_names, class_feature_choices_descriptions,
                                 class_feature_choices_tables, saving_throws_proficiencies, added_equipment,
-                                equipment_choices, cantrip_number, spell_class_list, spells_1_number) 
-                                values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'''
+                                equipment_choices, cantrip_number, spell_class_list, spells_1_number, spells_1_slots) 
+                                values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'''
 
 DROP_CLASS_TABLE_REQUEST = '''DROP TABLE IF EXISTS dnd5_classes'''
 
@@ -119,7 +120,8 @@ def get_all_classes_from_json():
                                dnd_class["equipment_choice"],
                                dnd_class["cantrips_to_add"]["number"],
                                dnd_class["cantrips_to_add"]["class_list"],
-                               dnd_class["spells_to_add"]
+                               dnd_class["spells_to_add"],
+                               dnd_class["level_one_spell_slots"]
                                )
                     classes.append(element)
     return classes
@@ -210,6 +212,9 @@ def change_record_into_class(record):
         if record[18] > 0:
             dnd_class.level_one_choice["number"] = record[18]
             dnd_class.level_one_choice["spells"] = get_all_spells_of_class_and_level(record[17], 1)
+        print(record)
+        if record[19] > 0:
+            dnd_class.level_one_slots = record[19]
         print(dnd_class.cantrips_choice)
         return dnd_class
     return None
