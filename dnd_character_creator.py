@@ -70,12 +70,7 @@ def cli_display(character):
 
 
 def dnd_character_creation():
-    insert_dnd5_background()
-    insert_dnd5_language()
-    insert_dnd5_race()
-    insert_dnd5_classes()
     # getting all lists for backgrounds, races, languages and classes
-    # todo: make lists for every db data
     background_name_list = get_all_background_names()
     race_name_list = get_all_races_names()
     language_list = get_all_languages()
@@ -300,13 +295,13 @@ def dnd_character_creation():
     # Spell lvl 1
     class_spell_choice_nb = dnd_character.dnd_class.level_one_choice["number"]
     class_spell_choice = dnd_character.dnd_class.level_one_choice["spells"]
-    if class_cantrip_choice_nb > 0:
+    if class_spell_choice_nb > 0:
         print("You can choose " + str(
             class_spell_choice_nb) + " spell(s) from the following list:\n" + ", ".join(
             class_spell_choice))
         for i in range(class_spell_choice_nb):
             choice = input().strip()
-            dnd_character.add_spell(choice, class_spell_choice)
+            dnd_character.add_spell(choice)
 
     # Skill choice from class possibilities
     skill_choices = dnd_character.dnd_class.skill_proficiency_choices["number"]

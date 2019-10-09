@@ -26,5 +26,12 @@
   ],
   "armor_proficiencies_to_add": [],
   "tool_proficiencies_to_add": [],
-  "saving_throws_proficiencies": []
+  "saving_throws_proficiencies": [],
+  "added_equipment": [],
+  "equipment_choice": "",
+  "cantrips_to_add": {
+    "number": 0,
+    "class_list": ""
+  },
+  "spells_to_add": 0
 }

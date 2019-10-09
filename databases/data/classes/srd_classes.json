@@ -54,7 +54,12 @@
     "tool_proficiencies_to_add": [],
     "saving_throws_proficiencies": ["Strength", "Constitution"],
     "added_equipment": [],
-    "equipment_choice": "Chain Mail/Leather Armor, Longbow, 20 arrows#Martial Weapon, Shield/Two Martial Weapons#Light Crossbow, 20 bolts/Two Handaxes#Dungeoneer Pack/Explorer Pack"
+    "equipment_choice": "Chain Mail/Leather Armor, Longbow, 20 arrows#Martial Weapon, Shield/Two Martial Weapons#Light Crossbow, 20 bolts/Two Handaxes#Dungeoneer Pack/Explorer Pack",
+    "cantrips_to_add": {
+      "number": 0,
+      "class_list": ""
+    },
+    "spells_to_add": 0
   },
   {
     "name": "Rogue",
@@ -84,7 +89,12 @@
     "tool_proficiencies_to_add": ["Thieves Tools"],
     "saving_throws_proficiencies": ["Dexterity", "Intelligence"],
     "added_equipment": ["Thieves' Tools", "Leather Armor", "Two Daggers"],
-    "equipment_choice": "Rapier/Short Sword#Shortbow, Quiver, 20 arrows/Short Sword#Burglar Pack/Dungeoneer Pack/Explorer Pack"
+    "equipment_choice": "Rapier/Short Sword#Shortbow, Quiver, 20 arrows/Short Sword#Burglar Pack/Dungeoneer Pack/Explorer Pack",
+    "cantrips_to_add": {
+      "number": 0,
+      "class_list": ""
+    },
+    "spells_to_add": 0
   },
   {
     "name": "Barbarian",
@@ -109,7 +119,12 @@
     "tool_proficiencies_to_add": [],
     "saving_throws_proficiencies": ["Strength", "Constitution"],
     "added_equipment": ["Explorer's Pack", "Four Javelins"],
-    "equipment_choice": "Greataxe/Martial Melee Weapon#Two Handaxes/Simple Weapon"
+    "equipment_choice": "Greataxe/Martial Melee Weapon#Two Handaxes/Simple Weapon",
+    "cantrips_to_add": {
+      "number": 0,
+      "class_list": ""
+    },
+    "spells_to_add": 0
   },
   {
     "name": "Paladin",
@@ -152,7 +167,12 @@
     "tool_proficiencies_to_add": [],
     "saving_throws_proficiencies": ["Wisdom", "Charisma"],
     "added_equipment": ["Chain Mail", "Holy Symbol"],
-    "equipment_choice": "Martial Weapon, Shield/Two Martial Weapons#Five Javelins/Simple Melee Weapon#Priest Pack/Explorer Pack"
+    "equipment_choice": "Martial Weapon, Shield/Two Martial Weapons#Five Javelins/Simple Melee Weapon#Priest Pack/Explorer Pack",
+    "cantrips_to_add": {
+      "number": 0,
+      "class_list": ""
+    },
+    "spells_to_add": 0
   },
   {
     "name": "Monk",
@@ -189,7 +209,53 @@
     "armor_proficiencies_to_add": [],
     "saving_throws_proficiencies": ["Strength", "Dexterity"],
     "added_equipment": ["10 darts"],
-    "equipment_choice": "Short Sword/Simple Weapon#Dungeoneer Pack/Explorer Pack"
+    "equipment_choice": "Short Sword/Simple Weapon#Dungeoneer Pack/Explorer Pack",
+    "cantrips_to_add": {
+      "number": 0,
+      "class_list": ""
+    },
+    "spells_to_add": 0
+  },
+  {
+    "name": "Wizard",
+    "hit_dice": 6,
+    "weapon_proficiencies_to_add": ["Dagger", "Darts", "Sling", "Quarterstaff", "Light Crossbow"],
+    "skill_proficiency_choices": {
+      "number": 2,
+      "skill_list": ["Arcana", "History", "Insight", "Investigation", "Medicine", "Religion"]
+    },
+    "class_features": [
+      {
+        "name": "Spellcasting",
+        "description": "As a student of arcane magic, you have a spellbook containing spells that show the first glimmerings of your true power.Cantrips At 1st level, you know three cantrips of your choice from the srd:wizard-spells list. You learn additional wizard cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Wizard table.SpellbookAt 1st level, you have a spellbook containing six 1st-level wizard spells of your choice. Your spellbook is the repository of the wizard spells you know, except your cantrips, which are fixed in your mind.Preparing and Casting SpellsThe Wizard table shows how many spell slots you have to cast your spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.You prepare the list of wizard spells that are available for you to cast. To do so, choose a number of wizard spells from your spellbook equal to your Intelligence modifier + your wizard level (minimum of one spell). The spells must be of a level for which you have spell slots.For example, if you're a 3rd-level wizard, you have four 1st-level and two 2nd-level spell slots. With an Intelligence of 16, your list of prepared spells can include six spells of 1st or 2nd level, in any combination, chosen from your spellbook. If you prepare the 1st-level spell srd:magic-missile, you can cast it using a 1st-level or a 2nd-level slot. Casting the spell doesn't remove it from your list of prepared spells.You can change your list of prepared spells when you finish a long rest. Preparing a new list of wizard spells requires time spent studying your spellbook and memorizing the incantations and gestures you must make to cast the spell: at least 1 minute per spell level for each spell on your list.Spellcasting AbilityIntelligence is your spellcasting ability for your wizard spells, since you learn your spells through dedicated study and memorization. You use your Intelligence whenever a spell refers to your spellcasting ability. In addition, you use your Intelligence modifier when setting the saving throw DC for a wizard spell you cast and when making an attack roll with one.    Spell save DC = 8 + your proficiency bonus + your Intelligence modifier    Spell attack modifier = your proficiency bonus + your Intelligence modifierRitual CastingYou can cast a wizard spell as a ritual if that spell has the ritual tag and you have the spell in your spellbook. You don't need to have the spell prepared.Spellcasting FocusYou can use an arcane focus as a spellcasting focus for your wizard spells.Learning Spells of 1st Level and Higher Each time you gain a wizard level, you can add two wizard spells of your choice to your spellbook for free. Each of these spells must be of a level for which you have spell slots, as shown on the Wizard table. On your adventures, you might find other spells that you can add to your spellbook (see the \"Your Spellbook\" sidebar)."
+      },
+      {
+        "name": "Arcane Recovery",
+        "description": "You have learned to regain some of your magical energy by studying your spellbook. Once per day when you finish a short rest, you can choose expended spell slots to recover. The spell slots can have a combined level that is equal to or less than half your wizard level (rounded up), and none of the slots can be 6th level or higher.For example, if you're a 4th-level wizard, you can recover up to two levels worth of spell slots. You can recover either a 2nd-level spell slot or two 1st-level spell slots."
+      }
+    ],
+    "class_feature_choices": [
+      {
+        "name":"",
+        "description": "",
+        "choice_table": [
+          {
+            "name": "",
+            "description":  ""
+          }
+        ]
+      }
+    ],
+    "armor_proficiencies_to_add": [],
+    "tool_proficiencies_to_add": [],
+    "saving_throws_proficiencies": ["Intelligence", "Wisdom"],
+    "added_equipment": ["Spellbook"],
+    "equipment_choice": "Quarterstaff/Dagger#Component Pouch/Arcane Focus#Scholar Pack/Explorer Pack",
+    "cantrips_to_add": {
+      "number": 3,
+      "class_list": "Wizard"
+    },
+    "spells_to_add": 6
   }
 ]
 
