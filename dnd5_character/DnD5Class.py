@@ -19,6 +19,7 @@ class DnD5Class:
         self.class_features = []
         self.class_feature_choices = []
         self.level = 1
+        self.spellcaster_class = ""
         self.cantrips_choice = {
             "number": 0,
             "cantrips": []
@@ -37,7 +38,7 @@ class DnD5Class:
         self.class_features = []
         self.saving_throws = []
         self.added_equipment = []
-        self.equipment_choice = []
+        self.equipment_choice = ""
 
     def choose_feature(self, feature_name, choice):
         feature = self.find_choice_in_features(feature_name, choice)
@@ -75,14 +76,11 @@ class DnD5Class:
             resulting_string += '\n\t'
             resulting_string += ", ".join(self.added_equipment)
         if self.equipment_choice != '':
-            resulting_string += '\n'
-            choices = self.equipment_choice.split('#')
-            for choice in choices:
-                options = choice.split('/')
-                resulting_string += '\t'
-                for option in options:
-                    resulting_string += option + ' or '
-                resulting_string = resulting_string[:-4] + '\n'
+            resulting_string += '\n' + self.equipment_to_string()
+        if self.spellcaster_class:
+            resulting_string += '\nSpellcasting:\n'
+            resulting_string += self.cantrips_to_string() + '\n'
+            resulting_string += self.spells_to_string()
         return resulting_string
 
     def class_features_to_string(self):
@@ -107,4 +105,25 @@ class DnD5Class:
                 resulting_string += '\t\t' + item["name"] + '\n'
                 resulting_string += '\t\t\t' + item["description"] + '\n'
             resulting_string = resulting_string[:-2]
+        return resulting_string
+
+    def equipment_to_string(self):
+        resulting_string = ''
+        choices = self.equipment_choice.split('#')
+        for choice in choices:
+            options = choice.split('/')
+            resulting_string += '\t'
+            for option in options:
+                resulting_string += option + ' or '
+            resulting_string = resulting_string[:-4]
+        return resulting_string
+
+    def cantrips_to_string(self):
+        resulting_string = "You can choose " + str(self.cantrips_choice["number"]) + " cantrips:\n"
+        resulting_string += ", ".join(self.cantrips_choice["cantrips"])
+        return resulting_string
+
+    def spells_to_string(self):
+        resulting_string = "You can choose " + str(self.level_one_choice["number"]) + " spells:\n"
+        resulting_string += ", ".join(self.level_one_choice["spells"])
         return resulting_string

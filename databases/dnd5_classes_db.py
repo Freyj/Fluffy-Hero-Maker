@@ -2,6 +2,7 @@ import json
 import os
 import sqlite3
 
+from databases.dnd5_spell_db import get_all_spells_of_class_and_level
 from dnd5_character.DnD5Class import DnD5Class
 
 CLASS_DATA_DIR = 'databases/data/classes/'
@@ -12,7 +13,7 @@ CREATE_CLASS_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_classes
                                 class_feature_descriptions, armor_proficiencies,
                                 tool_proficiencies, class_feature_choices_names, class_feature_choices_descriptions,
                                 class_feature_choices_tables, saving_throws_proficiencies, added_equipment, 
-                                equipment_choices)'''
+                                equipment_choices, cantrip_number, spell_class_list ,spells_1_number)'''
 
 # 1: name
 # 2: hit_dice
@@ -29,13 +30,16 @@ CREATE_CLASS_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_classes
 # 13: saving_throw_proficiencies
 # 14: added_equipment
 # 15: equipment_choices
+# 16: cantrip number
+# 17: spell class list
+# 18: spells number lvl 1
 INSERT_CLASS_INTO_REQUEST = '''INSERT INTO dnd5_classes(name, hit_dice, weapon_proficiencies_to_add, 
                                 class_feature_names, class_feature_descriptions, armor_proficiencies, 
                                 skill_proficiency_choices_number, skill_proficiency_choices_list, tool_proficiencies,
                                 class_feature_choices_names, class_feature_choices_descriptions,
                                 class_feature_choices_tables, saving_throws_proficiencies, added_equipment,
-                                equipment_choices) 
-                                values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'''
+                                equipment_choices, cantrip_number, spell_class_list, spells_1_number) 
+                                values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'''
 
 DROP_CLASS_TABLE_REQUEST = '''DROP TABLE IF EXISTS dnd5_classes'''
 
@@ -112,7 +116,10 @@ def get_all_classes_from_json():
                                class_feature_choices_tables,
                                ", ".join(dnd_class["saving_throws_proficiencies"]),
                                ", ".join(dnd_class["added_equipment"]),
-                               dnd_class["equipment_choice"]
+                               dnd_class["equipment_choice"],
+                               dnd_class["cantrips_to_add"]["number"],
+                               dnd_class["cantrips_to_add"]["class_list"],
+                               dnd_class["spells_to_add"]
                                )
                     classes.append(element)
     return classes
@@ -195,6 +202,15 @@ def change_record_into_class(record):
         dnd_class.saving_throws = record[13].split(', ')
         dnd_class.added_equipment = record[14].split(', ')
         dnd_class.equipment_choice = record[15]
+        if record[16] > 0:
+            dnd_class.is_spellcaster = True
+            dnd_class.cantrips_choice["number"] = record[16]
+            dnd_class.spellcaster_class = record[17]
+            dnd_class.cantrips_choice["cantrips"] = get_all_spells_of_class_and_level(record[17], 0)
+        if record[18] > 0:
+            dnd_class.level_one_choice["number"] = record[18]
+            dnd_class.level_one_choice["spells"] = get_all_spells_of_class_and_level(record[17], 1)
+        print(dnd_class.cantrips_choice)
         return dnd_class
     return None
 

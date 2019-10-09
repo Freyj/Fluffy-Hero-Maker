@@ -1,4 +1,4 @@
-from databases.dnd5_monster_db import insert_dnd5_monster_data, get_monster_by_name, get_number_of_monsters_in_db, \
+from databases.dnd5_monster_db import get_monster_by_name, get_number_of_monsters_in_db, \
     get_all_monsters_names_from_db, get_all_monsters_names_by_type, get_random_monster
 from utils.utilities import attacks_string_to_display_string
 
@@ -79,7 +79,6 @@ def cli_display(monster):
 
 
 def dnd_monster_stat_display():
-    insert_dnd5_monster_data()
     print("Type 1 for finding a monster by name, Type 2 to find the list of monsters in the database, Type 3 to find "
           "monsters of a type, type 4 for a random monster")
     choice = input()
