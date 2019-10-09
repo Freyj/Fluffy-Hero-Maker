@@ -45,6 +45,7 @@ class Dnd5Character(Character):
         self.alignment = ""
         self.cantrips = set([])
         self.spells = set([])
+        self.prepared_spell_number = 0
         self.level_one_slots = 0
         self.level_two_slots = 0
         self.level_three_slots = 0

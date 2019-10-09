@@ -20,6 +20,7 @@ class DnD5Class:
         self.class_feature_choices = []
         self.level = 1
         self.spellcaster_class = ""
+        self.spell_casting_ability =""
         self.cantrips_choice = {
             "number": 0,
             "cantrips": []
@@ -29,6 +30,7 @@ class DnD5Class:
             "spells": []
         }
         self.is_spellcaster = False
+        self.is_divine_spellcaster = False
         self.level_one_slots = 0
         self.level_two_slots = 0
         self.level_three_slots = 0
@@ -124,7 +126,9 @@ class DnD5Class:
         return resulting_string
 
     def spells_to_string(self):
-        resulting_string = "You can choose " + str(self.level_one_choice["number"]) + " spells:\n"
-        resulting_string += ", ".join(self.level_one_choice["spells"])
+        resulting_string = ""
+        if self.level_one_choice["number"] > 0:
+            resulting_string += "You can choose " + str(self.level_one_choice["number"]) + " spells:\n"
+            resulting_string += ", ".join(self.level_one_choice["spells"])
         resulting_string += "You will have " + str(self.level_one_slots) + " slots for level one spells."
         return resulting_string

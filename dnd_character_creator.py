@@ -3,6 +3,7 @@ from databases.dnd5_backgrounds import insert_dnd5_background, get_all_backgroun
 from databases.dnd5_classes_db import insert_dnd5_classes, get_all_classes_names, look_for_class_by_name
 from databases.dnd5_languages_db import get_all_languages, get_all_unrestricted_languages, insert_dnd5_language
 from databases.dnd5_races_db import get_all_races_names, look_for_race_by_name, insert_dnd5_race
+from databases.dnd5_spell_db import get_all_spells_of_class_and_level
 from dnd5_character.dnd5_constants import GENERATION_TYPES
 from utils.utilities import is_valid_choice, dict_to_str, list_to_str_with_number_and_line, get_modifier
 
@@ -302,6 +303,13 @@ def dnd_character_creation():
         for i in range(class_spell_choice_nb):
             choice = input().strip()
             dnd_character.add_spell(choice)
+
+    # adding all the divine spells  of lvl 1 to the known list
+    if dnd_class.is_divine_spellcaster:
+        for spell in get_all_spells_of_class_and_level(dnd_class.spellcaster_class, 1):
+            dnd_character.add_spell(spell)
+        dnd_character.prepared_spell_number = get_modifier(dnd_character.attributes[dnd_class.spell_casting_ability]) \
+                                              + dnd_character.level
 
     # Skill choice from class possibilities
     skill_choices = dnd_character.dnd_class.skill_proficiency_choices["number"]
