@@ -13,7 +13,8 @@ CREATE_CLASS_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_classes
                                 class_feature_descriptions, armor_proficiencies,
                                 tool_proficiencies, class_feature_choices_names, class_feature_choices_descriptions,
                                 class_feature_choices_tables, saving_throws_proficiencies, added_equipment, 
-                                equipment_choices, cantrip_number, spell_class_list, spells_1_number, spells_1_slots)'''
+                                equipment_choices, cantrip_number, spell_class_list, spells_1_number, spells_1_slots,
+                                casting_ability)'''
 
 # 1: name
 # 2: hit_dice
@@ -34,13 +35,15 @@ CREATE_CLASS_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_classes
 # 17: spell class list
 # 18: spells number lvl 1
 # 19: spell sloots of lvl 1
+# 20: casting_ability
 INSERT_CLASS_INTO_REQUEST = '''INSERT INTO dnd5_classes(name, hit_dice, weapon_proficiencies_to_add, 
                                 class_feature_names, class_feature_descriptions, armor_proficiencies, 
                                 skill_proficiency_choices_number, skill_proficiency_choices_list, tool_proficiencies,
                                 class_feature_choices_names, class_feature_choices_descriptions,
                                 class_feature_choices_tables, saving_throws_proficiencies, added_equipment,
-                                equipment_choices, cantrip_number, spell_class_list, spells_1_number, spells_1_slots) 
-                                values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'''
+                                equipment_choices, cantrip_number, spell_class_list, spells_1_number, spells_1_slots,
+                                casting_ability) 
+                                values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'''
 
 DROP_CLASS_TABLE_REQUEST = '''DROP TABLE IF EXISTS dnd5_classes'''
 
@@ -121,7 +124,8 @@ def get_all_classes_from_json():
                                dnd_class["cantrips_to_add"]["number"],
                                dnd_class["cantrips_to_add"]["class_list"],
                                dnd_class["spells_to_add"],
-                               dnd_class["level_one_spell_slots"]
+                               dnd_class["level_one_spell_slots"],
+                               dnd_class["casting_ability"]
                                )
                     classes.append(element)
     return classes
@@ -209,13 +213,16 @@ def change_record_into_class(record):
             dnd_class.cantrips_choice["number"] = record[16]
             dnd_class.spellcaster_class = record[17]
             dnd_class.cantrips_choice["cantrips"] = get_all_spells_of_class_and_level(record[17], 0)
+            if record[18] == 0:
+                # Divine classes do not learn a fixed number of spells outside of cantrips
+                dnd_class.is_divine_spellcaster = True
         if record[18] > 0:
             dnd_class.level_one_choice["number"] = record[18]
             dnd_class.level_one_choice["spells"] = get_all_spells_of_class_and_level(record[17], 1)
-        print(record)
         if record[19] > 0:
             dnd_class.level_one_slots = record[19]
-        print(dnd_class.cantrips_choice)
+        if record[20] is not '':
+            dnd_class.spell_casting_ability = record[20]
         return dnd_class
     return None
 
