@@ -389,6 +389,83 @@
     "spells_to_add": 0,
     "level_one_spell_slots": 2,
     "casting_ability": "Wisdom"
+},
+{
+  "name": "Bard",
+    "hit_dice": 8,
+    "weapon_proficiencies_to_add": [
+      "Simple weapons",
+      "Hand crossbows",
+      "Longsword",
+      "Rapier",
+      "Short Sword"
+    ],
+    "skill_proficiency_choices": {
+      "number": 3,
+      "skill_list": [
+        "Acrobatics",
+        "Animal Handling",
+        "Arcana",
+        "Athletics",
+        "Deception",
+        "History",
+        "Insight",
+        "Intimidation",
+        "Investigation",
+        "Medicine",
+        "Nature",
+        "Perception",
+        "Performance",
+        "Persuasion",
+        "Religion",
+        "Sleight of Hand",
+        "Stealth",
+        "Survival"
+      ]
+    },
+    "class_features": [
+      {
+        "name": "Spellcasting",
+        "description": "You have learned to untangle and reshape the fabric of reality in harmony with your wishes and music.Your spells are part of your vast repertoire, magic that you can tune to different situations.CantripsYou know two cantrips of your choice from the Bard Spell List. You learn additional bard cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Bard table.Spell SlotsThe Bard table shows how many spell slots you have to cast your spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.For example, if you know the 1st-level spell cure wounds and have a 1st-level and a 2nd-level spell slot available, you can cast cure wounds using either slot.Spells Known of 1st Level and HigherYou know four 1st-level spells of your choice from the Bard Spell List.The Spells Known column of the Bard table shows when you learn more bard spells of your choice. Each of these spells must be of a level for which you have spell slots, as shown on the table. For instance, when you reach 3rd level in this class, you can learn one new spell of 1st or 2nd level.Additionally, when you gain a level in this class, you can choose one of the bard spells you know and replace it with another spell from the bard spell list, which also must be of a level for which you have spell slots.Spellcasting AbilityCharisma is your spellcasting ability for your bard spells. Your magic comes from the heart and soul you pour into the performance of your music or oration. You use your Charisma whenever a spell refers to your spellcasting ability. In addition, you use your Charisma modifier when setting the saving throw DC for a bard spell you cast and when making an attack roll with one.    Spell save DC = 8 + your proficiency bonus + your Charisma modifier    Spell attack modifier = your proficiency bonus + your Charisma modifierRitual CastingYou can cast any bard spell you know as a ritual if that spell has the ritual tag.Spellcasting FocusYou can use a musical instrument (see srd:adventuring-gear) as a spellcasting focus for your bard spells."
+      },
+      {
+        "name": "Bardic Inspiration",
+        "description": "You can inspire others through stirring words or music. To do so, you use a bonus action on your turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature gains one Bardic Inspiration die, a d6.Once within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. The creature can wait until after it rolls the d20 before deciding to use the Bardic Inspiration die, but must decide before the GM says whether the roll succeeds or fails. Once the Bardic Inspiration die is rolled, it is lost. A creature can have only one Bardic Inspiration die at a time.You can use this feature a number of times equal to your Charisma modifier (a minimum of once). You regain any expended uses when you finish a long rest.Your Bardic Inspiration die changes when you reach certain levels in this class. The die becomes a d8 at 5th level, a d10 at 10th level, and a d12 at 15th level."
+      }
+     ],
+    "class_feature_choices": [
+      {
+              "name": "",
+        "description": "",
+        "choice_table": [
+          {
+            "name": "",
+            "description": ""
+          }
+        ]
+      }
+    ],
+    "armor_proficiencies_to_add": [
+      "Light Armor"
+    ],
+    "tool_proficiencies_to_add": [
+      "Three musical instruments of your choice"
+    ],
+    "saving_throws_proficiencies": [
+      "Dexterity",
+      "Charisma"
+    ],
+    "added_equipment": [
+      "Leather Armor",
+      "Dagger"
+    ],
+    "equipment_choice": "Rapier/Longsword/Simple Weapon#Diplomat Pack/Entertainer Pack#Lute/Musical Instrument",
+    "cantrips_to_add": {
+      "number": 2,
+      "class_list": "Bard"
+    },
+    "spells_to_add": 4,
+    "level_one_spell_slots": 2,
+    "casting_ability": "Charisma"
   }
 ]
-
