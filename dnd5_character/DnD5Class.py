@@ -105,7 +105,8 @@ class DnD5Class:
             resulting_string += '\t' + choice["name"] + ': ' + choice["description"] + '\n'
             for item in choice["choice_table"]:
                 resulting_string += '\t\t' + item["name"] + '\n'
-                resulting_string += '\t\t\t' + item["description"] + '\n'
+                if item["description"] is not '':
+                    resulting_string += '\t\t\t' + item["description"] + '\n'
             resulting_string = resulting_string[:-2]
         return resulting_string
 
