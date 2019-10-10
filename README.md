@@ -1,4 +1,5 @@
 # Fluffy Hero Maker
+[![Build Status](https://travis-ci.org/Freyj/Fluffy-Hero-Maker.svg?branch=master)](https://travis-ci.org/Freyj/Fluffy-Hero-Maker)
 ## What is this?
 This is an attempt at having a semi-automatic way of building characters or accessing some of my data for my tabletop rpg games.
 
