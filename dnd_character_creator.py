@@ -313,7 +313,7 @@ def dnd_character_creation():
 
     # Skill choice from class possibilities
     skill_choices = dnd_character.dnd_class.skill_proficiency_choices["number"]
-    skill_options = dnd_character.dnd_class.skill_proficiency_choices["skill_proficiencies"]
+    skill_options = dnd_character.dnd_class.skill_proficiency_choices["skill_list"]
     if skill_choices > 0:
         print("You already have these proficiencies: " + ", ".join(dnd_character.skill_proficiencies))
         print("You have bonus proficiencies, pick " + str(skill_choices)
