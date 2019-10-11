@@ -22,7 +22,7 @@ def insert_dnd5_language():
 def get_all_languages_from_json(file_name):
     languages = []
     # Considering "json_list.json" is a json file
-    directory = os.path.dirname(os.path.realpath(__file__))
+    directory = os.getcwd() + '/databases/'
     with open(directory + '/data/' + file_name + '.json') as fd:
         json_data = json.load(fd)
         for language in json_data:
