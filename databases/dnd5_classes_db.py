@@ -127,9 +127,7 @@ def change_record_into_class(record):
         if record[3] is not '':
             dnd_class.weapon_proficiencies_to_add = record[3].split(', ')
         if record[4] is not '':
-            print(record[4])
             dnd_class.skill_proficiency_choices = json.loads(record[4])
-            print(dnd_class.skill_proficiency_choices)
         dnd_class.class_features = json.loads(record[5])
         if record[6] is not '':
             dnd_class.armor_proficiencies_to_add = record[6].split(', ')
