@@ -29,7 +29,7 @@ A lot (just look at the issues).
 * Cleaner code.
 * Cleaner everything.
 * Not CLI display
-* No automated tests, that would help a bit with the testing out of options.
+* Enough automated tests.
 
 ## Why this name?
 Because this world needs more fluffy things. Also it is a partially wrong name, as it is more of a fluffy-helper than a fluffy-hero-maker, but eh.
@@ -45,7 +45,4 @@ Not exactly sure yet how I license this, so for now, it's ALL MINE and you're al
 (Of course, the SRD is not mine.)
 
 ## Can I help?
-Sure, if you want to, fork the repository and ask on an issue if you want to solve it. I'll try to answer in a fashionable manner, and just make a pull request when you've resolved the issue.
-
-## Can I offer ideas?
-You can, I may or may not implement them. Please add them as a new issue with the enhancement label. 
+Check the [CONTRIBUTING.md](https://github.com/Freyj/Fluffy-Hero-Maker/blob/master/CONTRIBUTING.md) to see more about how to contribute.
