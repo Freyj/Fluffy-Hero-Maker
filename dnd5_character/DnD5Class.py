@@ -7,7 +7,7 @@ class DnD5Class:
         self.hit_dice = 0
         self.skill_proficiency_choices = {
             "number": 0,
-            "skill_proficiencies": []
+            "skill_list": []
         }
         self.tool_proficiency_choices = {
             "number": 0,
@@ -20,7 +20,7 @@ class DnD5Class:
         self.class_feature_choices = []
         self.level = 1
         self.spellcaster_class = ""
-        self.spell_casting_ability =""
+        self.spell_casting_ability = ""
         self.cantrips_choice = {
             "number": 0,
             "cantrips": []

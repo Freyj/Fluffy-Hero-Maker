@@ -157,18 +157,7 @@
         "description": "Your blessed touch can heal wounds. You have a pool of healing power that replenishes when you take a long rest. With that pool, you can restore a total number of hit points equal to your paladin level × 5.As an action, you can touch a creature and draw power from the pool to restore a number of hit points to that creature, up to the maximum amount remaining in your pool.Alternatively, you can expend 5 hit points from your pool of healing to cure the target of one disease or neutralize one poison affecting it. You can cure multiple diseases and neutralize multiple poisons with a single use of Lay on Hands, expending hit points separately for each one.This feature has no effect on undead and constructs."
       }
     ],
-    "class_feature_choices": [
-      {
-        "name": "",
-        "description": "",
-        "choice_table": [
-          {
-            "name": "",
-            "description":  ""
-          }
-        ]
-      }
-    ],
+    "class_feature_choices": [],
     "armor_proficiencies_to_add": ["Light Armor", "Medium Armor", "Heavy Armor", "Shields"],
     "tool_proficiencies_to_add": [],
     "saving_throws_proficiencies": ["Wisdom", "Charisma"],
@@ -201,18 +190,7 @@
 
       }
     ],
-    "class_feature_choices": [
-      {
-        "name": "",
-        "description": "",
-        "choice_table": [
-          {
-            "description": "",
-            "name": ""
-          }
-        ]
-      }
-    ],
+    "class_feature_choices": [],
     "tool_proficiencies_to_add": [],
     "armor_proficiencies_to_add": [],
     "saving_throws_proficiencies": ["Strength", "Dexterity"],
@@ -244,18 +222,7 @@
         "description": "You have learned to regain some of your magical energy by studying your spellbook. Once per day when you finish a short rest, you can choose expended spell slots to recover. The spell slots can have a combined level that is equal to or less than half your wizard level (rounded up), and none of the slots can be 6th level or higher.For example, if you're a 4th-level wizard, you can recover up to two levels worth of spell slots. You can recover either a 2nd-level spell slot or two 1st-level spell slots."
       }
     ],
-    "class_feature_choices": [
-      {
-        "name":"",
-        "description": "",
-        "choice_table": [
-          {
-            "name": "",
-            "description":  ""
-          }
-        ]
-      }
-    ],
+    "class_feature_choices": [],
     "armor_proficiencies_to_add": [],
     "tool_proficiencies_to_add": [],
     "saving_throws_proficiencies": ["Intelligence", "Wisdom"],
@@ -326,18 +293,7 @@
         "description": ",,You know Druidic, the secret language of druids. You can speak the language and use it to leave hidden messages. You and others who know this language automatically spot such a message. Others spot the message's presence with a successful DC 15 Wisdom,,(Perception) check but can't decipher it without magic."
       }
     ],
-    "class_feature_choices": [
-      {
-        "name":"",
-        "description": "",
-        "choice_table": [
-          {
-            "name": "",
-            "description":  ""
-          }
-        ]
-      }
-    ],
+    "class_feature_choices": [ ],
     "armor_proficiencies_to_add": ["Light armor", "medium armor", "shields" ],
     "tool_proficiencies_to_add": ["Herbalism kit"],
     "saving_throws_proficiencies": ["Intelligence", "Wisdom"],
@@ -389,9 +345,9 @@
     "spells_to_add": 0,
     "level_one_spell_slots": 2,
     "casting_ability": "Wisdom"
-},
-{
-  "name": "Bard",
+  },
+  {
+    "name": "Bard",
     "hit_dice": 8,
     "weapon_proficiencies_to_add": [
       "Simple weapons",
@@ -432,19 +388,8 @@
         "name": "Bardic Inspiration",
         "description": "You can inspire others through stirring words or music. To do so, you use a bonus action on your turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature gains one Bardic Inspiration die, a d6.Once within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. The creature can wait until after it rolls the d20 before deciding to use the Bardic Inspiration die, but must decide before the GM says whether the roll succeeds or fails. Once the Bardic Inspiration die is rolled, it is lost. A creature can have only one Bardic Inspiration die at a time.You can use this feature a number of times equal to your Charisma modifier (a minimum of once). You regain any expended uses when you finish a long rest.Your Bardic Inspiration die changes when you reach certain levels in this class. The die becomes a d8 at 5th level, a d10 at 10th level, and a d12 at 15th level."
       }
-     ],
-    "class_feature_choices": [
-      {
-              "name": "",
-        "description": "",
-        "choice_table": [
-          {
-            "name": "",
-            "description": ""
-          }
-        ]
-      }
     ],
+    "class_feature_choices": [],
     "armor_proficiencies_to_add": [
       "Light Armor"
     ],

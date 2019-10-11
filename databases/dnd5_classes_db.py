@@ -9,41 +9,32 @@ CLASS_DATA_DIR = 'databases/data/classes/'
 
 CREATE_CLASS_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_classes 
                                 (id integer primary key, name text not null, hit_dice, weapon_proficiencies_to_add,
-                                skill_proficiency_choices_number, skill_proficiency_choices_list, class_feature_names, 
-                                class_feature_descriptions, armor_proficiencies,
-                                tool_proficiencies, class_feature_choices_names, class_feature_choices_descriptions,
-                                class_feature_choices_tables, saving_throws_proficiencies, added_equipment, 
-                                equipment_choices, cantrip_number, spell_class_list, spells_1_number, spells_1_slots,
-                                casting_ability)'''
+                                skill_proficiency_choices, class_features, armor_proficiencies, tool_proficiencies, 
+                                class_feature_choices, saving_throws_proficiencies, added_equipment, equipment_choices, 
+                                cantrip_number, spell_class_list, spells_1_number, spells_1_slots, casting_ability)'''
 
 # 1: name
 # 2: hit_dice
 # 3: weapon_proficiencies_to_add
-# 4: class_feature_names
-# 5: class_feature_descriptions
+# 4: skill_proficiency_choices
+# 5: class_features
 # 6: armor_proficiencies
-# 7: skill_proficiency_choices_number
-# 8: skill_proficiency_choices_list
-# 9: tool_proficiencies
-# 10: class_feature_choices_names
-# 11: class_feature_choices_descriptions
-# 12: class_feature_choices_tables
-# 13: saving_throw_proficiencies
-# 14: added_equipment
-# 15: equipment_choices
-# 16: cantrip number
-# 17: spell class list
-# 18: spells number lvl 1
-# 19: spell sloots of lvl 1
-# 20: casting_ability
-INSERT_CLASS_INTO_REQUEST = '''INSERT INTO dnd5_classes(name, hit_dice, weapon_proficiencies_to_add, 
-                                class_feature_names, class_feature_descriptions, armor_proficiencies, 
-                                skill_proficiency_choices_number, skill_proficiency_choices_list, tool_proficiencies,
-                                class_feature_choices_names, class_feature_choices_descriptions,
-                                class_feature_choices_tables, saving_throws_proficiencies, added_equipment,
-                                equipment_choices, cantrip_number, spell_class_list, spells_1_number, spells_1_slots,
-                                casting_ability) 
-                                values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'''
+# 7: tool_proficiencies
+# 8: class_feature_choices
+# 9: saving_throw_proficiencies
+# 10: added_equipment
+# 11: equipment_choices
+# 12: cantrip number
+# 13: spell class list
+# 14: spells number lvl 1
+# 15: spell slots of lvl 1
+# 16: casting_ability
+
+INSERT_CLASS_INTO_REQUEST = '''INSERT INTO dnd5_classes(name, hit_dice, weapon_proficiencies_to_add,  
+                                skill_proficiency_choices, class_features, armor_proficiencies, tool_proficiencies,
+                                class_feature_choices, saving_throws_proficiencies, added_equipment, equipment_choices, 
+                                cantrip_number, spell_class_list, spells_1_number, spells_1_slots, casting_ability) 
+                                values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'''
 
 DROP_CLASS_TABLE_REQUEST = '''DROP TABLE IF EXISTS dnd5_classes'''
 
@@ -82,42 +73,14 @@ def get_all_classes_from_json():
             with open(file_path) as fd:
                 json_data = json.load(fd)
                 for dnd_class in json_data:
-                    class_feature_names = ''
-                    class_feature_descriptions = ''
-                    for feature in dnd_class["class_features"]:
-                        class_feature_names += feature["name"] + ';'
-                        class_feature_descriptions += feature["description"] + ';'
-                    # remove last comma
-                    class_feature_names = class_feature_names[:-1]
-                    class_feature_descriptions = class_feature_descriptions[:-1]
-                    class_feature_choices = dnd_class["class_feature_choices"]
-                    class_feature_choices_names = ""
-                    class_feature_choices_descriptions = ""
-                    class_feature_choices_tables = ""
-                    for feature in class_feature_choices:
-                        class_feature_choices_names += feature["name"] + ';'
-                        class_feature_choices_descriptions += feature["description"] + ';'
-                        class_feature_choices_table = feature["choice_table"]
-                        for choice in class_feature_choices_table:
-                            name = choice["name"]
-                            description = choice["description"]
-                            class_feature_choices_tables += name + "/" + description + ";"
-                        class_feature_choices_tables = class_feature_choices_tables[:-1] + "#"
-                    class_feature_choices_names = class_feature_choices_names[:-1]
-                    class_feature_choices_descriptions = class_feature_choices_descriptions[:-1]
-                    class_feature_choices_tables = class_feature_choices_tables[:-1]
                     element = (dnd_class["name"],
                                dnd_class["hit_dice"],
                                ", ".join(dnd_class["weapon_proficiencies_to_add"]),
-                               class_feature_names,
-                               class_feature_descriptions,
+                               json.dumps(dnd_class["skill_proficiency_choices"]),
+                               json.dumps(dnd_class["class_features"]),
                                ", ".join(dnd_class["armor_proficiencies_to_add"]),
-                               dnd_class["skill_proficiency_choices"]["number"],
-                               ", ".join(dnd_class["skill_proficiency_choices"]["skill_list"]),
                                ", ".join(dnd_class["tool_proficiencies_to_add"]),
-                               class_feature_choices_names,
-                               class_feature_choices_descriptions,
-                               class_feature_choices_tables,
+                               json.dumps(dnd_class["class_feature_choices"]),
                                ", ".join(dnd_class["saving_throws_proficiencies"]),
                                ", ".join(dnd_class["added_equipment"]),
                                dnd_class["equipment_choice"],
@@ -163,66 +126,33 @@ def change_record_into_class(record):
         dnd_class.hit_dice = record[2]
         if record[3] is not '':
             dnd_class.weapon_proficiencies_to_add = record[3].split(', ')
-        if record[4] > 0:
-            dnd_class.skill_proficiency_choices = {
-                "number": record[4],
-                "skill_proficiencies": record[5].split(', ')
-            }
-
-        class_feature_names = record[6].split(';')
-        class_feature_descriptions = record[7].split(';')
-        for i in range(len(class_feature_names)):
-            class_feature = {
-                "name": class_feature_names[i],
-                "description": class_feature_descriptions[i]
-            }
-            dnd_class.class_features.append(class_feature)
-
+        if record[4] is not '':
+            dnd_class.skill_proficiency_choices = json.loads(record[4])
+        dnd_class.class_features = json.loads(record[5])
+        if record[6] is not '':
+            dnd_class.armor_proficiencies_to_add = record[6].split(', ')
+        if record[7] is not '':
+            dnd_class.tool_proficiencies_to_add = record[7].split(', ')
         if record[8] is not '':
-            dnd_class.armor_proficiencies_to_add = record[8].split(', ')
-
-        if record[9] is not '':
-            dnd_class.tool_proficiencies_to_add = record[9].split(', ')
-
-        if record[10] is not '':
-            feature_choices_names = record[10].split(';')
-            feature_choices_descriptions = record[11].split(';')
-            feature_choices_lists = record[12].split('#')
-            feature_choices_table = []
-            for i in range(len(feature_choices_names)):
-                table = feature_choices_lists[i].split(';')
-                for item in table:
-                    resulting_choices = item.split('/')
-                    choice = {
-                        "name": resulting_choices[0],
-                        "description": resulting_choices[1]
-                    }
-                    feature_choices_table.append(choice)
-
-                feat_choice = {
-                    "name": feature_choices_names[i],
-                    "description": feature_choices_descriptions[i],
-                    "choice_table": feature_choices_table
-                }
-                dnd_class.class_feature_choices.append(feat_choice)
-        dnd_class.saving_throws = record[13].split(', ')
-        dnd_class.added_equipment = record[14].split(', ')
-        dnd_class.equipment_choice = record[15]
-        if record[16] > 0:
+            dnd_class.class_feature_choices = json.loads(record[8])
+        dnd_class.saving_throws = record[9].split(', ')
+        dnd_class.added_equipment = record[10].split(', ')
+        dnd_class.equipment_choice = record[11]
+        if record[12] > 0:
             dnd_class.is_spellcaster = True
-            dnd_class.cantrips_choice["number"] = record[16]
-            dnd_class.spellcaster_class = record[17]
-            dnd_class.cantrips_choice["cantrips"] = get_all_spells_of_class_and_level(record[17], 0)
-            if record[18] == 0:
+            dnd_class.cantrips_choice["number"] = record[12]
+            dnd_class.spellcaster_class = record[13]
+            dnd_class.cantrips_choice["cantrips"] = get_all_spells_of_class_and_level(record[13], 0)
+            if record[12] == 0:
                 # Divine classes do not learn a fixed number of spells outside of cantrips
                 dnd_class.is_divine_spellcaster = True
-        if record[18] > 0:
-            dnd_class.level_one_choice["number"] = record[18]
-            dnd_class.level_one_choice["spells"] = get_all_spells_of_class_and_level(record[17], 1)
-        if record[19] > 0:
-            dnd_class.level_one_slots = record[19]
-        if record[20] is not '':
-            dnd_class.spell_casting_ability = record[20]
+        if record[14] > 0:
+            dnd_class.level_one_choice["number"] = record[14]
+            dnd_class.level_one_choice["spells"] = get_all_spells_of_class_and_level(record[13], 1)
+        if record[15] > 0:
+            dnd_class.level_one_slots = record[15]
+        if record[16] is not '':
+            dnd_class.spell_casting_ability = record[16]
         return dnd_class
     return None
 
