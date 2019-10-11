@@ -1,6 +1,6 @@
 from databases.dnd5_monster_db import get_monster_by_name, get_number_of_monsters_in_db, \
     get_all_monsters_names_from_db, get_all_monsters_names_by_type, get_random_monster
-from utils.utilities import attacks_string_to_display_string
+from utils.utilities import attacks_string_to_display_string, traits_dictionary_to_string, actions_dictionary_to_string
 
 
 def cli_display(monster):
@@ -76,6 +76,10 @@ def cli_display(monster):
     print("Description:\n\t" + monster.description.replace('. ', '.\n\t'))
     if len(monster.attacks) > 0:
         print("Attacks:" + attacks_string_to_display_string(monster.attacks))
+    if len(monster.traits) > 0:
+        print("Traits:\n" + traits_dictionary_to_string(monster.traits))
+    if len(monster.actions) > 0:
+        print("Actions:\n" + actions_dictionary_to_string(monster.actions))
 
 
 def dnd_monster_stat_display():

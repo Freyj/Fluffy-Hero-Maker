@@ -139,3 +139,21 @@ def attacks_string_to_display_string(attack_string):
         if attack_details[5] is not '':
             resulting_string += "\n\t\tOn Hit: " + attack_details[5]
     return resulting_string
+
+
+def actions_dictionary_to_string(action_dict):
+    """Returns a string from dictionaries made of items with name / description ready to print"""
+    resulting_string = ""
+    for item in action_dict:
+        resulting_string += '\t' + item["name"] + "\n\t\t" + item["description"] + "\n"
+    resulting_string = resulting_string[:-1]
+    return resulting_string
+
+
+def traits_dictionary_to_string(action_dict):
+    """Returns a string from dictionaries made of items with name / effect ready to print"""
+    resulting_string = ""
+    for item in action_dict:
+        resulting_string += '\t' + item["name"] + "\n\t\t" + item["effect"] + "\n"
+    resulting_string = resulting_string[:-1]
+    return resulting_string
