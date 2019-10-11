@@ -93,9 +93,9 @@ def get_all_monsters_from_json():
                                ", ".join(monster["senses"]),
                                ", ".join(monster["languages_spoken"]),
                                ", ".join(monster["languages_understood"]),
-                               ", ".join(monster["actions"]),
+                               json.dumps(monster["actions"]),
                                attacks_string,  # 35
-                               ", ".join(monster["traits"]),
+                               json.dumps(monster["traits"]),
                                ", ".join(monster["cantrips"]),
                                ", ".join(monster["spells_lvl1"]),
                                monster["spell_slots_lvl1"],
@@ -245,9 +245,9 @@ def change_record_into_monster(record):
         monster.senses = record[31].split(', ')
         monster.languages_spoken = record[32].split(', ')
         monster.languages_understood = record[33].split(', ')
-        monster.actions = record[34]
+        monster.actions = json.loads(record[34])
         monster.attacks = record[35]
-        monster.traits = record[36]
+        monster.traits = json.loads(record[36])
         monster.cantrips = record[37]
         monster.spells_lvl_1["spells"] = record[38].split(', ')
         monster.spells_lvl_1["slot_number"] = record[39]

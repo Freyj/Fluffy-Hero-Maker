@@ -17,7 +17,7 @@ def initialize_all_data():
     insert_dnd5_language()
     insert_dnd5_race()
     insert_dnd5_classes()
-    # insert_dnd5_monster_data() -> commented out because of bug, creating issue #
+    insert_dnd5_monster_data()
 
 
 def delete_all_data():
