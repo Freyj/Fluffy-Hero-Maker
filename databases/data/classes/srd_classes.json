@@ -412,5 +412,122 @@
     "spells_to_add": 4,
     "level_one_spell_slots": 2,
     "casting_ability": "Charisma"
+  },
+
+  {
+    "name": "Ranger",
+    "hit_dice": 10,
+    "weapon_proficiencies_to_add": ["Simple Weapons", "Martial Weapons"],
+    "skill_proficiency_choices": {
+      "number": 3,
+      "skill_list": ["Animal Handling", "Athletics", "Insight", "Investigation", "Nature", "Perception", "Stealth", "Survival"]
+    },
+    "class_features": [],
+    "class_feature_choices": [
+      {
+        "name":"Favored Enemy",
+        "description": "Beginning at 1st level, you have significant experience studying, tracking, hunting, and even talking to a certain type of enemy. Choose a type of favored enemy:You have advantage on Wisdom (Survival) checks to track your favored enemies, as well as on Intelligence checks to recall information about them.When you gain this feature, you also learn one language of your choice that is spoken by your favored enemies, if they speak one at all.You choose one additional favored enemy, as well as an associated language, at 6th and 14th level. As you gain levels, your choices should reflect the types of monsters you have encountered on your adventures.",
+        "choice_table": [
+          {
+            "name": "Aberration",
+            "description":  ""
+          },
+          {
+            "name": "Beast",
+            "description":  ""
+          },
+          {
+            "name": "Celestial",
+            "description":  ""
+          },
+          {
+            "name": "Dragon",
+            "description":  ""
+          },
+          {
+            "name": "Elemental",
+            "description":  ""
+          },
+          {
+            "name": "Fey",
+            "description":  ""
+          },
+          {
+            "name": "Fiend",
+            "description":  ""
+          },
+          {
+            "name": "Giant",
+            "description":  ""
+          },
+          {
+            "name": "Monstrosity",
+            "description":  ""
+          },
+          {
+            "name": "Ooze",
+            "description":  ""
+          },
+          {
+            "name": "Plant",
+            "description":  ""
+          },
+          {
+            "name": "Undead",
+            "description":  ""
+          },
+          {
+            "name": "Two races of humanoids",
+            "description":  "You can select two races of humanoid (such as gnolls and orcs) as favored enemies."
+          }
+        ]
+      },
+      {
+        "name": "Natural Explorer",
+        "description": "You are particularly familiar with one type of natural environment and are adept at traveling and surviving in such regions. Choose one type of favored terrain. When you make an Intelligence or Wisdom check related to your favored terrain, your proficiency bonus is doubled if you are using a skill that you're proficient in.While traveling for an hour or more in your favored terrain, you gain the following benefits:    Difficult terrain doesn't slow your group's travel.    Your group can't become lost except by magical means.    Even when you are engaged in another activity while traveling (such as foraging, navigating, or tracking), you remain alert to danger.    If you are traveling alone, you can move stealthily at a normal pace.    When you forage, you find twice as much food as you normally would.    While tracking other creatures, you also learn their exact number, their sizes, and how long ago they passed through the area.You choose additional favored terrain types at 6th and 10th level.",
+        "choice_table": [
+          {
+            "name": "Arctic",
+            "description":  ""
+          },
+          {
+            "name": "Coast",
+            "description": ""
+          },
+          {
+            "name": "Desert",
+            "description": ""
+          },
+          {
+            "name": "Forest",
+            "description": ""
+          },
+          {
+            "name": "Grassland",
+            "description": ""
+          },
+          {
+            "name": "Mountain",
+            "description": ""
+          },
+          {
+            "name": "Swamp",
+            "description": ""
+          }
+        ]
+      }
+    ],
+    "armor_proficiencies_to_add": ["Light Armor", "Medium Armor", "Shields"],
+    "tool_proficiencies_to_add": [],
+    "saving_throws_proficiencies": ["Strength", "Dexterity"],
+    "added_equipment": ["Longbow", "Quiver", "20 arrows"],
+    "equipment_choice": "Scale Mail/Leather Armor#Two Short Swords/Two Simple Melee Weapons#Dungeoneer Pack/Explorer Pack",
+    "cantrips_to_add": {
+      "number": 0,
+      "class_list": ""
+    },
+    "spells_to_add": 0,
+    "level_one_spell_slots": 0,
+    "casting_ability": ""
   }
 ]

@@ -102,12 +102,12 @@ class DnD5Class:
     def class_feature_choices_to_string(self):
         resulting_string = ""
         for choice in self.class_feature_choices:
-            resulting_string += '\t' + choice["name"] + ': ' + choice["description"] + '\n'
+            resulting_string += '\t' + choice["name"] + ':\n' + choice["description"] + '\n'
             for item in choice["choice_table"]:
                 resulting_string += '\t\t' + item["name"] + '\n'
                 if item["description"] is not '':
                     resulting_string += '\t\t\t' + item["description"] + '\n'
-            resulting_string = resulting_string[:-2]
+        resulting_string = resulting_string[:-2]
         return resulting_string
 
     def equipment_to_string(self):
