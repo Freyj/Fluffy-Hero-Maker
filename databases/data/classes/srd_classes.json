@@ -529,5 +529,62 @@
     "spells_to_add": 0,
     "level_one_spell_slots": 0,
     "casting_ability": ""
+  },
+  {
+    "name": "Warlock",
+    "hit_dice": 8,
+    "weapon_proficiencies_to_add": ["Simple weapon"],
+    "skill_proficiency_choices": {
+      "number": 2,
+      "skill_list": ["Arcana", "Deception", "History", "Intimidation", "Investigation", "Nature", "Religion"]
+    },
+    "class_features": [
+      {
+        "name": "Pact Magic",
+        "description": "Your arcane research and the magic bestowed on you by your patron have given you facility with spells.CantripsYou know two cantrips of your choice from the srd:warlock-spells list. You learn additional warlock cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Warlock table.Spell SlotsThe Warlock table shows how many spell slots you have. The table also shows what the level of those slots is, all of your spell slots are the same level. To cast one of your warlock spells of 1st level or higher, you must expend a spell slot. You regain all expended spell slots when you finish a short or long rest.For example, when you are 5th level, you have two 3rd-level spell slots. To cast the 1st-level spell srd:thunderwave, you must spend one of those slots, and you cast it as a 3rd-level spell.Spells Known of 1st Level and HigherAt 1st level, you know two 1st-level spells of your choice from the warlock spell list.The Spells Known column of the Warlock table shows when you learn more warlock spells of your choice of 1st level and higher. A spell you choose must be of a level no higher than what's shown in the table's Slot Level column for your level. When you reach 6th level, for example, you learn a new warlock spell, which can be 1st, 2nd, or 3rd level.Additionally, when you gain a level in this class, you can choose one of the warlock spells you know and replace it with another spell from the warlock spell list, which also must be of a level for which you have spell slots.Spellcasting AbilityCharisma is your spellcasting ability for your warlock spells, so you use your Charisma whenever a spell refers to your spellcasting ability. In addition, you use your Charisma modifier when setting the saving throw DC for a warlock spell you cast and when making an attack roll with one.    Spell save DC = 8 + your proficiency bonus + your Charisma modifier    Spell attack modifier = your proficiency bonus + your Charisma modifierSpellcasting FocusYou can use an arcane focus as a spellcasting focus for your warlock spells."
+      }
+    ],
+    "class_feature_choices": [
+      {
+        "name":"Otherworldly Patron",
+        "description": "At 1st level, you have struck a bargain with an otherworldly being of your choice: the Archfey, the Fiend, or the Great Old One, each of which is detailed at the end of the class description. Your choice grants you features at 1st level and again at 6th, 10th, and 14th level.The beings that serve as patrons for warlocks are mighty inhabitants of other planes of existence---not gods, but almost godlike in their power. Various patrons give their warlocks access to different powers and invocations, and expect significant favors in return.Some patrons collect warlocks, doling out mystic knowledge relatively freely or boasting of their ability to bind mortals to their will. Other patrons bestow their power only grudgingly, and might make a pact with only one warlock. Warlocks who serve the same patron might view each other as allies, siblings, or rivals.",
+        "choice_table": [
+          {
+            "name": "The Fiend",
+            "description":  "You have made a pact with a fiend from the lower planes of existence, a being whose aims are evil, even if you strive against those aims. Such beings desire the corruption or destruction of all things, ultimately including you. Fiends powerful enough to forge a pact include demon lords such as Demogorgon, Orcus, Fraz'Urb-luu, and Baphomet, archdevils such as Asmodeus, Dispater, Mephistopheles, and Belial, pit fiends and balors that are especially mighty, and ultroloths and other lords of the yugoloths.Expanded Spell ListThe Fiend lets you choose from an expanded list of spells when you learn a warlock spell. The following spells are added to the warlock spell list for you.Fiend Expanded SpellsSpell Level Spells1st srd:burning-hands, srd:command 2nd srd:blindness-deafness, srd:scorching-ray 3rd srd:fireball, srd:stinking-cloud 4th srd:fire-shield, srd:wall-of-fire 5th srd:flame-strike, srd:hallowDark One's BlessingStarting at 1st level, when you reduce a hostile creature to 0 hit points, you gain temporary hit points equal to your Charisma modifier + your warlock level (minimum of 1)."
+          }
+        ]
+      },
+      {
+        "name": "Pact Boon",
+        "description": "Each Pact Boon option produces a special creature or an object that reflects your patron's nature.",
+        "choice_table": [
+          {
+            "name": "Pact of the Chain",
+            "description": "Your familiar is more cunning than a typical familiar. Its default form can be a reflection of your patron, with imps and quasits tied to the Fiend."
+          },
+          {
+            "name": "Pact of the Blade",
+            "description": "If you serve the Fiend, your weapon could be an axe made of black metal and adorned with decorative flames."
+          },
+          {
+            "name": "Pact of the Tome",
+            "description": "Your Book of Shadows could be a weighty tome bound in demon hide studded with iron, holding spells of conjuration and a wealth of forbidden lore about the sinister regions of the cosmos, a gift of the Fiend."
+          }
+        ]
+      }
+    ],
+    "armor_proficiencies_to_add": ["Light armor"],
+    "tool_proficiencies_to_add": [],
+    "saving_throws_proficiencies": ["Wisdom", "Charisma"],
+    "added_equipment": ["Leather Armor", "Simple Weapon", "Two daggers"],
+    "equipment_choice": "Light Crossbow, 20 bolts/Simple Weapon#Component Pouch/Arcane Focus#Dungeoneer Pack/Scholar Pack",
+    "cantrips_to_add": {
+      "number": 2,
+      "class_list": "Warlock"
+    },
+    "spells_to_add": 2,
+    "level_one_spell_slots": 2,
+  "casting_ability": "Charisma"
   }
 ]
