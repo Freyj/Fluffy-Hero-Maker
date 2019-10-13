@@ -148,7 +148,7 @@
       },
       {
         "name": "Change Shape",
-        "effect": "The deva magically polymorphs into a humanoid or beast that has a challenge rating equal to or less than its own, or back into its true form. It reverts to its true form if it dies. Any equipment it is wearing or carrying is absorbed or borne by the new form (the deva's choice). In a new form, the deva retains its game statistics and ability to speak, but its AC, movement modes, Strength, Dexterity, and special senses are replaced by those of the new form, and it gains any statistics and capabilities (except class features, legendary actions, and lair actions) that the new form has but that it lacks."
+        "description": "The deva magically polymorphs into a humanoid or beast that has a challenge rating equal to or less than its own, or back into its true form. It reverts to its true form if it dies. Any equipment it is wearing or carrying is absorbed or borne by the new form (the deva's choice). In a new form, the deva retains its game statistics and ability to speak, but its AC, movement modes, Strength, Dexterity, and special senses are replaced by those of the new form, and it gains any statistics and capabilities (except class features, legendary actions, and lair actions) that the new form has but that it lacks."
       }
     ],
     "legendary_actions_number": 0,
@@ -548,15 +548,15 @@
       },
       {
         "name": "Magic Resistance",
-        "description": "The unicorn has advantage on saving throws against spells and other magical effects."
+        "effect": "The unicorn has advantage on saving throws against spells and other magical effects."
       },
       {
         "name": "Magic Weapons",
-        "description": "The unicorn's weapon attacks are magical. "
+        "effect": "The unicorn's weapon attacks are magical. "
       },
       {
         "name": "Innate Spellcasting",
-        "description": "The unicorn's innate spellcasting ability is Charisma (spell save DC 14). The unicorn can innately cast the following spells, requiring no components:At will: detect evil and good, druidcraft, pass without trace1/day each: calm emotions, dispel evil and good, entangle "
+        "effect": "The unicorn's innate spellcasting ability is Charisma (spell save DC 14). The unicorn can innately cast the following spells, requiring no components:At will: detect evil and good, druidcraft, pass without trace1/day each: calm emotions, dispel evil and good, entangle "
       }
     ],
     "cantrips": [],
