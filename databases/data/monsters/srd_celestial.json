@@ -165,7 +165,7 @@
         "name": "Mace",
         "type": "Melee",
         "hit_bonus": 8,
-        "target": "one taget",
+        "target": "one target",
         "specials": "reach 5ft",
         "damage": "7 (1d6 + 4) bludgeoning damage plus 18 (4d8) radiant damage",
         "on_hit": ""
