@@ -146,8 +146,8 @@ class DnD5Monster:
         for attr, value in self.__dict__.items():
             if attr.startswith('spells_lvl_') and value['slot_number'] > 0:
                 num = attr.split('_')[-1]
-                print('Spell slots of level ' + str(num) + ': ' + str(value['slot_number']))
-                print('Available spells of level ' + str(num) + ': ' + ', '.join(value['spells']))
+                print('Spell slots of level {}: {}'.format(num, value['slot_number']))
+                print('Available spells of level {}: {}'.format(num, ', '.join(value['spells'])))
 
         print("Description:\n\t" + self.description.replace('. ', '.\n\t'))
 
