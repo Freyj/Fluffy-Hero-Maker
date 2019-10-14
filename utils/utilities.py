@@ -123,37 +123,3 @@ def str_to_list(string_to_change):
         resulting_list.append(item)
     return resulting_list
 
-
-def attacks_string_to_display_string(attack_string):
-    """Changes a string from
-     [Bite;Melee;6;one creature;reach 5ft;10 (2d6 + 3) piercing damage;effect on hit];[....];[]
-     to a displayable string of all available attacks"""
-    resulting_string = ""
-    attacks = attack_string.split(':')
-    for attack in attacks:
-        attack = attack[1:-1]
-        attack_details = attack.split(';')
-        resulting_string += "\n\t"+ attack_details[0] + " " + attack_details[1] + "\n"
-        resulting_string += "\t\tHit Bonus: " + attack_details[2] + "\n\t\tTarget: " + attack_details[3]
-        resulting_string += "\n\t\tDamage: " + attack_details[4]
-        if attack_details[5] is not '':
-            resulting_string += "\n\t\tOn Hit: " + attack_details[5]
-    return resulting_string
-
-
-def actions_dictionary_to_string(action_dict):
-    """Returns a string from dictionaries made of items with name / description ready to print"""
-    resulting_string = ""
-    for item in action_dict:
-        resulting_string += '\t' + item["name"] + "\n\t\t" + item["description"] + "\n"
-    resulting_string = resulting_string[:-1]
-    return resulting_string
-
-
-def traits_dictionary_to_string(action_dict):
-    """Returns a string from dictionaries made of items with name / effect ready to print"""
-    resulting_string = ""
-    for item in action_dict:
-        resulting_string += '\t' + item["name"] + "\n\t\t" + item["effect"] + "\n"
-    resulting_string = resulting_string[:-1]
-    return resulting_string
