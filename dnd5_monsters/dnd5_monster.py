@@ -103,11 +103,13 @@ class DnD5Monster:
 
     def actions_dictionary_to_string(self):
         """Returns a string from dictionaries made of items with name / description ready to print"""
-        return '\n'.join(['\t' + item["name"] + "\n\t\t" + item["description"] + "\n" for item in self.actions])
+        resulting_string = ['\t' + item["name"] + "\n\t\t" + item["description"] + "\n" for item in self.actions]
+        return '\n'.join(resulting_string)
 
     def traits_dictionary_to_string(self):
         """Returns a string from dictionaries made of items with name / effect ready to print"""
-        return '\n'.join(['\t' + item["name"] + "\n\t\t" + item["effect"] for item in self.traits])
+        resulting_string = ['\t' + item["name"] + "\n\t\t" + item["effect"] for item in self.traits]
+        return '\n'.join(resulting_string)
 
     def cli_display(self):
         """ Display monster's stats """
