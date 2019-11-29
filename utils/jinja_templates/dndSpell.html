@@ -1,0 +1,26 @@
+<!doctype html>
+<title>Fluffy Hero Maker</title>
+<h1>DnD5 Spell Display</h1>
+<h2>{{spell.name}}</h2>
+<ul>
+  <li>School: {{spell.school}}</li>
+  <li>{% if spell.level > 0 %}Level: {{spell.level}} {% else %} Cantrip {% endif %}</li>
+  <li>Classes: {% for cl in spell.classes %} {{cl}}, {% endfor%}</li>
+  <li>Casting Time: {{spell.casting_time}}</li>
+  {% if spell.ritual %}
+  <li>Ritual</li>
+  {% endif %}
+  <li>Range: {{spell.range}}</li>
+  <li>Duration: {{spell.duration}}</li>
+  {% if spell.target %}
+  <li>Target: {{spell.target}}</li>
+  {% endif %}
+  <li>Components: {{spell.components}}</li>
+  {% if spell.concentration %}
+  <li>Concentration</li>
+  {% endif %}
+  <li>Description: {{spell.description}}</li>
+  {% if spell.upgrade %}
+  <li>At Higher Levels: {{spell.upgrade}}</li>
+  {% endif %}
+</ul>

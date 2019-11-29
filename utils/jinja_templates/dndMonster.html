@@ -1,0 +1,81 @@
+<!doctype html>
+<title>Fluffy Hero Maker</title>
+<h1>DnD5 Monster Display</h1>
+<h2>{{monster.name}}</h2>
+<h3>{{monster.size}} {{monster.monster_type}}, {{monster.alignment}}</h3>
+<ul>
+    <li>Challenge: {{monster.challenge}} ({{monster.xp}} XP)</li>
+    <li>Hit Points: {{monster.hit_points}} ({{monster.hit_dice}})</li>
+    <li>AC: {{monster.armor_class}}</li>
+    {% if monster.damage_immunities and monster.damage_immunities[0]%}
+    <li>Damage Immunities: {% for di in monster.damage_immunities %} {{di}}, {% endfor%}</li>
+    {% endif %}
+    {% if monster.damage_resistances and monster.damage_resistances[0]%}
+    <li>Damage Resistances: {% for di in monster.damage_resistances %} {{di}}, {% endfor%}</li>
+    {% endif %}
+    {% if monster.condition_immunities and monster.condition_immunities[0]%}
+    <li>Condition Immunities: {% for di in monster.condition_immunities %} {{di}}, {% endfor%}</li>
+    {% endif %}
+    <li>Passive Perception: {{monster.passive_perception}}</li>
+</ul>
+
+<table>
+    <tr>
+        <th>Strength</th>
+        <td>{{monster.attributes.Strength}}</td>
+        {% if monster.saving_throws.Strength > 0 %}
+        <th>STR</th>
+        <td> + {{monster.saving_throws.Strength}}</td>
+        {% endif %}
+    </tr>
+    <tr>
+        <th>Dexterity</th>
+        <td>{{monster.attributes.Dexterity}}</td>
+        {% if monster.saving_throws.Dexterity > 0 %}
+        <th>DEX</th>
+        <td> + {{monster.saving_throws.Dexterity}}</td>
+        {% endif %}
+    </tr>
+    <tr>
+        <th>Constitution</th>
+        <td>{{monster.attributes.Constitution}}</td>
+        {% if monster.saving_throws.Constitution > 0 %}
+        <th>CON</th>
+        <td> + {{monster.saving_throws.Constitution}}</td>
+        {% endif %}
+    </tr>
+    <tr>
+        <th>Intelligence</th>
+        <td>{{monster.attributes.Intelligence}}</td>
+        {% if monster.saving_throws.Intelligence > 0 %}
+        <th>INT</th>
+        <td> + {{monster.saving_throws.Intelligence}}</td>
+        {% endif %}
+    </tr>
+    <tr>
+        <th>Wisdom</th>
+        <td>{{monster.attributes.Wisdom}}</td>
+        {% if monster.saving_throws.Wisdom > 0 %}
+        <th>WIS</th>
+        <td> + {{monster.saving_throws.Wisdom}}</td>
+        {% endif %}
+    </tr>
+    <tr>
+        <th>Charisma</th>
+        <td>{{monster.attributes.Charisma}}</td>
+        {% if monster.saving_throws.Charisma > 0 %}
+        <th>CHA</th>
+        <td> + {{monster.saving_throws.Charisma}}</td>
+        {% endif %}
+    </tr>
+</table>
+
+<ul>
+    <li>Description: {{monster.description}}</li>
+    {% if monster.languages_spoken and monster.languages_spoken[0]%}
+    <li>Languages spoken: {% for di in monster.languages_spoken %} {{di}}, {% endfor%}</li>
+    {% endif %}
+    {% if monster.languages_understood and monster.languages_understood[0]%}
+    <li>Languages understood: {% for di in monster.languages_understood %} {{di}}, {% endfor%}</li>
+    {% endif %}
+</ul>
