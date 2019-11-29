@@ -1,7 +1,10 @@
 
 
 class DnD5Monster:
-    def __init__(self, name):
+    """
+        Class describing monsters according to DnD 5 rules (srd)
+    """
+    def __init__(self, name: str):
         self.name = name
         self.size = "M"
         self.alignment = "Neutral"

@@ -20,7 +20,10 @@ DROP_BACKGROUND_TABLE_REQUEST = '''DROP TABLE IF EXISTS dnd5_backgrounds'''
 
 
 def get_number_of_backgrounds_in_db():
-    """Returns an integer of the number of backgrounds in the database"""
+    """
+        Returns the number of backgrounds in the dnd5_backgrounds table
+        :return: integer representing the number of backgrounds in the database
+    """
     connection = sqlite3.connect('dnd5_db.db')
     cursor = connection.cursor()
     select_request = '''SELECT count() from dnd5_backgrounds'''
@@ -31,6 +34,12 @@ def get_number_of_backgrounds_in_db():
 
 
 def insert_dnd5_background():
+    """
+        Parses all the json files in the backgrounds folder
+        and inserts all the backgrounds in the database
+        :return: nothing
+        TODO: exceptions instead of prints for errors
+    """
     if get_number_of_backgrounds_in_db() == 0:
         backgrounds = get_all_backgrounds_from_json()
         if len(backgrounds) > 0:
@@ -45,6 +54,10 @@ def insert_dnd5_background():
 
 
 def get_all_backgrounds_from_json():
+    """
+        Parses the backgrounds from json and creates tuples to fill the database from it
+        :return: the backgrounds as a list of tuples
+    """
     backgrounds = []
     for file in os.listdir(BACKGROUND_DATA_DIR):
         file_path = BACKGROUND_DATA_DIR + file
@@ -70,6 +83,10 @@ def get_all_backgrounds_from_json():
 
 
 def get_all_background_names():
+    """
+        Returns all the background names from the database
+        :return: a list of strings
+    """
     names = []
     connection = sqlite3.connect('dnd5_db.db')
     cursor = connection.cursor()
@@ -81,7 +98,13 @@ def get_all_background_names():
     return names
 
 
-def get_background_by_name(background_name):
+def get_background_by_name(background_name: str):
+    """
+        Returns one background as a DnD5Background object from the corresponding data in the database according to
+         the name
+        :param background_name: str
+        :return: a DnD5Background object
+    """
     background = DnD5Background("temp")
     if background_name != "":
         connection = sqlite3.connect('dnd5_db.db')

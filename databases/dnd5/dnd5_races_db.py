@@ -52,7 +52,10 @@ DROP_RACE_TABLE_REQUEST = '''DROP TABLE IF EXISTS dnd5_races'''
 
 
 def get_all_races_names():
-    """Get all the class names from the database"""
+    """
+        Returns all the races names from the database
+        :return: a list of strings
+    """
     names = []
     connection = sqlite3.connect('dnd5_db.db')
     cursor = connection.cursor()
@@ -65,10 +68,12 @@ def get_all_races_names():
 
 
 def get_number_of_races_in_db():
-    """Returns an integer of the number of races in the database"""
+    """
+        Returns the number of races in the dnd5_races table
+        :return: integer representing the number of races in the database
+    """
     connection = sqlite3.connect('dnd5_db.db')
     cursor = connection.cursor()
-
     select_request = '''SELECT count() from dnd5_races'''
     cursor.execute(select_request)
     number_of_rows = cursor.fetchone()[0]
@@ -77,7 +82,12 @@ def get_number_of_races_in_db():
 
 
 def insert_dnd5_race():
-    """Inserts all the races data from the json files"""
+    """
+        Parses all the json files in the races folder
+        and inserts all the races in the database
+        :return: nothing
+        TODO: exceptions instead of prints for errors
+    """
     if get_number_of_races_in_db() == 0:
         races = get_all_races_from_json_directory()
         if len(races) > 0:
@@ -90,8 +100,10 @@ def insert_dnd5_race():
 
 
 def get_all_races_from_json_directory():
-    """ Get all the races from the json files and outputs a table of tuples of them
-    Recovers all the races in  the data/races/*.json files """
+    """
+        Parses the races from json and creates tuples to fill the database from it
+        :return: the races as a list of tuples
+    """
     races = []
     for file in os.listdir(RACE_DATA_DIR):
         file_path = RACE_DATA_DIR + file
@@ -147,6 +159,12 @@ def get_all_races_from_json_directory():
 
 
 def look_for_race_by_name(name):
+    """
+        Returns one race as a DnD5Race object from the corresponding data in the database according to
+         the name
+        :param name: str
+        :return: a DnD5Race object
+    """
     if name != "":
         connection = sqlite3.connect('dnd5_db.db')
         cursor = connection.cursor()
@@ -160,6 +178,11 @@ def look_for_race_by_name(name):
 
 
 def change_record_into_race(record):
+    """
+        Changes a tuple of a dnd race record from database to a DnD5Race Object
+        :param record: a tuple representing a dnd race
+        :return: a DnD5Race object
+    """
     if record is not None:
         race = DnD5Race("temp")
         race.name = record[1]
@@ -222,9 +245,13 @@ def change_record_into_race(record):
 
 
 def parse_racial_traits_choices(racial_traits_choices):
-    """Parse a string representing racial traits choices as :
-    Name%Description#Links?Choice1/ChoiceN&
-    and returns the racial traits choices as the DnD5Race class needs"""
+    """
+        Parse a string representing racial traits choices as :
+        Name%Description#Links?Choice1/ChoiceN&
+        and returns the racial traits choices as the DnD5Race class needs
+        :param racial_traits_choices: a string
+        :return a dictionary of racial traits choices
+        """
     result =  {
         "number": 0,
         "traits": []

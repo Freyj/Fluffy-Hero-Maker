@@ -9,6 +9,12 @@ DROP_LANGUAGE_TABLE_REQUEST = '''DROP TABLE IF EXISTS languages'''
 
 
 def insert_dnd5_language():
+    """
+        Parses all the json files in the languages folder
+        and inserts all the languages in the database
+        :return: nothing
+        TODO: exceptions instead of prints for errors
+    """
     languages = get_all_languages_from_json('languages')
     if len(languages) > 0:
         connection = sqlite3.connect('dnd5_db.db')
@@ -20,8 +26,11 @@ def insert_dnd5_language():
 
 
 def get_all_languages_from_json(file_name):
+    """
+        Parses the languages from json and creates tuples to fill the database from it
+        :return: the languages as a list of tuples
+    """
     languages = []
-    # Considering "json_list.json" is a json file
     directory = os.getcwd() + '/databases/'
     with open(directory + '/data/' + file_name + '.json') as fd:
         json_data = json.load(fd)
@@ -34,6 +43,10 @@ def get_all_languages_from_json(file_name):
 
 
 def get_all_languages():
+    """
+        Returns all the languages from the database
+        :return: a list of strings
+    """
     languages = []
     connection = sqlite3.connect('dnd5_db.db')
     cursor = connection.cursor()
@@ -46,6 +59,10 @@ def get_all_languages():
 
 
 def get_all_unrestricted_languages():
+    """
+        Returns all the languages from the database that do not have the restricted characteristic
+        :return: a list of strings
+    """
     languages = []
     connection = sqlite3.connect('dnd5_db.db')
     cursor = connection.cursor()

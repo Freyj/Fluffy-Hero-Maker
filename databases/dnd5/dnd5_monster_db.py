@@ -2,7 +2,7 @@ import json
 import os
 import sqlite3
 
-from dnd5_monsters.dnd5_monster import DnD5Monster
+from dnd5_monster.DnD5Monster import DnD5Monster
 from utils.dice_roller import roll_die
 
 
@@ -27,10 +27,12 @@ DROP_MONSTER_TABLE_REQUEST = '''DROP TABLE IF EXISTS dnd5_monsters'''
 
 
 def get_number_of_monsters_in_db():
-    """Returns an integer of the number of monsters in the database"""
+    """
+        Returns the number of monsters in the dnd5_monsters table
+        :return: integer representing the number of monsters in the database
+    """
     connection = sqlite3.connect('dnd5_db.db')
     cursor = connection.cursor()
-
     select_request = '''SELECT count() from dnd5_monsters'''
     cursor.execute(select_request)
     number_of_rows = cursor.fetchone()[0]
@@ -39,6 +41,20 @@ def get_number_of_monsters_in_db():
 
 
 def from_attacks_dictionary_to_string(attacks):
+    """
+        Creates a string from the attacks dictionary of a monster to store it in the databse
+        :param attacks: a dictionary list
+            [{
+                "name": "",
+                "type": "",
+                "hit_bonus": 0,
+                "target": "",
+                "specials": "",
+                "damage": "",
+                "on_hit": ""
+            }]
+        :return: a string representing the attack, separated by [;;;]:[;;;]
+    """
     attacks_string = ""
     for attack in attacks:
         temp_string = '[' + attack["name"] + ';' + attack["type"] + ';' + str(attack["hit_bonus"])
@@ -51,6 +67,10 @@ def from_attacks_dictionary_to_string(attacks):
 
 
 def get_all_monsters_from_json():
+    """
+        Parses the monsters from json and creates tuples to fill the database from it
+        :return: the monsters as a list of tuples
+    """
     monsters = []
     for file in os.listdir(MONSTER_DATA_DIR):
         file_path = MONSTER_DATA_DIR + file
@@ -122,6 +142,12 @@ def get_all_monsters_from_json():
 
 
 def insert_dnd5_monster_data():
+    """
+        Parses all the json files in the monsters folder
+        and inserts all the monsters in the database
+        :return: nothing
+        TODO: exceptions instead of prints for errors
+    """
     if get_number_of_monsters_in_db() == 0:
         monsters = get_all_monsters_from_json()
         if len(monsters) > 0:
@@ -147,7 +173,12 @@ def insert_dnd5_monster_data():
 
 
 def get_monster_by_name(monster_name):
-    monster = DnD5Monster("test")
+    """
+        Returns one monster as a DnD5Monster object from the corresponding data in the database according to
+         the name
+        :param monster_name: str
+        :return: a DnD5Monster object
+    """
     if monster_name != "":
         connection = sqlite3.connect('dnd5_db.db')
         cursor = connection.cursor()
@@ -161,6 +192,10 @@ def get_monster_by_name(monster_name):
 
 
 def get_all_monsters_names_from_db():
+    """
+        Returns all the monsters names from the database
+        :return: a list of strings
+    """
     names = []
     connection = sqlite3.connect('dnd5_db.db')
     cursor = connection.cursor()
@@ -173,6 +208,11 @@ def get_all_monsters_names_from_db():
 
 
 def get_all_monsters_names_by_type(monster_type):
+    """
+        Returns all the monster names that are of the requested monster type
+        :param monster_type: a str
+        :return: a list of strings
+    """
     names = []
     connection = sqlite3.connect('dnd5_db.db')
     cursor = connection.cursor()
@@ -185,6 +225,10 @@ def get_all_monsters_names_by_type(monster_type):
 
 
 def get_random_monster():
+    """
+        Returns a random monster from the database
+        :return: a DnD5Monster
+    """
     number = get_number_of_monsters_in_db()
     roll = roll_die(number)
     monster = get_monster_by_id(roll)
@@ -192,6 +236,11 @@ def get_random_monster():
 
 
 def get_monster_by_id(monster_id):
+    """
+        Returns one monster as a DnD5Monster object from the corresponding id in the database
+        :param monster_id: int
+        :return: a DnD5Monster object
+    """
     if monster_id > -1:
         connection = sqlite3.connect('dnd5_db.db')
         cursor = connection.cursor()
@@ -205,7 +254,11 @@ def get_monster_by_id(monster_id):
 
 
 def change_record_into_monster(record):
-    """take a record tuple and change it into a DnD5Monster"""
+    """
+        Changes a tuple of a dnd monster record from database to a DnD5Monster Object
+        :param record: a tuple representing a dnd monster
+        :return: a DnD5Monster object
+    """
     monster = DnD5Monster("temp")
     if record is not None:
         monster.name = record[1]

@@ -1,15 +1,17 @@
-from characters.dnd5 import Dnd5Character
-from databases.dnd5_backgrounds import insert_dnd5_background, get_all_background_names, get_background_by_name
-from databases.dnd5_classes_db import insert_dnd5_classes, get_all_classes_names, look_for_class_by_name
-from databases.dnd5_languages_db import get_all_languages, get_all_unrestricted_languages, insert_dnd5_language
-from databases.dnd5_races_db import get_all_races_names, look_for_race_by_name, insert_dnd5_race
-from databases.dnd5_spell_db import get_all_spells_of_class_and_level
+from characters.DnD5Character import DnD5Character
+from databases.dnd5.dnd5_backgrounds import get_all_background_names, get_background_by_name
+from databases.dnd5.dnd5_classes_db import get_all_classes_names, get_class_by_name
+from databases.dnd5.dnd5_languages_db import get_all_languages, get_all_unrestricted_languages
+from databases.dnd5.dnd5_races_db import get_all_races_names, look_for_race_by_name
+from databases.dnd5.dnd5_spell_db import get_all_spells_of_class_and_level
 from dnd5_character.dnd5_constants import GENERATION_TYPES
 from utils.utilities import is_valid_choice, dict_to_str, list_to_str_with_number_and_line, get_modifier
 
 
 def cli_display(character):
-    """Displays the character chosen in stdout through prints"""
+    """
+        Displays the character chosen in stdout through prints
+    """
     print("Name: " + character.name)
     print("Hit Points: " + str(character.hit_points))
     print("Race: " + character.race.name)
@@ -102,7 +104,7 @@ def dnd_character_creation():
                     print("Your attributes should not go lower than 5 or higher than 20")
                 else:
                     attributes.append(int_att)
-        dnd_character = Dnd5Character(character_name.strip(), int(generation), stats=attributes)
+        dnd_character = DnD5Character(character_name.strip(), int(generation), stats=attributes)
         print("Your attributes are: " + dnd_character.attributes_to_str())
         print("If you accept these attributes, enter yes")
         acceptance = input().strip()
@@ -272,7 +274,7 @@ def dnd_character_creation():
         print("Choose your class:\n" + ", ".join(classes_list))
         class_choice = input().strip()
         if is_valid_choice(classes_list, class_choice):
-            dnd_class = look_for_class_by_name(class_choice)
+            dnd_class = get_class_by_name(class_choice)
             print("This is what this class would give you:")
             print(dnd_class.to_cli_string())
             print("Do you confirm this choice?")

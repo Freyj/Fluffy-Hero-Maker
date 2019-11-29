@@ -36,7 +36,10 @@ DROP_SPELL_TABLE_REQUEST = '''DROP TABLE IF EXISTS dnd5_spells'''
 
 
 def get_number_of_spells_in_db():
-    """Returns an integer of the number of spells in the database"""
+    """
+        Returns the number of spells in the dnd5_spells table
+        :return: integer representing the number of spells in the database
+    """
     connection = sqlite3.connect('dnd5_db.db')
     cursor = connection.cursor()
 
@@ -48,6 +51,12 @@ def get_number_of_spells_in_db():
 
 
 def insert_dnd5_spell_data():
+    """
+        Parses all the json files in the spells folder
+        and inserts all the spells in the database
+        :return: nothing
+        TODO: exceptions instead of prints for errors
+    """
     if get_number_of_spells_in_db() == 0:
         spells = get_all_spells_from_json()
         if len(spells) > 0:
@@ -60,6 +69,10 @@ def insert_dnd5_spell_data():
 
 
 def get_all_spells_from_json():
+    """
+        Parses the spells from json and creates tuples to fill the database from it
+        :return: the spells as a list of tuples
+    """
     spells = []
     for file in os.listdir(SPELL_DATA_DIR):
         file_path = SPELL_DATA_DIR + file
@@ -86,6 +99,10 @@ def get_all_spells_from_json():
 
 
 def get_all_spell_names_from_db():
+    """
+        Returns all the spell names from the database
+        :return: a list of strings
+    """
     names = []
     connection = sqlite3.connect('dnd5_db.db')
     cursor = connection.cursor()
@@ -99,6 +116,11 @@ def get_all_spell_names_from_db():
 
 
 def get_all_spell_names_of_level(level):
+    """
+        Returns all the spell names that are of the requested spell level
+        :param level: int
+        :return: a list of strings
+    """
     names = []
     connection = sqlite3.connect('dnd5_db.db')
     cursor = connection.cursor()
@@ -112,6 +134,11 @@ def get_all_spell_names_of_level(level):
 
 
 def get_all_spells_of_class(spell_class):
+    """
+        Returns all the spell names that are of the requested spellcaster class
+        :param spell_class: a str
+        :return: a list of strings
+    """
     names = []
     connection = sqlite3.connect('dnd5_db.db')
     cursor = connection.cursor()
@@ -125,6 +152,12 @@ def get_all_spells_of_class(spell_class):
 
 
 def get_all_spells_of_class_and_level(spell_class, level):
+    """
+        Returns all spell names that are of the requested level and class
+        :param spell_class: str spellcaster class
+        :param level: int level
+        :return: a list of str
+    """
     names = []
     connection = sqlite3.connect('dnd5_db.db')
     cursor = connection.cursor()
@@ -138,6 +171,10 @@ def get_all_spells_of_class_and_level(spell_class, level):
 
 
 def get_random_spell():
+    """
+        Returns a random spell from the database
+        :return: a DnD5Spell
+    """
     number = get_number_of_spells_in_db()
     roll = roll_die(number - 1)
     spell = get_spell_by_id(roll)
@@ -145,6 +182,11 @@ def get_random_spell():
 
 
 def get_spell_by_id(spell_id):
+    """
+        Returns one spell as a DnD5Spell object from the corresponding id in the database
+        :param spell_id: int
+        :return: a DnD5Spell object
+    """
     if spell_id > 0:
         connection = sqlite3.connect('dnd5_db.db')
         cursor = connection.cursor()
@@ -158,6 +200,11 @@ def get_spell_by_id(spell_id):
 
 
 def get_spells_of_school(school_choice):
+    """
+        Returns all the spells names that are of the requested school
+        :param school_choice: a str
+        :return: a list of strings
+    """
     names = []
     connection = sqlite3.connect('dnd5_db.db')
     cursor = connection.cursor()
@@ -171,7 +218,10 @@ def get_spells_of_school(school_choice):
 
 
 def get_all_schools():
-    """Returns a list of the schools of magic as strings from the database"""
+    """
+        Returns a list of the schools of magic as strings from the database
+        :returns a list of strings
+    """
     schools = []
     connection = sqlite3.connect('dnd5_db.db')
     cursor = connection.cursor()
@@ -186,7 +236,7 @@ def get_all_schools():
 
 def look_for_spell_by_name(name):
     """
-    Returns a spell from his name
+    Returns a spell from its name
     :parameter name: a string representing the name of the spell
     :return DnD5Spell object with the data of the spell
     """

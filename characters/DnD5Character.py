@@ -2,17 +2,28 @@ import json
 import os
 
 from characters.character import Character
-
+from dnd5_character.DnD5Background import DnD5Background
 from dnd5_character.dnd5_constants import ALIGNMENTS, ARMOR_PROFICIENCIES
-
 from utils.utilities import is_valid_choice, generate_attributes, get_modifier
 
 
-class Dnd5Character(Character):
+class DnD5Character(Character):
     """
-        Defines a player character in DnD according to 5e rules
+        Defines a character in DnD according to 5e srd rules
     """
-    def __init__(self, name, gen_type, stats=None):
+    def __init__(self, name: str, gen_type: int, stats=None):
+        """
+        Initializes the character
+            @:param name: a string to be the name of the character
+            @:param gen_type: an int to describe the type of generation wanted
+                1: 4d6 drop lowest
+                2: 3d6
+                3: 3d6 re-roll lower than 7 (8?)
+                4: pick all 6
+                5: re-roll if not 3 < bonus < 7 (cf utilities.py generate_abilities)
+            @:param stats: an array of stats, only there when gen_type is 4
+            Computes derived attributes such as Base Saving Throws
+        """
         super().__init__()
 
         self.name = name
@@ -62,10 +73,13 @@ class Dnd5Character(Character):
         self.level = 1
 
     def set_attributes(self, attributes):
-        """"Set the characters attributes, from a list of 6 integers"""
+        """"
+            Set the characters attributes, from a list of 6 integers
+            @:param attributes: a list of integer between 1 and 20
+        """
         if type(attributes) is list and len(attributes) is 6:
             for i in range(6):
-                assert(20 > attributes[i] > 0)
+                assert(20 >= attributes[i] > 0)
             self.attributes = {
                 "Strength": attributes[0],
                 "Dexterity": attributes[1],
@@ -75,22 +89,41 @@ class Dnd5Character(Character):
                 "Charisma": attributes[5]
             }
         else:
+            # TODO: throw exception instead of printing stuff
             print("Error in the assignment of attributes:\nPossibly the number of attributes is wrong.")
 
     def calc_hp_first_lvl(self):
-        """"Calculates hit points of character from first level, based on hit die of class and constitution
-        modifier. Does not take into account other bonuses"""
+        """"
+            Updates hit points of character for first level, based on hit die of class and constitution
+            modifier. Does not take into account other bonuses.
+        """
         self.hit_points = self.dnd_class.hit_dice + get_modifier(self.attributes["Constitution"])
 
     def set_race(self, race):
+        """
+            Sets up the race of the character and applies the racial bonuses
+            :param race: a DnD5Race object
+            :return: nothing
+        """
         self.race = race
         self.add_racial_bonuses()
 
     def set_class(self, dnd_class):
+        """
+            Sets up the class of the character and applies the class bonuses
+            :param dnd_class: a DnD5Class object
+            :return: nothing
+        """
         self.dnd_class = dnd_class
         self.add_class_bonuses()
 
-    def set_background(self, dnd_background):
+    def set_background(self, dnd_background: DnD5Background):
+        """
+            Sets up the background of the character and applies the background bonuses, adding skill and tool
+            proficiencies and adding equipment
+            :param dnd_background: a DnD5Background object
+            :return: nothing
+        """
         self.background = dnd_background.name
         for i in dnd_background.skill_proficiencies:
             self.skill_proficiencies.add(i)
@@ -98,9 +131,16 @@ class Dnd5Character(Character):
             self.tool_proficiencies.add(i)
         self.equipment.extend(dnd_background.equipment)
 
-    def set_alignment(self, alignment):
+    def set_alignment(self, alignment: str):
+        """
+            Sets the alignment of the character
+            :param alignment: a string that has to be in the array dnd5_character.dnd5_constants.ALIGNMENTS
+            :return: nothing
+        """
         if is_valid_choice(ALIGNMENTS, alignment):
             self.alignment = ALIGNMENTS[alignment]
+        # TODO: if the choice is not valid, something should be done instead of silently doing nothing (at least
+        # reporting)
 
     def set_bonus_skill_proficiencies(self, skill_proficiencies):
         for i in skill_proficiencies:
@@ -194,6 +234,7 @@ class Dnd5Character(Character):
             self.spells.add(i)
 
     def create_json_from_character(self):
+        # TODO: have more info, find better way to do it (json.dumps?)
         character_dict = {
             "name": self.name,
             "race": self.race.name,
@@ -213,6 +254,7 @@ class Dnd5Character(Character):
         return json.dumps(character_dict)
 
     def create_character_from_json(self):
+        # TODO: function to load a character from json
         pass
 
     def export_json(self):
