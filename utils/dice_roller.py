@@ -18,7 +18,11 @@ def list_roll_dice(die_type, dice_number):
 
 
 def roll_die(die_type):
-    """"Roll a die of a die type and returns the resulting integer"""
+    """
+    Roll a die of the die type
+    :param die_type: int
+    :return: a random int between 1 and die_type
+    """
     result = random.randint(1, die_type)
     return result
 

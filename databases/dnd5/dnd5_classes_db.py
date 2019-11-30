@@ -2,7 +2,7 @@ import json
 import os
 import sqlite3
 
-from databases.dnd5_spell_db import get_all_spells_of_class_and_level
+from databases.dnd5.dnd5_spell_db import get_all_spells_of_class_and_level
 from dnd5_character.DnD5Class import DnD5Class
 
 CLASS_DATA_DIR = 'databases/data/classes/'
@@ -13,6 +13,7 @@ CREATE_CLASS_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_classes
                                 class_feature_choices, saving_throws_proficiencies, added_equipment, equipment_choices, 
                                 cantrip_number, spell_class_list, spells_1_number, spells_1_slots, casting_ability)'''
 
+# Structure of the database tuple # TODO: store it somewhere else
 # 1: name
 # 2: hit_dice
 # 3: weapon_proficiencies_to_add
@@ -40,7 +41,10 @@ DROP_CLASS_TABLE_REQUEST = '''DROP TABLE IF EXISTS dnd5_classes'''
 
 
 def get_number_of_classes_in_db():
-    """Returns an integer of the number of classes in the database"""
+    """
+        Returns the number of classes in the dnd5_classes table
+        :return: integer representing the number of classes in the database
+    """
     connection = sqlite3.connect('dnd5_db.db')
     cursor = connection.cursor()
 
@@ -52,6 +56,12 @@ def get_number_of_classes_in_db():
 
 
 def insert_dnd5_classes():
+    """
+        Parses all the json files in the classes folder
+        and inserts all the classes in the database
+        :return: nothing
+        TODO: exceptions instead of prints for errors
+    """
     if get_number_of_classes_in_db() == 0:
         classes = get_all_classes_from_json()
         if len(classes) > 0:
@@ -66,6 +76,10 @@ def insert_dnd5_classes():
 
 
 def get_all_classes_from_json():
+    """
+        Parses the classes from json and creates tuples to fill the database from it
+        :return: the classes as a list of tuples
+    """
     classes = []
     for file in os.listdir(CLASS_DATA_DIR):
         file_path = CLASS_DATA_DIR + file
@@ -94,7 +108,13 @@ def get_all_classes_from_json():
     return classes
 
 
-def look_for_class_by_name(name):
+def get_class_by_name(name):
+    """
+        Returns one class as a DnD5Class object from the corresponding data in the database according to
+         the name
+        :param name: str
+        :return: a DnD5Class object
+    """
     if name != "":
         connection = sqlite3.connect('dnd5_db.db')
         cursor = connection.cursor()
@@ -108,6 +128,10 @@ def look_for_class_by_name(name):
 
 
 def get_all_classes_names():
+    """
+        Returns all the classes names from the database
+        :return: a list of strings
+    """
     names = []
     connection = sqlite3.connect('dnd5_db.db')
     cursor = connection.cursor()
@@ -120,6 +144,11 @@ def get_all_classes_names():
 
 
 def change_record_into_class(record):
+    """
+        Changes a tuple of a dnd class record from database to a DnD5Class Object
+        :param record: a tuple representing a dnd class
+        :return: a DnD5Class object
+    """
     if record is not None:
         dnd_class = DnD5Class("temp")
         dnd_class.name = record[1]

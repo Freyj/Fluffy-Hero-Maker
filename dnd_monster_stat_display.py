@@ -1,4 +1,4 @@
-from databases.dnd5_monster_db import get_monster_by_name, get_number_of_monsters_in_db, \
+from databases.dnd5.dnd5_monster_db import get_monster_by_name, get_number_of_monsters_in_db, \
     get_all_monsters_names_from_db, get_all_monsters_names_by_type, get_random_monster
 
 

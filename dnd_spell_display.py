@@ -1,4 +1,4 @@
-from databases.dnd5_spell_db import look_for_spell_by_name, get_number_of_spells_in_db, \
+from databases.dnd5.dnd5_spell_db import look_for_spell_by_name, get_number_of_spells_in_db, \
     get_all_spell_names_from_db, get_all_spell_names_of_level, get_random_spell, get_spells_of_school, \
     get_all_spells_of_class, get_all_spells_of_class_and_level, get_all_schools
 

@@ -1,15 +1,17 @@
 import sqlite3
 
-from databases.dnd5_backgrounds import CREATE_BACKGROUND_TABLE_REQUEST, DROP_BACKGROUND_TABLE_REQUEST
-from databases.dnd5_classes_db import CREATE_CLASS_TABLE_REQUEST, DROP_CLASS_TABLE_REQUEST
-from databases.dnd5_races_db import CREATE_RACE_TABLE_REQUEST, DROP_RACE_TABLE_REQUEST
-from databases.dnd5_languages_db import CREATE_LANGUAGE_TABLE_REQUEST, DROP_LANGUAGE_TABLE_REQUEST
-from databases.dnd5_monster_db import CREATE_MONSTER_TABLE_REQUEST, DROP_MONSTER_TABLE_REQUEST
-from databases.dnd5_spell_db import CREATE_SPELL_TABLE_REQUEST, DROP_SPELL_TABLE_REQUEST
+from databases.dnd5.dnd5_backgrounds import CREATE_BACKGROUND_TABLE_REQUEST, DROP_BACKGROUND_TABLE_REQUEST
+from databases.dnd5.dnd5_classes_db import CREATE_CLASS_TABLE_REQUEST, DROP_CLASS_TABLE_REQUEST
+from databases.dnd5.dnd5_races_db import CREATE_RACE_TABLE_REQUEST, DROP_RACE_TABLE_REQUEST
+from databases.dnd5.dnd5_languages_db import CREATE_LANGUAGE_TABLE_REQUEST, DROP_LANGUAGE_TABLE_REQUEST
+from databases.dnd5.dnd5_monster_db import CREATE_MONSTER_TABLE_REQUEST, DROP_MONSTER_TABLE_REQUEST
+from databases.dnd5.dnd5_spell_db import CREATE_SPELL_TABLE_REQUEST, DROP_SPELL_TABLE_REQUEST
 
 
 def drop_all_tables():
-    """"Drops all tables (for testing purposes and dev)"""
+    """"
+    Drops all tables (mostly for testing purposes and dev)
+    """
     connection = sqlite3.connect('dnd5_db.db')
     cursor = connection.cursor()
     # Drop the spells table
@@ -37,7 +39,10 @@ def drop_all_tables():
 
 
 def create_dnd5_db():
-    """"Creates the database for dnd5 data if it does not already exist"""
+    """"
+    Creates the database for dnd5 data if it does not already exist
+    :returns nothing
+    """
     connection = sqlite3.connect('dnd5_db.db')
     cursor = connection.cursor()
     # create the spells table

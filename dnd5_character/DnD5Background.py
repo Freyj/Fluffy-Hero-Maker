@@ -1,7 +1,10 @@
 
 
 class DnD5Background:
-    def __init__(self, name):
+    """
+        Class that describes a background as defined in the DnD5 SRD rules allowing to recover information from it
+    """
+    def __init__(self, name: str):
         self.name = name
         self.skill_proficiencies = []
         self.tool_proficiencies = []
@@ -18,6 +21,10 @@ class DnD5Background:
         self.flaws = []
 
     def to_string(self):
+        """"
+            Creates a describing string of the background, formatted with linebreaks and tabs
+            :return a str of the background
+        """
         resulting_string = 'Description of the background:\n'
         description_table = self.description.split('.')
         for i in description_table:

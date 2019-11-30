@@ -2,7 +2,10 @@ from utils.utilities import dict_to_str_for_speed
 
 
 class DnD5Race:
-    def __init__(self, name):
+    """
+        Class defining a Race according to DnD5 rules (srd)
+    """
+    def __init__(self, name: str):
         self.name = name
         self.hit_dice = 4
         self.abilities_plus_two = []
@@ -17,6 +20,7 @@ class DnD5Race:
         }
         self.quick_description = ""
         # using the standard size of d as M so that you only have to add it when it's not a medium sized creature ?
+        # Medium or M? need to check
         self.size = 'Medium'
         self.vision = ["Normal"]
         self.languages = set([])
@@ -47,22 +51,12 @@ class DnD5Race:
         self.racial_traits_to_choose = {
             "number": 0,
             "traits": []
-            # Commented to show structure it is supposed to have
-            # "number": 0,
-            # "traits": [
-            #     {
-            #         "name": "name",
-            #         "description": "description",
-            #         "links": "links",
-            #         "list": []
-            #     }
-            # ]
         }
 
-    def add_language(self, language):
+    def add_language(self, language: str):
         self.languages.add(language)
 
-    def add_skill_proficiency(self, skill_proficiency):
+    def add_skill_proficiency(self, skill_proficiency: str):
         self.skill_proficiencies.add(skill_proficiency)
 
     def add_tool_proficiency(self, tool_proficiency):
