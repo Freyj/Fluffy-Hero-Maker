@@ -59,7 +59,7 @@ def from_attacks_dictionary_to_string(attacks):
     for attack in attacks:
         temp_string = '[' + attack["name"] + ';' + attack["type"] + ';' + str(attack["hit_bonus"])
         temp_string += ';' + attack["target"] + ';' + attack["specials"] + ';' + attack["damage"]
-        if attack["on_hit"] is not '':
+        if attack["on_hit"] != '':
             temp_string += ';' + attack["on_hit"]
         attacks_string += temp_string + ']:'
     attacks_string = attacks_string[:-1]
@@ -75,7 +75,7 @@ def get_all_monsters_from_json():
     for file in os.listdir(MONSTER_DATA_DIR):
         file_path = MONSTER_DATA_DIR + file
         if file_path.endswith(".json"):
-            with open(file_path) as fd:
+            with open(file_path, encoding='utf-8') as fd:
                 json_data = json.load(fd)
                 for monster in json_data:
                     attacks = monster["attacks"]

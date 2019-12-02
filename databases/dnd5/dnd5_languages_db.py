@@ -32,7 +32,7 @@ def get_all_languages_from_json(file_name):
     """
     languages = []
     directory = os.getcwd() + '/databases/'
-    with open(directory + '/data/' + file_name + '.json') as fd:
+    with open(directory + '/data/' + file_name + '.json', encoding='utf-8') as fd:
         json_data = json.load(fd)
         for language in json_data:
             element = (language["name"],

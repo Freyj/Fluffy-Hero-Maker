@@ -62,7 +62,7 @@ def get_all_backgrounds_from_json():
     for file in os.listdir(BACKGROUND_DATA_DIR):
         file_path = BACKGROUND_DATA_DIR + file
         if file_path.endswith(".json"):
-            with open(file_path) as fd:
+            with open(file_path, encoding='utf-8') as fd:
                 json_data = json.load(fd)
                 for background in json_data:
                     element = (background["name"],

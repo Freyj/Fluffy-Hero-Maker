@@ -108,7 +108,7 @@ def get_all_races_from_json_directory():
     for file in os.listdir(RACE_DATA_DIR):
         file_path = RACE_DATA_DIR + file
         if file_path.endswith(".json"):
-            with open(file_path) as fd:
+            with open(file_path, encoding='utf-8') as fd:
                 json_data = json.load(fd)
                 for dnd_race in json_data:
                     racial_trait_names = []
@@ -235,10 +235,10 @@ def change_record_into_race(record):
                 "cantrips": cantrip_choices
             }
         race.size = record[22]
-        if record[23] is not '':
+        if record[23] != '':
             racial_traits_choices = record[23]
             race.racial_traits_to_choose = parse_racial_traits_choices(racial_traits_choices)
-        if record[24] is not '':
+        if record[24] != '':
             race.armor_proficiencies = str_to_list(record[24])
         return race
     return None

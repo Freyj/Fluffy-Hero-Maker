@@ -11,10 +11,10 @@ def cli_display(spell):
     print("Range: " + spell.range)
     print("Duration: " + spell.duration)
     print("Components: " + spell.components)
-    if spell.concentration is not "":
+    if spell.concentration != "":
         print("Concentration: " + spell.concentration)
     print("Description:\n" + spell.cli_description_string())
-    if spell.upgrade is not "":
+    if spell.upgrade != "":
         print("At higher levels:\n" + spell.upgrade)
 
 
@@ -23,7 +23,7 @@ def dnd_spell_display():
           "level type, 4 for a random spell, 5 to get all spells of a certain school, 6 to get all spells of a certain"
           " class, 7 to get all spells of a certain class and level")
     choice = input()
-    if choice is "1":
+    if choice == "1":
         print("Please give the name of the spell you are looking for:")
         spell_name = input().strip()
         spell = look_for_spell_by_name(spell_name)
@@ -31,27 +31,27 @@ def dnd_spell_display():
             print("No spell found with name: " + spell_name)
         else:
             cli_display(spell)
-    if choice is "2":
+    if choice == "2":
         print("The database contains " + str(get_number_of_spells_in_db()) + " spells.")
         print("The database contains the following spells: ")
         print(", ".join(get_all_spell_names_from_db()))
-    if choice is "3":
+    if choice == "3":
         print("Choose a level")
         level = input().strip()
         print(", ".join(get_all_spell_names_of_level(int(level))))
-    if choice is "4":
+    if choice == "4":
         cli_display(get_random_spell())
-    if choice is "5":
+    if choice == "5":
         print("There are the following schools of magic: ")
         print(", ".join(get_all_schools()))
         print("Pick a school to find the spells of")
         school_choice = input().strip()
         print(", ".join((get_spells_of_school(school_choice))))
-    if choice is "6":
+    if choice == "6":
         print("Pick a class to find the spells associated with it")
         class_choice = input().strip()
         print(", ".join(get_all_spells_of_class(class_choice)))
-    if choice is "7":
+    if choice == "7":
         print("Pick a class to find the spells associated with it")
         class_choice = input().strip()
         print("Choose a level")

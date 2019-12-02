@@ -77,7 +77,7 @@ def get_all_spells_from_json():
     for file in os.listdir(SPELL_DATA_DIR):
         file_path = SPELL_DATA_DIR + file
         if file_path.endswith(".json"):
-            with open(file_path) as fd:
+            with open(file_path, encoding='utf-8') as fd:
                 json_data = json.load(fd)
                 for spell in json_data:
                     element = (spell["name"],

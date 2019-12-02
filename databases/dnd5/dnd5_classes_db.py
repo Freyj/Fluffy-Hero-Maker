@@ -84,7 +84,7 @@ def get_all_classes_from_json():
     for file in os.listdir(CLASS_DATA_DIR):
         file_path = CLASS_DATA_DIR + file
         if file_path.endswith(".json"):
-            with open(file_path) as fd:
+            with open(file_path, encoding='utf-8') as fd:
                 json_data = json.load(fd)
                 for dnd_class in json_data:
                     element = (dnd_class["name"],
@@ -153,16 +153,16 @@ def change_record_into_class(record):
         dnd_class = DnD5Class("temp")
         dnd_class.name = record[1]
         dnd_class.hit_dice = record[2]
-        if record[3] is not '':
+        if record[3] != '':
             dnd_class.weapon_proficiencies_to_add = record[3].split(', ')
-        if record[4] is not '':
+        if record[4] != '':
             dnd_class.skill_proficiency_choices = json.loads(record[4])
         dnd_class.class_features = json.loads(record[5])
-        if record[6] is not '':
+        if record[6] != '':
             dnd_class.armor_proficiencies_to_add = record[6].split(', ')
-        if record[7] is not '':
+        if record[7] != '':
             dnd_class.tool_proficiencies_to_add = record[7].split(', ')
-        if record[8] is not '':
+        if record[8] != '':
             dnd_class.class_feature_choices = json.loads(record[8])
         dnd_class.saving_throws = record[9].split(', ')
         dnd_class.added_equipment = record[10].split(', ')
@@ -180,7 +180,7 @@ def change_record_into_class(record):
             dnd_class.level_one_choice["spells"] = get_all_spells_of_class_and_level(record[13], 1)
         if record[15] > 0:
             dnd_class.level_one_slots = record[15]
-        if record[16] is not '':
+        if record[16] != '':
             dnd_class.spell_casting_ability = record[16]
         return dnd_class
     return None
