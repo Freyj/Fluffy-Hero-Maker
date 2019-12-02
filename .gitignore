@@ -7,3 +7,5 @@ characters/saves/*.json
 build/
 dist/
 Fluffy_Hero_Maker.egg-info/
+
+!.idea/*
