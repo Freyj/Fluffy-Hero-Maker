@@ -8,13 +8,13 @@
     <li>Hit Points: {{monster.hit_points}} ({{monster.hit_dice}})</li>
     <li>AC: {{monster.armor_class}}</li>
     {% if monster.damage_immunities and monster.damage_immunities[0]%}
-    <li>Damage Immunities: {% for di in monster.damage_immunities %} {{di}}, {% endfor%}</li>
+    <li>Damage Immunities: {% for di in monster.damage_immunities %} {{di}}, {% endfor %}</li>
     {% endif %}
     {% if monster.damage_resistances and monster.damage_resistances[0]%}
-    <li>Damage Resistances: {% for di in monster.damage_resistances %} {{di}}, {% endfor%}</li>
+    <li>Damage Resistances: {% for di in monster.damage_resistances %} {{di}}, {% endfor %}</li>
     {% endif %}
     {% if monster.condition_immunities and monster.condition_immunities[0]%}
-    <li>Condition Immunities: {% for di in monster.condition_immunities %} {{di}}, {% endfor%}</li>
+    <li>Condition Immunities: {% for di in monster.condition_immunities %} {{di}}, {% endfor %}</li>
     {% endif %}
     <li>Passive Perception: {{monster.passive_perception}}</li>
 </ul>

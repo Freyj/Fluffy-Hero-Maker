@@ -23,9 +23,10 @@ json files or want to update the database, you need to leave the -debug option o
 ### The internal Web page version
 - The internal Web page uses `Flask` (https://flask.palletsprojects.com/en/1.1.x/) 
 - You need to make sure the environmental variable `FLASK_APP` is set to "app/main_flask.py"
-- `python -m flask run` should have a webserver up and running on `127.0.0.1/5000/` with the routes: 
-  - `/random-dnd-spell` to display a random spell and its informations
-  - `/random-dnd-monster` displays a random monster and its informations
+- `python -m flask run` should have a web server up and running on `127.0.0.1/5000/` with the routes: 
+  - `/dnd-random-character-gen/<name>` displays a randomly generated dnd character with the name in `<name>` (does not yet display all the available information, nor does it yet make all the choices)
+  - `/random-dnd-spell` displays a random spell and its information
+  - `/random-dnd-monster` displays a random monster and its information
   - `/all-dnd-monsters` displays the list of monsters in the database
   - `/all-dnd-spells` displays the list of spells in the database
   - `/` displays a home page with links to previous routes
