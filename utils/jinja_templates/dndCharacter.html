@@ -1,0 +1,48 @@
+<!doctype html>
+<title>Fluffy Hero Maker</title>
+<h1>DnD5 Character</h1>
+<h2>{{character.name}}, {{character.race.name}} {{character.dnd_class.name}} {{character.level}}</h2>
+<ul>
+    <li>Stats:
+        <ul>
+            <li>Strength: {{character.attributes.Strength}}</li>
+            <li>Dexterity: {{character.attributes.Dexterity}}</li>
+            <li>Constitution: {{character.attributes.Constitution}}</li>
+            <li>Intelligence: {{character.attributes.Intelligence}}</li>
+            <li>Wisdom: {{character.attributes.Wisdom}}</li>
+            <li>Charisma: {{character.attributes.Charisma}}</li>
+        </ul>
+    </li>
+    {% if character.race.racial_traits and character.race.racial_traits[0]%}
+    <li>Racial traits:
+        <ul>
+            {% for di in character.race.racial_traits %} <li> {{di.name}} : {{di.description}} </li>
+            {% endfor %}
+        </ul>
+    </li>
+    {% endif %}
+    <li>Movement speed:
+        <ul>
+            <li>Walking: {{character.race.speed.walking}}</li>
+            {% if character.race.speed.flying %}
+            <li>Flying: {{character.race.speed.flying}}</li>
+            {% endif %}
+            {% if character.race.speed.climbing %}
+            <li>Climbing: {{character.race.speed.climbing}}</li>
+            {% endif %}
+            {% if character.race.speed.swimming %}
+            <li>Swimming: {{character.race.speed.swimming}}</li>
+            {% endif %}
+            {% if character.race.speed.burrowing %}
+            <li>Burrowing: {{character.race.speed.burrowing}}</li>
+            {% endif %}
+        </ul>
+    </li>
+    <li>Background:  {{character.background}}</li>
+    <li>Languages:
+        <ul>
+            {%for di in character.languages %} <li>{{di}}</li> {% endfor %}
+        </ul>
+    </li>
+    <li>Age: {{character.age}}</li>
+</ul>

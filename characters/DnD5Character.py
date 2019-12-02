@@ -1,7 +1,12 @@
 import json
 import os
+import random
 
 from characters.character import Character
+from databases.dnd5.dnd5_backgrounds import get_all_background_names, get_background_by_name
+from databases.dnd5.dnd5_classes_db import get_all_classes_names, get_class_by_name
+from databases.dnd5.dnd5_languages_db import get_all_languages, get_all_unrestricted_languages
+from databases.dnd5.dnd5_races_db import get_all_races_names, look_for_race_by_name
 from dnd5_character.DnD5Background import DnD5Background
 from dnd5_character.dnd5_constants import ALIGNMENTS, ARMOR_PROFICIENCIES
 from utils.utilities import is_valid_choice, generate_attributes, get_modifier
@@ -303,3 +308,39 @@ class DnD5Character(Character):
         equipment_str.strip()
         equipment_str = equipment_str[:-2]
         return equipment_str
+
+
+def generate_random_dnd_character(name: str):
+    """
+        Generates a random DnD character
+        :return: a DnD5Character randomly generated
+    """
+    if name is None:
+        name = "I ncognito"
+    dnd_char = DnD5Character(name, gen_type=1)
+    # lists
+    race_name_list = get_all_races_names()
+    background_name_list = get_all_background_names()
+    language_list = get_all_languages()
+    classes_list = get_all_classes_names()
+    unrestricted_language_list = get_all_unrestricted_languages()
+
+    # randomly pick a race
+    race_result = random.randint(0, len(race_name_list) - 1)
+    race = look_for_race_by_name(race_name_list[race_result])
+    dnd_char.set_race(race)
+
+    # randomly choose an age
+    age_result = random.randint(int(race.age_bracket[0]), int(race.age_bracket[1]))
+    dnd_char.set_age(age_result)
+
+    # randomly choose a background
+    background_result = random.randint(0, len(background_name_list) - 1)
+    background = get_background_by_name(background_name_list[background_result])
+    dnd_char.set_background(background)
+
+    class_result = random.randint(0, len(classes_list) - 1)
+    class_choice = get_class_by_name(classes_list[class_result])
+    dnd_char.set_class(class_choice)
+
+    return dnd_char
