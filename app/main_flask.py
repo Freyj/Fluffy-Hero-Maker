@@ -15,19 +15,18 @@ def home():
 @app.route("/random-dnd-spell")
 def random_spell():
     spell = get_random_spell()
-    return render_template('randomSpell.html', spell=spell)
+    return render_template('dndSpell.html', spell=spell)
 
 
 @app.route("/random-dnd-monster")
 def random_monster():
     monster = get_random_monster()
-    return render_template('randomMonster.html', monster=monster)
+    return render_template('dndMonster.html', monster=monster)
 
 
 @app.route("/all-dnd-monsters")
 def get_all_monsters():
     monsterList = get_all_monsters_names_from_db()
-    print(monsterList)
     return render_template('allMonstersList.html', list=monsterList)
 
 
