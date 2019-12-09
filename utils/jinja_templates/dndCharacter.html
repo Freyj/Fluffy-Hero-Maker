@@ -1,7 +1,8 @@
 <!doctype html>
 <title>Fluffy Hero Maker</title>
 <h1>DnD5 Character</h1>
-<h2>{{character.name}}, {{character.race.name}} {{character.dnd_class.name}} {{character.level}}</h2>
+<h2>{{character.name}}, {{character.alignment}} {{character.race.name}}
+    {{character.dnd_class.name}} {{character.level}}</h2>
 <ul>
     <li>Stats:
         <ul>
@@ -13,6 +14,7 @@
             <li>Charisma: {{character.attributes.Charisma}}</li>
         </ul>
     </li>
+    <li>Age: {{character.age}}</li>
     {% if character.race.racial_traits and character.race.racial_traits[0]%}
     <li>Racial traits:
         <ul>
@@ -38,11 +40,50 @@
             {% endif %}
         </ul>
     </li>
-    <li>Background:  {{character.background}}</li>
+    <li>Background:  {{character.background.name}}
+        <ul>
+            {{character.background.description}}
+            <li>
+                {{character.background.feature}} :
+                {{character.background.description}}
+            </li>
+        </ul>
+    </li>
     <li>Languages:
         <ul>
             {%for di in character.languages %} <li>{{di}}</li> {% endfor %}
         </ul>
     </li>
-    <li>Age: {{character.age}}</li>
+    <li>Skill Proficiencies:
+        <ul>
+            {% for sk in character.skill_proficiencies %}
+            <li>{{sk}}</li>
+            {% endfor %}
+        </ul>
+    </li>
+{% if character.tool_proficiencies %}
+    <li>Tool Proficiencies:
+        <ul>
+            {% for sk in character.tool_proficiencies %}
+            <li>{{sk}}</li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endif %}
+    <li>Weapon Proficiencies:
+        <ul>
+            {% for sk in character.weapon_proficiencies %}
+            <li>{{sk}}</li>
+            {% endfor %}
+        </ul>
+    </li>
+{% if character.armor_proficiencies %}
+    <li>Armor Proficiencies:
+        <ul>
+            {% for sk in character.armor_proficiencies %}
+            <li>{{sk}}</li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endif %}
 </ul>
