@@ -9,3 +9,4 @@ dist/
 Fluffy_Hero_Maker.egg-info/
 
 !.idea/*
+instance/

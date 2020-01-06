@@ -12,71 +12,6 @@ from dnd5.dnd5_constants import ALIGNMENTS, ARMOR_PROFICIENCIES
 from utils.utilities import is_valid_choice, generate_attributes, get_modifier
 
 
-def cli_display(character):
-    """
-        Displays the character chosen in stdout through prints
-    """
-    print("Name: " + character.name)
-    print("Hit Points: " + str(character.hit_points))
-    print("Race: " + character.race.name)
-    print("Class: " + character.dnd_class.name)
-    print("Background: " + character.background.name)
-    print("Alignment: " + character.alignment)
-    print("Size: " + character.size)
-    print("Age: " + str(character.age))
-    print("Vision: " + ", ".join(character.vision))
-
-    # Todo: change this into a function for attributes str result (like saving throws)
-    print("Attributes:\n\tStrength: "
-          + str(character.attributes["Strength"]) + "(" + str(get_modifier(character.attributes["Strength"])) + ")"
-          + "\n\tDexterity: " + str(character.attributes["Dexterity"]) + "("
-          + str(get_modifier(character.attributes["Dexterity"])) + ")"
-          + "\n\tConstitution: " + str(character.attributes["Constitution"])
-          + "(" + str(get_modifier(character.attributes["Constitution"])) + ")"
-          + "\n\tIntelligence: " + str(character.attributes["Intelligence"])
-          + "(" + str(get_modifier(character.attributes["Intelligence"])) + ")"
-          + "\n\tWisdom: " + str(character.attributes["Wisdom"]) + "("
-          + str(get_modifier(character.attributes["Wisdom"])) + ")"
-          + "\n\tCharisma: " + str(character.attributes["Charisma"])
-          + "(" + str(get_modifier(character.attributes["Charisma"])) + ")")
-
-    print("Saving Throws: " + character.saving_throws_to_str())
-    print("Saving Throws Proficiencies: " + ", ".join(character.proficient_saving_throws))
-    language_string = "Languages: " + ", ".join(character.languages)
-    print(language_string)
-    skill_proficiency_string = "Skill proficiencies: " + ", ".join(character.skill_proficiencies)
-    print(skill_proficiency_string)
-    if len(character.tool_proficiencies) > 0:
-        tool_proficiency_string = "Tool proficiencies: " + ", ".join(character.tool_proficiencies)
-        print(tool_proficiency_string)
-    if len(character.armor_proficiencies) > 0:
-        armor_proficiency_string = "Armor proficiencies: " + ", ".join(character.armor_proficiencies)
-        print(armor_proficiency_string)
-    if len(character.weapon_proficiencies) > 0:
-        weapon_proficiency_string = "Weapon proficiencies: " + ", ".join(character.weapon_proficiencies)
-        print(weapon_proficiency_string)
-    print(character.race.racial_traits_to_string())
-    if len(character.cantrips) > 0:
-        print("Known Cantrips: ")
-        known_cantrips = "\t" + ", ".join(character.cantrips)
-        print(known_cantrips)
-    if len(character.spells) > 0:
-        print("Known Spells: ")
-        known_spells = "\t" + ", ".join(character.spells)
-        print(known_spells)
-
-    print("Class Features: ")
-    print(character.dnd_class.class_features_to_string())
-
-    print("Personality traits: " + ", ".join(character.personality_traits))
-    print("Bonds: " + ", ".join(character.bonds))
-    print("Flaws: " + ", ".join(character.flaws))
-    print("Ideals: " + ", ".join(character.ideals))
-    print("Equipment:")
-    print(character.equipment_to_string())
-
-
-
 class DnD5Character(Character):
     """
         Defines a character in DnD according to 5e srd rules
@@ -227,8 +162,23 @@ class DnD5Character(Character):
     def set_age(self, age):
         self.age = age
 
+    def update_saving_throws(self):
+        """
+        To allow for new saving throw calculation in case of attribute modification
+        :returns: nothing
+        """
+        self.saving_throws = {
+            "Strength": get_modifier(self.attributes["Strength"]),
+            "Dexterity": get_modifier(self.attributes["Dexterity"]),
+            "Constitution": get_modifier(self.attributes["Constitution"]),
+            "Intelligence": get_modifier(self.attributes["Intelligence"]),
+            "Wisdom": get_modifier(self.attributes["Wisdom"]),
+            "Charisma": get_modifier(self.attributes["Charisma"]),
+        }
+
     def add_racial_bonuses(self):
         self.adjust_attributes_for_race()
+        self.update_saving_throws()
         self.adjust_languages_from_race()
         self.adjust_spells_from_race()
         self.adjust_skill_proficiencies_from_race()
@@ -383,6 +333,7 @@ def generate_random_dnd_character(name: str):
     if name is None:
         name = "I ncognito"
     dnd_char = DnD5Character(name, gen_type=1)
+
     # lists
     race_name_list = get_all_races_names()
     background_name_list = get_all_background_names()
@@ -408,11 +359,86 @@ def generate_random_dnd_character(name: str):
     background = get_background_by_name(background_name_list[background_result])
     dnd_char.set_background(background)
 
+    # pick traits, flaws and all from background randomly
+    # because we roll 2 personality traits and want to avoid rolling twice the same:
+    roll_1 = random.randint(0, len(background.personality_traits) - 1)
+    roll_2 = random.randint(0, len(background.personality_traits) - 1)
+    while roll_2 == roll_1:
+        roll_2 = random.randint(0, len(background.personality_traits) - 1)
+    dnd_char.personality_traits.append(background.personality_traits[roll_1])
+    dnd_char.personality_traits.append(background.personality_traits[roll_2])
+    dnd_char.flaws.append(background.flaws[random.randint(0, len(background.flaws) - 1)])
+    dnd_char.bonds.append(background.bonds[random.randint(0, len(background.bonds) - 1)])
+    dnd_char.ideals.append(background.ideals[random.randint(0, len(background.ideals) - 1)])
+
     class_result = random.randint(0, len(classes_list) - 1)
     class_choice = get_class_by_name(classes_list[class_result])
     dnd_char.set_class(class_choice)
 
     cli_display(dnd_char)
 
-    print(dnd_char.armor_proficiencies)
     return dnd_char
+
+
+def cli_display(character):
+    """
+        Displays the character chosen in stdout through prints
+    """
+    print("Name: " + character.name)
+    print("Hit Points: " + str(character.hit_points))
+    print("Race: " + character.race.name)
+    print("Class: " + character.dnd_class.name)
+    print("Background: " + character.background.name)
+    print("Alignment: " + character.alignment)
+    print("Size: " + character.size)
+    print("Age: " + str(character.age))
+    print("Vision: " + ", ".join(character.vision))
+
+    # Todo: change this into a function for attributes str result (like saving throws)
+    print("Attributes:\n\tStrength: "
+          + str(character.attributes["Strength"]) + "(" + str(get_modifier(character.attributes["Strength"])) + ")"
+          + "\n\tDexterity: " + str(character.attributes["Dexterity"]) + "("
+          + str(get_modifier(character.attributes["Dexterity"])) + ")"
+          + "\n\tConstitution: " + str(character.attributes["Constitution"])
+          + "(" + str(get_modifier(character.attributes["Constitution"])) + ")"
+          + "\n\tIntelligence: " + str(character.attributes["Intelligence"])
+          + "(" + str(get_modifier(character.attributes["Intelligence"])) + ")"
+          + "\n\tWisdom: " + str(character.attributes["Wisdom"]) + "("
+          + str(get_modifier(character.attributes["Wisdom"])) + ")"
+          + "\n\tCharisma: " + str(character.attributes["Charisma"])
+          + "(" + str(get_modifier(character.attributes["Charisma"])) + ")")
+
+    print("Saving Throws: " + character.saving_throws_to_str())
+    print("Saving Throws Proficiencies: " + ", ".join(character.proficient_saving_throws))
+    language_string = "Languages: " + ", ".join(character.languages)
+    print(language_string)
+    skill_proficiency_string = "Skill proficiencies: " + ", ".join(character.skill_proficiencies)
+    print(skill_proficiency_string)
+    if len(character.tool_proficiencies) > 0:
+        tool_proficiency_string = "Tool proficiencies: " + ", ".join(character.tool_proficiencies)
+        print(tool_proficiency_string)
+    if len(character.armor_proficiencies) > 0:
+        armor_proficiency_string = "Armor proficiencies: " + ", ".join(character.armor_proficiencies)
+        print(armor_proficiency_string)
+    if len(character.weapon_proficiencies) > 0:
+        weapon_proficiency_string = "Weapon proficiencies: " + ", ".join(character.weapon_proficiencies)
+        print(weapon_proficiency_string)
+    print(character.race.racial_traits_to_string())
+    if len(character.cantrips) > 0:
+        print("Known Cantrips: ")
+        known_cantrips = "\t" + ", ".join(character.cantrips)
+        print(known_cantrips)
+    if len(character.spells) > 0:
+        print("Known Spells: ")
+        known_spells = "\t" + ", ".join(character.spells)
+        print(known_spells)
+
+    print("Class Features: ")
+    print(character.dnd_class.class_features_to_string())
+
+    print("Personality traits: " + ", ".join(character.personality_traits))
+    print("Bonds: " + ", ".join(character.bonds))
+    print("Flaws: " + ", ".join(character.flaws))
+    print("Ideals: " + ", ".join(character.ideals))
+    print("Equipment:")
+    print(character.equipment_to_string())

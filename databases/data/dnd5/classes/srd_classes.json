@@ -87,7 +87,7 @@
       }
     ],
     "class_feature_choices": [],
-    "armor_proficiencies_to_add": ["Light armor"],
+    "armor_proficiencies_to_add": ["Light Armor"],
     "tool_proficiencies_to_add": ["Thieves Tools"],
     "saving_throws_proficiencies": ["Dexterity", "Intelligence"],
     "added_equipment": ["Thieves' Tools", "Leather Armor", "Two Daggers"],
@@ -207,7 +207,7 @@
   {
     "name": "Wizard",
     "hit_dice": 6,
-    "weapon_proficiencies_to_add": ["Dagger", "Darts", "Sling", "Quarterstaff", "Light Crossbow"],
+    "weapon_proficiencies_to_add": ["Daggers", "Darts", "Slings", "Quarterstaves", "Light Crossbows"],
     "skill_proficiency_choices": {
       "number": 2,
       "skill_list": ["Arcana", "History", "Insight", "Investigation", "Medicine", "Religion"]
@@ -215,7 +215,35 @@
     "class_features": [
       {
         "name": "Spellcasting",
-        "description": "As a student of arcane magic, you have a spellbook containing spells that show the first glimmerings of your true power.Cantrips At 1st level, you know three cantrips of your choice from the srd:wizard-spells list. You learn additional wizard cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Wizard table.SpellbookAt 1st level, you have a spellbook containing six 1st-level wizard spells of your choice. Your spellbook is the repository of the wizard spells you know, except your cantrips, which are fixed in your mind.Preparing and Casting SpellsThe Wizard table shows how many spell slots you have to cast your spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.You prepare the list of wizard spells that are available for you to cast. To do so, choose a number of wizard spells from your spellbook equal to your Intelligence modifier + your wizard level (minimum of one spell). The spells must be of a level for which you have spell slots.For example, if you're a 3rd-level wizard, you have four 1st-level and two 2nd-level spell slots. With an Intelligence of 16, your list of prepared spells can include six spells of 1st or 2nd level, in any combination, chosen from your spellbook. If you prepare the 1st-level spell srd:magic-missile, you can cast it using a 1st-level or a 2nd-level slot. Casting the spell doesn't remove it from your list of prepared spells.You can change your list of prepared spells when you finish a long rest. Preparing a new list of wizard spells requires time spent studying your spellbook and memorizing the incantations and gestures you must make to cast the spell: at least 1 minute per spell level for each spell on your list.Spellcasting AbilityIntelligence is your spellcasting ability for your wizard spells, since you learn your spells through dedicated study and memorization. You use your Intelligence whenever a spell refers to your spellcasting ability. In addition, you use your Intelligence modifier when setting the saving throw DC for a wizard spell you cast and when making an attack roll with one.    Spell save DC = 8 + your proficiency bonus + your Intelligence modifier    Spell attack modifier = your proficiency bonus + your Intelligence modifierRitual CastingYou can cast a wizard spell as a ritual if that spell has the ritual tag and you have the spell in your spellbook. You don't need to have the spell prepared.Spellcasting FocusYou can use an arcane focus as a spellcasting focus for your wizard spells.Learning Spells of 1st Level and Higher Each time you gain a wizard level, you can add two wizard spells of your choice to your spellbook for free. Each of these spells must be of a level for which you have spell slots, as shown on the Wizard table. On your adventures, you might find other spells that you can add to your spellbook (see the \"Your Spellbook\" sidebar)."
+        "description": "As a student of arcane magic, you have a spellbook containing spells that show the first glimmerings of your true power."
+      },
+      {
+        "name": "Cantrips",
+        "description": "At 1st level, you know three cantrips of your choice from the srd:wizard-spells list. You learn additional wizard cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Wizard table."
+      },
+      {
+        "name": "Spellbook",
+        "description": "At 1st level, you have a spellbook containing six 1st-level wizard spells of your choice. Your spellbook is the repository of the wizard spells you know, except your cantrips, which are fixed in your mind."
+      },
+      {
+        "name": "Preparing and Casting Spells",
+        "description": "The Wizard table shows how many spell slots you have to cast your spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest. You prepare the list of wizard spells that are available for you to cast. To do so, choose a number of wizard spells from your spellbook equal to your Intelligence modifier + your wizard level (minimum of one spell). The spells must be of a level for which you have spell slots. For example, if you're a 3rd-level wizard, you have four 1st-level and two 2nd-level spell slots. With an Intelligence of 16, your list of prepared spells can include six spells of 1st or 2nd level, in any combination, chosen from your spellbook. If you prepare the 1st-level spell srd:magic-missile, you can cast it using a 1st-level or a 2nd-level slot. Casting the spell doesn't remove it from your list of prepared spells. You can change your list of prepared spells when you finish a long rest. Preparing a new list of wizard spells requires time spent studying your spellbook and memorizing the incantations and gestures you must make to cast the spell: at least 1 minute per spell level for each spell on your list."
+      },
+      {
+        "name": "Spellcasting Ability",
+        "description": "Intelligence is your spellcasting ability for your wizard spells, since you learn your spells through dedicated study and memorization. You use your Intelligence whenever a spell refers to your spellcasting ability. In addition, you use your Intelligence modifier when setting the saving throw DC for a wizard spell you cast and when making an attack roll with one. Spell save DC = 8 + your proficiency bonus + your Intelligence modifier Spell attack modifier = your proficiency bonus + your Intelligence modifier"
+      },
+      {
+        "name": "Ritual Casting",
+        "description": "You can cast a wizard spell as a ritual if that spell has the ritual tag and you have the spell in your spellbook. You don't need to have the spell prepared."
+      },
+      {
+        "name": "Spellcasting Focus",
+        "description": "You can use an arcane focus as a spellcasting focus for your wizard spells."
+      },
+      {
+        "name": "Learning Spells of 1st Level and Higher",
+        "description": "Each time you gain a wizard level, you can add two wizard spells of your choice to your spellbook for free. Each of these spells must be of a level for which you have spell slots, as shown on the Wizard table. On your adventures, you might find other spells that you can add to your spellbook."
       },
       {
         "name": "Arcane Recovery",
@@ -239,7 +267,7 @@
   {
     "name": "Sorcerer",
     "hit_dice": 6,
-    "weapon_proficiencies_to_add": ["Dagger", "Darts", "Sling", "Quarterstaff", "Light Crossbow"],
+    "weapon_proficiencies_to_add": ["Daggers", "Darts", "Slings", "Quarterstaves", "Light Crossbows"],
     "skill_proficiency_choices": {
       "number": 2,
       "skill_list": ["Arcana", "Deception", "Insight", "Intimidation", "Persuasion", "Religion"]
@@ -247,7 +275,27 @@
     "class_features": [
       {
         "name": "Spellcasting",
-        "description": "An event in your past, or in the life of a parent or ancestor, left an indelible mark on you, infusing you with arcane magic. This font of magic, whatever its origin, fuels your spells.CantripsAt 1st level, you know four cantrips of your choice from the srd:sorcerer-spells list. You learn additional sorcerer cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Sorcerer table.Spell SlotsThe Sorcerer table shows how many spell slots you have to cast your spells of 1st level and higher. To cast one of these sorcerer spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.For example, if you know the 1st-level spell burning hands and have a 1st-level and a 2nd-level spell slot available, you can cast burning hands using either slot.Spells Known of 1st Level and HigherYou know two 1st-level spells of your choice from the srd:sorcerer-spells list.The Spells Known column of the Sorcerer table shows when you learn more sorcerer spells of your choice. Each of these spells must be of a level for which you have spell slots. For instance, when you reach 3rd level in this class, you can learn one new spell of 1st or 2nd level.Additionally, when you gain a level in this class, you can choose one of the sorcerer spells you know and replace it with another spell from the sorcerer spell list, which also must be of a level for which you have spell slots.Spellcasting AbilityCharisma is your spellcasting ability for your sorcerer spells, since the power of your magic relies on your ability to project your will into the world. You use your Charisma whenever a spell refers to your spellcasting ability. In addition, you use your Charisma modifier when setting the saving throw DC for a sorcerer spell you cast and when making an attack roll with one.    Spell save DC = 8 + your proficiency bonus + your Charisma modifier    Spell attack modifier = your proficiency bonus + your Charisma modifierSpellcasting FocusYou can use an arcane focus as a spellcasting focus for your sorcerer spells."
+        "description": "An event in your past, or in the life of a parent or ancestor, left an indelible mark on you, infusing you with arcane magic. This font of magic, whatever its origin, fuels your spells."
+      },
+      {
+        "name": "Cantrips",
+        "description": "At 1st level, you know four cantrips of your choice from the srd:sorcerer-spells list. You learn additional sorcerer cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Sorcerer table."
+      },
+      {
+        "name": "Spell Slots",
+        "description": "The Sorcerer table shows how many spell slots you have to cast your spells of 1st level and higher. To cast one of these sorcerer spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.For example, if you know the 1st-level spell burning hands and have a 1st-level and a 2nd-level spell slot available, you can cast burning hands using either slot."
+      },
+      {
+        "name": "Spells Known of 1st Level and Higher",
+        "description": "You know two 1st-level spells of your choice from the Sorcerer spell list. The Spells Known column of the Sorcerer table shows when you learn more sorcerer spells of your choice. Each of these spells must be of a level for which you have spell slots. For instance, when you reach 3rd level in this class, you can learn one new spell of 1st or 2nd level. Additionally, when you gain a level in this class, you can choose one of the sorcerer spells you know and replace it with another spell from the sorcerer spell list, which also must be of a level for which you have spell slots."
+      },
+      {
+        "name": "Spellcasting Ability",
+        "description": "Charisma is your spellcasting ability for your sorcerer spells, since the power of your magic relies on your ability to project your will into the world. You use your Charisma whenever a spell refers to your spellcasting ability. In addition, you use your Charisma modifier when setting the saving throw DC for a sorcerer spell you cast and when making an attack roll with one. Spell save DC = 8 + your proficiency bonus + your Charisma modifier Spell attack modifier = your proficiency bonus + your Charisma modifier"
+      },
+      {
+        "name": "Spellcasting Focus",
+        "description": "You can use an arcane focus as a spellcasting focus for your sorcerer spells."
       }
     ],
     "class_feature_choices": [
@@ -278,7 +326,8 @@
   {
     "name": "Druid",
     "hit_dice": 8,
-    "weapon_proficiencies_to_add": ["Club", "Dagger", "Darts", "Javelins", "Maces", "Quarterstaffs", "Scimitars", "sickles", "slings", "spears"],
+    "weapon_proficiencies_to_add": ["Clubs", "Daggers", "Darts", "Javelins", "Maces", "Quarterstaves", "Scimitars",
+      "Sickles", "Slings", "Spears"],
     "skill_proficiency_choices": {
       "number": 2,
       "skill_list": ["Arcana", "Animal Handling", "Insight", "Medicine", "Nature", "Perception", "Religion", "Survival"]
@@ -286,18 +335,38 @@
     "class_features": [
       {
         "name": "Spellcasting",
-        "description": "Drawing on the divine essence of nature itself, you can cast spells to shape that essence to your will.,Cantrips,,At 1st level, you know two cantrips of your choice from the srd:druid-spells list. You learn additional druid cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Druid table.,Preparing and Casting Spells,,The Druid table shows how many spell slots you have to cast your spells of 1st level and higher. To cast one of these druid spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.,,You prepare the list of druid spells that are available for you to cast, choosing from the srd:druid-spells list. When you do so, choose a number of druid spells equal to your Wisdom modifier + your druid level (minimum of one spell). The spells must be of a level for which you have spell slots.,,For example, if you are a 3rd-level druid, you have four 1st-level and two 2nd-level spell slots. With a Wisdom of 16, your list of prepared spells can a include six spells of 1st or 2nd level, in any combination. If you prepare the 1st-level spell cure wounds, you can cast it using a 1st-level or 2nd-level slot. Casting the spell doesn't remove it from your list of prepared spells.,,You can also change your list of prepared spells when you finish a long rest. Preparing a new list of druid spells requires time spent in prayer and meditation: at least 1 minute per spell level for each spell on your list.,Spellcasting Focus,,You can use a druidic focus (see srd:adventuring-gear) as a spellcasting focus for your druid spells.,Spellcasting Ability,,Wisdom is your spellcasting ability for your druid spells, since your magic draws upon your devotion and attunement to nature. You use your Wisdom whenever a spell refers to your spellcasting ability. In addition, you use your Wisdom modifier when setting the saving throw DC for a druid spell you cast and when making an attack roll with one.,,    Spell save DC = 8 + your proficiency bonus + your Wisdom modifier,,    Spell attack modifier = your proficiency bonus + your Wisdom modifier,,Ritual Casting,,You can cast a druid spell as a ritual if that spell has the ritual tag and you have the spell prepared."
+        "description": "Drawing on the divine essence of nature itself, you can cast spells to shape that essence to your will."
+      },
+      {
+        "name": "Cantrips",
+        "description": "At 1st level, you know two cantrips of your choice from the Druid spell list. You learn additional druid cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Druid table."
+      },
+      {
+        "name": "Preparing and Casting Spells",
+        "description": "The Druid table shows how many spell slots you have to cast your spells of 1st level and higher. To cast one of these druid spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest. You prepare the list of druid spells that are available for you to cast, choosing from the Druid spell list. When you do so, choose a number of druid spells equal to your Wisdom modifier + your druid level (minimum of one spell). The spells must be of a level for which you have spell slots. For example, if you are a 3rd-level druid, you have four 1st-level and two 2nd-level spell slots. With a Wisdom of 16, your list of prepared spells can a include six spells of 1st or 2nd level, in any combination. If you prepare the 1st-level spell cure wounds, you can cast it using a 1st-level or 2nd-level slot. Casting the spell doesn't remove it from your list of prepared spells. You can also change your list of prepared spells when you finish a long rest. Preparing a new list of druid spells requires time spent in prayer and meditation: at least 1 minute per spell level for each spell on your list."
+      },
+      {
+        "name": "Spellcasting Focus",
+        "description": "You can use a druidic focus (see srd:adventuring-gear) as a spellcasting focus for your druid spells."
+      },
+      {
+        "name": "Spellcasting Ability",
+        "description": "Wisdom is your spellcasting ability for your druid spells, since your magic draws upon your devotion and attunement to nature. You use your Wisdom whenever a spell refers to your spellcasting ability. In addition, you use your Wisdom modifier when setting the saving throw DC for a druid spell you cast and when making an attack roll with one. Spell save DC = 8 + your proficiency bonus + your Wisdom modifier Spell attack modifier = your proficiency bonus + your Wisdom modifier"
+      },
+      {
+        "name": "Ritual Casting",
+        "description": "You can cast a druid spell as a ritual if that spell has the ritual tag and you have the spell prepared."
       },
       {
         "name": "Druidic",
-        "description": ",,You know Druidic, the secret language of druids. You can speak the language and use it to leave hidden messages. You and others who know this language automatically spot such a message. Others spot the message's presence with a successful DC 15 Wisdom,,(Perception) check but can't decipher it without magic."
+        "description": "You know Druidic, the secret language of druids. You can speak the language and use it to leave hidden messages. You and others who know this language automatically spot such a message. Others spot the message's presence with a successful DC 15 Wisdom(Perception) check but can't decipher it without magic."
       }
     ],
     "class_feature_choices": [ ],
-    "armor_proficiencies_to_add": ["Light armor", "medium armor", "shields" ],
-    "tool_proficiencies_to_add": ["Herbalism kit"],
+    "armor_proficiencies_to_add": ["Light Armor", "Medium Armor", "Shields" ],
+    "tool_proficiencies_to_add": ["Herbalism Kit"],
     "saving_throws_proficiencies": ["Intelligence", "Wisdom"],
-    "added_equipment": ["Leather armor", "Explorer Pack", "Druidic Focus"],
+    "added_equipment": ["Leather Armor", "Explorer Pack", "Druidic Focus"],
     "equipment_choice": "Wooden Shield/Simple Weapon#Scimitar/Simple Melee Weapon",
     "cantrips_to_add": {
       "number": 2,
@@ -318,7 +387,23 @@
     "class_features": [
       {
         "name": "Spellcasting",
-        "description": "As a conduit for divine power, you can cast srd:cleric-spells.CantripsAt 1st level, you know three cantrips of your choice from the srd:cleric-spells list. You learn additional cleric cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Cleric table.Preparing and Casting SpellsThe Cleric table shows how many spell slots you have to cast your spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.You prepare the list of cleric spells that are available for you to cast, choosing from the cleric spell list. When you do so, choose a number of cleric spells equal to your Wisdom modifier + your cleric level (minimum of one spell). The spells must be of a level for which you have spell slots.For example, if you are a 3rd-level cleric, you have four 1st-level and two 2nd-level spell slots. With a Wisdom of 16, your list of prepared spells can include six spells of 1st or 2nd level, in any combination. If you prepare the 1st-level spell srd:cure-wounds, you can cast it using a 1st-level or 2nd-level slot. Casting the spell doesn't remove it from your list of prepared spells.You can change your list of prepared spells when you finish a long rest. Preparing a new list of cleric spells requires time spent in prayer and meditation: at least 1 minute per spell level for each spell on your list.Spellcasting AbilityWisdom is your spellcasting ability for your cleric spells. The power of your spells comes from your devotion to your deity. You use your Wisdom whenever a cleric spell refers to your spellcasting ability. In addition, you use your Wisdom modifier when setting the saving throw DC for a cleric spell you cast and when making an attack roll with one.    Spell save DC = 8 + your proficiency bonus + your Wisdom modifier    Spell attack modifier = your proficiency bonus + your Wisdom modifierRitual CastingYou can cast a cleric spell as a ritual if that spell has the ritual tag and you have the spell prepared.Spellcasting FocusYou can use a holy symbol (see srd:adventuring-gear) as a spellcasting focus for your cleric spells."
+        "description": "As a conduit for divine power, you can cast srd:cleric-spells.CantripsAt 1st level, you know three cantrips of your choice from the Cleric spell list. You learn additional cleric cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Cleric table."
+      },
+      {
+        "name": "Preparing and Casting Spells",
+        "description": "The Cleric table shows how many spell slots you have to cast your spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest. You prepare the list of cleric spells that are available for you to cast, choosing from the cleric spell list. When you do so, choose a number of cleric spells equal to your Wisdom modifier + your cleric level (minimum of one spell). The spells must be of a level for which you have spell slots. For example, if you are a 3rd-level cleric, you have four 1st-level and two 2nd-level spell slots. With a Wisdom of 16, your list of prepared spells can include six spells of 1st or 2nd level, in any combination. If you prepare the 1st-level spell srd:cure-wounds, you can cast it using a 1st-level or 2nd-level slot. Casting the spell doesn't remove it from your list of prepared spells. You can change your list of prepared spells when you finish a long rest. Preparing a new list of cleric spells requires time spent in prayer and meditation: at least 1 minute per spell level for each spell on your list."
+      },
+      {
+        "name": "Spellcasting Ability",
+        "description": "Wisdom is your spellcasting ability for your cleric spells. The power of your spells comes from your devotion to your deity. You use your Wisdom whenever a cleric spell refers to your spellcasting ability. In addition, you use your Wisdom modifier when setting the saving throw DC for a cleric spell you cast and when making an attack roll with one. Spell save DC = 8 + your proficiency bonus + your Wisdom modifier Spell attack modifier = your proficiency bonus + your Wisdom modifier."
+      },
+      {
+        "name": "Ritual Casting",
+        "description": "You can cast a cleric spell as a ritual if that spell has the ritual tag and you have the spell prepared."
+      },
+      {
+        "name": "Spellcasting Focus",
+        "description": "You can use a holy symbol as a spellcasting focus for your cleric spells."
       }
     ],
     "class_feature_choices": [
@@ -333,7 +418,7 @@
         ]
       }
     ],
-    "armor_proficiencies_to_add": ["Light armor", "medium armor", "shields"],
+    "armor_proficiencies_to_add": ["Light Armor", "Medium Armor", "shields"],
     "tool_proficiencies_to_add": [],
     "saving_throws_proficiencies": ["Wisdom", "Charisma"],
     "added_equipment": ["Shield", "Holy Symbol"],
@@ -382,7 +467,31 @@
     "class_features": [
       {
         "name": "Spellcasting",
-        "description": "You have learned to untangle and reshape the fabric of reality in harmony with your wishes and music.Your spells are part of your vast repertoire, magic that you can tune to different situations.CantripsYou know two cantrips of your choice from the Bard Spell List. You learn additional bard cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Bard table.Spell SlotsThe Bard table shows how many spell slots you have to cast your spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.For example, if you know the 1st-level spell cure wounds and have a 1st-level and a 2nd-level spell slot available, you can cast cure wounds using either slot.Spells Known of 1st Level and HigherYou know four 1st-level spells of your choice from the Bard Spell List.The Spells Known column of the Bard table shows when you learn more bard spells of your choice. Each of these spells must be of a level for which you have spell slots, as shown on the table. For instance, when you reach 3rd level in this class, you can learn one new spell of 1st or 2nd level.Additionally, when you gain a level in this class, you can choose one of the bard spells you know and replace it with another spell from the bard spell list, which also must be of a level for which you have spell slots.Spellcasting AbilityCharisma is your spellcasting ability for your bard spells. Your magic comes from the heart and soul you pour into the performance of your music or oration. You use your Charisma whenever a spell refers to your spellcasting ability. In addition, you use your Charisma modifier when setting the saving throw DC for a bard spell you cast and when making an attack roll with one.    Spell save DC = 8 + your proficiency bonus + your Charisma modifier    Spell attack modifier = your proficiency bonus + your Charisma modifierRitual CastingYou can cast any bard spell you know as a ritual if that spell has the ritual tag.Spellcasting FocusYou can use a musical instrument (see srd:adventuring-gear) as a spellcasting focus for your bard spells."
+        "description": "You have learned to untangle and reshape the fabric of reality in harmony with your wishes and music. Your spells are part of your vast repertoire, magic that you can tune to different situations."
+      },
+      {
+        "name": "Cantrips",
+        "description": "You know two cantrips of your choice from the Bard Spell List. You learn additional bard cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Bard table."
+      },
+      {
+        "name": "Spell Slots",
+        "description": "The Bard table shows how many spell slots you have to cast your spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest. For example, if you know the 1st-level spell cure wounds and have a 1st-level and a 2nd-level spell slot available, you can cast cure wounds using either slot."
+      },
+      {
+        "name": "Spells Known of 1st Level and Higher",
+        "description": "You know four 1st-level spells of your choice from the Bard Spell List. The Spells Known column of the Bard table shows when you learn more bard spells of your choice. Each of these spells must be of a level for which you have spell slots, as shown on the table. For instance, when you reach 3rd level in this class, you can learn one new spell of 1st or 2nd level. Additionally, when you gain a level in this class, you can choose one of the bard spells you know and replace it with another spell from the bard spell list, which also must be of a level for which you have spell slots."
+      },
+      {
+        "name": "Spellcasting Ability",
+        "description": "Charisma is your spellcasting ability for your bard spells. Your magic comes from the heart and soul you pour into the performance of your music or oration. You use your Charisma whenever a spell refers to your spellcasting ability. In addition, you use your Charisma modifier when setting the saving throw DC for a bard spell you cast and when making an attack roll with one. Spell save DC = 8 + your proficiency bonus + your Charisma modifier  Spell attack modifier = your proficiency bonus + your Charisma modifier"
+      },
+      {
+        "name": "Ritual Casting",
+        "description": "You can cast any bard spell you know as a ritual if that spell has the ritual tag."
+      },
+      {
+        "name": "Spellcasting Focus",
+        "description": "You can use a musical instrument as a spellcasting focus for your bard spells."
       },
       {
         "name": "Bardic Inspiration",
@@ -541,7 +650,27 @@
     "class_features": [
       {
         "name": "Pact Magic",
-        "description": "Your arcane research and the magic bestowed on you by your patron have given you facility with spells.CantripsYou know two cantrips of your choice from the srd:warlock-spells list. You learn additional warlock cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Warlock table.Spell SlotsThe Warlock table shows how many spell slots you have. The table also shows what the level of those slots is, all of your spell slots are the same level. To cast one of your warlock spells of 1st level or higher, you must expend a spell slot. You regain all expended spell slots when you finish a short or long rest.For example, when you are 5th level, you have two 3rd-level spell slots. To cast the 1st-level spell srd:thunderwave, you must spend one of those slots, and you cast it as a 3rd-level spell.Spells Known of 1st Level and HigherAt 1st level, you know two 1st-level spells of your choice from the warlock spell list.The Spells Known column of the Warlock table shows when you learn more warlock spells of your choice of 1st level and higher. A spell you choose must be of a level no higher than what's shown in the table's Slot Level column for your level. When you reach 6th level, for example, you learn a new warlock spell, which can be 1st, 2nd, or 3rd level.Additionally, when you gain a level in this class, you can choose one of the warlock spells you know and replace it with another spell from the warlock spell list, which also must be of a level for which you have spell slots.Spellcasting AbilityCharisma is your spellcasting ability for your warlock spells, so you use your Charisma whenever a spell refers to your spellcasting ability. In addition, you use your Charisma modifier when setting the saving throw DC for a warlock spell you cast and when making an attack roll with one.    Spell save DC = 8 + your proficiency bonus + your Charisma modifier    Spell attack modifier = your proficiency bonus + your Charisma modifierSpellcasting FocusYou can use an arcane focus as a spellcasting focus for your warlock spells."
+        "description": "Your arcane research and the magic bestowed on you by your patron have given you facility with spells."
+      },
+      {
+        "name": "Cantrips",
+        "description": "You know two cantrips of your choice from the srd:warlock-spells list. You learn additional warlock cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Warlock table."
+      },
+      {
+        "name": "Spell Slots",
+        "description": "The Warlock table shows how many spell slots you have. The table also shows what the level of those slots is, all of your spell slots are the same level. To cast one of your warlock spells of 1st level or higher, you must expend a spell slot. You regain all expended spell slots when you finish a short or long rest.For example, when you are 5th level, you have two 3rd-level spell slots. To cast the 1st-level spell Thunderwave, you must spend one of those slots, and you cast it as a 3rd-level spell."
+      },
+      {
+        "name": "Spells Known of 1st Level and Higher",
+        "description": "At 1st level, you know two 1st-level spells of your choice from the warlock spell list. The Spells Known column of the Warlock table shows when you learn more warlock spells of your choice of 1st level and higher. A spell you choose must be of a level no higher than what's shown in the table's Slot Level column for your level. When you reach 6th level, for example, you learn a new warlock spell, which can be 1st, 2nd, or 3rd level. Additionally, when you gain a level in this class, you can choose one of the warlock spells you know and replace it with another spell from the warlock spell list, which also must be of a level for which you have spell slots."
+      },
+      {
+        "name": "Spellcasting Ability",
+        "description": "Charisma is your spellcasting ability for your warlock spells, so you use your Charisma whenever a spell refers to your spellcasting ability. In addition, you use your Charisma modifier when setting the saving throw DC for a warlock spell you cast and when making an attack roll with one. Spell save DC = 8 + your proficiency bonus + your Charisma modifier Spell attack modifier = your proficiency bonus + your Charisma modifier."
+      },
+      {
+        "name": "Spellcasting Focus",
+        "description": "You can use an arcane focus as a spellcasting focus for your warlock spells."
       }
     ],
     "class_feature_choices": [

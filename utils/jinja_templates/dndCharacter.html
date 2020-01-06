@@ -4,25 +4,39 @@
 <h2>{{character.name}}, {{character.alignment}} {{character.race.name}}
     {{character.dnd_class.name}} {{character.level}}</h2>
 <ul>
-    <li>Stats:
-        <ul>
-            <li>Strength: {{character.attributes.Strength}}</li>
-            <li>Dexterity: {{character.attributes.Dexterity}}</li>
-            <li>Constitution: {{character.attributes.Constitution}}</li>
-            <li>Intelligence: {{character.attributes.Intelligence}}</li>
-            <li>Wisdom: {{character.attributes.Wisdom}}</li>
-            <li>Charisma: {{character.attributes.Charisma}}</li>
-        </ul>
-    </li>
     <li>Age: {{character.age}}</li>
-    {% if character.race.racial_traits and character.race.racial_traits[0]%}
-    <li>Racial traits:
+    <li>Background:  {{character.background.name}}
         <ul>
-            {% for di in character.race.racial_traits %} <li> {{di.name}} : {{di.description}} </li>
-            {% endfor %}
+            {{character.background.description}}
+            <li>
+                {{character.background.feature}} :
+                {{character.background.description}}
+            </li>
         </ul>
     </li>
-    {% endif %}
+    <li>Personality traits:
+        <ul>
+            {%for pt in character.personality_traits %} <li>{{pt}}</li> {% endfor %}
+        </ul>
+    </li>
+    <li>Ideals:
+        <ul>
+            {%for pt in character.ideals %} <li>{{pt}}</li> {% endfor %}
+        </ul>
+    </li>
+    <li>Bonds:
+        <ul>
+            {%for pt in character.bonds %} <li>{{pt}}</li> {% endfor %}
+        </ul>
+    </li>
+    <li>Flaws:
+        <ul>
+            {%for pt in character.flaws %} <li>{{pt}}</li> {% endfor %}
+        </ul>
+    </li>
+    <li>Size: {{character.size}}</li>
+    <li>Vision: {% for vi in character.vision %} {{vi}} {% endfor %}</li>
+    <!-- Movement speeds -->
     <li>Movement speed:
         <ul>
             <li>Walking: {{character.race.speed.walking}}</li>
@@ -40,15 +54,46 @@
             {% endif %}
         </ul>
     </li>
-    <li>Background:  {{character.background.name}}
+    <!-- Stats -->
+    <li>Stats:
         <ul>
-            {{character.background.description}}
-            <li>
-                {{character.background.feature}} :
-                {{character.background.description}}
-            </li>
+            <li>Strength: {{character.attributes.Strength}}</li>
+            <li>Dexterity: {{character.attributes.Dexterity}}</li>
+            <li>Constitution: {{character.attributes.Constitution}}</li>
+            <li>Intelligence: {{character.attributes.Intelligence}}</li>
+            <li>Wisdom: {{character.attributes.Wisdom}}</li>
+            <li>Charisma: {{character.attributes.Charisma}}</li>
         </ul>
     </li>
+    <!-- Saving Throws -->
+    <li>Saving Throws:
+        <ul>
+            <li>Strength: {{character.saving_throws.Strength}}</li>
+            <li>Dexterity: {{character.saving_throws.Dexterity}}</li>
+            <li>Constitution: {{character.saving_throws.Constitution}}</li>
+            <li>Intelligence: {{character.saving_throws.Intelligence}}</li>
+            <li>Wisdom: {{character.saving_throws.Wisdom}}</li>
+            <li>Charisma: {{character.saving_throws.Charisma}}</li>
+        </ul>
+    </li>
+    <!-- Racial Traits -->
+    {% if character.race.racial_traits and character.race.racial_traits[0]%}
+    <li>Racial traits:
+        <ul>
+            {% for di in character.race.racial_traits %} <li> {{di.name}} : {{di.description}} </li>
+            {% endfor %}
+        </ul>
+    </li>
+    {% endif %}
+    <!--Class features -->
+    {% if character.dnd_class.class_features and character.dnd_class.class_features[0]%}
+    <li>Class features:
+        <ul>
+            {% for di in character.dnd_class.class_features %} <li> {{di.name}} : {{di.description}} </li>
+            {% endfor %}
+        </ul>
+    </li>
+    {% endif %}
     <li>Languages:
         <ul>
             {%for di in character.languages %} <li>{{di}}</li> {% endfor %}
@@ -86,4 +131,13 @@
         </ul>
     </li>
 {% endif %}
+    <!-- Equipment -->
+    {% if character.equipment and character.equipment[0]%}
+    <li>Equipment:
+        <ul>
+            {% for di in character.equipment %} <li> {{di}} </li>
+            {% endfor %}
+        </ul>
+    </li>
+    {% endif %}
 </ul>
