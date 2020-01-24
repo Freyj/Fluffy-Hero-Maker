@@ -2,7 +2,7 @@ class DnD5Spell:
     """
         Class representing a spell according to DnD 5 rules (srd)
     """
-    def __init__(self, name:str):
+    def __init__(self, name: str):
         self.name = name
         self.school = ""
         self.casting_time = ""

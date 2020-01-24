@@ -28,7 +28,7 @@ def dnd_spell_display():
         spell_name = input().strip()
         spell = look_for_spell_by_name(spell_name)
         if spell is None:
-            print("No spell found with name: " + spell_name)
+            print("No spell found with name: {spell}".format(spell=spell_name))
         else:
             cli_display(spell)
     if choice == "2":
@@ -38,7 +38,11 @@ def dnd_spell_display():
     if choice == "3":
         print("Choose a level")
         level = input().strip()
-        print(", ".join(get_all_spell_names_of_level(int(level))))
+        spells = get_all_spell_names_of_level(int(level))
+        if len(spells) == 0:
+            print("There are no spell of level {level}".format(level=level))
+        else:
+            print(", ".join(spells))
     if choice == "4":
         cli_display(get_random_spell())
     if choice == "5":
@@ -46,14 +50,26 @@ def dnd_spell_display():
         print(", ".join(get_all_schools()))
         print("Pick a school to find the spells of")
         school_choice = input().strip()
-        print(", ".join((get_spells_of_school(school_choice))))
+        spells = get_spells_of_school(school_choice)
+        if len(spells) == 0:
+            print("There are no spell of school {school_choice}".format(school_choice=school_choice))
+        else:
+            print(", ".join(spells))
     if choice == "6":
         print("Pick a class to find the spells associated with it")
         class_choice = input().strip()
-        print(", ".join(get_all_spells_of_class(class_choice)))
+        spells = get_all_spells_of_class(class_choice)
+        if len(spells) == 0:
+            print("There are no spell for the class {class_choice}".format(class_choice=class_choice))
+        else:
+            print(", ".join(spells))
     if choice == "7":
         print("Pick a class to find the spells associated with it")
         class_choice = input().strip()
         print("Choose a level")
         level_choice = input().strip()
-        print(", ".join(get_all_spells_of_class_and_level(class_choice, level_choice)))
+        spells = get_all_spells_of_class_and_level(class_choice, level_choice)
+        if len(spells) == 0:
+            print("There are no spell for the class {class_choice} and level {level}".format(class_choice=class_choice, level=level_choice))
+        else:
+            print(", ".join(spells))
