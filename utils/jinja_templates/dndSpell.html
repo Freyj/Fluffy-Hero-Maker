@@ -1,26 +1,33 @@
 <!doctype html>
-<title>Fluffy Hero Maker</title>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fluffy Hero Maker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
 <h1>DnD5 Spell Display</h1>
 <h2>{{spell.name}}</h2>
 <ul>
-  <li>School: {{spell.school}}</li>
-  <li>{% if spell.level > 0 %}Level: {{spell.level}} {% else %} Cantrip {% endif %}</li>
-  <li>Classes: {% for cl in spell.classes %} {{cl}}, {% endfor%}</li>
-  <li>Casting Time: {{spell.casting_time}}</li>
+  <li><strong>School</strong>: {{spell.school}}</li>
+  <li>{% if spell.level > 0 %}<strong>Level</strong>: {{spell.level}} {% else %} Cantrip {% endif %}</li>
+  <li><strong>Classes</strong>: {% for cl in spell.classes %} {{cl}}, {% endfor%}</li>
+  <li><strong>Casting Time</strong>: {{spell.casting_time}}</li>
   {% if spell.ritual %}
-  <li>Ritual</li>
+  <li><strong>Ritual</strong></li>
   {% endif %}
-  <li>Range: {{spell.range}}</li>
-  <li>Duration: {{spell.duration}}</li>
+  <li><strong>Range</strong>: {{spell.range}}</li>
+  <li><strong>Duration</strong>: {{spell.duration}}</li>
   {% if spell.target %}
-  <li>Target: {{spell.target}}</li>
+  <li><strong>Target</strong>: {{spell.target}}</li>
   {% endif %}
-  <li>Components: {{spell.components}}</li>
+  <li><strong>Components</strong>: {{spell.components}}</li>
   {% if spell.concentration %}
-  <li>Concentration</li>
+  <li><strong>Concentration</strong></li>
   {% endif %}
-  <li>Description: {{spell.description}}</li>
+  <li class="spell_description"><strong>Description</strong>: {{spell.description}}</li>
   {% if spell.upgrade %}
-  <li>At Higher Levels: {{spell.upgrade}}</li>
+  <li><strong>At Higher Levels</strong>: {{spell.upgrade}}</li>
   {% endif %}
 </ul>
+
+<a href="/">Home</a>
