@@ -256,7 +256,7 @@ class DnD5Character(Character):
             "proficiency_bonus": self.proficiency_bonus,
             "hit_points": self.hit_points
         }
-        return json.dumps(character_dict)
+        return json.dumps(character_dict, indent=2, separators=(',', ': '))
 
     def create_character_from_json(self):
         # TODO: function to load a character from json
