@@ -1,10 +1,10 @@
 from characters.DnD5Character import DnD5Character
-from databases.dnd5.dnd5_backgrounds import get_all_background_names, get_background_by_name
+from databases.dnd5.dnd5_backgrounds_db import get_all_background_names, get_background_by_name
 from databases.dnd5.dnd5_classes_db import get_all_classes_names, get_class_by_name
 from databases.dnd5.dnd5_languages_db import get_all_languages, get_all_unrestricted_languages
 from databases.dnd5.dnd5_races_db import get_all_races_names, look_for_race_by_name
 from databases.dnd5.dnd5_spell_db import get_all_spells_of_class_and_level
-from dnd5_character.dnd5_constants import GENERATION_TYPES
+from dnd5.dnd5_constants import GENERATION_TYPES
 from utils.utilities import is_valid_choice, dict_to_str, list_to_str_with_number_and_line, get_modifier
 
 
@@ -210,7 +210,7 @@ def dnd_character_creation():
         if accept == 'yes':
             background_accepted = True
     dnd_character.set_background(background)
-    if background.feature_choice is not '':
+    if background.feature_choice != '':
         print("Your background has the following feature: " + background.feature_choice +
               "you can choose from the following table: ")
         print(list_to_str_with_number_and_line(background.feature_choice_table))

@@ -2,9 +2,9 @@ import json
 import os
 import sqlite3
 
-from dnd5_character.DnD5Background import DnD5Background
+from dnd5.DnD5Background import DnD5Background
 
-BACKGROUND_DATA_DIR = 'databases/data/backgrounds/'
+BACKGROUND_DATA_DIR = 'databases/data/dnd5/backgrounds/'
 
 CREATE_BACKGROUND_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_backgrounds 
                                 (id integer primary key, name text not null, skill_proficiencies, bonus_languages 

@@ -31,8 +31,8 @@ def get_all_languages_from_json(file_name):
         :return: the languages as a list of tuples
     """
     languages = []
-    directory = os.getcwd() + '/databases/'
-    with open(directory + '/data/' + file_name + '.json', encoding='utf-8') as fd:
+    directory = os.getcwd() + '/databases'
+    with open(directory + '/data/dnd5/' + file_name + '.json', encoding='utf-8') as fd:
         json_data = json.load(fd)
         for language in json_data:
             element = (language["name"],

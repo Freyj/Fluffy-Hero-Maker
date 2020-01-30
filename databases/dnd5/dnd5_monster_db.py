@@ -2,11 +2,11 @@ import json
 import os
 import sqlite3
 
-from dnd5_monster.DnD5Monster import DnD5Monster
+from dnd5.DnD5Monster import DnD5Monster
 from utils.dice_roller import roll_die
 
 
-MONSTER_DATA_DIR = 'databases/data/monsters/'
+MONSTER_DATA_DIR = 'databases/data/dnd5/monsters/'
 
 CREATE_MONSTER_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_monsters 
                             (id integer primary key, name text not null, size text, alignment text, monster_type text,

@@ -2,10 +2,10 @@ import json
 import os
 import sqlite3
 
-from dnd5_character.DnD5Spell import DnD5Spell
+from dnd5.DnD5Spell import DnD5Spell
 from utils.dice_roller import roll_die
 
-SPELL_DATA_DIR = 'databases/data/spells/'
+SPELL_DATA_DIR = 'databases/data/dnd5/spells/'
 
 
 CREATE_SPELL_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_spells 

@@ -1,6 +1,6 @@
 import sqlite3
 
-from databases.dnd5.dnd5_backgrounds import CREATE_BACKGROUND_TABLE_REQUEST, DROP_BACKGROUND_TABLE_REQUEST
+from databases.dnd5.dnd5_backgrounds_db import CREATE_BACKGROUND_TABLE_REQUEST, DROP_BACKGROUND_TABLE_REQUEST
 from databases.dnd5.dnd5_classes_db import CREATE_CLASS_TABLE_REQUEST, DROP_CLASS_TABLE_REQUEST
 from databases.dnd5.dnd5_races_db import CREATE_RACE_TABLE_REQUEST, DROP_RACE_TABLE_REQUEST
 from databases.dnd5.dnd5_languages_db import CREATE_LANGUAGE_TABLE_REQUEST, DROP_LANGUAGE_TABLE_REQUEST

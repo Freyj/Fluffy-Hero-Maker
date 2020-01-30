@@ -3,9 +3,9 @@ import os
 import sqlite3
 
 from databases.dnd5.dnd5_spell_db import get_all_spells_of_class_and_level
-from dnd5_character.DnD5Class import DnD5Class
+from dnd5.DnD5Class import DnD5Class
 
-CLASS_DATA_DIR = 'databases/data/classes/'
+CLASS_DATA_DIR = 'databases/data/dnd5/classes/'
 
 CREATE_CLASS_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_classes 
                                 (id integer primary key, name text not null, hit_dice, weapon_proficiencies_to_add,
