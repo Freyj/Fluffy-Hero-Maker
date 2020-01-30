@@ -10,21 +10,21 @@ SPELL_DATA_DIR = 'databases/data/spells/'
 
 CREATE_SPELL_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_spells 
                         (id integer primary key, name text not null, school text, saving_throw text,
-                         casting_time text, ritual text, range text, components text, duration text,
-                         level integer, description text, need_concentration text, upgrade text, classes text
+                         casting_time text, ritual int, range text, components text, duration text,
+                         level integer, description text, need_concentration int, upgrade text, classes text
                          )'''
 
 # 1: name
 # 2: school
 # 3: saving_throw,
 # 4: casting_time
-# 5: ritual
+# 5: ritual (booleans are stored as int in sqlite)
 # 6: range
 # 7: components
 # 8: duration
 # 9: level
 # 10: description
-# 11: need_concentration
+# 11: need_concentration (booleans are stored as int in sqlite)
 # 12: upgrade
 # 13: classes
 INSERT_SPELLS_INTO_REQUEST = '''INSERT INTO dnd5_spells
@@ -80,17 +80,25 @@ def get_all_spells_from_json():
             with open(file_path, encoding='utf-8') as fd:
                 json_data = json.load(fd)
                 for spell in json_data:
+                    if spell["ritual"]:
+                        ritual = 1
+                    else:
+                        ritual = 0
+                    if spell["concentration"]:
+                        concentration = 1
+                    else:
+                        concentration = 0
                     element = (spell["name"],
                                spell["school"],
                                spell["saving throw"],
                                spell["casting time"],
-                               spell["ritual"],
+                               ritual,
                                spell["range"],
                                spell["components"],
                                spell["duration"],
                                spell["level"],
                                spell["description"],
-                               spell["concentration"],
+                               concentration,
                                spell["upgrade"],
                                ",".join(spell["classes"])
                                )
@@ -265,13 +273,13 @@ def change_record_into_spell(record):
         spell.school = record[2]
         spell.saving_throw = record[3]
         spell.casting_time = record[4]
-        spell.ritual = record[5]
+        spell.ritual = True if record[5] else False
         spell.range = record[6]
         spell.components = record[7]
         spell.duration = record[8]
         spell.level = record[9]
         spell.description = record[10]
-        spell.concentration = record[11]
+        spell.concentration = True if record[11] else False
         spell.upgrade = record[12]
         spell.classes = record[13].split(',')
         return spell

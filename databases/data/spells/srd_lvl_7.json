@@ -7,7 +7,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "60 feet",
     "target": "",
     "components": "V, S, M (A miniature platinum sword with a grip and pommel of copper and zinc, worth 250 gp.)",
@@ -25,7 +25,7 @@
       "Cleric"
     ],
     "casting time": "1 minute",
-    "ritual": "no",
+    "ritual": false,
     "range": "90 feet",
     "target": "",
     "components": "V, S",
@@ -44,7 +44,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "150 feet",
     "target": "",
     "components": "V, S, M (A tiny ball of bat guano and sulfur.)",
@@ -62,7 +62,7 @@
       "Cleric"
     ],
     "casting time": "1 bonus action",
-    "ritual": "no",
+    "ritual": false,
     "range": "30 feet",
     "target": "",
     "components": "V",
@@ -84,7 +84,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "Self",
     "target": "",
     "components": "V, S",
@@ -104,7 +104,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "60 feet",
     "target": "",
     "components": "V, S",
@@ -124,7 +124,7 @@
       "Sorcerer"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "150 feet",
     "target": "",
     "components": "V, S",
@@ -144,7 +144,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "100 feet",
     "target": "",
     "components": "V, S, M (Ruby dust worth 1,500 gp.)",
@@ -163,7 +163,7 @@
       "Wizard"
     ],
     "casting time": "1 minute",
-    "ritual": "no",
+    "ritual": false,
     "range": "300 feet",
     "target": "",
     "components": "V, S, M (A miniature portal carved from ivory, a small piece of polished marble, and a tiny silver spoon, each item worth at least 5 gp.)",
@@ -183,7 +183,7 @@
       "Wizard"
     ],
     "casting time": "10 minutes",
-    "ritual": "no",
+    "ritual": false,
     "range": "Sight",
     "target": "",
     "components": "V, S",
@@ -204,7 +204,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "Touch",
     "target": "",
     "components": "V, S, M (A forked, metal rod worth at least 250 gp, attuned to a particular plane of existence.)",
@@ -223,7 +223,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "Self",
     "target": "",
     "components": "V, S",
@@ -242,7 +242,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "500 miles",
     "target": "",
     "components": "V, S, M (A small replica of you made from materials worth at least 5 gp.)",
@@ -262,7 +262,7 @@
       "Druid"
     ],
     "casting time": "1 minute",
-    "ritual": "no",
+    "ritual": false,
     "range": "Touch",
     "target": "",
     "components": "V, S, M (A prayer wheel and holy water.)",
@@ -281,7 +281,7 @@
       "Cleric"
     ],
     "casting time": "1 hour",
-    "ritual": "no",
+    "ritual": false,
     "range": "Touch",
     "target": "",
     "components": "V, S, M (A diamond worth at least 1,000gp, which the spell consumes.)",
@@ -301,7 +301,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "100 feet",
     "target": "",
     "components": "V, S, M (A lodestone and iron filings.)",
@@ -319,7 +319,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "Touch",
     "target": "",
     "components": "V, S, M (A powder composed of diamond, emerald, ruby, and sapphire dust worth at least 5,000 gp, which the spell consumes.)",
@@ -337,7 +337,7 @@
       "Wizard"
     ],
     "casting time": "12 hours",
-    "ritual": "no",
+    "ritual": false,
     "range": "Touch",
     "target": "",
     "components": "V, S, M (Snow or ice in quantities sufficient to made a life-size copy of the duplicated creature; some hair, fingernail clippings, or other piece of that creature's body placed inside the snow or ice; and powdered ruby worth 1,500 gp, sprinkled over the duplicate and consumed by the spell.)",
@@ -357,7 +357,7 @@
       "Wizard"
     ],
     "casting time": "1 minute",
-    "ritual": "no",
+    "ritual": false,
     "range": "Touch",
     "target": "",
     "components": "V, S, M (Mercury, phosphorus, and powdered diamond and opal with a total value of at least 1,000 gp, which the spell consumes.)",
@@ -377,7 +377,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "10 feet",
     "target": "",
     "components": "V",
