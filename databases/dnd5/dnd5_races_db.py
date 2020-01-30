@@ -2,10 +2,10 @@ import json
 import os
 import sqlite3
 
-from dnd5_character.DnD5Race import DnD5Race
+from dnd5.DnD5Race import DnD5Race
 from utils.utilities import str_to_list
 
-RACE_DATA_DIR = 'databases/data/races/'
+RACE_DATA_DIR = 'databases/data/dnd5/races/'
 
 # field numbers for memory
 # 1: name
