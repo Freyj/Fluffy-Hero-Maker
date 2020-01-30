@@ -8,7 +8,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "120 feet",
     "target": "",
     "components": "V, S",
@@ -26,7 +26,7 @@
       "Druid"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "Self",
     "target": "",
     "components": "V, S",
@@ -44,7 +44,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "120 feet",
     "target": "",
     "components": "V, S, M (An eggshell and a snakeskin glove.)",
@@ -63,7 +63,7 @@
       "Druid"
     ],
     "casting time": "8 hours",
-    "ritual": "no",
+    "ritual": false,
     "range": "Touch",
     "target": "",
     "components": "V, S, M (An agate worth at least 1,000 gp, which the spell consumes.)",
@@ -83,7 +83,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "120 feet",
     "target": "",
     "components": "V, S",
@@ -103,7 +103,7 @@
       "Ritual Caster"
     ],
     "casting time": "1 minute",
-    "ritual": "yes",
+    "ritual": true,
     "range": "Self",
     "target": "",
     "components": "V, S, M (Incense and a vial of holy or unholy water.)",
@@ -124,7 +124,7 @@
       "Ritual Caster"
     ],
     "casting time": "1 minute",
-    "ritual": "yes",
+    "ritual": true,
     "range": "Self",
     "target": "",
     "components": "V, S",
@@ -144,7 +144,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "Self",
     "target": "",
     "components": "V, S, M (A small crystal or glass cone.)",
@@ -163,7 +163,7 @@
       "Wizard"
     ],
     "casting time": "1 minute",
-    "ritual": "no",
+    "ritual": false,
     "range": "90 feet",
     "target": "",
     "components": "V, S, M (Burning incense for air, soft clay for earth, sulfur and phosphorus for fire, or water and sand for water.)",
@@ -183,7 +183,7 @@
       "Wizard"
     ],
     "casting time": "1 minute",
-    "ritual": "yes",
+    "ritual": true,
     "range": "Self",
     "target": "",
     "components": "V",
@@ -202,7 +202,7 @@
       "Druid"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "Touch",
     "target": "",
     "components": "V, S",
@@ -221,7 +221,7 @@
       "Wizard"
     ],
     "casting time": "1 minute",
-    "ritual": "no",
+    "ritual": false,
     "range": "30 feet",
     "target": "",
     "components": "V, S, M (A tiny piece of matter of the same type of the item you plan to create.)",
@@ -240,7 +240,7 @@
       "Paladin"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "Self",
     "target": "",
     "components": "V, S, M (Holy water or powdered silver and iron.)",
@@ -262,7 +262,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "60 feet",
     "target": "",
     "components": "V, S",
@@ -283,7 +283,7 @@
       "Wizard"
     ],
     "casting time": "1 minute",
-    "ritual": "no",
+    "ritual": false,
     "range": "Special",
     "target": "",
     "components": "V, S, M (A handful of sand, a dab of ink, and a writing quill plucked from a sleeping bird.)",
@@ -303,7 +303,7 @@
       "Warlock"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "60 feet",
     "target": "",
     "components": "V, S, M (Pinch of sulfur.)",
@@ -325,7 +325,7 @@
       "Wizard"
     ],
     "casting time": "1 minute",
-    "ritual": "no",
+    "ritual": false,
     "range": "60 feet",
     "target": "",
     "components": "V",
@@ -345,7 +345,7 @@
       "Druid"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "Touch",
     "target": "",
     "components": "V, S, M (Diamond dust worth at least 100gp, which the spell consumes.)",
@@ -364,7 +364,7 @@
       "Warlock"
     ],
     "casting time": "24 hours",
-    "ritual": "no",
+    "ritual": false,
     "range": "Touch",
     "target": "",
     "components": "V, S, M (Herbs, oils, and incense worth at least 1,000 gp, which the spell consumes.)",
@@ -387,7 +387,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "90 feet",
     "target": "",
     "components": "V, S, M (A small piece of iron.)",
@@ -407,7 +407,7 @@
       "Sorcerer"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "300 feet",
     "target": "",
     "components": "V, S, M (A few grains of sugar, some kernels of grain, and a smear of fat.)",
@@ -427,7 +427,7 @@
       "Wizard"
     ],
     "casting time": "10 minutes",
-    "ritual": "no",
+    "ritual": false,
     "range": "Self",
     "target": "",
     "components": "V, S, M (Incense worth 250 inches that fate consumes and four sticks of ivory worth 50 gp each.)",
@@ -447,7 +447,7 @@
       "Druid"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "60 feet",
     "target": "",
     "components": "V, S",
@@ -466,7 +466,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "Self",
     "target": "",
     "components": "S",
@@ -486,7 +486,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "30 feet",
     "target": "",
     "components": "V, S",
@@ -505,7 +505,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "30 feet",
     "target": "",
     "components": "V, S, M (A pinch of sesame seeds.)",
@@ -526,7 +526,7 @@
       "Wizard"
     ],
     "casting time": "1 hour",
-    "ritual": "no",
+    "ritual": false,
     "range": "60 feet",
     "target": "",
     "components": "V, S, M (A jewel worth at least 1,000 gp, which the spell consumes.)",
@@ -546,7 +546,7 @@
       "Paladin"
     ],
     "casting time": "1 hour",
-    "ritual": "no",
+    "ritual": false,
     "range": "Touch",
     "target": "",
     "components": "V, S, M (A diamond worth at least 500gp, which the spell consumes.)",
@@ -564,7 +564,7 @@
       "Druid"
     ],
     "casting time": "1 hour",
-    "ritual": "no",
+    "ritual": false,
     "range": "Touch",
     "target": "",
     "components": "V, S, M (Rare oils and unguents worth at least 1,000 gp, which the spell consumes.)",
@@ -587,7 +587,7 @@
       "Wizard"
     ],
     "casting time": "10 minutes",
-    "ritual": "no",
+    "ritual": false,
     "range": "Self",
     "target": "",
     "components": "V, S, M (A focus worth at least 1,000 gp, such as a crystal ball, a silver mirror, or a font filled with holy water.)",
@@ -608,7 +608,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "30 feet",
     "target": "",
     "components": "V, S",
@@ -628,7 +628,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "60 feet",
     "target": "",
     "components": "V, S",
@@ -646,7 +646,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "yes",
+    "ritual": true,
     "range": "30 feet",
     "target": "",
     "components": "V, S, M (Pieces of eggshell from two different kinds of creatures)",
@@ -666,7 +666,7 @@
       "Wizard"
     ],
     "casting time": "1 minute",
-    "ritual": "no",
+    "ritual": false,
     "range": "10 feet",
     "target": "",
     "components": "V, M (Rare chalks and inks infused with precious gems with 50 gp, which the spell consumes.)",
@@ -687,7 +687,7 @@
       "Ranger"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "Self",
     "target": "",
     "components": "V, S",
@@ -705,7 +705,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "120 feet",
     "target": "",
     "components": "V, S, M (A pinch of powder made by crushing a clear gemstone.)",
@@ -725,7 +725,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "120 feet",
     "target": "",
     "components": "V, S, M (A small block of granite.)",

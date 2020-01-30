@@ -7,7 +7,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "30 feet",
     "target": "",
     "components": "V, S, M (A bit of bat fur.)",
@@ -29,7 +29,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "60 feet",
     "target": "",
     "components": "V, S, M (An item distasteful to the target.)",
@@ -48,7 +48,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "90 feet",
     "target": "",
     "components": "V, S, M (A piece of tentacle from a giant octopus or a giant squid)",
@@ -69,7 +69,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "30 feet",
     "target": "",
     "components": "V, S",
@@ -87,7 +87,7 @@
       "Bard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "30 feet",
     "target": "",
     "components": "V, S",
@@ -109,7 +109,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "90 feet",
     "target": "",
     "components": "V, S, M (Three walnut shells.)",
@@ -128,7 +128,7 @@
       "Wizard"
     ],
     "casting time": "1 minute",
-    "ritual": "no",
+    "ritual": false,
     "range": "90 feet",
     "target": "",
     "components": "V, S",
@@ -147,7 +147,7 @@
       "Ranger"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "60 feet",
     "target": "",
     "components": "V, S, M (One holly berry per creature summoned.)",
@@ -167,7 +167,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "300 feet",
     "target": "",
     "components": "V, S, M (A drop of water and a pinch of dust.)",
@@ -186,7 +186,7 @@
       "Paladin"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "Touch",
     "target": "",
     "components": "V, S",
@@ -209,7 +209,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "500 feet",
     "target": "",
     "components": "V",
@@ -229,7 +229,7 @@
       "Ritual Caster"
     ],
     "casting time": "1 action",
-    "ritual": "yes",
+    "ritual": true,
     "range": "Self",
     "target": "",
     "components": "V, S, M (Incense and a sacrificial offering appropriate to your religion, together worth at least 25gp, which the spell consumes.)",
@@ -250,7 +250,7 @@
       "Warlock"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "60 feet",
     "target": "",
     "components": "V, S",
@@ -268,7 +268,7 @@
       "Wizard"
     ],
     "casting time": "10 minutes",
-    "ritual": "no",
+    "ritual": false,
     "range": "120 feet",
     "target": "",
     "components": "V, S",
@@ -286,7 +286,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "30 feet",
     "target": "",
     "components": "V, S, M (A tiny silver whistle, a piece of bone, and a thread)",
@@ -305,7 +305,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "Self",
     "target": "",
     "components": "V, S, M (A little phosphorus or a firefly.)",
@@ -327,7 +327,7 @@
       "Ranger"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "Touch",
     "target": "",
     "components": "V, S, M (A leather strap, bound around the arm or a similar appendage.)",
@@ -345,7 +345,7 @@
       "Druid"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "30 feet",
     "target": "",
     "components": "V, S",
@@ -367,7 +367,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "Touch",
     "target": "",
     "components": "V, S",
@@ -385,7 +385,7 @@
       "Cleric"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "30 feet",
     "target": "",
     "components": "V",
@@ -406,7 +406,7 @@
       "Wizard"
     ],
     "casting time": "10 minutes",
-    "ritual": "no",
+    "ritual": false,
     "range": "300 feet",
     "target": "",
     "components": "V, S, M (A stone, a twig, and a bit of green plant.You make natural terrain in a 150-foot cube in range look, sound, and smell like some other sort of natural terrain. Thus, open fields or a road can be made to resemble a swamp, hill, crevasse, or some other difficult or impassable terrain. A pond can be made to seem like a grassy meadow, a precipice like a gentle slope, or a rock-strewn gully like a wide and smooth road. Manufactured structures, equipment, and creatures within the area aren't changed in appearance.)",
@@ -428,7 +428,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "300 feet",
     "target": "",
     "components": "V, S, M (A pinch of dust and a few drops of water.)",
@@ -451,7 +451,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "Self",
     "target": "",
     "components": "V, S, M (A bit of fur from a bloodhound.)",
@@ -469,7 +469,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "120 feet",
     "target": "",
     "components": "V, S",
@@ -491,7 +491,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "60 feet",
     "target": "",
     "components": "V, S, M (A caterpillar cocoon.)",
@@ -509,7 +509,7 @@
       "Wizard"
     ],
     "casting time": "10 minutes",
-    "ritual": "no",
+    "ritual": false,
     "range": "120 feet",
     "target": "",
     "components": "V, S, M (A thin sheet of lead, a piece of opaque glass, a wad of cotton or cloth, and powdered chrysolite.)",
@@ -527,7 +527,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "30 feet",
     "target": "",
     "components": "V, S, M (A hemispherical piece of clear crystal and a matching hemispherical piece of gum arabic.)",
@@ -545,7 +545,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "Touch",
     "target": "",
     "components": "V, S, M (An exquisite chest, 3 feet by 2 feet by 2 feet, constructed from rare materials worth at least 5,000 gp, and a Tiny replica made from the same materials worth at least 50 gp.)",
@@ -565,7 +565,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "Touch",
     "target": "",
     "components": "V, S, M (Soft clay, to be crudely worked into the desired shape for the stone object.)",
@@ -588,7 +588,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "Touch",
     "target": "",
     "components": "V, S, M (Diamond dust worth 100 gp, which the spell consumes.)",
@@ -610,7 +610,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "120 feet",
     "target": "",
     "components": "V, S, M (A small piece of phosphorus.)",

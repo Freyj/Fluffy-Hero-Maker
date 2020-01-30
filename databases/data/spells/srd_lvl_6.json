@@ -6,7 +6,7 @@
       "Cleric"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "90 feet",
     "target": "",
     "components": "V, S",
@@ -25,7 +25,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "150 feet",
     "target": "",
     "components": "V, S, M (A bit of fur; a piece of amber, glass, or a crystal rod; and three silver pins.)",
@@ -45,7 +45,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "150 feet",
     "target": "",
     "components": "V, S, M (The powder of a crushed black pearl worth at least 500 gp.)",
@@ -64,7 +64,7 @@
       "Warlock"
     ],
     "casting time": "1 minute",
-    "ritual": "no",
+    "ritual": false,
     "range": "90 feet",
     "target": "",
     "components": "V, S",
@@ -82,7 +82,7 @@
       "Wizard"
     ],
     "casting time": "10 minutes",
-    "ritual": "no",
+    "ritual": false,
     "range": "Self",
     "target": "",
     "components": "V, S, M (A statuette of yourself carved from ivory and decorated with gems worth at least 1,500 gp.)",
@@ -102,7 +102,7 @@
       "Wizard"
     ],
     "casting time": "1 minute",
-    "ritual": "no",
+    "ritual": false,
     "range": "10 feet",
     "target": "",
     "components": "V, S, M (One clay pot filled with grave dirt, one clay pot filled with brackish water, and one 150 gp black onyx stone for each corpse.)",
@@ -121,7 +121,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "60 feet",
     "target": "",
     "components": "V, S, M (A lodestone and a pinch of dust.)",
@@ -142,7 +142,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "Self",
     "target": "",
     "components": "V, S",
@@ -162,7 +162,7 @@
       "Druid"
     ],
     "casting time": "1 minute",
-    "ritual": "no",
+    "ritual": false,
     "range": "Self",
     "target": "",
     "components": "V, S, M (A set of divinatory tools—such as bones, ivory sticks, cards, teeth, or carved runes—worth 100gp and an object from the location you wish to find.)",
@@ -181,7 +181,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "60 feet",
     "target": "",
     "components": "V, S, M (A pinch of lime, water, and earth.)",
@@ -200,7 +200,7 @@
       "Ritual Caster"
     ],
     "casting time": "10 minutes",
-    "ritual": "yes",
+    "ritual": true,
     "range": "Touch",
     "target": "",
     "components": "V, S, M (A sprinkling of holy water, rare incense, and powdered ruby worth at least 1,000 gp.)",
@@ -218,7 +218,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "300 feet",
     "target": "",
     "components": "V, S, M (A small crystal sphere.)",
@@ -237,7 +237,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "Self",
     "target": "",
     "components": "V, S, M (A glass or crystal bead that shatters when the spell ends.)",
@@ -256,7 +256,7 @@
       "Wizard"
     ],
     "casting time": "10 minutes",
-    "ritual": "no",
+    "ritual": false,
     "range": "Touch",
     "target": "",
     "components": "V, S, M (Burning incense, a small measure of brimstone and oil, a knotted string, a small amount of umber hulk blood, and a small silver rod worth at least 10 gp.)",
@@ -274,7 +274,7 @@
       "Cleric"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "60 feet",
     "target": "",
     "components": "V, S",
@@ -293,7 +293,7 @@
       "Druid"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "60 feet",
     "target": "",
     "components": "V, S",
@@ -312,7 +312,7 @@
       "Druid"
     ],
     "casting time": "10 minutes",
-    "ritual": "no",
+    "ritual": false,
     "range": "30 feet",
     "target": "",
     "components": "V, S, M (A gem-encrusted bowl worth at least 1,000gp, which the spell consumes.)",
@@ -331,7 +331,7 @@
       "Wizard"
     ],
     "casting time": "1 minute",
-    "ritual": "yes",
+    "ritual": true,
     "range": "Touch",
     "target": "",
     "components": "V, S, M (A sapphire worth 1,000 gp.)",
@@ -350,7 +350,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "30 feet",
     "target": "",
     "components": "V",
@@ -368,7 +368,7 @@
       "Wizard"
     ],
     "casting time": "1 minute",
-    "ritual": "no",
+    "ritual": false,
     "range": "Self",
     "target": "",
     "components": "V, S, M (A gem, crystal, reliquary, or some other ornamental container worth at least 500 gp.)",
@@ -389,7 +389,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "60 feet",
     "target": "",
     "components": "V, M (A snake's tongue and either a bit of honeycomb or a drop of sweet oil.)",
@@ -409,7 +409,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "120 feet",
     "target": "",
     "components": "V, S, M (An iron blade and a small bag containing a mixture of soils—clay, loam, and sand.)",
@@ -427,7 +427,7 @@
       "Cleric"
     ],
     "casting time": "10 minutes",
-    "ritual": "no",
+    "ritual": false,
     "range": "60 feet",
     "target": "",
     "components": "V, S",
@@ -446,7 +446,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "120 feet",
     "target": "",
     "components": "V, S, M (A bit of fleece and jade dust worth at least 25 gp.)",
@@ -466,7 +466,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "Self",
     "target": "",
     "components": "V, S, M (A magnifying glass.)",
@@ -484,7 +484,7 @@
       "Druid"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "10 feet",
     "target": "",
     "components": "V, S",
@@ -506,7 +506,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "Touch",
     "target": "",
     "components": "V, S, M (An ointment for the eyes that costs 25gp; is made from mushroom powder, saffron, and fat; and is consumed by the spell.)",
@@ -524,7 +524,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "120 feet",
     "target": "",
     "components": "V, S, M (A small piece of quartz.)",
@@ -542,7 +542,7 @@
       "Druid"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "120 feet",
     "target": "",
     "components": "V, S, M (A handful of thorns.)",
@@ -560,7 +560,7 @@
       "Druid"
     ],
     "casting time": "1 minute",
-    "ritual": "no",
+    "ritual": false,
     "range": "30 feet",
     "target": "",
     "components": "V, S, M (Fire and holy water.)",
@@ -578,7 +578,7 @@
       "Cleric"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "5 feet",
     "target": "",
     "components": "V",

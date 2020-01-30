@@ -12,9 +12,9 @@ class DnD5Spell:
         self.level = 0
         self.description = ""
         self.saving_throw = ""
-        self.concentration = ""
+        self.concentration = False
         self.upgrade = ""
-        self.ritual = ""
+        self.ritual = False
         self.classes = []
 
     def cli_description_string(self):

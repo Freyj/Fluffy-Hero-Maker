@@ -11,8 +11,10 @@ def cli_display(spell):
     print("Range: " + spell.range)
     print("Duration: " + spell.duration)
     print("Components: " + spell.components)
-    if spell.concentration != "":
-        print("Concentration: " + spell.concentration)
+    if spell.ritual:
+        print("Ritual")
+    if spell.concentration:
+        print("Concentration: required")
     print("Description:\n" + spell.cli_description_string())
     if spell.upgrade != "":
         print("At higher levels:\n" + spell.upgrade)

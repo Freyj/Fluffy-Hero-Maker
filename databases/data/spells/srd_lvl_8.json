@@ -6,7 +6,7 @@
       "Druid"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "30 feet",
     "target": "",
     "components": "V, S",
@@ -25,7 +25,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "Self",
     "target": "",
     "components": "V, S, M (A pinch of powdered iron or iron filings.)",
@@ -44,7 +44,7 @@
       "Wizard"
     ],
     "casting time": "1 hour",
-    "ritual": "no",
+    "ritual": false,
     "range": "60 feet",
     "target": "",
     "components": "V, S, M (Either a lump of alum soaked in vinegar for the antipathy effect or a drop of honey for the sympathy effect.)",
@@ -62,7 +62,7 @@
       "Wizard"
     ],
     "casting time": "1 hour",
-    "ritual": "no",
+    "ritual": false,
     "range": "Touch",
     "target": "",
     "components": "V, S, M (A diamond worth at least 1,000 gp and at least 1 cubic inch of flesh of the creature that is to be cloned, which the spell consumes, and a vessel worth at least 2,000 gp that has a sealable lid and is large enough to hold a Medium creature, such as a huge urn, coffin, mud-filled cyst in the ground, or crystal container filled with salt water.)",
@@ -82,7 +82,7 @@
       "Wizard"
     ],
     "casting time": "10 minutes",
-    "ritual": "no",
+    "ritual": false,
     "range": "Self",
     "target": "",
     "components": "V, S, M (Burning incense and bits of earth and wood mixed in water.)",
@@ -101,7 +101,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "60 feet",
     "target": "",
     "components": "S",
@@ -122,7 +122,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "60 feet",
     "target": "",
     "components": "V, S",
@@ -142,7 +142,7 @@
       "Sorcerer"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "500 feet",
     "target": "",
     "components": "V, S, M (A pinch of dirt, a piece of rock, and a lump of clay.)",
@@ -163,7 +163,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "150 feet",
     "target": "",
     "components": "V, S, M (A handful of clay, crystal, glass, or mineral spheres.)",
@@ -182,7 +182,7 @@
       "Warlock"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "Self",
     "target": "",
     "components": "V",
@@ -200,7 +200,7 @@
       "Cleric"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "Self",
     "target": "",
     "components": "V, S, M (A tiny reliquary worth at least 1,000gp containing a sacred relic, such as a scrap of cloth from a saint's robe or a piece of parchment from a religious text.)",
@@ -219,7 +219,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "150 feet",
     "target": "",
     "components": "V, S",
@@ -237,7 +237,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "60 feet",
     "target": "",
     "components": "V, S",
@@ -256,7 +256,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "Touch",
     "target": "",
     "components": "V, S",
@@ -277,7 +277,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "60 feet",
     "target": "",
     "components": "V",
@@ -297,7 +297,7 @@
       "Wizard"
     ],
     "casting time": "1 action",
-    "ritual": "no",
+    "ritual": false,
     "range": "150 feet",
     "target": "",
     "components": "V, S, M (Fire and a piece of sunstone.)",
