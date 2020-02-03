@@ -1,6 +1,9 @@
 import json
 import os
 import sqlite3
+import time
+
+import requests
 
 from dnd5.DnD5Monster import DnD5Monster
 from utils.dice_roller import roll_die
@@ -21,6 +24,63 @@ CREATE_MONSTER_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_monsters
                              spells_lvl3, spell_slots_lvl3, spells_lvl4, spell_slots_lvl4, spells_lvl5, 
                              spell_slots_lvl5, spells_lvl6, spell_slots_lvl6, spells_lvl7, spell_slots_lvl7,
                              spells_lvl8, spell_slots_lvl8, spells_lvl9, spell_slots_lvl9, description)'''
+
+# 1 name
+# 2 size
+# 3 alignment
+# 4 monster_type
+# 5 strength
+# 6 dexterity
+# 7 constitution
+# 8 intelligence
+# 9 wisdom
+# 10 charisma
+# 11 walking speed
+# 12 climbing speed
+# 13 burrowing speed
+# 14 flying speed
+# 15 swimming speed
+# 16 save throw strength
+# 17 save throw dexterity
+# 18 save throw constitution
+# 19 save throw intelligence
+# 20 save throw wisdom
+# 21 save throw charisma
+# 22 armor class
+# 23 hit points
+# 24 hit dice
+# 25 passive perception
+# 26 xp
+# 27 challenge rating
+# 28 damage_immunities
+# 29 damage resistances
+# 30 condition immunities
+# 31 senses
+# 32 languages spoken
+# 33 languages understood
+# 34 actions
+# 35 attacks
+# 36 traits
+# 37 cantrips
+# 38 spells lvl 1
+# 39 spells lvl 2
+# 40 spells lvl 3
+# 41 spells lvl 4
+# 42 spells lvl 5
+# 43 spells lvl 6
+# 44 spells lvl 7
+# 45 spells lvl 8
+# 46 spells lvl 9
+# 47 spell slots lvl 1
+# 48 spell slots lvl 2
+# 49 spell slots lvl 3
+# 50 spell slots lvl 4
+# 51 spell slots lvl 5
+# 52 spell slots lvl 6
+# 53 spell slots lvl 7
+# 54 spell slots lvl 8
+# 55 spell slots lvl 9
+# 56 description
 
 
 DROP_MONSTER_TABLE_REQUEST = '''DROP TABLE IF EXISTS dnd5_monsters'''
@@ -141,6 +201,81 @@ def get_all_monsters_from_json():
     return monsters
 
 
+def get_monsters_from_api():
+    r = requests.get('https://api.open5e.com/monsters/')
+    print("A request")
+    json_data = r.json()
+    # get the info whether there is more results to get (and the URI)
+    next_result = json_data["next"]
+    page_monsters = json_data["results"]
+    result_monsters = [format_monsters_from_json(page_monsters)]
+    while next_result is not None:
+        # let's not spam the API
+        time.sleep(1)
+        r = requests.get(next_result)
+        print("A request")
+        json_data = r.json()
+        next_result = json_data["next"]
+        page_monsters = json_data["results"]
+        result_monsters.extend(format_monsters_from_json(page_monsters))
+
+    return result_monsters
+
+
+def get_monsters_from_api_by_type(type: str):
+    uri = 'https://api.open5e.com/monsters/?type=' + type
+    r = requests.get(uri)
+    print("A request")
+    json_data = r.json()
+    # get the info whether there is more results to get (and the URI)
+    next_result = json_data["next"]
+    page_monsters = json_data["results"]
+    result_monsters = [format_monsters_from_json(page_monsters)]
+    while next_result is not None:
+        # let's not spam the API
+        time.sleep(1)
+        r = requests.get(next_result)
+        print("A request")
+        json_data = r.json()
+        next_result = json_data["next"]
+        page_monsters = json_data["results"]
+        result_monsters.extend(format_monsters_from_json(page_monsters))
+
+    print(result_monsters)
+    print(len(result_monsters))
+
+
+def format_monsters_from_json(json_data):
+    monsters = []
+    for monster in json_data:
+        item = {
+            "name": monster["name"],
+            "size": monster["size"],
+            "alignment": monster["alignment"],
+            "type": monster["type"],
+            "strength": monster["strength"],
+            "dexterity": monster["dexterity"],
+            "constitution": monster["constitution"],
+            "intelligence": monster["intelligence"],
+            "wisdom": monster["wisdom"],
+            "charisma": monster["charisma"],
+            "speed": monster["speed"],
+            # "subtype": monster["subtype"],
+            "armor_class": monster["armor_class"],
+            "armor_desc": monster["armor_desc"],
+            "hit_points": monster["hit_points"],
+            "hit_dice": monster["hit_dice"],
+            "strength_save": monster["strength_save"],
+            "dexterity_save": monster["dexterity_save"],
+            "constitution_save": monster["constitution_save"],
+            "intelligence_save": monster["intelligence_save"]
+
+        }
+        monsters.append(item)
+
+    return monsters
+
+
 def insert_dnd5_monster_data():
     """
         Parses all the json files in the monsters folder
@@ -150,6 +285,25 @@ def insert_dnd5_monster_data():
     """
     if get_number_of_monsters_in_db() == 0:
         monsters = get_all_monsters_from_json()
+        if len(monsters) > 0:
+            connection = sqlite3.connect('dnd5_db.db')
+            connection.executemany("INSERT INTO dnd5_monsters(name, size, alignment, monster_type, strength, "
+                                   "dexterity, constitution, intelligence, wisdom, charisma, walking_speed, "
+                                   "climbing_speed, burrowing_speed, flying_speed, swimming_speed, "
+                                   "save_throw_strength, save_throw_dexterity, save_throw_constitution, "
+                                   "save_throw_intelligence, save_throw_wisdom, save_throw_charisma, armor_class, "
+                                   "hit_points, hit_dice, passive_perception, xp, challenge, damage_immunities, "
+                                   "damage_resistance, condition_immunities, senses, languages_spoken, "
+                                   "languages_understood, actions, attacks, traits, cantrips, spells_lvl1, "
+                                   "spell_slots_lvl1, spells_lvl2, spell_slots_lvl2, spells_lvl3, spell_slots_lvl3, "
+                                   "spells_lvl4, spell_slots_lvl4, spells_lvl5, spell_slots_lvl5, spells_lvl6, "
+                                   "spell_slots_lvl6, spells_lvl7, spell_slots_lvl7, spells_lvl8, spell_slots_lvl8, "
+                                   "spells_lvl9, spell_slots_lvl9, description) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?"
+                                   ",?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                                   monsters)
+            connection.commit()
+            connection.close()
+        monsters = get_monsters_from_api()
         if len(monsters) > 0:
             connection = sqlite3.connect('dnd5_db.db')
             connection.executemany("INSERT INTO dnd5_monsters(name, size, alignment, monster_type, strength, "
