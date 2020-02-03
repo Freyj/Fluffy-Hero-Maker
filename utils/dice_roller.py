@@ -19,17 +19,19 @@ def list_roll_dice(die_type, dice_number):
 
 def roll_die(die_type):
     """
-    Roll a die of the die type
-    :param die_type: int
-    :return: a random int between 1 and die_type
+        Roll a die of the die type
+        :param die_type: int
+        :return: a random int between 1 and die_type
     """
     result = random.randint(1, die_type)
     return result
 
 
 def keep_n_highest_sum(die_type, dice_number):
-    """" Rolls a number of dice of a die type and returns the sum
-    of the n-1 highest dice"""
+    """"
+        Rolls a number of dice of a die type and returns the sum
+        of the n-1 highest dice
+    """
     full_roll = list_roll_dice(die_type, dice_number)
     full_roll.sort(reverse=True)
     full_roll.pop()
@@ -37,3 +39,16 @@ def keep_n_highest_sum(die_type, dice_number):
     for i in range(len(full_roll)):
         resulting_sum += full_roll[i]
     return resulting_sum
+
+
+def roll_d66():
+    """
+        Rolls two d6, one as unit and the other as the 'tens',
+        :return: a number between 11 and 66, 36 possible outcomes
+            (as there are no 7,8,9,0)
+    """
+    units = roll_die(6)
+    tens = roll_die(6)
+    res_str = str(tens) + str(units)
+    result = int(res_str)
+    return result
