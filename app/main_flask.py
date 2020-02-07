@@ -27,13 +27,13 @@ def random_monster():
 @app.route("/all-dnd-monsters")
 def get_all_monsters():
     monsterList = get_all_monsters_names_from_db()
-    return render_template('allMonstersList.html', list=monsterList)
+    return render_template('dndAllMonstersList.html', list=monsterList)
 
 
 @app.route("/all-dnd-spells")
 def get_all_spells():
     spellList = get_all_spell_names_from_db()
-    return render_template('allSpellsList.html', list=spellList)
+    return render_template('dndAllSpellsList.html', list=spellList)
 
 
 @app.route("/dnd-spell/<name>")
