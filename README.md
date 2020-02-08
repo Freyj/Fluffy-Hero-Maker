@@ -1,4 +1,5 @@
 # Fluffy Hero Maker
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/476ce10b73024bb8a63b98221a860825)](https://app.codacy.com/manual/Freyj/Fluffy-Hero-Maker?utm_source=github.com&utm_medium=referral&utm_content=Freyj/Fluffy-Hero-Maker&utm_campaign=Badge_Grade_Settings)
 [![Build Status](https://travis-ci.org/Freyj/Fluffy-Hero-Maker.svg?branch=master)](https://travis-ci.org/Freyj/Fluffy-Hero-Maker)
 ## What is this?
 This is an attempt at having a semi-automatic way of building characters or accessing some of my data for my tabletop rpg games.
