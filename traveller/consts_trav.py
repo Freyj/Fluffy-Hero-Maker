@@ -6,13 +6,11 @@ CASCADE_SKILLS = [
     "Vehicle",
     "Watercraft"
 ]
-
 AIRCRAFT_CASC = [
     "Prop-driven Fixed Wing",
     "Jet-driven Fixed Wing",
     "Helicopter"
 ]
-
 BLADE_CBT_CASC = [
     "Dagger",
     "Blade",
@@ -26,7 +24,6 @@ BLADE_CBT_CASC = [
     "Pike"
     "Cudgel"
 ]
-
 GUN_CBT_CASC = [
     "Body Pistol",
     "Auto Pistol",
@@ -39,7 +36,6 @@ GUN_CBT_CASC = [
     "Laser Carbine",
     "Laser Rifle"
 ]
-
 VEHICLE_CASC = [
     "Aircraft",
     "Grav Vehicle",
@@ -47,7 +43,6 @@ VEHICLE_CASC = [
     "Watercraft",
     "Wheeled Vehicle"
 ]
-
 WATERCRAFT_CASC = [
     "Large Watercraft",
     "Small Watercraft",
@@ -64,7 +59,6 @@ NAVY_RANKS = [
     "Captain",
     "Admiral"
 ]
-
 MARINES_RANKS = [
     "Lieutenant",
     "Captain",
@@ -73,7 +67,6 @@ MARINES_RANKS = [
     "Colonel",
     "Brigadier"
 ]
-
 ARMY_RANKS = [
     "Lieutenant",
     "Captain",
@@ -81,6 +74,13 @@ ARMY_RANKS = [
     "Lieutenant Colonel",
     "Colonel",
     "General"
+]
+MERCHANTS_RANKS = [
+    "4th Officer",
+    "3rd Officer",
+    "2nd Officer",
+    "1st Officer",
+    "Captain"
 ]
 
 # navy skills
@@ -92,7 +92,6 @@ NAVY_SKILLS_PERSONAL_DEV = [
     "1 Edu",
     "1 Soc"
 ]
-
 NAVY_SKILLS_SERVICE = [
     "Ship's Boat",
     "Vacc Suit",
@@ -101,7 +100,6 @@ NAVY_SKILLS_SERVICE = [
     "Blade Combat",
     "Gun Combat"
 ]
-
 NAVY_SKILLS_ADV = [
     "Vacc Suit",
     "Mechanical",
@@ -110,7 +108,6 @@ NAVY_SKILLS_ADV = [
     "Gunnery",
     "Jack-of-Trades"
 ]
-
 NAVY_SKILLS_ADV_EDU = [
     "Medical",
     "Navigation",
@@ -129,7 +126,6 @@ MARINES_SKILLS_PERSONAL_DEV = [
     "Brawling",
     "Blade Combat"
 ]
-
 MARINES_SKILLS_SERVICE = [
     "Vehicle",
     "Vacc Suit",
@@ -138,7 +134,6 @@ MARINES_SKILLS_SERVICE = [
     "Blade Combat",
     "Gun Combat"
 ]
-
 MARINES_SKILLS_ADV = [
     "Vehicle",
     "Mechanical",
@@ -147,7 +142,6 @@ MARINES_SKILLS_ADV = [
     "Blade Combat",
     "Gun Combat"
 ]
-
 MARINES_SKILLS_ADV_EDU = [
     "Medical",
     "Tactics",
@@ -166,7 +160,6 @@ ARMY_SKILLS_PERSONAL_DEV = [
     "1 Edu",
     "Brawling"
 ]
-
 ARMY_SKILLS_SERVICE = [
     "Vehicle",
     "Vehicle",
@@ -175,8 +168,7 @@ ARMY_SKILLS_SERVICE = [
     "Blade Combat",
     "Gun Combat"
 ]
-
-ARMY__SKILLS_ADV = [
+ARMY_SKILLS_ADV = [
     "Vehicle",
     "Mechanical",
     "Electronic",
@@ -184,7 +176,6 @@ ARMY__SKILLS_ADV = [
     "Blade Combat",
     "Gun Combat"
 ]
-
 ARMY_SKILLS_ADV_EDU = [
     "Medical",
     "Tactics",
@@ -194,6 +185,109 @@ ARMY_SKILLS_ADV_EDU = [
     "Admin"
 ]
 
+# merchants skills
+MERCHANTS_SKILLS_PERSONAL_DEV = [
+    "1 Str",
+    "1 Dex",
+    "1 End",
+    "1 Str",
+    "Blade Combat",
+    "Bribery"
+]
+MERCHANTS_SKILLS_SERVICE = [
+    "Vehicle",
+    "Vacc Suit",
+    "Jack-of-Trades",
+    "Steward",
+    "Electronics",
+    "Gun Combat"
+]
+MERCHANTS_SKILLS_ADV = [
+    "Streetwise",
+    "Mechanical",
+    "Electronic",
+    "Navigation",
+    "Gunnery",
+    "Medical"
+]
+MERCHANTS_SKILLS_ADV_EDU = [
+    "Medical",
+    "Navigation",
+    "Engineering",
+    "Computer",
+    "Pilot",
+    "Admin"
+]
+
+# scouts skills
+SCOUTS_SKILLS_PERSONAL_DEV = [
+    "1 Str",
+    "1 Dex",
+    "1 End",
+    "1 Int",
+    "1 Edu",
+    "Gun Combat"
+]
+SCOUTS_SKILLS_SERVICE = [
+    "Vehicle",
+    "Vacc Suit",
+    "Mechanical",
+    "Navigation",
+    "Electronics",
+    "Jack-of-Trades"
+]
+SCOUTS_SKILLS_ADV = [
+    "Vehicle",
+    "Mechanical",
+    "Electronic",
+    "Jack-of-Trades",
+    "Gunnery",
+    "Medical"
+]
+SCOUTS_SKILLS_ADV_EDU = [
+    "Medical",
+    "Navigation",
+    "Engineering",
+    "Computer",
+    "Pilot",
+    "Jack-of-Trades"
+]
+
+# others skills
+OTHERS_SKILLS_PERSONAL_DEV = [
+    "1 Str",
+    "1 Dex",
+    "1 End",
+    "Blade Combat",
+    "Brawling",
+    "-1 Social"
+]
+OTHERS_SKILLS_SERVICE = [
+    "Vehicle",
+    "Vacc Suit",
+    "Mechanical",
+    "Navigation",
+    "Electronics",
+    "Jack-of-Trades"
+]
+OTHERS_SKILLS_ADV = [
+    "Vehicle",
+    "Mechanical",
+    "Electronic",
+    "Jack-of-Trades",
+    "Gunnery",
+    "Medical"
+]
+OTHERS_SKILLS_ADV_EDU = [
+    "Medical",
+    "Navigation",
+    "Engineering",
+    "Computer",
+    "Pilot",
+    "Jack-of-Trades"
+]
+
+# cash
 NAVY_CASH = [
     1000,
     5000,
@@ -203,7 +297,6 @@ NAVY_CASH = [
     50000,
     50000
 ]
-
 MARINES_CASH = [
     2000,
     5000,
@@ -213,7 +306,6 @@ MARINES_CASH = [
     30000,
     40000
 ]
-
 ARMY_CASH = [
     2000,
     5000,
@@ -223,7 +315,35 @@ ARMY_CASH = [
     20000,
     30000
 ]
+MERCHANTS_CASH = [
+    1000,
+    5000,
+    10000,
+    20000,
+    20000,
+    40000,
+    40000
+]
+SCOUTS_CASH = [
+    20000,
+    20000,
+    30000,
+    30000,
+    50000,
+    50000,
+    50000
+]
+OTHERS_CASH = [
+    1000,
+    5000,
+    10000,
+    10000,
+    10000,
+    50000,
+    100000
+]
 
+# benefits
 NAVY_BENEFITS = [
     "Low Passage",
     "+1 Int",
@@ -233,7 +353,6 @@ NAVY_BENEFITS = [
     "High Passage",
     "+2 Soc"
 ]
-
 MARINES_BENEFITS = [
     "Low Passage",
     "+2 Int",
@@ -243,7 +362,6 @@ MARINES_BENEFITS = [
     "High Passage",
     "+2 Soc"
 ]
-
 ARMY_BENEFITS = [
     "Low Passage",
     "+1 Int",
@@ -252,4 +370,28 @@ ARMY_BENEFITS = [
     "High Passage",
     "Middle Passage",
     "+1 Soc"
+]
+MERCHANTS_BENEFITS = [
+    "Low Passage",
+    "+1 Int",
+    "+1 Edu",
+    "Gun",
+    "Blade",
+    "Low Passage",
+    "Free Trader"
+]
+SCOUTS_BENEFITS = [
+    "Low Passage",
+    "+2 Int",
+    "+2 Edu",
+    "Blade",
+    "Gun",
+    "Scout Ship"
+]
+OTHERS_BENEFITS = [
+    "Low Passage",
+    "+1 Int",
+    "+1 Edu",
+    "Gun",
+    "High Passage"
 ]

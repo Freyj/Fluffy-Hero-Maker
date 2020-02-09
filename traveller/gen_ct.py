@@ -1,7 +1,6 @@
 from utils.dice_roller import sum_roll_dice, roll_die
 from sty import fg
 from traveller.consts_trav import *
-
 import json
 
 history = []
@@ -11,7 +10,7 @@ alive = True
 def roll_stats():
     stats = []
     for i in range(6):
-        stats.append(sum_roll_dice(6,2))
+        stats.append(sum_roll_dice(6, 2))
     return stats
 
 
@@ -57,6 +56,12 @@ def roll_cash(ranks, service):
         table = MARINES_CASH
     elif service == "Army":
         table = ARMY_CASH
+    elif service == "Merchants":
+        table = MERCHANTS_CASH
+    elif service == "Scouts":
+        table = SCOUTS_CASH
+    elif service == "Others":
+        table = OTHERS_CASH
     if rank >= 5:
         dm += 1
     roll = roll_die(6) + dm - 1  # offset for array
@@ -73,7 +78,13 @@ def roll_benefit(ranks, service):
         table = MARINES_BENEFITS
     elif service == "Army":
         table = ARMY_BENEFITS
-    if ranks[service] > 4:
+    elif service == "Merchants":
+        table = MERCHANTS_BENEFITS
+    elif service == "Scouts":
+        table = SCOUTS_BENEFITS
+    elif service == "Others":
+        table = OTHERS_BENEFITS
+    if service in ["Navy", "Marines", "Army", "Merchants"] and ranks[service] > 4:
         dm += 1
     roll = roll_die(6) + dm - 1  # offset for array
     benefit = table[roll]
@@ -88,6 +99,8 @@ def get_rank(rank, service):
         table = MARINES_RANKS
     elif service == "Army":
         table = ARMY_RANKS
+    elif service == "Merchants":
+        table = MARINES_RANKS
     if rank == 0:
         return ""
     elif rank == 1:
@@ -131,187 +144,152 @@ def get_noble_rank(stats):
         return "Duke, Duchess"
 
 
-def enlist_navy(stats):
+def enlist(stats, service_name: str):
     dm = 0
-    if stats["Int"] > 7:
-        dm += 1
-    if stats["Edu"] > 8:
-        dm += 2
+    limit = 0
+    if service_name == "Army":
+        if stats["Dex"] > 5:
+            dm += 1
+        if stats["End"] > 4:
+            dm += 2
+        limit = 4
+    elif service_name == "Marines":
+        if stats["Int"] > 7:
+            dm += 1
+        if stats["Str"] > 7:
+            dm += 2
+        limit = 8
+    elif service_name == "Navy":
+        if stats["Int"] > 7:
+            dm += 1
+        if stats["Edu"] > 8:
+            dm += 2
+        limit = 7
+    elif service_name == "Merchants":
+        if stats["Str"] > 6:
+            dm += 1
+        if stats["Int"] > 5:
+            dm += 2
+        limit = 6
+    elif service_name == "Scouts":
+        if stats["Int"] > 5:
+            dm += 1
+        if stats["Str"] > 7:
+            dm += 2
+        limit = 6
+    elif service_name == "Others":
+        limit = 2
     enlist_roll = sum_roll_dice(6, 2) + dm
-    if enlist_roll > 7:
+    if enlist_roll > limit:
         return True
     else:
         return False
 
 
-def enlist_marines(stats):
+def survive(stats, service_name: str):
     dm = 0
-    if stats["Int"] > 7:
-        dm += 1
-    if stats["Str"] > 7:
-        dm += 2
-    enlist_roll = sum_roll_dice(6, 2) + dm
-    if enlist_roll > 8:
-        return True
-    else:
-        return False
-
-
-def enlist_army(stats):
-    dm = 0
-    if stats["Dex"] > 5:
-        dm += 1
-    if stats["End"] > 4:
-        dm += 2
-    enlist_roll = sum_roll_dice(6, 2) + dm
-    if enlist_roll > 4:
-        return True
-    else:
-        return False
-
-
-def survive_navy(stats):
-    dm = 0
-    if stats["Int"] > 6:
-        dm += 2
+    limit = 0
+    if service_name == "Army":
+        if stats["Edu"] > 6:
+            dm += 2
+        limit = 4
+    elif service_name == "Marines":
+        if stats["End"] > 7:
+            dm += 2
+        limit = 5
+    elif service_name == "Navy" or service_name == "Merchants":
+        if stats["Int"] > 6:
+            dm += 2
+        limit = 4
+    elif service_name == "Scouts":
+        if stats["End"] > 8:
+            dm += 2
+        limit = 6
+    elif service_name == "Others":
+        if stats["Int"] > 8:
+            dm += 2
+        limit = 4
     survival_roll = sum_roll_dice(6, 2) + dm
-    if survival_roll > 4:
+    if survival_roll > limit:
         return True
     else:
         return False
 
 
-def survive_marines(stats):
+def try_commission(stats, service_name: str):
     dm = 0
-    if stats["End"] > 7:
-        dm += 2
-    survival_roll = sum_roll_dice(6, 2) + dm
-    if survival_roll > 5:
-        return True
-    else:
-        return False
-
-
-def survive_army(stats):
-    dm = 0
-    if stats["Edu"] > 6:
-        dm += 2
-    survival_roll = sum_roll_dice(6, 2) + dm
-    if survival_roll > 4:
-        return True
-    else:
-        return False
-
-
-def try_navy_commission(stats):
-    dm = 0
-    if stats["Soc"] > 8:
-        dm = 1
+    limit = 0
+    if service_name == "Army":
+        if stats["End"] > 6:
+            dm = 1
+        limit = 4
+    elif service_name == "Marines":
+        if stats["Edu"] > 6:
+            dm = 1
+        limit = 8
+    elif service_name == "Navy":
+        if stats["Soc"] > 8:
+            dm = 1
+        limit = 9
+    elif service_name == "Merchants":
+        if stats["Int"] > 5:
+            dm = 1
+        limit = 3
     commission_roll = sum_roll_dice(6, 2) + dm
-    if commission_roll > 9:
+    if commission_roll > limit:
         return True
     else:
         return False
 
 
-def try_marines_commission(stats):
+def try_promotion(stats, service_name: str):
     dm = 0
-    if stats["Edu"] > 6:
-        dm = 1
-    commission_roll = sum_roll_dice(6, 2) + dm
-    if commission_roll > 8:
-        return True
-    else:
-        return False
-
-
-def try_army_commission(stats):
-    dm = 0
-    if stats["End"] > 6:
-        dm = 1
-    commission_roll = sum_roll_dice(6, 2) + dm
-    if commission_roll > 4:
-        return True
-    else:
-        return False
-
-
-def try_navy_promotion(stats):
-    dm = 0
-    if stats["Edu"] > 7:
-        dm += 1
+    limit = 0
+    if service_name == "Army":
+        limit = 5
+        if stats["Edu"] > 5:
+            dm += 1
+    elif service_name == "Marines":
+        limit = 8
+        if stats["Soc"] > 7:
+            dm += 1
+    elif service_name == "Navy":
+        limit = 7
+        if stats["Edu"] > 7:
+            dm += 1
+    elif service_name == "Merchants":
+        limit = 9
+        if stats["Int"] > 8:
+            dm += 1
     promotion_roll = sum_roll_dice(6, 2) + dm
-    if promotion_roll > 7:
+    if promotion_roll > limit:
         return True
     else:
         return False
 
 
-def try_marines_promotion(stats):
-    dm = 0
-    if stats["Soc"] > 7:
-        dm += 1
-    promotion_roll = sum_roll_dice(6, 2) + dm
-    if promotion_roll > 8:
-        return True
-    else:
-        return False
-
-
-def try_army_promotion(stats):
-    dm = 0
-    if stats["Edu"] > 5:
-        dm += 1
-    promotion_roll = sum_roll_dice(6, 2) + dm
-    if promotion_roll > 5:
-        return True
-    else:
-        return False
-
-
-def navy_reenlistment():
+def service_reenlistment(service_name: str):
     """
         Determines if character can, has to or cannot reenlist
         :return: 1 : has to reenlist (nat 12)
                  0 : can reenlist
                 -1 : cannot reenlist
     """
+    limit = 0
+    if service_name == "Army":
+        limit = 6
+    elif service_name == "Marines" or service_name == "Navy":
+        limit = 5
+    elif service_name == "Merchants":
+        limit = 3
+    elif service_name == "Scouts":
+        limit = 2
+    elif service_name == "Others":
+        limit = 4
     reenlist_roll = sum_roll_dice(6, 2)
     if reenlist_roll == 12:
         return 1
-    elif reenlist_roll > 5:
-        return 0
-    else:
-        return -1
-
-
-def marines_reenlistment():
-    """
-        Determines if character can, has to or cannot reenlist
-        :return: 1 : has to reenlist (nat 12)
-                 0 : can reenlist
-                -1 : cannot reenlist
-    """
-    reenlist_roll = sum_roll_dice(6, 2)
-    if reenlist_roll == 12:
-        return 1
-    elif reenlist_roll > 5:
-        return 0
-    else:
-        return -1
-
-
-def army_reenlistment():
-    """
-        Determines if character can, has to or cannot reenlist
-        :return: 1 : has to reenlist (nat 12)
-                 0 : can reenlist
-                -1 : cannot reenlist
-    """
-    reenlist_roll = sum_roll_dice(6, 2)
-    if reenlist_roll == 12:
-        return 1
-    elif reenlist_roll > 6:
+    elif reenlist_roll > limit:
         return 0
     else:
         return -1
@@ -334,58 +312,60 @@ def calc_muster_out_benefits(ranks, terms, service):
     cash_max = 3
     while total_ben > 0:
         if cash_max > 0:
-            x = input("Do you want cash or a benefit? You have {c} cash rolls max and {t} total rolls left. c for cash, b for benefit\n".format(
+            x = input("Do you want cash or a benefit? You have {t} total rolls left (max {c} cash rolls). c for cash, "
+                      "b for benefit\n".format(
                 c=cash_max,
                 t=total_ben
             ))
-            if x is "c":
+            if x == "c":
                 cash_max -= 1
                 total_ben -= 1
                 cash += roll_cash(ranks, service)
                 print(cash)
-            elif x is "b":
+            elif x == "b":
                 total_ben -= 1
-                benefits.append(roll_benefit(ranks, service))
-
+                benefit = roll_benefit(ranks, service)
+                benefits.append(benefit)
+                print(benefit)
         else:
             total_ben -= 1
             benefits.append(roll_benefit(ranks, service))
-
     return cash, benefits
+
 
 def display_navy_skill_tables(education):
     print("Navy Personal Development Table | Navy Service Skills Table   | Navy Advanced Skills Table")
     print("--------------------------------|-----------------------------|---------------------------")
     print("1 {nav}                         | 1 {ser}{spa}| 1 {adv}".format(
-                                                                nav=NAVY_SKILLS_PERSONAL_DEV[0],
-                                                                ser=NAVY_SKILLS_SERVICE[0],
-                                                                spa="               ",
-                                                                adv=NAVY_SKILLS_ADV[0]))
+        nav=NAVY_SKILLS_PERSONAL_DEV[0],
+        ser=NAVY_SKILLS_SERVICE[0],
+        spa="               ",
+        adv=NAVY_SKILLS_ADV[0]))
     print("2 {nav}                         | 2 {ser}{spa}| 1 {adv}".format(
-                                                                nav=NAVY_SKILLS_PERSONAL_DEV[1],
-                                                                ser=NAVY_SKILLS_SERVICE[1],
-                                                                spa="                 ",
-                                                                adv=NAVY_SKILLS_ADV[1]))
+        nav=NAVY_SKILLS_PERSONAL_DEV[1],
+        ser=NAVY_SKILLS_SERVICE[1],
+        spa="                 ",
+        adv=NAVY_SKILLS_ADV[1]))
     print("3 {nav}                         | 3 {ser}{spa}| 1 {adv}".format(
-                                                                nav=NAVY_SKILLS_PERSONAL_DEV[2],
-                                                                ser=NAVY_SKILLS_SERVICE[2],
-                                                                spa="          ",
-                                                                adv=NAVY_SKILLS_ADV[2]))
+        nav=NAVY_SKILLS_PERSONAL_DEV[2],
+        ser=NAVY_SKILLS_SERVICE[2],
+        spa="          ",
+        adv=NAVY_SKILLS_ADV[2]))
     print("4 {nav}                         | 4 {ser}{spa}| 1 {adv}".format(
-                                                                nav=NAVY_SKILLS_PERSONAL_DEV[3],
-                                                                ser=NAVY_SKILLS_SERVICE[3],
-                                                                spa="                   ",
-                                                                adv=NAVY_SKILLS_ADV[3]))
+        nav=NAVY_SKILLS_PERSONAL_DEV[3],
+        ser=NAVY_SKILLS_SERVICE[3],
+        spa="                   ",
+        adv=NAVY_SKILLS_ADV[3]))
     print("5 {nav}                         | 5 {ser}{spa}| 1 {adv}".format(
-                                                                nav=NAVY_SKILLS_PERSONAL_DEV[4],
-                                                                ser=NAVY_SKILLS_SERVICE[4],
-                                                                spa="              ",
-                                                                adv=NAVY_SKILLS_ADV[4]))
+        nav=NAVY_SKILLS_PERSONAL_DEV[4],
+        ser=NAVY_SKILLS_SERVICE[4],
+        spa="              ",
+        adv=NAVY_SKILLS_ADV[4]))
     print("6 {nav}                         | 6 {ser}{spa}| 1 {adv}".format(
-                                                                nav=NAVY_SKILLS_PERSONAL_DEV[5],
-                                                                ser=NAVY_SKILLS_SERVICE[5],
-                                                                spa="                ",
-                                                                adv=NAVY_SKILLS_ADV[5]))
+        nav=NAVY_SKILLS_PERSONAL_DEV[5],
+        ser=NAVY_SKILLS_SERVICE[5],
+        spa="                ",
+        adv=NAVY_SKILLS_ADV[5]))
 
     if education > 7:
         print("Navy Advanced Education Skills Table")
@@ -402,35 +382,35 @@ def display_marines_skill_tables(education):
     print("Marines Personal Development Table | Marines Service Skills Table   | Marines Advanced Skills Table")
     print("-----------------------------------|--------------------------------|------------------------------")
     print("1 {nav}                            | 1 {ser}{spa}| 1 {adv}".format(
-                                                                nav=MARINES_SKILLS_PERSONAL_DEV[0],
-                                                                ser=MARINES_SKILLS_SERVICE[0],
-                                                                spa="                      ",
-                                                                adv=MARINES_SKILLS_ADV[0]))
+        nav=MARINES_SKILLS_PERSONAL_DEV[0],
+        ser=MARINES_SKILLS_SERVICE[0],
+        spa="                      ",
+        adv=MARINES_SKILLS_ADV[0]))
     print("2 {nav}                            | 2 {ser}{spa}| 1 {adv}".format(
-                                                                nav=MARINES_SKILLS_PERSONAL_DEV[1],
-                                                                ser=MARINES_SKILLS_SERVICE[1],
-                                                                spa="                    ",
-                                                                adv=MARINES_SKILLS_ADV[1]))
+        nav=MARINES_SKILLS_PERSONAL_DEV[1],
+        ser=MARINES_SKILLS_SERVICE[1],
+        spa="                    ",
+        adv=MARINES_SKILLS_ADV[1]))
     print("3 {nav}                            | 3 {ser}{spa}| 1 {adv}".format(
-                                                                nav=MARINES_SKILLS_PERSONAL_DEV[2],
-                                                                ser=MARINES_SKILLS_SERVICE[2],
-                                                                spa="                 ",
-                                                                adv=MARINES_SKILLS_ADV[2]))
+        nav=MARINES_SKILLS_PERSONAL_DEV[2],
+        ser=MARINES_SKILLS_SERVICE[2],
+        spa="                 ",
+        adv=MARINES_SKILLS_ADV[2]))
     print("4 {nav}                         | 4 {ser}{spa}| 1 {adv}".format(
-                                                                nav=MARINES_SKILLS_PERSONAL_DEV[3],
-                                                                ser=MARINES_SKILLS_SERVICE[3],
-                                                                spa="                   ",
-                                                                adv=MARINES_SKILLS_ADV[3]))
+        nav=MARINES_SKILLS_PERSONAL_DEV[3],
+        ser=MARINES_SKILLS_SERVICE[3],
+        spa="                   ",
+        adv=MARINES_SKILLS_ADV[3]))
     print("5 {nav}                         | 5 {ser}{spa}| 1 {adv}".format(
-                                                                nav=MARINES_SKILLS_PERSONAL_DEV[4],
-                                                                ser=MARINES_SKILLS_SERVICE[4],
-                                                                spa="                 ",
-                                                                adv=MARINES_SKILLS_ADV[4]))
+        nav=MARINES_SKILLS_PERSONAL_DEV[4],
+        ser=MARINES_SKILLS_SERVICE[4],
+        spa="                 ",
+        adv=MARINES_SKILLS_ADV[4]))
     print("6 {nav}                     | 6 {ser}{spa}| 1 {adv}".format(
-                                                                nav=MARINES_SKILLS_PERSONAL_DEV[5],
-                                                                ser=MARINES_SKILLS_SERVICE[5],
-                                                                spa="                   ",
-                                                                adv=MARINES_SKILLS_ADV[5]))
+        nav=MARINES_SKILLS_PERSONAL_DEV[5],
+        ser=MARINES_SKILLS_SERVICE[5],
+        spa="                   ",
+        adv=MARINES_SKILLS_ADV[5]))
 
     if education > 7:
         print("Marines Advanced Education Skills Table")
@@ -441,6 +421,186 @@ def display_marines_skill_tables(education):
         print("4 {nav}".format(nav=MARINES_SKILLS_ADV_EDU[3]))
         print("5 {nav}".format(nav=MARINES_SKILLS_ADV_EDU[4]))
         print("6 {nav}".format(nav=MARINES_SKILLS_ADV_EDU[5]))
+
+
+def display_army_skill_tables(education):
+    print("Army Personal Development Table | Army Service Skills Table   | Army Advanced Skills Table")
+    print("--------------------------------|-----------------------------|---------------------------")
+    print("1 {nav}                         | 1 {ser}{spa}| 1 {adv}".format(
+        nav=ARMY_SKILLS_PERSONAL_DEV[0],
+        ser=ARMY_SKILLS_SERVICE[0],
+        spa="                   ",
+        adv=ARMY_SKILLS_ADV[0]))
+    print("2 {nav}                         | 2 {ser}{spa}| 1 {adv}".format(
+        nav=ARMY_SKILLS_PERSONAL_DEV[1],
+        ser=ARMY_SKILLS_SERVICE[1],
+        spa="                   ",
+        adv=ARMY_SKILLS_ADV[1]))
+    print("3 {nav}                         | 3 {ser}{spa}| 1 {adv}".format(
+        nav=ARMY_SKILLS_PERSONAL_DEV[2],
+        ser=ARMY_SKILLS_SERVICE[2],
+        spa="                ",
+        adv=ARMY_SKILLS_ADV[2]))
+    print("4 {nav}                      | 4 {ser}{spa}| 1 {adv}".format(
+        nav=ARMY_SKILLS_PERSONAL_DEV[3],
+        ser=ARMY_SKILLS_SERVICE[3],
+        spa="          ",
+        adv=ARMY_SKILLS_ADV[3]))
+    print("5 {nav}                         | 5 {ser}{spa}| 1 {adv}".format(
+        nav=ARMY_SKILLS_PERSONAL_DEV[4],
+        ser=ARMY_SKILLS_SERVICE[4],
+        spa="              ",
+        adv=ARMY_SKILLS_ADV[4]))
+    print("6 {nav}                      | 6 {ser}{spa}| 1 {adv}".format(
+        nav=ARMY_SKILLS_PERSONAL_DEV[5],
+        ser=ARMY_SKILLS_SERVICE[5],
+        spa="                ",
+        adv=ARMY_SKILLS_ADV[5]))
+
+    if education > 7:
+        print("Army Advanced Education Skills Table")
+        print("------------------------------------")
+        print("1 {nav}".format(nav=ARMY_SKILLS_ADV_EDU[0]))
+        print("2 {nav}".format(nav=ARMY_SKILLS_ADV_EDU[1]))
+        print("3 {nav}".format(nav=ARMY_SKILLS_ADV_EDU[2]))
+        print("4 {nav}".format(nav=ARMY_SKILLS_ADV_EDU[3]))
+        print("5 {nav}".format(nav=ARMY_SKILLS_ADV_EDU[4]))
+        print("6 {nav}".format(nav=ARMY_SKILLS_ADV_EDU[5]))
+
+
+def display_merchants_skill_tables(education):
+    print("Merchants Personal Development Table | Merchants Service Skills Table   | Merchants Advanced Skills Table")
+    print("-------------------------------------|----------------------------------|--------------------------------")
+    print("1 {nav}                              | 1 {ser}{spa}| 1 {adv}".format(
+        nav=MERCHANTS_SKILLS_PERSONAL_DEV[0],
+        ser=MERCHANTS_SKILLS_SERVICE[0],
+        spa="                        ",
+        adv=MERCHANTS_SKILLS_ADV[0]))
+    print("2 {nav}                              | 2 {ser}{spa}| 1 {adv}".format(
+        nav=MERCHANTS_SKILLS_PERSONAL_DEV[1],
+        ser=MERCHANTS_SKILLS_SERVICE[1],
+        spa="                      ",
+        adv=MERCHANTS_SKILLS_ADV[1]))
+    print("3 {nav}                              | 3 {ser}{spa}| 1 {adv}".format(
+        nav=MERCHANTS_SKILLS_PERSONAL_DEV[2],
+        ser=MERCHANTS_SKILLS_SERVICE[2],
+        spa="                 ",
+        adv=MERCHANTS_SKILLS_ADV[2]))
+    print("4 {nav}                              | 4 {ser}{spa}| 1 {adv}".format(
+        nav=MERCHANTS_SKILLS_PERSONAL_DEV[3],
+        ser=MERCHANTS_SKILLS_SERVICE[3],
+        spa="                        ",
+        adv=MERCHANTS_SKILLS_ADV[3]))
+    print("5 {nav}                       | 5 {ser}{spa}| 1 {adv}".format(
+        nav=MERCHANTS_SKILLS_PERSONAL_DEV[4],
+        ser=MERCHANTS_SKILLS_SERVICE[4],
+        spa="                    ",
+        adv=MERCHANTS_SKILLS_ADV[4]))
+    print("6 {nav}                            | 6 {ser}{spa}| 1 {adv}".format(
+        nav=MERCHANTS_SKILLS_PERSONAL_DEV[5],
+        ser=MERCHANTS_SKILLS_SERVICE[5],
+        spa="                     ",
+        adv=MERCHANTS_SKILLS_ADV[5]))
+
+    if education > 7:
+        print("Merchants Advanced Education Skills Table")
+        print("-----------------------------------------")
+        print("1 {nav}".format(nav=MERCHANTS_SKILLS_ADV_EDU[0]))
+        print("2 {nav}".format(nav=MERCHANTS_SKILLS_ADV_EDU[1]))
+        print("3 {nav}".format(nav=MERCHANTS_SKILLS_ADV_EDU[2]))
+        print("4 {nav}".format(nav=MERCHANTS_SKILLS_ADV_EDU[3]))
+        print("5 {nav}".format(nav=MERCHANTS_SKILLS_ADV_EDU[4]))
+        print("6 {nav}".format(nav=MERCHANTS_SKILLS_ADV_EDU[5]))
+
+
+def display_scouts_skill_tables(education):
+    print("Scouts Personal Development Table | Scouts Service Skills Table   | Scouts Advanced Skills Table")
+    print("----------------------------------|-------------------------------|-----------------------------")
+    print("1 {nav}                           | 1 {ser}{spa}| 1 {adv}".format(
+        nav=SCOUTS_SKILLS_PERSONAL_DEV[0],
+        ser=SCOUTS_SKILLS_SERVICE[0],
+        spa="                     ",
+        adv=SCOUTS_SKILLS_ADV[0]))
+    print("2 {nav}                           | 2 {ser}{spa}| 1 {adv}".format(
+        nav=SCOUTS_SKILLS_PERSONAL_DEV[1],
+        ser=SCOUTS_SKILLS_SERVICE[1],
+        spa="                   ",
+        adv=SCOUTS_SKILLS_ADV[1]))
+    print("3 {nav}                           | 3 {ser}{spa}| 1 {adv}".format(
+        nav=SCOUTS_SKILLS_PERSONAL_DEV[2],
+        ser=SCOUTS_SKILLS_SERVICE[2],
+        spa="                  ",
+        adv=SCOUTS_SKILLS_ADV[2]))
+    print("4 {nav}                           | 4 {ser}{spa}| 1 {adv}".format(
+        nav=SCOUTS_SKILLS_PERSONAL_DEV[3],
+        ser=SCOUTS_SKILLS_SERVICE[3],
+        spa="                  ",
+        adv=SCOUTS_SKILLS_ADV[3]))
+    print("5 {nav}                           | 5 {ser}{spa}| 1 {adv}".format(
+        nav=SCOUTS_SKILLS_PERSONAL_DEV[4],
+        ser=SCOUTS_SKILLS_SERVICE[4],
+        spa="                 ",
+        adv=SCOUTS_SKILLS_ADV[4]))
+    print("6 {nav}                      | 6 {ser}{spa}| 1 {adv}".format(
+        nav=SCOUTS_SKILLS_PERSONAL_DEV[5],
+        ser=SCOUTS_SKILLS_SERVICE[5],
+        spa="              ",
+        adv=SCOUTS_SKILLS_ADV[5]))
+
+    if education > 7:
+        print("Scouts Advanced Education Skills Table")
+        print("--------------------------------------")
+        print("1 {nav}".format(nav=SCOUTS_SKILLS_ADV_EDU[0]))
+        print("2 {nav}".format(nav=SCOUTS_SKILLS_ADV_EDU[1]))
+        print("3 {nav}".format(nav=SCOUTS_SKILLS_ADV_EDU[2]))
+        print("4 {nav}".format(nav=SCOUTS_SKILLS_ADV_EDU[3]))
+        print("5 {nav}".format(nav=SCOUTS_SKILLS_ADV_EDU[4]))
+        print("6 {nav}".format(nav=SCOUTS_SKILLS_ADV_EDU[5]))
+
+
+def display_others_skill_tables(education):
+    print("Others Personal Development Table | Others Service Skills Table   | Others Advanced Skills Table")
+    print("----------------------------------|-------------------------------|-----------------------------")
+    print("1 {nav}                           | 1 {ser}{spa}| 1 {adv}".format(
+        nav=OTHERS_SKILLS_PERSONAL_DEV[0],
+        ser=OTHERS_SKILLS_SERVICE[0],
+        spa="                     ",
+        adv=OTHERS_SKILLS_ADV[0]))
+    print("2 {nav}                           | 2 {ser}{spa}| 1 {adv}".format(
+        nav=OTHERS_SKILLS_PERSONAL_DEV[1],
+        ser=OTHERS_SKILLS_SERVICE[1],
+        spa="                   ",
+        adv=OTHERS_SKILLS_ADV[1]))
+    print("3 {nav}                           | 3 {ser}{spa}| 1 {adv}".format(
+        nav=OTHERS_SKILLS_PERSONAL_DEV[2],
+        ser=OTHERS_SKILLS_SERVICE[2],
+        spa="                  ",
+        adv=OTHERS_SKILLS_ADV[2]))
+    print("4 {nav}                    | 4 {ser}{spa}| 1 {adv}".format(
+        nav=OTHERS_SKILLS_PERSONAL_DEV[3],
+        ser=OTHERS_SKILLS_SERVICE[3],
+        spa="                  ",
+        adv=OTHERS_SKILLS_ADV[3]))
+    print("5 {nav}                        | 5 {ser}{spa}| 1 {adv}".format(
+        nav=OTHERS_SKILLS_PERSONAL_DEV[4],
+        ser=OTHERS_SKILLS_SERVICE[4],
+        spa="                 ",
+        adv=OTHERS_SKILLS_ADV[4]))
+    print("6 {nav}                       | 6 {ser}{spa}| 1 {adv}".format(
+        nav=OTHERS_SKILLS_PERSONAL_DEV[5],
+        ser=OTHERS_SKILLS_SERVICE[5],
+        spa="              ",
+        adv=OTHERS_SKILLS_ADV[5]))
+
+    if education > 7:
+        print("Others Advanced Education Skills Table")
+        print("--------------------------------------")
+        print("1 {nav}".format(nav=OTHERS_SKILLS_ADV_EDU[0]))
+        print("2 {nav}".format(nav=OTHERS_SKILLS_ADV_EDU[1]))
+        print("3 {nav}".format(nav=OTHERS_SKILLS_ADV_EDU[2]))
+        print("4 {nav}".format(nav=OTHERS_SKILLS_ADV_EDU[3]))
+        print("5 {nav}".format(nav=OTHERS_SKILLS_ADV_EDU[4]))
+        print("6 {nav}".format(nav=OTHERS_SKILLS_ADV_EDU[5]))
 
 
 def roll_skill(education, service_name):
@@ -460,9 +620,24 @@ def roll_skill(education, service_name):
         adv_edu_tab = MARINES_SKILLS_ADV_EDU
     elif service_name == "Army":
         pers_tab = ARMY_SKILLS_PERSONAL_DEV
-        adv_skill_tab = ARMY__SKILLS_ADV
+        adv_skill_tab = ARMY_SKILLS_ADV
         serv_skill_tab = ARMY_SKILLS_SERVICE
         adv_edu_tab = ARMY_SKILLS_ADV_EDU
+    elif service_name == "Merchants":
+        pers_tab = MERCHANTS_SKILLS_PERSONAL_DEV
+        adv_skill_tab = MERCHANTS_SKILLS_ADV
+        serv_skill_tab = MERCHANTS_SKILLS_SERVICE
+        adv_edu_tab = MERCHANTS_SKILLS_ADV_EDU
+    elif service_name == "Scouts":
+        pers_tab = SCOUTS_SKILLS_PERSONAL_DEV
+        adv_skill_tab = SCOUTS_SKILLS_ADV
+        serv_skill_tab = SCOUTS_SKILLS_SERVICE
+        adv_edu_tab = SCOUTS_SKILLS_ADV_EDU
+    elif service_name == "Others":
+        pers_tab = OTHERS_SKILLS_PERSONAL_DEV
+        adv_skill_tab = OTHERS_SKILLS_ADV
+        serv_skill_tab = OTHERS_SKILLS_SERVICE
+        adv_edu_tab = OTHERS_SKILLS_ADV_EDU
     if education > 7:
         more = ", 4 for Advanced Education\n"
     else:
@@ -489,6 +664,10 @@ def add_skills(stats, skills, skill_rolls, service_name):
             split_skills = skill.split()
             stats[split_skills[1]] += 1
             history.append("Improved {skill} by 1".format(skill=split_skills[1]))
+        elif skill.startswith("-"):
+            split_skills = skill[1:].split()
+            stats[split_skills[1]] -= 1
+            history.append("Decreased {skill} by 1".format(skill=split_skills[1]))
         else:
             if skill in CASCADE_SKILLS:
                 if skill == "Blade Combat":
@@ -538,14 +717,14 @@ def add_skills(stats, skills, skill_rolls, service_name):
 
 
 def calc_navy_term(stats, ranks, commissions, age, skills, draft, term):
-    survived = survive_navy(stats)
+    survived = survive(stats, "Navy")
     if survived:
         history.append("Survived the term.")
         age += 4
         skill_rolls = 0
         if ranks["Navy"] == 0:
             if not draft or term > 0:
-                comm = try_navy_commission(stats)
+                comm = try_commission(stats, "Navy")
                 if comm:
                     history.append("Received a commission.")
                     ranks["Navy"] = 1
@@ -554,8 +733,8 @@ def calc_navy_term(stats, ranks, commissions, age, skills, draft, term):
                     skill_rolls += 1
                 else:
                     history.append("Failed to get a commission.")
-        if commissions["Navy"]:
-            promoted = try_navy_promotion(stats)
+        if commissions["Navy"] and ranks["Navy"] < 7:
+            promoted = try_promotion(stats, "Navy")
             if promoted:
                 history.append("Received a promotion.")
                 ranks["Navy"] += 1
@@ -579,7 +758,7 @@ def calc_navy_term(stats, ranks, commissions, age, skills, draft, term):
 
 
 def calc_marines_term(stats, ranks, commissions, age, skills, draft, term):
-    survived = survive_marines(stats)
+    survived = survive(stats, "Marines")
     if survived:
         history.append("Survived the term.")
         age += 4
@@ -587,7 +766,7 @@ def calc_marines_term(stats, ranks, commissions, age, skills, draft, term):
         # when drafted cannot get commission at first term
         if ranks["Marines"] == 0:
             if not draft or term > 0:
-                comm = try_marines_commission(stats)
+                comm = try_commission(stats, "Marines")
                 if comm:
                     history.append("Received a commission.")
                     ranks["Marines"] = 1
@@ -596,8 +775,8 @@ def calc_marines_term(stats, ranks, commissions, age, skills, draft, term):
                     skill_rolls += 1
                 else:
                     history.append("Failed to get a commission.")
-        if commissions["Marines"]:
-            promoted = try_marines_promotion(stats)
+        if commissions["Marines"] and ranks["Marines"] < 7:
+            promoted = try_promotion(stats, "Marines")
             if promoted:
                 history.append("Received a promotion.")
                 ranks["Marines"] += 1
@@ -621,14 +800,14 @@ def calc_marines_term(stats, ranks, commissions, age, skills, draft, term):
 
 
 def calc_army_term(stats, ranks, commissions, age, skills, draft, term):
-    survived = survive_army(stats)
+    survived = survive(stats, "Army")
     if survived:
         history.append("Survived the term.")
         age += 4
         skill_rolls = 0
         if ranks["Army"] == 0:
             if not draft or term > 0:
-                comm = try_army_commission(stats)
+                comm = try_commission(stats, "Army")
                 if comm:
                     history.append("Received a commission.")
                     ranks["Army"] = 1
@@ -637,8 +816,8 @@ def calc_army_term(stats, ranks, commissions, age, skills, draft, term):
                     skill_rolls += 1
                 else:
                     history.append("Failed to get a commission.")
-        if commissions["Army"]:
-            promoted = try_army_promotion(stats)
+        if commissions["Army"] and ranks["Army"] < 7:
+            promoted = try_promotion(stats, "Army")
             if promoted:
                 history.append("Received a promotion.")
                 ranks["Army"] += 1
@@ -651,10 +830,81 @@ def calc_army_term(stats, ranks, commissions, age, skills, draft, term):
         else:
             skill_rolls += 1
 
-        display_navy_skill_tables(stats["Edu"])
+        display_army_skill_tables(stats["Edu"])
         add_skills(stats, skills, skill_rolls, "Army")
         return True
 
+    else:
+        print("BOOM, YA DEAD")
+        history.append("Died during the term.")
+        return False
+
+
+def calc_merchants_term(stats, ranks, commissions, age, skills, draft, term):
+    survived = survive(stats, "Merchants")
+    if survived:
+        history.append("Survived the term.")
+        age += 4
+        skill_rolls = 0
+        if ranks["Merchants"] == 0:
+            if not draft or term > 0:
+                comm = try_commission(stats, "Merchants")
+                if comm:
+                    history.append("Received a commission.")
+                    ranks["Merchants"] = 1
+                    history.append("\tBecame a {rank}".format(rank=get_rank(ranks["Merchants"], "Merchants")))
+                    commissions["Merchants"] = True
+                    skill_rolls += 1
+                else:
+                    history.append("Failed to get a commission.")
+        if commissions["Merchants"] and ranks["Merchants"] < 6:
+            promoted = try_promotion(stats, "Merchants")
+            if promoted:
+                history.append("Received a promotion.")
+                ranks["Merchants"] += 1
+                history.append("\tBecame a {rank}".format(rank=get_rank(ranks["Merchants"], "Merchants")))
+                skill_rolls += 1
+            else:
+                history.append("Failed to get promoted.")
+        if term == 0:
+            skill_rolls += 2
+        else:
+            skill_rolls += 1
+
+        display_merchants_skill_tables(stats["Edu"])
+        add_skills(stats, skills, skill_rolls, "Merchants")
+        return True
+
+    else:
+        print("BOOM, YA DEAD")
+        history.append("Died during the term.")
+        return False
+
+
+def calc_scouts_term(stats, age, skills):
+    survived = survive(stats, "Scouts")
+    if survived:
+        history.append("Survived the term.")
+        age += 4
+        skill_rolls = 2
+        display_scouts_skill_tables(stats["Edu"])
+        add_skills(stats, skills, skill_rolls, "Scouts")
+        return True
+    else:
+        print("BOOM, YA DEAD")
+        history.append("Died during the term.")
+        return False
+
+
+def calc_others_term(stats, age, skills):
+    survived = survive(stats, "Others")
+    if survived:
+        history.append("Survived the term.")
+        age += 4
+        skill_rolls = 2
+        display_others_skill_tables(stats["Edu"])
+        add_skills(stats, skills, skill_rolls, "Others")
+        return True
     else:
         print("BOOM, YA DEAD")
         history.append("Died during the term.")
@@ -697,7 +947,7 @@ def marines_career(term, stats, ranks, commissions, age, skills, draft):
             if age >= 34:
                 # ageing
                 pass
-            can_reenlist = marines_reenlistment()
+            can_reenlist = service_reenlistment("Marines")
             if can_reenlist == 1:
                 history.append("Forced to re-enlist in the Marines.")
                 pass
@@ -728,7 +978,7 @@ def navy_career(term, stats, ranks, commissions, age, skills, draft):
             if age >= 34:
                 # ageing
                 pass
-            can_reenlist = navy_reenlistment()
+            can_reenlist = service_reenlistment("Navy")
             if can_reenlist == 1:
                 history.append("Forced to re-enlist in the Navy.")
                 pass
@@ -759,7 +1009,7 @@ def army_career(term, stats, ranks, commissions, age, skills, draft):
             if age >= 34:
                 # ageing
                 pass
-            can_reenlist = army_reenlistment()
+            can_reenlist = service_reenlistment("Army")
             if can_reenlist == 1:
                 history.append("Forced to re-enlist in the Army.")
                 pass
@@ -776,7 +1026,100 @@ def army_career(term, stats, ranks, commissions, age, skills, draft):
     return term, still_alive
 
 
-def char_details(stats, commissions, skills, ranks, age, cash, benefits):
+def merchant_career(term, stats, ranks, commissions, age, skills, draft):
+    if not draft:
+        history.append("Successfully enlisted in the Merchants.")
+    else:
+        history.append("Drafted in the Merchants.")
+    still_alive = True
+    out_of_merchants = False
+    while still_alive and not out_of_merchants:
+        still_alive = calc_merchants_term(stats, ranks, commissions, age, skills, draft, term)
+        term += 1
+        if still_alive:
+            if age >= 34:
+                # ageing
+                pass
+            can_reenlist = service_reenlistment("Merchants")
+            if can_reenlist == 1:
+                history.append("Forced to re-enlist in the Merchants.")
+                pass
+            elif can_reenlist == 0:
+                choice = input("Do you want to re-enlist? X to re-enlist\n")
+                if choice == "X":
+                    history.append("Chose to re-enlist in the Merchants.")
+                else:
+                    history.append("Chose to leave the Merchants.")
+                    out_of_merchants = True
+            elif can_reenlist == -1:
+                history.append("Forced to leave the Merchants.")
+                out_of_merchants = True
+    return term, still_alive
+
+
+def scout_career(term, stats, age, skills, draft):
+    if not draft:
+        history.append("Successfully enlisted in the Scouts.")
+    else:
+        history.append("Drafted in the Scouts.")
+    still_alive = True
+    out_of_scouts = False
+    while still_alive and not out_of_scouts:
+        still_alive = calc_scouts_term(stats, age, skills)
+        term += 1
+        if still_alive:
+            if age >= 34:
+                # ageing
+                pass
+            can_reenlist = service_reenlistment("Scouts")
+            if can_reenlist == 1:
+                history.append("Forced to re-enlist in the Scouts.")
+                pass
+            elif can_reenlist == 0:
+                choice = input("Do you want to re-enlist? X to re-enlist\n")
+                if choice == "X":
+                    history.append("Chose to re-enlist in the Scouts.")
+                else:
+                    history.append("Chose to leave the Scouts.")
+                    out_of_scouts = True
+            elif can_reenlist == -1:
+                history.append("Forced to leave the Scouts.")
+                out_of_scouts = True
+    return term, still_alive
+
+
+def other_career(term, stats, age, skills, draft):
+    if not draft:
+        history.append("Successfully enlisted in Others.")
+    else:
+        history.append("Drafted in the Others.")
+    still_alive = True
+    out_of_others = False
+    while still_alive and not out_of_others:
+        still_alive = calc_others_term(stats, age, skills)
+        term += 1
+        if still_alive:
+            if age >= 34:
+                # ageing
+                pass
+            can_reenlist = service_reenlistment("Others")
+            if can_reenlist == 1:
+                history.append("Forced to re-enlist in the Others.")
+                pass
+            elif can_reenlist == 0:
+                choice = input("Do you want to re-enlist? X to re-enlist\n")
+                if choice == "X":
+                    history.append("Chose to re-enlist in the Others.")
+                else:
+                    history.append("Chose to leave the Others.")
+                    out_of_others = True
+            elif can_reenlist == -1:
+                history.append("Forced to leave the Others.")
+                out_of_others = True
+    return term, still_alive
+
+
+def char_details(stats, commissions, skills, ranks, age, cash, inventory):
     result_str = "UPP: {upp}".format(upp=get_upp(stats))
     rank = get_noble_rank(stats)
     if not rank == "":
@@ -787,22 +1130,47 @@ def char_details(stats, commissions, skills, ranks, age, cash, benefits):
         result_str += "\nMarines " + get_rank(ranks["Marines"], "Marines")
     elif commissions["Army"]:
         result_str += "\nArmy " + get_rank(ranks["Army"], "Army")
+    elif commissions["Merchants"]:
+        result_str += "\nMerchants " + get_rank(ranks["Merchants"], "Merchants")
     result_str += "\n" + str(age) + " years old"
     if not skills == {}:
         result_str += "\n" + json.dumps(skills)
     if cash > 0:
         result_str += "\n{c} Credits".format(c=cash)
-    if len(benefits) > 0:
+    if len(inventory) > 0:
         result_str += "\n"
-        for i in benefits:
-            result_str += "{b}, ".format(b=i)
+        for i in inventory:
+            result_str += "{i}, ".format(i=i)
         result_str = result_str[:-2]
     return result_str
 
 
 def treat_benefits(stats, benefits_list):
+    benefits = []
     for benefit in benefits_list:
-        pass
+        if benefit.startswith("+"):
+            skill_benefits = benefit[1:].split()
+            stats[skill_benefits[1]] += int(skill_benefits[0])
+            history.append("Improved {skill} by {am} as a muster-out benefit.".format(skill=skill_benefits[1],
+                                                                                      am=skill_benefits[0]))
+        elif benefit.startswith("Blade"):
+            print(BLADE_CBT_CASC)
+            blade = input("Choose a type of blade to receive.\n")
+            while blade not in BLADE_CBT_CASC:
+                blade = input("Choose a type of blade to receive.\n")
+            benefits.append(blade)
+            history.append("Received a {blade} as a muster-out benefit.".format(blade=blade))
+        elif benefit.startswith("Gun"):
+            print(GUN_CBT_CASC)
+            gun = input("Choose a type of gun to receive.\n")
+            while gun not in GUN_CBT_CASC:
+                gun = input("Choose a type of gun to receive.\n")
+            benefits.append(gun)
+            history.append("Received a {gun} as a muster-out benefit.".format(gun=gun))
+        else:
+            benefits.append(benefit)
+            history.append("Received a {ben} as a muster-out benefit.".format(ben=benefit))
+    return benefits
 
 
 if __name__ == "__main__":
@@ -819,47 +1187,64 @@ if __name__ == "__main__":
             "Navy": 0,
             "Marines": 0,
             "Army": 0,
-            "Scouts": 0,
-            "Merchants": 0,
-            "Other": 0
+            "Merchants": 0
         }
         commissions = {
             "Navy": False,
             "Marines": False,
             "Army": False,
-            "Scouts": False,
             "Merchants": False,
-            "Other": False
         }
         skills = {}
-        choice = input("Choose service to try for: (Navy, Marines, Army, Scouts, Merchant, Other)\n")
+        choice = input("Choose service to try for: (Navy, Marines, Army, Scouts, Merchants, Others)\n")
         if choice == "Navy":
-            got_in_navy = enlist_navy(stats)
+            got_in_navy = enlist(stats, "Navy")
             if got_in_navy:
                 enlisted = True
                 term, alive = navy_career(term, stats, ranks, commissions, age, skills, False)
             else:
                 history.append("Failed to enlist in the Navy.")
         elif choice == "Marines":
-            got_in_marines = enlist_marines(stats)
+            got_in_marines = enlist(stats, "Marines")
             if got_in_marines:
                 enlisted = True
                 term, alive = marines_career(term, stats, ranks, commissions, age, skills, False)
             else:
                 history.append("Failed to enlist in the Marines.")
         elif choice == "Army":
-            got_in_army = enlist_army(stats)
+            got_in_army = enlist(stats, "Army")
             if got_in_army:
                 enlisted = True
                 term, alive = army_career(term, stats, ranks, commissions, age, skills, False)
             else:
                 history.append("Failed to enlist in the Army.")
+        elif choice == "Merchants":
+            got_in_merchants = enlist(stats, "Merchants")
+            if got_in_merchants:
+                enlisted = True
+                term, alive = merchant_career(term, stats, ranks, commissions, age, skills, False)
+            else:
+                history.append("Failed to enlist in the Merchants.")
+        elif choice == "Scouts":
+            got_in_scouts = enlist(stats, "Scouts")
+            if got_in_scouts:
+                enlisted = True
+                term, alive = scout_career(term, stats, age, skills, False)
+            else:
+                history.append("Failed to enlist in the Scouts.")
+        elif choice == "Others":
+            got_in_others = enlist(stats, "Others")
+            if got_in_others:
+                enlisted = True
+                term, alive = other_career(term, stats, age, skills, False)
+            else:
+                history.append("Failed to enlist in the Others.")
         elif choice == "Q":
             running = False
         if not enlisted:
             print("You're being drafted")
-            history.append("Submitted to the Draft")
-            a = roll_die(3) - 1
+            history.append("Submitted to the Draft.")
+            a = roll_die(6) - 1
             if a == 0:
                 term, alive = marines_career(term, stats, ranks, commissions, age, skills, True)
                 choice = "Marines"
@@ -869,12 +1254,21 @@ if __name__ == "__main__":
             elif a == 2:
                 term, alive = army_career(term, stats, ranks, commissions, age, skills, True)
                 choice = "Army"
+            elif a == 3:
+                term, alive = merchant_career(term, stats, ranks, commissions, age, skills, True)
+                choice = "Merchants"
+            elif a == 4:
+                term, alive = scout_career(term, stats, age, skills, True)
+                choice = "Scouts"
+            elif a == 5:
+                term, alive = scout_career(term, stats, ranks, commissions, age, skills, True)
+                choice = "Others"
         age = 18 + term * 4
         if alive:
             cash, benefits_list = calc_muster_out_benefits(ranks, term, choice)
-            # Navstats, benefits = treat_benefits(stats, benefits_list)
+            inventory = treat_benefits(stats, benefits_list)
         else:
             cash = 0
-            benefits = []
+            inventory = []
         read_history()
-        print(char_details(stats, commissions, skills, ranks, age, cash, benefits))
+        print(char_details(stats, commissions, skills, ranks, age, cash, inventory))
