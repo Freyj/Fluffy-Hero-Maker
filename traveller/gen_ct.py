@@ -48,7 +48,6 @@ def get_char_for_stat(stat):
 
 def roll_cash(ranks, service):
     table = []
-    rank = ranks[service]
     dm = 0
     if service == "Navy":
         table = NAVY_CASH
@@ -62,7 +61,7 @@ def roll_cash(ranks, service):
         table = SCOUTS_CASH
     elif service == "Others":
         table = OTHERS_CASH
-    if rank >= 5:
+    if service in ["Army", "Navy", "Marines", "Merchants"] and ranks[service] >= 5:
         dm += 1
     roll = roll_die(6) + dm - 1  # offset for array
     cash = table[roll]
