@@ -1,3 +1,5 @@
+# The Traveller game in all forms is owned by Far Future Enterprises. Copyright 1977 - 2008 Far Future Enterprises.
+
 # skills cascading
 CASCADE_SKILLS = [
     "Aircraft",
@@ -260,7 +262,7 @@ OTHERS_SKILLS_PERSONAL_DEV = [
     "1 End",
     "Blade Combat",
     "Brawling",
-    "-1 Social"
+    "-1 Soc"
 ]
 OTHERS_SKILLS_SERVICE = [
     "Vehicle",

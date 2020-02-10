@@ -1,52 +1,44 @@
+# The Traveller game in all forms is owned by Far Future Enterprises. Copyright 1977 - 2008 Far Future Enterprises.
+# (CF : http://www.farfuture.net/FFEFairUsePolicy2008.pdf)
 from utils.dice_roller import sum_roll_dice, roll_die
 from sty import fg
 from traveller.consts_trav import *
 import json
 
+# BOOOOO GLOBALS
 history = []
 alive = True
 
 
 def roll_stats():
-    stats = []
+    """
+        Rolls stats according to Classic Traveller's way
+        and assigns them in order from Str to Dex to End
+        to Int to Edu
+        :return: an array of 6 results of 2d6 rolls
+    """
+    statistics = []
     for i in range(6):
-        stats.append(sum_roll_dice(6, 2))
-    return stats
-
-
-def assign_stats(stats):
+        statistics.append(sum_roll_dice(6, 2))
     dict_stats = {
-        "Str": stats[0],
-        "Dex": stats[1],
-        "End": stats[2],
-        "Int": stats[3],
-        "Edu": stats[4],
-        "Soc": stats[5]
+        "Str": statistics[0],
+        "Dex": statistics[1],
+        "End": statistics[2],
+        "Int": statistics[3],
+        "Edu": statistics[4],
+        "Soc": statistics[5]
     }
     return dict_stats
 
 
-def get_char_for_stat(stat):
-    if stat < 10:
-        return str(stat)
-    else:
-        if stat == 10:
-            return 'A'
-        if stat == 11:
-            return 'B'
-        if stat == 12:
-            return 'C'
-        if stat == 13:
-            return 'D'
-        if stat == 14:
-            return 'E'
-        if stat == 15:
-            return 'F'
-
-    print("Error should never get there")
-
-
-def roll_cash(ranks, service):
+def roll_cash(ranks: dict, service: str, skills: dict):
+    """
+        Rolls for cash benefits according to proper table
+        :param ranks: a dictionary with services as keys and int as values
+        :param service: the name of the service the character joined
+        :param skills: the skills of the character because Gambling affects the roll
+        :return: a cash roll as int of the credits won
+    """
     table = []
     dm = 0
     if service == "Navy":
@@ -63,12 +55,19 @@ def roll_cash(ranks, service):
         table = OTHERS_CASH
     if service in ["Army", "Navy", "Marines", "Merchants"] and ranks[service] >= 5:
         dm += 1
+    if "Gambling" in skills.keys():
+        dm += 1
     roll = roll_die(6) + dm - 1  # offset for array
-    cash = table[roll]
-    return cash
+    return table[roll]
 
 
-def roll_benefit(ranks, service):
+def roll_benefit(ranks: dict, service: str):
+    """
+        Rolls for benefits according to proper table
+        :param ranks: a dictionary with services as keys and int as values
+        :param service: the name of the service the character joined
+        :return: a list of benefits as str
+    """
     table = []
     dm = 0
     if service == "Navy":
@@ -86,6 +85,9 @@ def roll_benefit(ranks, service):
     if service in ["Navy", "Marines", "Army", "Merchants"] and ranks[service] > 4:
         dm += 1
     roll = roll_die(6) + dm - 1  # offset for array
+    if roll >= len(table):
+        # for tables that are shorter
+        roll = len(table) - 1
     benefit = table[roll]
     return benefit
 
@@ -99,10 +101,8 @@ def get_rank(rank, service):
     elif service == "Army":
         table = ARMY_RANKS
     elif service == "Merchants":
-        table = MARINES_RANKS
-    if rank == 0:
-        return ""
-    elif rank == 1:
+        table = MERCHANTS_RANKS
+    if rank == 1:
         return table[0]
     elif rank == 2:
         return table[1]
@@ -114,16 +114,23 @@ def get_rank(rank, service):
         return table[4]
     elif rank == 6:
         return table[5]
+    else:
+        return ""
 
 
 def get_upp(dict_stats):
+    """
+        Produces the Universal Personality Profile
+        :param dict_stats: the dict of stats from the character with Str, Dex, End, Int, Edu, Soc
+        :return: a string of 6 characters with hexadecimal notation (in caps for letters) representing the UPP
+    """
     upp = ""
-    upp += get_char_for_stat(dict_stats["Str"])
-    upp += get_char_for_stat(dict_stats["Dex"])
-    upp += get_char_for_stat(dict_stats["End"])
-    upp += get_char_for_stat(dict_stats["Int"])
-    upp += get_char_for_stat(dict_stats["Edu"])
-    upp += get_char_for_stat(dict_stats["Soc"])
+    upp += hex(dict_stats["Str"])[2:].upper()
+    upp += hex(dict_stats["Dex"])[2:].upper()
+    upp += hex(dict_stats["End"])[2:].upper()
+    upp += hex(dict_stats["Int"])[2:].upper()
+    upp += hex(dict_stats["Edu"])[2:].upper()
+    upp += hex(dict_stats["Soc"])[2:].upper()
     return upp
 
 
@@ -294,7 +301,7 @@ def service_reenlistment(service_name: str):
         return -1
 
 
-def calc_muster_out_benefits(ranks, terms, service):
+def calc_muster_out_benefits(ranks, terms, service, skills):
     total_ben = terms
     bonus_ben = 0
     cash = 0
@@ -319,7 +326,7 @@ def calc_muster_out_benefits(ranks, terms, service):
             if x == "c":
                 cash_max -= 1
                 total_ben -= 1
-                cash += roll_cash(ranks, service)
+                cash += roll_cash(ranks, service, skills)
                 print(cash)
             elif x == "b":
                 total_ben -= 1
@@ -585,7 +592,7 @@ def display_others_skill_tables(education):
         ser=OTHERS_SKILLS_SERVICE[4],
         spa="                 ",
         adv=OTHERS_SKILLS_ADV[4]))
-    print("6 {nav}                       | 6 {ser}{spa}| 1 {adv}".format(
+    print("6 {nav}                          | 6 {ser}{spa}| 1 {adv}".format(
         nav=OTHERS_SKILLS_PERSONAL_DEV[5],
         ser=OTHERS_SKILLS_SERVICE[5],
         spa="              ",
@@ -732,12 +739,18 @@ def calc_navy_term(stats, ranks, commissions, age, skills, draft, term):
                     skill_rolls += 1
                 else:
                     history.append("Failed to get a commission.")
-        if commissions["Navy"] and ranks["Navy"] < 7:
+        if commissions["Navy"] and ranks["Navy"] < 6:
             promoted = try_promotion(stats, "Navy")
             if promoted:
                 history.append("Received a promotion.")
                 ranks["Navy"] += 1
                 history.append("\tBecame a {rank}".format(rank=get_rank(ranks["Navy"], "Navy")))
+                if ranks["Navy"] == 5:
+                    stats["Soc"] += 1
+                    history.append("Improved Soc by 1.")
+                if ranks["Navy"] == 6:
+                    stats["Soc"] += 1
+                    history.append("Improved Soc by 1.")
                 skill_rolls += 1
             else:
                 history.append("Failed to get promoted.")
@@ -769,7 +782,9 @@ def calc_marines_term(stats, ranks, commissions, age, skills, draft, term):
                 if comm:
                     history.append("Received a commission.")
                     ranks["Marines"] = 1
+                    skills["Gun Combat(Revolver)"] = 1
                     history.append("\tBecame a {rank}".format(rank=get_rank(ranks["Marines"], "Marines")))
+                    history.append("Learned Gun Combat(Revolver).")
                     commissions["Marines"] = True
                     skill_rolls += 1
                 else:
@@ -811,6 +826,8 @@ def calc_army_term(stats, ranks, commissions, age, skills, draft, term):
                     history.append("Received a commission.")
                     ranks["Army"] = 1
                     history.append("\tBecame a {rank}".format(rank=get_rank(ranks["Army"], "Army")))
+                    skills["Gun Combat(SMG)"] = 1
+                    history.append("Learned Gun Combat(SMG).")
                     commissions["Army"] = True
                     skill_rolls += 1
                 else:
@@ -863,6 +880,9 @@ def calc_merchants_term(stats, ranks, commissions, age, skills, draft, term):
                 ranks["Merchants"] += 1
                 history.append("\tBecame a {rank}".format(rank=get_rank(ranks["Merchants"], "Merchants")))
                 skill_rolls += 1
+                if ranks["Merchants"] == 3:
+                    skills["Pilot"] = 1
+                    history.append("Learned Pilot.")
             else:
                 history.append("Failed to get promoted.")
         if term == 0:
@@ -895,12 +915,15 @@ def calc_scouts_term(stats, age, skills):
         return False
 
 
-def calc_others_term(stats, age, skills):
+def calc_others_term(stats, age, skills, term):
     survived = survive(stats, "Others")
     if survived:
         history.append("Survived the term.")
         age += 4
-        skill_rolls = 2
+        if term == 0:
+            skill_rolls = 2
+        else:
+            skill_rolls = 1
         display_others_skill_tables(stats["Edu"])
         add_skills(stats, skills, skill_rolls, "Others")
         return True
@@ -911,7 +934,7 @@ def calc_others_term(stats, age, skills):
 
 
 def read_history():
-    print("--------------------")
+    print("----------------------------------------")
     print("Character log:")
     for i in history:
         if i.startswith("Failed") or i.startswith("Forced"):
@@ -927,7 +950,58 @@ def read_history():
         else:
             res = i
         print(res)
-    print("--------------------")
+    print("----------------------------------------")
+
+
+def age_stats(age, stats):
+    if age < 34:
+        print("No age effect as of yet.")
+        return stats
+    elif age < 50:
+        print("First rolls for age.")
+        roll = sum_roll_dice(6, 2)
+        if roll < 8:
+            stats["Str"] -= 1
+            history.append("Lost 1 Strength to age.")
+        roll = sum_roll_dice(6, 2)
+        if roll < 7:
+            stats["Dex"] -= 1
+            history.append("Lost 1 Dexterity to age.")
+        roll = sum_roll_dice(6, 2)
+        if roll < 8:
+            stats["End"] -= 1
+            history.append("Lost 1 Endurance to age.")
+    elif age < 66:
+        roll = sum_roll_dice(6, 2)
+        if roll < 9:
+            stats["Str"] -= 1
+            history.append("Lost 1 Strength to age.")
+        roll = sum_roll_dice(6, 2)
+        if roll < 8:
+            stats["Dex"] -= 1
+            history.append("Lost 1 Dexterity to age.")
+        roll = sum_roll_dice(6, 2)
+        if roll < 9:
+            stats["End"] -= 1
+            history.append("Lost 1 Endurance to age.")
+    if age > 65:
+        roll = sum_roll_dice(6, 2)
+        if roll < 9:
+            stats["Str"] -= 2
+            history.append("Lost 2 Strength to age.")
+        roll = sum_roll_dice(6, 2)
+        if roll < 9:
+            stats["Dex"] -= 2
+            history.append("Lost 2 Dexterity to age.")
+        roll = sum_roll_dice(6, 2)
+        if roll < 9:
+            stats["End"] -= 2
+            history.append("Lost 2 Endurance to age.")
+        roll = sum_roll_dice(6, 2)
+        if roll < 9:
+            stats["Int"] -= 1
+            history.append("Lost 1 Intelligence to age.")
+    return stats
 
 
 def marines_career(term, stats, ranks, commissions, age, skills, draft):
@@ -938,14 +1012,15 @@ def marines_career(term, stats, ranks, commissions, age, skills, draft):
 
     still_alive = True
     out_of_marines = False
+    skills["Blade Combat(Cutlass)"] = 1
+    history.append("Learned Blade Combat(Cutlass).")
     while still_alive and not out_of_marines:
         print("Term {i}".format(i=term))
         still_alive = calc_marines_term(stats, ranks, commissions, age, skills, draft, term)
         term += 1
+        age += 4
         if still_alive:
-            if age >= 34:
-                # ageing
-                pass
+            stats = age_stats(age, stats)
             can_reenlist = service_reenlistment("Marines")
             if can_reenlist == 1:
                 history.append("Forced to re-enlist in the Marines.")
@@ -960,7 +1035,7 @@ def marines_career(term, stats, ranks, commissions, age, skills, draft):
             elif can_reenlist == -1:
                 history.append("Forced to leave the Marines.")
                 out_of_marines = True
-    return term, still_alive
+    return term, still_alive, age
 
 
 def navy_career(term, stats, ranks, commissions, age, skills, draft):
@@ -973,10 +1048,9 @@ def navy_career(term, stats, ranks, commissions, age, skills, draft):
     while still_alive and not out_of_navy:
         still_alive = calc_navy_term(stats, ranks, commissions, age, skills, draft, term)
         term += 1
+        age += 4
         if still_alive:
-            if age >= 34:
-                # ageing
-                pass
+            stats = age_stats(age, stats)
             can_reenlist = service_reenlistment("Navy")
             if can_reenlist == 1:
                 history.append("Forced to re-enlist in the Navy.")
@@ -991,7 +1065,7 @@ def navy_career(term, stats, ranks, commissions, age, skills, draft):
             elif can_reenlist == -1:
                 history.append("Forced to leave the Navy.")
                 out_of_navy = True
-    return term, still_alive
+    return term, still_alive, age
 
 
 def army_career(term, stats, ranks, commissions, age, skills, draft):
@@ -1001,13 +1075,14 @@ def army_career(term, stats, ranks, commissions, age, skills, draft):
         history.append("Drafted in the Army.")
     still_alive = True
     out_of_army = False
+    skills["Gun Combat(Rifle)"] = 1
+    history.append("Learned Gun Combat(Rifle).")
     while still_alive and not out_of_army:
         still_alive = calc_army_term(stats, ranks, commissions, age, skills, draft, term)
         term += 1
+        age += 4
         if still_alive:
-            if age >= 34:
-                # ageing
-                pass
+            stats = age_stats(age, stats)
             can_reenlist = service_reenlistment("Army")
             if can_reenlist == 1:
                 history.append("Forced to re-enlist in the Army.")
@@ -1022,7 +1097,7 @@ def army_career(term, stats, ranks, commissions, age, skills, draft):
             elif can_reenlist == -1:
                 history.append("Forced to leave the Army.")
                 out_of_army = True
-    return term, still_alive
+    return term, still_alive, age
 
 
 def merchant_career(term, stats, ranks, commissions, age, skills, draft):
@@ -1035,10 +1110,9 @@ def merchant_career(term, stats, ranks, commissions, age, skills, draft):
     while still_alive and not out_of_merchants:
         still_alive = calc_merchants_term(stats, ranks, commissions, age, skills, draft, term)
         term += 1
+        age += 4
         if still_alive:
-            if age >= 34:
-                # ageing
-                pass
+            stats = age_stats(age, stats)
             can_reenlist = service_reenlistment("Merchants")
             if can_reenlist == 1:
                 history.append("Forced to re-enlist in the Merchants.")
@@ -1053,7 +1127,7 @@ def merchant_career(term, stats, ranks, commissions, age, skills, draft):
             elif can_reenlist == -1:
                 history.append("Forced to leave the Merchants.")
                 out_of_merchants = True
-    return term, still_alive
+    return term, still_alive, age
 
 
 def scout_career(term, stats, age, skills, draft):
@@ -1063,13 +1137,14 @@ def scout_career(term, stats, age, skills, draft):
         history.append("Drafted in the Scouts.")
     still_alive = True
     out_of_scouts = False
+    skills["Pilot"] = 1
+    history.append("Learned Pilot.")
     while still_alive and not out_of_scouts:
         still_alive = calc_scouts_term(stats, age, skills)
         term += 1
+        age += 4
         if still_alive:
-            if age >= 34:
-                # ageing
-                pass
+            stats = age_stats(age, stats)
             can_reenlist = service_reenlistment("Scouts")
             if can_reenlist == 1:
                 history.append("Forced to re-enlist in the Scouts.")
@@ -1084,7 +1159,7 @@ def scout_career(term, stats, age, skills, draft):
             elif can_reenlist == -1:
                 history.append("Forced to leave the Scouts.")
                 out_of_scouts = True
-    return term, still_alive
+    return term, still_alive, age
 
 
 def other_career(term, stats, age, skills, draft):
@@ -1095,12 +1170,11 @@ def other_career(term, stats, age, skills, draft):
     still_alive = True
     out_of_others = False
     while still_alive and not out_of_others:
-        still_alive = calc_others_term(stats, age, skills)
+        still_alive = calc_others_term(stats, age, skills, term)
         term += 1
+        age += 4
         if still_alive:
-            if age >= 34:
-                # ageing
-                pass
+            stats = age_stats(age, stats)
             can_reenlist = service_reenlistment("Others")
             if can_reenlist == 1:
                 history.append("Forced to re-enlist in the Others.")
@@ -1115,10 +1189,10 @@ def other_career(term, stats, age, skills, draft):
             elif can_reenlist == -1:
                 history.append("Forced to leave the Others.")
                 out_of_others = True
-    return term, still_alive
+    return term, still_alive, age
 
 
-def char_details(stats, commissions, skills, ranks, age, cash, inventory):
+def char_details(stats, commissions, skills, ranks, age, cash, inventory, pension=0):
     result_str = "UPP: {upp}".format(upp=get_upp(stats))
     rank = get_noble_rank(stats)
     if not rank == "":
@@ -1141,6 +1215,8 @@ def char_details(stats, commissions, skills, ranks, age, cash, inventory):
         for i in inventory:
             result_str += "{i}, ".format(i=i)
         result_str = result_str[:-2]
+    if pension > 0:
+        result_str += "\nPension of {p} Credits".format(p=pension)
     return result_str
 
 
@@ -1167,9 +1243,58 @@ def treat_benefits(stats, benefits_list):
             benefits.append(gun)
             history.append("Received a {gun} as a muster-out benefit.".format(gun=gun))
         else:
-            benefits.append(benefit)
-            history.append("Received a {ben} as a muster-out benefit.".format(ben=benefit))
+            if benefit == "Travellers' Aid Society":
+                if benefit not in benefits:
+                    benefits.append(benefit)
+                    history.append("Received a membership of the {ben} as a muster-out benefit.".format(ben=benefit))
+            elif benefit in ["High Passage", "Middle Passage", "Low Passage"]:
+                pass
+            else:
+                benefits.append(benefit)
+                history.append("Received a {ben} as a muster-out benefit.".format(ben=benefit))
+
+    high_pass_nb = sum(map(lambda i: i == "High Passage", benefits_list))
+    low_pass_nb = sum(map(lambda i: i == "Low Passage", benefits_list))
+    mid_pass_nb = sum(map(lambda i: i == "Middle Passage", benefits_list))
+    if high_pass_nb > 0:
+        benefits.append("{i} High Passage(s)".format(i=high_pass_nb))
+        history.append("Received {i} High Passage(s) as a muster-out benefit.".format(i=high_pass_nb))
+    if mid_pass_nb > 0:
+        benefits.append("{i} Middle Passage(s)".format(i=mid_pass_nb))
+        history.append("Received {i} Middle Passage(s) as a muster-out benefit.".format(i=mid_pass_nb))
+    if low_pass_nb > 0:
+        benefits.append("{i} Low Passage(s)".format(i=low_pass_nb))
+        history.append("Received {i} Low Passage(s) as a muster-out benefit.".format(i=low_pass_nb))
+
     return benefits
+
+
+def check_retirement(terms: int):
+    """
+        Calculates the pension (minimum 5 terms to have a pension)
+        :param terms: number of terms served
+        :return: int: credits per year
+    """
+    if terms < 5:
+        return 0
+    else:
+        return 4000 + 2000 * (terms - 5)
+
+
+def save_character(details: str, filename: str):
+    """
+        Saves the character log and stats to a file
+        The log is in a global variable called history
+        TODO: change this
+        :param details: the stats of the characters
+        :param filename: resulting file name to save
+    """
+    with open(save, "w") as f:
+        f.write("Character log:\n")
+        for event in history:
+            f.write(event + "\n")
+        f.write("\nDetails\n")
+        f.write(details_str)
 
 
 if __name__ == "__main__":
@@ -1181,7 +1306,7 @@ if __name__ == "__main__":
         alive = True
         history = []
         enlisted = False
-        stats = assign_stats(roll_stats())
+        stats = roll_stats()
         ranks = {
             "Navy": 0,
             "Marines": 0,
@@ -1200,42 +1325,42 @@ if __name__ == "__main__":
             got_in_navy = enlist(stats, "Navy")
             if got_in_navy:
                 enlisted = True
-                term, alive = navy_career(term, stats, ranks, commissions, age, skills, False)
+                term, alive, age = navy_career(term, stats, ranks, commissions, age, skills, False)
             else:
                 history.append("Failed to enlist in the Navy.")
         elif choice == "Marines":
             got_in_marines = enlist(stats, "Marines")
             if got_in_marines:
                 enlisted = True
-                term, alive = marines_career(term, stats, ranks, commissions, age, skills, False)
+                term, alive, age = marines_career(term, stats, ranks, commissions, age, skills, False)
             else:
                 history.append("Failed to enlist in the Marines.")
         elif choice == "Army":
             got_in_army = enlist(stats, "Army")
             if got_in_army:
                 enlisted = True
-                term, alive = army_career(term, stats, ranks, commissions, age, skills, False)
+                term, alive, age = army_career(term, stats, ranks, commissions, age, skills, False)
             else:
                 history.append("Failed to enlist in the Army.")
         elif choice == "Merchants":
             got_in_merchants = enlist(stats, "Merchants")
             if got_in_merchants:
                 enlisted = True
-                term, alive = merchant_career(term, stats, ranks, commissions, age, skills, False)
+                term, alive, age = merchant_career(term, stats, ranks, commissions, age, skills, False)
             else:
                 history.append("Failed to enlist in the Merchants.")
         elif choice == "Scouts":
             got_in_scouts = enlist(stats, "Scouts")
             if got_in_scouts:
                 enlisted = True
-                term, alive = scout_career(term, stats, age, skills, False)
+                term, alive, age = scout_career(term, stats, age, skills, False)
             else:
                 history.append("Failed to enlist in the Scouts.")
         elif choice == "Others":
             got_in_others = enlist(stats, "Others")
             if got_in_others:
                 enlisted = True
-                term, alive = other_career(term, stats, age, skills, False)
+                term, alive, age = other_career(term, stats, age, skills, False)
             else:
                 history.append("Failed to enlist in the Others.")
         elif choice == "Q":
@@ -1245,29 +1370,36 @@ if __name__ == "__main__":
             history.append("Submitted to the Draft.")
             a = roll_die(6) - 1
             if a == 0:
-                term, alive = marines_career(term, stats, ranks, commissions, age, skills, True)
+                term, alive, age = marines_career(term, stats, ranks, commissions, age, skills, True)
                 choice = "Marines"
             elif a == 1:
-                term, alive = navy_career(term, stats, ranks, commissions, age, skills, True)
+                term, alive, age = navy_career(term, stats, ranks, commissions, age, skills, True)
                 choice = "Navy"
             elif a == 2:
-                term, alive = army_career(term, stats, ranks, commissions, age, skills, True)
+                term, alive, age = army_career(term, stats, ranks, commissions, age, skills, True)
                 choice = "Army"
             elif a == 3:
-                term, alive = merchant_career(term, stats, ranks, commissions, age, skills, True)
+                term, alive, age = merchant_career(term, stats, ranks, commissions, age, skills, True)
                 choice = "Merchants"
             elif a == 4:
-                term, alive = scout_career(term, stats, age, skills, True)
+                term, alive, age = scout_career(term, stats, age, skills, True)
                 choice = "Scouts"
             elif a == 5:
-                term, alive = scout_career(term, stats, ranks, commissions, age, skills, True)
+                term, alive, age = other_career(term, stats, age, skills, True)
                 choice = "Others"
-        age = 18 + term * 4
+        pension = 0
         if alive:
-            cash, benefits_list = calc_muster_out_benefits(ranks, term, choice)
+            pension = check_retirement(term)
+            cash, benefits_list = calc_muster_out_benefits(ranks, term, choice, skills)
             inventory = treat_benefits(stats, benefits_list)
+            if cash > 0:
+                history.append("Received {c} Credits as a muster-out benefit.".format(c=cash))
         else:
             cash = 0
             inventory = []
         read_history()
-        print(char_details(stats, commissions, skills, ranks, age, cash, inventory))
+        details_str= char_details(stats, commissions, skills, ranks, age, cash, inventory, pension=pension)
+        print(details_str)
+        save = input("Do you want to save file? Anything else than No will produce a file of this name\n")
+        if save != "No":
+            save_character(details_str, save)
