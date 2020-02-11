@@ -192,7 +192,7 @@ def enlist(stats, service_name: str):
         return False
 
 
-def survive(stats, service_name: str):
+def survive(stats: dict, service_name: str):
     dm = 0
     limit = 0
     if service_name == "Army":
@@ -1289,12 +1289,12 @@ def save_character(details: str, filename: str):
         :param details: the stats of the characters
         :param filename: resulting file name to save
     """
-    with open(save, "w") as f:
+    with open(filename, "w") as f:
         f.write("Character log:\n")
         for event in history:
             f.write(event + "\n")
         f.write("\nDetails\n")
-        f.write(details_str)
+        f.write(details)
 
 
 if __name__ == "__main__":
