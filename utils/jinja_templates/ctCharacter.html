@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fluffy Hero Maker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="traveller text-traveller">
+<h1 class="title-traveller">Classic Traveller Character</h1>
+<h2 >{{character.name}}, {% if character.rank > 0 %}{{character.service}}, {{rank}},{% endif %} {{character.age}} years old. </h2>
+UPP: {{upp}}
+
+<ul>
+    <li>Stats:
+        <ul>
+            <li>Strength: {{character.stats.Str}}</li>
+            <li>Dexterity: {{character.stats.Dex}}</li>
+            <li>Endurance: {{character.stats.End}}</li>
+            <li>Intelligence: {{character.stats.Int}}</li>
+            <li>Education: {{character.stats.Edu}}</li>
+            <li>Social Status: {{character.stats.Soc}}</li>
+        </ul>
+    </li>
+    <li>Skills:
+    <ul>
+       {% for key, value in character.skills.items() %}
+         <li>{{key}}: {{value}}</li>
+       {% endfor %}
+    </ul>
+    </li>
+</ul>
+{% if character.benefits %}
+<li>Benefits:
+<ul>
+   {% for element in character.benefits %}
+     <li>{{element}}</li>
+   {% endfor %}
+</ul>
+</li>
+{% endif %}
+{% if character.cash > 0 %}
+{{character.cash}} Credits
+{% endif %}
+{% if character.pension > 0 %} Pension: {{character.pension}} Credits yearly. {% endif %}
+</body>
+</html>

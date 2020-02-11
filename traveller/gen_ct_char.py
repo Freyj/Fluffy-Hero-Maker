@@ -1,4 +1,5 @@
 from traveller.CTCharacter import CTCharacter
+from utils.dice_roller import roll_die
 
 
 def generate_traveller_character():
@@ -30,8 +31,32 @@ def generate_traveller_character():
                     stays_in_service = False
             if ct_char.survived:
                 ct_char.calc_muster_out()
+            choice_name = input("Pick a name for the character\n")
+            ct_char.name = choice_name
             ct_char.read_history()
             print(ct_char.char_details())
-            save = input("Do you want to save file? Anything else than No will produce a file of this name\n")
-            if save != "No" and save != "":
-                ct_char.save_character(save)
+            save = input("Do you want to save file?  \n")
+            if save != "n":
+                ct_char.save_character(ct_char.name)
+
+
+def random_classic_traveller_character(name: str):
+    character = CTCharacter()
+    choice_service = roll_die(6)
+    services = ["Navy", "Marines", "Army", "Others", "Scouts", "Merchants"]
+    character.choose_service(services[choice_service - 1])
+    stays_in_service = True
+    while character.survived and stays_in_service:
+        character.term(automatic=True)
+        if character.survived:
+            if character.reenlisting == 0:
+                reenlist_roll = roll_die(2)
+                if reenlist_roll == 0:
+                    stays_in_service = False
+            elif character.reenlisting == -1:
+                stays_in_service = False
+    character.calc_muster_out(automatic=True)
+    character.name = name
+    print(character.__dict__)
+    print(character.char_details())
+    return character

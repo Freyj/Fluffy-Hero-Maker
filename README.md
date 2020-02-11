@@ -32,6 +32,8 @@ json files or want to update the database, you need to leave the -debug option o
   - `/all-dnd-monsters` displays the list of monsters in the database
   - `/all-dnd-spells` displays the list of spells in the database
   - `/` displays a home page with links to previous routes
+  - `/classic-traveller-character-gen/<name>` displays a randomly generated classic traveller character with the name in `<name>`
+
 
 ## What can I do with it?
 ### DnD 5th

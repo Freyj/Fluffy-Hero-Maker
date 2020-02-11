@@ -15,3 +15,16 @@ h1 {
 .em {
     font-weight: bold;
 }
+
+.traveller {
+    font-family: "Lucida Console", Monaco, monospace;
+    background-color: #000;
+}
+
+.title-traveller {
+    color: #f00;
+}
+
+.text-traveller {
+    color: #fff;
+}
