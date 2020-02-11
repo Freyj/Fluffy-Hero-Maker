@@ -1,11 +1,10 @@
 *.pyc
-.idea/*
-.vscode/*
-venv/*
+.vscode/
+venv/
 characters/saves/*.json
 *.db
 build/
 dist/
 Fluffy_Hero_Maker.egg-info/
 
-!.idea/*
+.idea/

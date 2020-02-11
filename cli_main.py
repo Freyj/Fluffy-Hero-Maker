@@ -5,7 +5,7 @@ import argparse
 from dnd_character_creator import dnd_character_creation
 from dnd_monster_stat_display import dnd_monster_stat_display
 from dnd_spell_display import dnd_spell_display
-
+from traveller.gen_ct_char import generate_traveller_character
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Utilities software for role-playing games.')
@@ -17,7 +17,8 @@ if __name__ == '__main__':
         create_database()
         initialize_all_data()
     while not_finished:
-        print("Input wanted tool: 1 for a dnd5 character creator, 2 for dnd5 monster stats, 3 for spell finder")
+        print("Input wanted tool: 1 for a dnd5 character creator, 2 for dnd5 monster stats, 3 for spell finder,"
+              " 4 for Classic Traveller Character generator")
         choice = input()
         if choice == "1":
             dnd_character_creation()
@@ -25,6 +26,8 @@ if __name__ == '__main__':
             dnd_monster_stat_display()
         if choice == "3":
             dnd_spell_display()
+        if choice == "4":
+            generate_traveller_character()
         # loop
         print("Do you want to continue?")
         again = input()
