@@ -34,10 +34,11 @@ class CTCharacter:
         self.reenlisting = 0
         self.benefits = []
 
-    def choose_service(self, service_name: str):
+    def choose_service(self, service_name: str, automatic=False):
         """
             Selects the service, if enlistment fails, draft
             :param service_name:
+            :param automatic False by default for autogen
         """
         self.history.append("Applied to enter the {ser}".format(ser=service_name))
         enlisted = enlist(self.stats, service_name)
@@ -49,7 +50,7 @@ class CTCharacter:
             self.history.append("Submitted to the Draft.")
             self.get_drafted()
             self.drafted = True
-        self.get_service_skills()
+        self.get_service_skills(automatic=automatic)
 
     def display_tables(self):
         """
@@ -101,18 +102,18 @@ class CTCharacter:
         else:
             return True
 
-    def get_service_skills(self):
+    def get_service_skills(self, automatic=False):
         """
             Gives character the skills granted by service
         """
         if self.service == "Marines":
-            self.add_skill("Blade Combat(Cutlass)")
+            self.add_skill("Blade Combat(Cutlass)", automatic)
         elif self.service == "Army":
-            self.add_skill("Gun Combat(Rifle)")
+            self.add_skill("Gun Combat(Rifle)", automatic)
         elif self.service == "Scouts":
-            self.add_skill("Pilot")
+            self.add_skill("Pilot", automatic)
 
-    def get_promotion_skills(self):
+    def get_promotion_skills(self, automatic=False):
         """
             Gives characters skills granted by promotion
         """
@@ -120,16 +121,16 @@ class CTCharacter:
             self.stats["Soc"] += 1
             self.history.append("Improved Soc by 1 from promotion.")
         elif self.service == "Merchants" and self.rank == 3:
-            self.add_skill("Pilot")
+            self.add_skill("Pilot", automatic=automatic)
 
-    def get_commission_skills(self):
+    def get_commission_skills(self ,automatic=False):
         """
             Gives characters skills granted by commission
         """
         if self.service == "Marines":
-            self.add_skill("Gun Combat(Revolver)")
+            self.add_skill("Gun Combat(Revolver)", automatic=automatic)
         elif self.service == "Army":
-            self.add_skill("Gun Combat(SMG)")
+            self.add_skill("Gun Combat(SMG)", automatic=automatic)
 
     def term(self, automatic=False):
         """
@@ -146,7 +147,7 @@ class CTCharacter:
                     self.history.append("Received a commission.")
                     self.history.append("\tBecame a {rank}.".format(rank=self.get_rank()))
                     self.skill_rolls += 1
-                    self.get_commission_skills()
+                    self.get_commission_skills(automatic=automatic)
 
                 else:
                     self.history.append("Failed to receive a commission.")
@@ -157,17 +158,19 @@ class CTCharacter:
                     self.rank += 1
                     self.history.append("\tBecame a {rank}".format(rank=self.get_rank()))
                     self.skill_rolls += 1
-                    self.get_promotion_skills()
+                    self.get_promotion_skills(automatic=automatic)
                 else:
                     self.history.append("Failed to get promoted.")
             if self.age == 18 or self.service == "Scouts":
                 self.skill_rolls += 2
             else:
                 self.skill_rolls += 1
-            print(self.skill_rolls)
             self.age += 4
             self.terms += 1
-            self.stats = age_stats(self.age, self.stats, self.history)
+            self.stats = age_stats(self.age, self.stats, self.history, automatic=automatic)
+            if 0 in self.stats.values():
+                self.history.append("Stats lowered too much, died of old age.")
+                self.survived = False
             if not automatic:
                 self.display_tables()
             self.add_skills(automatic=automatic)
@@ -200,10 +203,11 @@ class CTCharacter:
             print(res)
         print("----------------------------------------")
 
-    def add_skill(self, skill):
+    def add_skill(self, skill, automatic=False):
         """
             Adds one level of skill
             :param skill:
+            :param automatic false by default to avoid unnecessary prints in auto gen
         """
         if skill in self.skills.keys():
             self.skills[skill] += 1
@@ -211,14 +215,16 @@ class CTCharacter:
                 sk=skill,
                 val=self.skills[skill]
             ))
-            print("Improved {sk} to {val}.".format(
-                sk=skill,
-                val=self.skills[skill]
-            ))
+            if not automatic:
+                print("Improved {sk} to {val}.".format(
+                    sk=skill,
+                    val=self.skills[skill]
+                ))
         else:
             self.skills[skill] = 1
             self.history.append("Learned {sk}.".format(sk=skill))
-            print("Learned {sk}.".format(sk=skill))
+            if not automatic:
+                print("Learned {sk}.".format(sk=skill))
 
     def char_details(self):
         """
@@ -270,23 +276,23 @@ class CTCharacter:
                     skill = roll_skill(self.stats["Edu"], self.service, automatic=True)
                 else:
                     skill = roll_skill(self.stats["Edu"], self.service)
-                print("None encountered")
             if skill.startswith("1"):
                 split_skills = skill.split()
                 self.stats[split_skills[1]] += 1
                 self.history.append("Improved {skill} by 1".format(skill=split_skills[1]))
-                print("Improved {skill} by 1".format(skill=split_skills[1]))
+                if not automatic:
+                    print("Improved {skill} by 1".format(skill=split_skills[1]))
             elif skill.startswith("-"):
                 split_skills = skill[1:].split()
                 self.stats[split_skills[1]] -= 1
                 self.history.append("Decreased {skill} by 1".format(skill=split_skills[1]))
-                print("Decreased {skill} by 1".format(skill=split_skills[1]))
+                if not automatic:
+                    print("Decreased {skill} by 1".format(skill=split_skills[1]))
             else:
                 if skill in CASCADE_SKILLS:
                     if skill == "Blade Combat":
                         if not automatic:
                             print(BLADE_CBT_CASC)
-
                             spe_choice = input("Choose one specialty from above for Blade Combat\n")
                             while spe_choice not in BLADE_CBT_CASC:
                                 spe_choice = input("Choose one specialty from above for Blade Combat\n")
@@ -338,7 +344,7 @@ class CTCharacter:
                             spe_choice = WATERCRAFT_CASC[spe_choice_roll - 1]
                         skill = "Watercraft({spe})".format(spe=spe_choice)
 
-                self.add_skill(skill)
+                self.add_skill(skill, automatic=automatic)
 
     def calc_pension(self):
         """

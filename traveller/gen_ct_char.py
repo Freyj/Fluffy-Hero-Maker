@@ -44,7 +44,7 @@ def random_classic_traveller_character(name: str):
     character = CTCharacter()
     choice_service = roll_die(6)
     services = ["Navy", "Marines", "Army", "Others", "Scouts", "Merchants"]
-    character.choose_service(services[choice_service - 1])
+    character.choose_service(services[choice_service - 1], True)
     stays_in_service = True
     while character.survived and stays_in_service:
         character.term(automatic=True)
@@ -57,6 +57,4 @@ def random_classic_traveller_character(name: str):
                 stays_in_service = False
     character.calc_muster_out(automatic=True)
     character.name = name
-    print(character.__dict__)
-    print(character.char_details())
     return character

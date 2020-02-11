@@ -29,6 +29,7 @@ UPP: {{upp}}
     </ul>
     </li>
 </ul>
+{% if character.survived %}
 {% if character.benefits %}
 <li>Benefits:
 <ul>
@@ -42,5 +43,8 @@ UPP: {{upp}}
 {{character.cash}} Credits
 {% endif %}
 {% if character.pension > 0 %} Pension: {{character.pension}} Credits yearly. {% endif %}
+{% else %}
+<h2>This character died during their service.</h2>
+{% endif %}
 </body>
 </html>
