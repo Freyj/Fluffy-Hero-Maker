@@ -4,9 +4,10 @@
 This is an attempt at having a semi-automatic way of building characters or accessing some of my data for my tabletop rpg games.
 
 ## What games does it cover?
-For now, only Dungeons and Dragons 5th Edition (SRD), but I plan to cover other systems too, later on.
+For now,  Dungeons and Dragons 5th Edition (SRD) and Classic Traveller, but I plan to cover other systems too, later on.
 
 ## How do I add data?
+### For DnD5
 It uses json files to fill its databases, and the only files on this are from data that is part of the SRD  (https://dnd.wizards.com/articles/features/systems-reference-document-srd)
 To add data, you can find templates of the json structures in the **utils** directory, and the data needs to be added in the **databases/data/** proper directory depending on if you want to add races, spells, monsters, classes, or backgrounds.
 
@@ -32,12 +33,17 @@ json files or want to update the database, you need to leave the -debug option o
   - `/` displays a home page with links to previous routes
 
 ## What can I do with it?
-You can create a character, picking a name, race, class, and background. 
-You can display monster stats or spell stats also.
+### DnD 5th
+* You can create a character, picking a name, race, class, and background. 
+* You can display monster stats 
+* You can display spell stats.
+
+### Classic Traveller
+* You can generate a character and save it at the end
 
 ## What is lacking?
 A lot (just look at the issues).
-* All the SRD data taken into account.
+* All the SRD data taken into account. (DnD 5th)
 * Cleaner code.
 * Cleaner everything.
 * Better display
@@ -54,7 +60,9 @@ Because this world needs more fluffy things. Also it is a partially wrong name, 
 ## Licensing
 Not exactly sure yet how I license this, so for now, it's ALL MINE and you're allowed to look at it and be amazed (or shocked).
 (keeping this as a note for later : https://www.gnu.org/licenses/gpl-howto.html).
-(Of course, the SRD is not mine.)
+* https://dnd.wizards.com/articles/features/systems-reference-document-srd for the SRD document,
+*  The Traveller game in all forms is owned by Far Future Enterprises. Copyright 1977 - 2008 Far Future Enterprises.
+ (CF : http://www.farfuture.net/FFEFairUsePolicy2008.pdf)
 
-## Can I help?
-Check the [CONTRIBUTING.md](https://github.com/Freyj/Fluffy-Hero-Maker/blob/master/CONTRIBUTING.md) to see more about how to contribute.
+## Can I help? I've seen some issue...
+* Check the [CONTRIBUTING.md](https://github.com/Freyj/Fluffy-Hero-Maker/blob/master/CONTRIBUTING.md) to see more about how to contribute.
