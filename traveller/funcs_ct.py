@@ -537,12 +537,14 @@ def max_service_rank(service_name: str):
         return 0
 
 
-def age_stats(age, stats, history):
+def age_stats(age, stats, history, automatic=False):
     if age < 34:
-        print("No age effect as of yet.")
+        if automatic:
+            print("No age effect as of yet.")
         return stats
     elif age < 50:
-        print("First rolls for age.")
+        if automatic:
+            print("Rolls for age related characteristics loss.")
         roll = sum_roll_dice(6, 2)
         if roll < 8:
             stats["Str"] -= 1
