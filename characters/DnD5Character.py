@@ -82,7 +82,7 @@ class DnD5Character(Character):
             Set the characters attributes, from a list of 6 integers
             @:param attributes: a list of integer between 1 and 20
         """
-        if type(attributes) is list and len(attributes) is 6:
+        if type(attributes) == list and len(attributes) == 6:
             for i in range(6):
                 assert(20 >= attributes[i] > 0)
             self.attributes = {
@@ -181,10 +181,10 @@ class DnD5Character(Character):
 
     def adjust_attributes_for_race(self):
         for i in self.race.abilities_plus_one:
-            if i is not '':
+            if i != '':
                 self.attributes[i] += 1
         for i in self.race.abilities_plus_two:
-            if i is not '':
+            if i != '':
                 self.attributes[i] += 2
 
     def add_equipment(self, item):

@@ -4,8 +4,8 @@ import json
 
 from sty import fg
 
-from traveller.funcs_ct import roll_stats, enlist, survive, try_commission, get_rank, max_service_rank, try_promotion, \
-    get_upp, get_noble_rank, age_stats, service_reenlistment, roll_skill, display_navy_skill_tables, \
+from traveller.funcs_ct import roll_stats, enlist, survive, try_commission, max_service_rank, try_promotion, \
+    get_noble_rank, age_stats, service_reenlistment, roll_skill, display_navy_skill_tables, \
     display_marines_skill_tables, display_scouts_skill_tables, display_merchants_skill_tables, \
     display_army_skill_tables, display_others_skill_tables, treat_benefits
 from utils.dice_roller import roll_die
@@ -17,6 +17,7 @@ class CTCharacter:
         Class for Classic Traveller characters
     """
     def __init__(self):
+        self.name = ""
         self.stats = roll_stats()
         self.skills = {}
         self.service = ""
@@ -130,9 +131,9 @@ class CTCharacter:
         elif self.service == "Army":
             self.add_skill("Gun Combat(SMG)")
 
-    def term(self):
+    def term(self, automatic=False):
         """
-            Goes through a term for the characters
+            Goes through a term for the characters, if automatic then goes randomly
         """
         survived = survive(self.stats, self.service)
         if survived:
@@ -143,7 +144,7 @@ class CTCharacter:
                 if got_commission:
                     self.rank = 1
                     self.history.append("Received a commission.")
-                    self.history.append("\tBecame a {rank}.".format(rank=get_rank(self.rank, self.service)))
+                    self.history.append("\tBecame a {rank}.".format(rank=self.get_rank()))
                     self.skill_rolls += 1
                     self.get_commission_skills()
 
@@ -154,7 +155,7 @@ class CTCharacter:
                 if got_promoted:
                     self.history.append("Received a promotion")
                     self.rank += 1
-                    self.history.append("\tBecame a {rank}".format(rank=get_rank(self.rank, self.service)))
+                    self.history.append("\tBecame a {rank}".format(rank=self.get_rank()))
                     self.skill_rolls += 1
                     self.get_promotion_skills()
                 else:
@@ -167,8 +168,9 @@ class CTCharacter:
             self.age += 4
             self.terms += 1
             self.stats = age_stats(self.age, self.stats, self.history)
-            self.display_tables()
-            self.add_skills()
+            if not automatic:
+                self.display_tables()
+            self.add_skills(automatic=automatic)
             self.reenlist()
         else:
             self.survived = False
@@ -225,12 +227,12 @@ class CTCharacter:
             benefits, pension
             :return: a str
         """
-        result_str = "UPP: {upp}".format(upp=get_upp(self.stats))
+        result_str = "UPP: {upp}".format(upp=self.get_upp())
         rank = get_noble_rank(self.stats)
         if not rank == "":
             result_str += "\n" + rank
         if self.rank > 0:
-            result_str += "\n{ser} ".format(ser=self.service) + get_rank(self.rank, self.service)
+            result_str += "\n{ser} ".format(ser=self.service) + self.get_rank()
         result_str += "\n" + str(self.age) + " years old"
         if not self.skills == {}:
             result_str += "\n" + json.dumps(self.skills)
@@ -257,12 +259,18 @@ class CTCharacter:
         else:
             self.history.append("Forced to leave the {ser}.".format(ser=self.service))
 
-    def add_skills(self):
+    def add_skills(self, automatic=False):
         """
             Rolls on tables for skills and checks for cascading skill choices
         """
         for _ in range(self.skill_rolls):
-            skill = roll_skill(self.stats["Edu"], self.service)
+            skill = None
+            while skill is None:
+                if automatic:
+                    skill = roll_skill(self.stats["Edu"], self.service, automatic=True)
+                else:
+                    skill = roll_skill(self.stats["Edu"], self.service)
+                print("None encountered")
             if skill.startswith("1"):
                 split_skills = skill.split()
                 self.stats[split_skills[1]] += 1
@@ -276,37 +284,58 @@ class CTCharacter:
             else:
                 if skill in CASCADE_SKILLS:
                     if skill == "Blade Combat":
-                        print(BLADE_CBT_CASC)
-                        spe_choice = input("Choose one specialty from above for Blade Combat\n")
-                        while spe_choice not in BLADE_CBT_CASC:
+                        if not automatic:
+                            print(BLADE_CBT_CASC)
+
                             spe_choice = input("Choose one specialty from above for Blade Combat\n")
+                            while spe_choice not in BLADE_CBT_CASC:
+                                spe_choice = input("Choose one specialty from above for Blade Combat\n")
+                        else:
+                            spe_choice_roll = roll_die(len(BLADE_CBT_CASC))
+                            spe_choice = BLADE_CBT_CASC[spe_choice_roll - 1]
                         skill = "Blade Combat({spe})".format(spe=spe_choice)
                     elif skill == "Gun Combat":
-                        print(GUN_CBT_CASC)
-                        spe_choice = input("Choose one specialty from above for Gun Combat\n")
-                        while spe_choice not in GUN_CBT_CASC:
+                        if not automatic:
+                            print(GUN_CBT_CASC)
                             spe_choice = input("Choose one specialty from above for Gun Combat\n")
+                            while spe_choice not in GUN_CBT_CASC:
+                                spe_choice = input("Choose one specialty from above for Gun Combat\n")
+                        else:
+                            spe_choice_roll = roll_die(len(GUN_CBT_CASC))
+                            spe_choice = GUN_CBT_CASC[spe_choice_roll - 1]
                         skill = "Gun Combat({spe})".format(spe=spe_choice)
                     elif skill == "Vehicle":
-                        print(VEHICLE_CASC)
-                        spe_choice = input("Choose one specialty from above for Vehicle\n")
-                        while spe_choice not in VEHICLE_CASC:
+                        if not automatic:
+                            print(VEHICLE_CASC)
                             spe_choice = input("Choose one specialty from above for Vehicle\n")
+                            while spe_choice not in VEHICLE_CASC:
+                                spe_choice = input("Choose one specialty from above for Vehicle\n")
+                        else:
+                            spe_choice_roll = roll_die(len(VEHICLE_CASC))
+                            spe_choice = VEHICLE_CASC[spe_choice_roll - 1]
                         if spe_choice in ["Aircraft", "Watercraft"]:
                             skill = spe_choice
                         else:
                             skill = "Vehicle({spe})".format(spe=spe_choice)
                     if skill == "Aircraft":
-                        print(AIRCRAFT_CASC)
-                        spe_choice = input("Choose one specialty from above for Aircraft\n")
-                        while spe_choice not in AIRCRAFT_CASC:
+                        if not automatic:
+                            print(AIRCRAFT_CASC)
                             spe_choice = input("Choose one specialty from above for Aircraft\n")
+                            while spe_choice not in AIRCRAFT_CASC:
+                                spe_choice = input("Choose one specialty from above for Aircraft\n")
+                        else:
+                            spe_choice_roll = roll_die(len(AIRCRAFT_CASC))
+                            spe_choice = AIRCRAFT_CASC[spe_choice_roll - 1]
                         skill = "Aircraft({spe})".format(spe=spe_choice)
                     elif skill == "Watercraft":
-                        print(WATERCRAFT_CASC)
-                        spe_choice = input("Choose one specialty from above for Watercraft\n")
-                        while spe_choice not in WATERCRAFT_CASC:
+                        if not automatic:
+                            print(WATERCRAFT_CASC)
                             spe_choice = input("Choose one specialty from above for Watercraft\n")
+                            while spe_choice not in WATERCRAFT_CASC:
+                                spe_choice = input("Choose one specialty from above for Watercraft\n")
+                        else:
+                            spe_choice_roll = roll_die(len(WATERCRAFT_CASC))
+                            spe_choice = WATERCRAFT_CASC[spe_choice_roll - 1]
                         skill = "Watercraft({spe})".format(spe=spe_choice)
 
                 self.add_skill(skill)
@@ -347,6 +376,34 @@ class CTCharacter:
         self.cash += table[roll]
         self.history.append("Received {c} Credits as a muster-out benefit.".format(c=table[roll]))
 
+    def get_rank(self):
+        """
+            Returns the string for the rank of the character
+        """
+        table = []
+        if self.service == "Navy":
+            table = NAVY_RANKS
+        elif self.service == "Marines":
+            table = MARINES_RANKS
+        elif self.service == "Army":
+            table = ARMY_RANKS
+        elif self.service == "Merchants":
+            table = MERCHANTS_RANKS
+        if self.rank == 1:
+            return table[0]
+        elif self.rank == 2:
+            return table[1]
+        elif self.rank == 3:
+            return table[2]
+        elif self.rank == 4:
+            return table[3]
+        elif self.rank == 5:
+            return table[4]
+        elif self.rank == 6:
+            return table[5]
+        else:
+            return ""
+
     def roll_benefit(self):
         """
             Rolls for benefits according to proper table
@@ -375,9 +432,10 @@ class CTCharacter:
         benefit = table[roll]
         return benefit
 
-    def calc_muster_out(self):
+    def calc_muster_out(self, automatic=False):
         """
             Calculates and asks for player choices on mustering out rolls
+            Automatic sets all choices to random
         """
         total_rolls = self.terms
         bonus_ben = 0
@@ -391,26 +449,43 @@ class CTCharacter:
             bonus_ben = 3
         total_rolls += bonus_ben
         self.history.append("Mustering out benefits: {i}".format(i=total_rolls))
-        while total_rolls > 0:
-            if cash_max > 0:
-                x = input("Do you want cash or a benefit? You have {t} total rolls left (max {c} cash rolls). c for cash, "
-                          "b for benefit\n".format(
-                    c=cash_max,
-                    t=total_rolls
-                ))
-                if x == "c":
-                    cash_max -= 1
+        if not automatic:
+            while total_rolls > 0:
+                if cash_max > 0:
+                    x = input("Do you want cash or a benefit? You have {t} total rolls left (max {c} cash rolls). c for cash, "
+                              "b for benefit\n".format(
+                        c=cash_max,
+                        t=total_rolls
+                    ))
+                    if x == "c":
+                        cash_max -= 1
+                        total_rolls -= 1
+                        self.roll_cash()
+                    elif x == "b":
+                        total_rolls -= 1
+                        benefit = self.roll_benefit()
+                        benefits.append(benefit)
+                        print(benefit)
+                else:
                     total_rolls -= 1
-                    self.roll_cash()
-                elif x == "b":
+                    benefits.append(self.roll_benefit())
+        else:
+            while total_rolls > 0:
+                if cash_max > 0:
+                    cash_or_benefit = roll_die(2)
+                    if cash_or_benefit == 0:
+                        cash_max -= 1
+                        total_rolls -= 1
+                        self.roll_cash()
+                    else:
+                        total_rolls -= 1
+                        benefit = self.roll_benefit()
+                        benefits.append(benefit)
+                else:
                     total_rolls -= 1
-                    benefit = self.roll_benefit()
-                    benefits.append(benefit)
-                    print(benefit)
-            else:
-                total_rolls -= 1
-                benefits.append(self.roll_benefit())
-        self.benefits = treat_benefits(self.stats, benefits, self.history)
+                    benefits.append(self.roll_benefit())
+
+        self.benefits = treat_benefits(self.stats, benefits, self.history, automatic=automatic)
         self.calc_pension()
 
     def save_character(self, name):
@@ -423,4 +498,18 @@ class CTCharacter:
                 f.write(event + "\n")
             f.write("\nDetails\n")
             f.write(self.char_details())
+
+    def get_upp(self):
+        """
+            Produces the Universal Personality Profile
+            :return: a string of 6 characters with hexadecimal notation (in caps for letters) representing the UPP
+        """
+        upp = ""
+        upp += hex(self.stats["Str"])[2:].upper()
+        upp += hex(self.stats["Dex"])[2:].upper()
+        upp += hex(self.stats["End"])[2:].upper()
+        upp += hex(self.stats["Int"])[2:].upper()
+        upp += hex(self.stats["Edu"])[2:].upper()
+        upp += hex(self.stats["Soc"])[2:].upper()
+        return upp
 

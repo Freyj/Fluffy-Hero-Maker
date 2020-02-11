@@ -27,48 +27,6 @@ def roll_stats():
     return dict_stats
 
 
-def get_rank(rank, service):
-    table = []
-    if service == "Navy":
-        table = NAVY_RANKS
-    elif service == "Marines":
-        table = MARINES_RANKS
-    elif service == "Army":
-        table = ARMY_RANKS
-    elif service == "Merchants":
-        table = MERCHANTS_RANKS
-    if rank == 1:
-        return table[0]
-    elif rank == 2:
-        return table[1]
-    elif rank == 3:
-        return table[2]
-    elif rank == 4:
-        return table[3]
-    elif rank == 5:
-        return table[4]
-    elif rank == 6:
-        return table[5]
-    else:
-        return ""
-
-
-def get_upp(dict_stats):
-    """
-        Produces the Universal Personality Profile
-        :param dict_stats: the dict of stats from the character with Str, Dex, End, Int, Edu, Soc
-        :return: a string of 6 characters with hexadecimal notation (in caps for letters) representing the UPP
-    """
-    upp = ""
-    upp += hex(dict_stats["Str"])[2:].upper()
-    upp += hex(dict_stats["Dex"])[2:].upper()
-    upp += hex(dict_stats["End"])[2:].upper()
-    upp += hex(dict_stats["Int"])[2:].upper()
-    upp += hex(dict_stats["Edu"])[2:].upper()
-    upp += hex(dict_stats["Soc"])[2:].upper()
-    return upp
-
-
 def get_noble_rank(stats: dict):
     soc = stats["Soc"]
     if soc < 11:
@@ -506,7 +464,7 @@ def display_others_skill_tables(education):
         print("6 {nav}".format(nav=OTHERS_SKILLS_ADV_EDU[5]))
 
 
-def roll_skill(education, service_name):
+def roll_skill(education, service_name, automatic=False):
     pers_tab = []
     adv_skill_tab = []
     serv_skill_tab = []
@@ -546,9 +504,15 @@ def roll_skill(education, service_name):
     else:
         more = "\n"
     table = 0
-    while (table not in ["1", "2", "3", "4"] and education > 7) or (table not in ["1", "2", "3"] and education < 8):
-        table = input("Choose a Table to roll on, 1 for Personal Development, "
-                      "2 for Service Skills, 3 for Advanced Skills{more}".format(more=more))
+    if not automatic:
+        while (table not in ["1", "2", "3", "4"] and education > 7) or (table not in ["1", "2", "3"] and education < 8):
+            table = input("Choose a Table to roll on, 1 for Personal Development, "
+                          "2 for Service Skills, 3 for Advanced Skills{more}".format(more=more))
+    else:
+        if education > 7:
+            table = str(roll_die(4) + 1)
+        else:
+            table = str(roll_die(3) + 1)
     roll = roll_die(6) - 1
     if table == "1":
         return pers_tab[roll]
@@ -624,7 +588,7 @@ def age_stats(age, stats, history):
     return stats
 
 
-def treat_benefits(stats, benefits_list, history):
+def treat_benefits(stats, benefits_list, history, automatic=False):
     benefits = []
     for benefit in benefits_list:
         if benefit.startswith("+"):
@@ -633,17 +597,25 @@ def treat_benefits(stats, benefits_list, history):
             history.append("Improved {skill} by {am} as a muster-out benefit.".format(skill=skill_benefits[1],
                                                                                       am=skill_benefits[0]))
         elif benefit.startswith("Blade"):
-            print(BLADE_CBT_CASC)
-            blade = input("Choose a type of blade to receive.\n")
-            while blade not in BLADE_CBT_CASC:
+            if not automatic:
+                print(BLADE_CBT_CASC)
                 blade = input("Choose a type of blade to receive.\n")
+                while blade not in BLADE_CBT_CASC:
+                    blade = input("Choose a type of blade to receive.\n")
+            else:
+                blade_choice = roll_die(len(BLADE_CBT_CASC))
+                blade = BLADE_CBT_CASC[blade_choice - 1]
             benefits.append(blade)
             history.append("Received a {blade} as a muster-out benefit.".format(blade=blade))
         elif benefit.startswith("Gun"):
-            print(GUN_CBT_CASC)
-            gun = input("Choose a type of gun to receive.\n")
-            while gun not in GUN_CBT_CASC:
+            if not automatic:
+                print(GUN_CBT_CASC)
                 gun = input("Choose a type of gun to receive.\n")
+                while gun not in GUN_CBT_CASC:
+                    gun = input("Choose a type of gun to receive.\n")
+            else:
+                gun_choice = roll_die(len(GUN_CBT_CASC))
+                gun = GUN_CBT_CASC[gun_choice - 1]
             benefits.append(gun)
             history.append("Received a {gun} as a muster-out benefit.".format(gun=gun))
         else:
