@@ -4,6 +4,7 @@ from characters.DnD5Character import generate_random_dnd_character
 from databases.dnd5.dnd5_monster_db import get_random_monster, get_all_monsters_names_from_db, get_monster_by_name
 from databases.dnd5.dnd5_spell_db import get_random_spell, get_all_spell_names_from_db, look_for_spell_by_name
 
+
 app = Flask(__name__, template_folder="../utils/jinja_templates")
 
 
@@ -52,3 +53,9 @@ def get_monster(name=None):
 def random_dnd_character(name=None):
     character = generate_random_dnd_character(name)
     return render_template('dndCharacter.html', character=character)
+
+
+@app.route("/classic-traveller-character-gen")
+def classic_traveller_rand_char():
+    character = random_classic_traveller_character()
+    return render_template('CTCharacter.html', character=character)
