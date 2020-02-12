@@ -55,6 +55,7 @@ def random_classic_traveller_character(name: str):
                     stays_in_service = False
             elif character.reenlisting == -1:
                 stays_in_service = False
-    character.calc_muster_out(automatic=True)
+    if character.survived:
+        character.calc_muster_out(automatic=True)
     character.name = name
     return character

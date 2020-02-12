@@ -28,3 +28,7 @@ h1 {
 .text-traveller {
     color: #fff;
 }
+
+.display {
+    display:none;
+}
