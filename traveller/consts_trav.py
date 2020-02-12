@@ -23,7 +23,7 @@ BLADE_CBT_CASC = [
     "Bayonet",
     "Spear",
     "Halberd",
-    "Pike"
+    "Pike",
     "Cudgel"
 ]
 GUN_CBT_CASC = [

@@ -479,7 +479,7 @@ class CTCharacter:
             while total_rolls > 0:
                 if cash_max > 0:
                     cash_or_benefit = roll_die(2)
-                    if cash_or_benefit == 0:
+                    if cash_or_benefit == 1:
                         cash_max -= 1
                         total_rolls -= 1
                         self.roll_cash()
