@@ -58,7 +58,7 @@ def random_dnd_character(name=None):
 @app.route("/classic-traveller-character-gen/<name>")
 def classic_traveller_rand_char(name=None):
     character = random_classic_traveller_character(name)
-    return render_template('CTCharacter.html',
+    return render_template('ctCharacter.html',
                            character=character,
                            upp=character.get_upp(),
                            rank=character.get_rank())

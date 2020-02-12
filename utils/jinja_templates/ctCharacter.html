@@ -7,7 +7,7 @@
 </head>
 <body class="traveller text-traveller">
 <h1 class="title-traveller">Classic Traveller Character</h1>
-<h2 >{{character.name}}, {% if character.rank > 0 %}{{character.service}}, {{rank}},{% endif %} {{character.age}} years old. </h2>
+<h2 >{{character.name}}, {{character.service}}{% if character.rank > 0 %} {{rank}},{% endif %} {{character.age}} years old. </h2>
 UPP: {{upp}}
 
 <ul>
