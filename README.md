@@ -2,10 +2,12 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/476ce10b73024bb8a63b98221a860825)](https://app.codacy.com/manual/Freyj/Fluffy-Hero-Maker?utm_source=github.com&utm_medium=referral&utm_content=Freyj/Fluffy-Hero-Maker&utm_campaign=Badge_Grade_Settings)
 [![Build Status](https://travis-ci.org/Freyj/Fluffy-Hero-Maker.svg?branch=master)](https://travis-ci.org/Freyj/Fluffy-Hero-Maker)
 ## What is this?
-This is an attempt at having a semi-automatic way of building characters or accessing some of my data for my tabletop rpg games.
+For now this is a tabletop rpg assistant, currently with DnD 5th edition and Classic Traveller options.
+It helps me generates characters on the fly, and access some data.
 
 ## What games does it cover?
 For now,  Dungeons and Dragons 5th Edition (SRD) and Classic Traveller, but I plan to cover other systems too, later on.
+You are most welcome to offer ideas, I might add them.
 
 ## How do I add data?
 ### For DnD5
@@ -13,8 +15,10 @@ It uses json files to fill its databases, and the only files on this are from da
 To add data, you can find templates of the json structures in the **utils** directory, and the data needs to be added in the **databases/data/** proper directory depending on if you want to add races, spells, monsters, classes, or backgrounds.
 
 ## How do I run it?
-### The CLI version
+### Requirements
 - You need python 3.7 installed on your machine.
+- You should be able to be fine by doing `pip3 install -r requirements.txt` to get all the dependencies.
+### The CLI version
 - Ideally, just launching ```python3 cli_main.py -debug``` should do the trick.
 *This is only in command-line interface for now, graphical interfaces are a pest.*
 - *[also, this has only been tested on a linux machine with an Ubuntu distribution, so no guarantees]*
@@ -32,17 +36,21 @@ json files or want to update the database, you need to leave the -debug option o
   - `/all-dnd-monsters` displays the list of monsters in the database
   - `/all-dnd-spells` displays the list of spells in the database
   - `/` displays a home page with links to previous routes
-  - `/classic-traveller-character-gen/<name>` displays a randomly generated classic traveller character with the name in `<name>`
+  - `/classic-traveller-character-gen/<name>` displays a randomly generated classic traveller character with the name in
+   `<name>`, and as classic traveller creation goes, they can end up dead during their career. Just reload ;)
+  - `/classic_traveller-rand-party-gen` displays a group of 4 randomly generated characters, all alive.
 
 
 ## What can I do with it?
 ### DnD 5th
 * You can create a character, picking a name, race, class, and background. 
-* You can display monster stats 
+* You can display monster stats.
 * You can display spell stats.
 
 ### Classic Traveller
-* You can generate a character and save it at the end
+* You can generate a character and save it at the end.
+* You can generate a character randomly.
+* You can generate a party of 4 random characters.
 
 ## What is lacking?
 A lot (just look at the issues).
@@ -61,8 +69,7 @@ Because this world needs more fluffy things. Also it is a partially wrong name, 
 * Also, I sometimes forget to use the python things, and reinvent the wheel for no reason
 
 ## Licensing
-Not exactly sure yet how I license this, so for now, it's ALL MINE and you're allowed to look at it and be amazed (or shocked).
-(keeping this as a note for later : https://www.gnu.org/licenses/gpl-howto.html).
+Not exactly sure yet how I license this, so for now, it's a mess.
 * https://dnd.wizards.com/articles/features/systems-reference-document-srd for the SRD document,
 *  The Traveller game in all forms is owned by Far Future Enterprises. Copyright 1977 - 2008 Far Future Enterprises.
  (CF : http://www.farfuture.net/FFEFairUsePolicy2008.pdf)
