@@ -54,9 +54,9 @@ UPP: {{upp}}
     <h2>This character died during their service.</h2>
 {% endif %}
 
-<button onclick="display('history')" class="title-traveller">Character history</button>
+<button onclick="display()" class="title-traveller">Character history</button>
 
-<div id="history" class="history display">
+<div id="history" class="history">
     <ul>
     {% for event in character.history %}
         <li>
@@ -65,10 +65,9 @@ UPP: {{upp}}
     {% endfor %}
     </ul>
 </div>
-
 <script>
-function display(stats) {
-  var x = document.getElementById(stats);
+    function display() {
+  var x = document.getElementById("history");
   if (x.style.display === "block") {
     x.style.display = "none";
   } else {

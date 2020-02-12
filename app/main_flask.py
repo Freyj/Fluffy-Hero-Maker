@@ -61,4 +61,4 @@ def classic_traveller_rand_char(name=None):
     return render_template('ctCharacter.html',
                            character=character,
                            upp=character.get_upp(),
-                           rank=character.get_rank(), noble_rank=character.get_noble_rank())
+                           rank=character.get_rank())
