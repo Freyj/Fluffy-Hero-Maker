@@ -59,3 +59,13 @@ def random_classic_traveller_character(name: str):
         character.calc_muster_out(automatic=True)
     character.name = name
     return character
+
+
+def random_classic_traveller_party_generator():
+    characters = []
+    for i in range(4):
+        character = random_classic_traveller_character("Member {i}".format(i=i))
+        while not character.survived:
+            character = random_classic_traveller_character("Member {i}".format(i=i))
+        characters.append(character)
+    return characters
