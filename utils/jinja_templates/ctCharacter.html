@@ -7,11 +7,12 @@
 </head>
 <body class="traveller text-traveller">
 <h1 class="title-traveller">Classic Traveller Character</h1>
-<h2 >{{character.name}}, {{character.service}}{% if character.rank > 0 %} {{rank}},{% endif %} {{character.age}} years old. </h2>
+<h2 >{{character.name}}, {{character.service}}{% if character.rank > 0 %} {{rank}}{% endif %}, {{character.age}} years old. </h2>
 UPP: {{upp}}
 
+<button onclick="display('stats')" class="title-traveller">Stats</button>
 <ul>
-    <li>Stats:
+    <li id="stats" class="history display">Stats:
         <ul>
             <li>Strength: {{character.stats.Str}}</li>
             <li>Dexterity: {{character.stats.Dex}}</li>
@@ -51,9 +52,9 @@ UPP: {{upp}}
     <h2>This character died during their service.</h2>
 {% endif %}
 
-<button onclick="display()" class="title-traveller">Character history</button>
+<button onclick="display('history')" class="title-traveller">Character history</button>
 
-<div id="history" class="history">
+<div id="history" class="history display">
     <ul>
     {% for event in character.history %}
         <li>
@@ -62,9 +63,10 @@ UPP: {{upp}}
     {% endfor %}
     </ul>
 </div>
+
 <script>
-    function display() {
-  var x = document.getElementById("history");
+function display(stats) {
+  var x = document.getElementById(stats);
   if (x.style.display === "block") {
     x.style.display = "none";
   } else {
