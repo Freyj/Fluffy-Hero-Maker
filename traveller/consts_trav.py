@@ -105,7 +105,7 @@ NAVY_SKILLS_SERVICE = [
 NAVY_SKILLS_ADV = [
     "Vacc Suit",
     "Mechanical",
-    "Electronic",
+    "Electronics",
     "Engineering",
     "Gunnery",
     "Jack-of-Trades"
@@ -139,7 +139,7 @@ MARINES_SKILLS_SERVICE = [
 MARINES_SKILLS_ADV = [
     "Vehicle",
     "Mechanical",
-    "Electronic",
+    "Electronics",
     "Tactics",
     "Blade Combat",
     "Gun Combat"
@@ -173,7 +173,7 @@ ARMY_SKILLS_SERVICE = [
 ARMY_SKILLS_ADV = [
     "Vehicle",
     "Mechanical",
-    "Electronic",
+    "Electronics",
     "Tactics",
     "Blade Combat",
     "Gun Combat"
@@ -207,7 +207,7 @@ MERCHANTS_SKILLS_SERVICE = [
 MERCHANTS_SKILLS_ADV = [
     "Streetwise",
     "Mechanical",
-    "Electronic",
+    "Electronics",
     "Navigation",
     "Gunnery",
     "Medical"
@@ -241,7 +241,7 @@ SCOUTS_SKILLS_SERVICE = [
 SCOUTS_SKILLS_ADV = [
     "Vehicle",
     "Mechanical",
-    "Electronic",
+    "Electronics",
     "Jack-of-Trades",
     "Gunnery",
     "Medical"
@@ -275,7 +275,7 @@ OTHERS_SKILLS_SERVICE = [
 OTHERS_SKILLS_ADV = [
     "Vehicle",
     "Mechanical",
-    "Electronic",
+    "Electronics",
     "Jack-of-Trades",
     "Gunnery",
     "Medical"
