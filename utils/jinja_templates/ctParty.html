@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fluffy Hero Maker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="traveller text-traveller">
+<h1 class="title-traveller">Classic Traveller Random Party</h1>
+{% for character in characters %}
+<h2 >{{character.name}}, {{character.service}}{% if character.rank > 0 %} {{character.rank_name}}{% endif %}, {{character.age}} years old. </h2>
+UPP: {{character.upp}}
+{% if noble_rank %}
+    <h3>Noble rank: {{character.noble_rank}}</h3>
+{% endif %}
+<button onclick="display('stats{{character.name}}')" class="title-traveller">Stats</button>
+<ul>
+    <li id="stats{{character.name}}" class="history display">Stats:
+        <ul>
+            <li>Strength: {{character.stats.Str}}</li>
+            <li>Dexterity: {{character.stats.Dex}}</li>
+            <li>Endurance: {{character.stats.End}}</li>
+            <li>Intelligence: {{character.stats.Int}}</li>
+            <li>Education: {{character.stats.Edu}}</li>
+            <li>Social Status: {{character.stats.Soc}}</li>
+        </ul>
+    </li>
+    <li>Skills:
+        <ul>
+            {% for key, value in character.skills.items() %}
+            <li>{{key}}: {{value}}</li>
+            {% endfor %}
+        </ul>
+    </li>
+</ul>
+{% if character.survived %}
+{% if character.benefits %}
+<li>Benefits:
+    <ul>
+        {% for element in character.benefits %}
+        <li>{{element}}</li>
+        {% endfor %}
+    </ul>
+</li>
+{% endif %}
+{% if character.cash > 0 %}
+    <p>
+        {{character.cash}} Credits
+    </p>
+{% endif %}
+    {% if character.pension > 0 %}
+        <p>Pension: {{character.pension}} Credits yearly.</p>
+    {% endif %}
+{% else %}
+    <h2>This character died during their service.</h2>
+{% endif %}
+
+<button onclick="display('history{{character.name}}')" class="title-traveller">Character history</button>
+
+<div id="history{{character.name}}" class="history display">
+    <ul>
+    {% for event in character.history %}
+        <li>
+            {{event}}
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+<hr width="25%" color="red" align="left">
+{% endfor %}
+
+<script>
+function display(stats) {
+  var x = document.getElementById(stats);
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+</script>
+</body>
+</html>
