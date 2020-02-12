@@ -1,0 +1,375 @@
+# The configurations that used for the recording, feel free to edit them
+config:
+
+  # Specify a command to be executed
+  # like `/bin/bash -l`, `ls`, or any other commands
+  # the default is bash for Linux
+  # or powershell.exe for Windows
+  command: bash -l
+  
+  # Specify the current working directory path
+  # the default is the current working directory path
+  cwd: /home/charlene/personal/fluffy-hero-maker/traveller
+  
+  # Export additional ENV variables
+  env:
+    recording: true
+  
+  # Explicitly set the number of columns
+  # or use `auto` to take the current
+  # number of columns of your shell
+  cols: 237
+  
+  # Explicitly set the number of rows
+  # or use `auto` to take the current
+  # number of rows of your shell
+  rows: 60
+  
+  # Amount of times to repeat GIF
+  # If value is -1, play once
+  # If value is 0, loop indefinitely
+  # If value is a positive number, loop n times
+  repeat: 0
+  
+  # Quality
+  # 1 - 100
+  quality: 100
+  
+  # Delay between frames in ms
+  # If the value is `auto` use the actual recording delays
+  frameDelay: auto
+  
+  # Maximum delay between frames in ms
+  # Ignored if the `frameDelay` isn't set to `auto`
+  # Set to `auto` to prevent limiting the max idle time
+  maxIdleTime: 2000
+  
+  # The surrounding frame box
+  # The `type` can be null, window, floating, or solid`
+  # To hide the title use the value null
+  # Don't forget to add a backgroundColor style with a null as type
+  frameBox:
+    type: floating
+    title: Terminalizer
+    style:
+      border: 0px black solid
+      # boxShadow: none
+      # margin: 0px
+  
+  # Add a watermark image to the rendered gif
+  # You need to specify an absolute path for
+  # the image on your machine or a URL, and you can also
+  # add your own CSS styles
+  watermark:
+    imagePath: null
+    style:
+      position: absolute
+      right: 15px
+      bottom: 15px
+      width: 100px
+      opacity: 0.9
+  
+  # Cursor style can be one of
+  # `block`, `underline`, or `bar`
+  cursorStyle: block
+  
+  # Font family
+  # You can use any font that is installed on your machine
+  # in CSS-like syntax
+  fontFamily: "Monaco, Lucida Console, Ubuntu Mono, Monospace"
+  
+  # The size of the font
+  fontSize: 12
+  
+  # The height of lines
+  lineHeight: 1
+  
+  # The spacing between letters
+  letterSpacing: 0
+  
+  # Theme
+  theme:
+    background: "transparent"
+    foreground: "#afafaf"
+    cursor: "#c7c7c7"
+    black: "#232628"
+    red: "#fc4384"
+    green: "#b3e33b"
+    yellow: "#ffa727"
+    blue: "#75dff2"
+    magenta: "#ae89fe"
+    cyan: "#708387"
+    white: "#d5d5d0"
+    brightBlack: "#626566"
+    brightRed: "#ff7fac"
+    brightGreen: "#c8ed71"
+    brightYellow: "#ebdf86"
+    brightBlue: "#75dff2"
+    brightMagenta: "#ae89fe"
+    brightCyan: "#b1c6ca"
+    brightWhite: "#f9f9f4"
+  
+# Records, feel free to edit them
+records:
+  - delay: 539
+    content: "\e]0;charlene@charlene-imt:~/personal/fluffy-hero-maker/traveller\e\\\e]7;file://charlene-imt/home/charlene/personal/fluffy-hero-maker/traveller\e\\(base) \e]0;charlene@charlene-imt: ~/personal/fluffy-hero-maker/traveller\a\e[01;32mcharlene@charlene-imt\e[00m:\e[01;34m~/personal/fluffy-hero-maker/traveller\e[00m$ "
+  - delay: 2145
+    content: p
+  - delay: 229
+    content: 'y'
+  - delay: 156
+    content: t
+  - delay: 68
+    content: h
+  - delay: 190
+    content: o
+  - delay: 164
+    content: 'n'
+  - delay: 509
+    content: '3'
+  - delay: 89
+    content: ' '
+  - delay: 212
+    content: .
+  - delay: 175
+    content: .
+  - delay: 290
+    content: /
+  - delay: 1068
+    content: c
+  - delay: 81
+    content: l
+  - delay: 176
+    content: i
+  - delay: 163
+    content: _
+  - delay: 256
+    content: m
+  - delay: 84
+    content: a
+  - delay: 100
+    content: i
+  - delay: 146
+    content: 'n'
+  - delay: 174
+    content: .
+  - delay: 203
+    content: p
+  - delay: 206
+    content: 'y'
+  - delay: 247
+    content: "\r\n"
+  - delay: 67
+    content: "Input wanted tool: 1 for a dnd5 character creator, 2 for dnd5 monster stats, 3 for spell finder, 4 for Classic Traveller Character generator\r\n"
+  - delay: 1278
+    content: '4'
+  - delay: 611
+    content: "\r\nChoose service to try for: (Navy, Marines, Army, Scouts, Merchants, Others. Q to quit.)\r\n"
+  - delay: 1188
+    content: 'N'
+  - delay: 138
+    content: a
+  - delay: 193
+    content: v
+  - delay: 75
+    content: 'y'
+  - delay: 263
+    content: "\r\n2\r\nNo age effect as of yet.\r\nNavy Personal Development Table | Navy Service Skills Table   | Navy Advanced Skills Table\r\n--------------------------------|-----------------------------|---------------------------\r\n1 1 Str                         | 1 Ship's Boat               | 1 Vacc Suit\r\n2 1 Dex                         | 2 Vacc Suit                 | 1 Mechanical\r\n3 1 End                         | 3 Forward Observer          | 1 Electronic\r\n4 1 Int                         | 4 Gunnery                   | 1 Engineering\r\n5 1 Edu                         | 5 Blade Combat              | 1 Gunnery\r\n6 1 Soc                         | 6 Gun Combat                | 1 Jack-of-Trades\r\nChoose a Table to roll on, 1 for Personal Development, 2 for Service Skills, 3 for Advanced Skills\r\n"
+  - delay: 917
+    content: '3'
+  - delay: 221
+    content: "\r\nLearned Mechanical.\r\nChoose a Table to roll on, 1 for Personal Development, 2 for Service Skills, 3 for Advanced Skills\r\n"
+  - delay: 1310
+    content: '2'
+  - delay: 208
+    content: "\r\nLearned Ship's Boat.\r\nDo you want cash or a benefit? You have 1 total rolls left (max 3 cash rolls). c for cash, b for benefit\r\n"
+  - delay: 2071
+    content: c
+  - delay: 213
+    content: "\r\n----------------------------------------\r\nCharacter log:\r\nApplied to enter the Navy\r\n\e[34mEnlisted in the Navy.\e[39m\r\nSurvived the term.\r\n\e[31mFailed to receive a commission.\e[39m\r\n\e[32mLearned Mechanical.\e[39m\r\n\e[32mLearned Ship's Boat.\e[39m\r\n\e[31mForced to leave the Navy.\e[39m\r\nMustering out benefits: 1\r\n\e[93mReceived 10000 Credits as a muster-out benefit.\e[39m\r\n----------------------------------------\r\nUPP: 387647\r\n22 years old\r\n{\"Mechanical\": 1, \"Ship's Boat\": 1}\r\n10000 Credits\r\nDo you want to save file? Anything else than No will produce a file of this name\r\n"
+  - delay: 2225
+    content: 'N'
+  - delay: 231
+    content: o
+  - delay: 324
+    content: "\r\nChoose service to try for: (Navy, Marines, Army, Scouts, Merchants, Others. Q to quit.)\r\n"
+  - delay: 1971
+    content: A
+  - delay: 380
+    content: r
+  - delay: 134
+    content: m
+  - delay: 326
+    content: 'y'
+  - delay: 568
+    content: "\r\nLearned Gun Combat(Rifle).\r\nLearned Gun Combat(SMG).\r\n4\r\nNo age effect as of yet.\r\nArmy Personal Development Table | Army Service Skills Table   | Army Advanced Skills Table\r\n--------------------------------|-----------------------------|---------------------------\r\n1 1 Str                         | 1 Vehicle                   | 1 Vehicle\r\n2 1 Dex                         | 2 Vehicle                   | 1 Mechanical\r\n3 1 End                         | 3 Gun Combat                | 1 Electronic\r\n4 Gambling                      | 4 Forward Observer          | 1 Tactics\r\n5 1 Edu                         | 5 Blade Combat              | 1 Blade Combat\r\n6 Brawling                      | 6 Gun Combat                | 1 Gun Combat\r\nChoose a Table to roll on, 1 for Personal Development, 2 for Service Skills, 3 for Advanced Skills\r\n"
+  - delay: 1297
+    content: '3'
+  - delay: 542
+    content: "\r\n['Dagger', 'Blade', 'Foil', 'Sword', 'Cutlass', 'Broadsword', 'Bayonet', 'Spear', 'Halberd', 'PikeCudgel']\r\nChoose one specialty from above for Blade Combat\r\n"
+  - delay: 1609
+    content: S
+  - delay: 228
+    content: w
+  - delay: 113
+    content: o
+  - delay: 158
+    content: r
+  - delay: 157
+    content: d
+  - delay: 113
+    content: "\r\nLearned Blade Combat(Sword).\r\nChoose a Table to roll on, 1 for Personal Development, 2 for Service Skills, 3 for Advanced Skills\r\n"
+  - delay: 1420
+    content: '2'
+  - delay: 257
+    content: "\r\n['Aircraft', 'Grav Vehicle', 'Tracked Vehicle', 'Watercraft', 'Wheeled Vehicle']\r\nChoose one specialty from above for Vehicle\r\n"
+  - delay: 1393
+    content: T
+  - delay: 200
+    content: r
+  - delay: 81
+    content: a
+  - delay: 159
+    content: c
+  - delay: 90
+    content: k
+  - delay: 110
+    content: e
+  - delay: 143
+    content: d
+  - delay: 93
+    content: ' '
+  - delay: 159
+    content: V
+  - delay: 106
+    content: e
+  - delay: 107
+    content: h
+  - delay: 164
+    content: i
+  - delay: 84
+    content: c
+  - delay: 122
+    content: l
+  - delay: 106
+    content: e
+  - delay: 98
+    content: "\r\nLearned Vehicle(Tracked Vehicle).\r\nChoose a Table to roll on, 1 for Personal Development, 2 for Service Skills, 3 for Advanced Skills\r\n"
+  - delay: 900
+    content: '3'
+  - delay: 222
+    content: "\r\n['Aircraft', 'Grav Vehicle', 'Tracked Vehicle', 'Watercraft', 'Wheeled Vehicle']\r\nChoose one specialty from above for Vehicle\r\n"
+  - delay: 2411
+    content: W
+  - delay: 216
+    content: h
+  - delay: 93
+    content: e
+  - delay: 124
+    content: e
+  - delay: 90
+    content: l
+  - delay: 99
+    content: e
+  - delay: 185
+    content: d
+  - delay: 97
+    content: ' '
+  - delay: 214
+    content: V
+  - delay: 102
+    content: e
+  - delay: 572
+    content: h
+  - delay: 160
+    content: i
+  - delay: 89
+    content: c
+  - delay: 121
+    content: l
+  - delay: 111
+    content: e
+  - delay: 100
+    content: "\r\nLearned Vehicle(Wheeled Vehicle).\r\nChoose a Table to roll on, 1 for Personal Development, 2 for Service Skills, 3 for Advanced Skills\r\n"
+  - delay: 929
+    content: '1'
+  - delay: 175
+    content: "\r\nImproved Edu by 1\r\nDo you want cash or a benefit? You have 2 total rolls left (max 3 cash rolls). c for cash, b for benefit\r\n"
+  - delay: 2124
+    content: b
+  - delay: 162
+    content: "\r\n+1 Int\r\nDo you want cash or a benefit? You have 1 total rolls left (max 3 cash rolls). c for cash, b for benefit\r\n"
+  - delay: 1018
+    content: c
+  - delay: 160
+    content: "\r\n----------------------------------------\r\nCharacter log:\r\nApplied to enter the Army\r\n\e[34mEnlisted in the Army.\e[39m\r\n\e[32mLearned Gun Combat(Rifle).\e[39m\r\nSurvived the term.\r\n\e[93mReceived a commission.\e[39m\r\n\tBecame a Lieutenant.\r\n\e[32mLearned Gun Combat(SMG).\e[39m\r\n\e[93mReceived a promotion\e[39m\r\n\tBecame a Captain\r\n\e[32mLearned Blade Combat(Sword).\e[39m\r\n\e[32mLearned Vehicle(Tracked Vehicle).\e[39m\r\n\e[32mLearned Vehicle(Wheeled Vehicle).\e[39m\r\n\e[96mImproved Edu by 1\e[39m\r\n\e[31mForced to leave the Army.\e[39m\r\nMustering out benefits: 2\r\n\e[93mReceived 10000 Credits as a muster-out benefit.\e[39m\r\n\e[96mImproved Int by 1 as a muster-out benefit.\e[39m\r\n----------------------------------------\r\nUPP: A46786\r\nArmy Captain\r\n22 years old\r\n{\"Gun Combat(Rifle)\": 1, \"Gun Combat(SMG)\": 1, \"Blade Combat(Sword)\": 1, \"Vehicle(Tracked Vehicle)\": 1, \"Vehicle(Wheeled Vehicle)\": 1}\r\n10000 Credits\r\nDo you want to save file? Anything else than No will produce a file of this name\r\n"
+  - delay: 3889
+    content: 'N'
+  - delay: 219
+    content: o
+  - delay: 387
+    content: "\r\nChoose service to try for: (Navy, Marines, Army, Scouts, Merchants, Others. Q to quit.)\r\n"
+  - delay: 389
+    content: Q
+  - delay: 674
+    content: "\r\nDo you want to continue?\r\n"
+  - delay: 1971
+    content: 'n'
+  - delay: 249
+    content: "\r\n"
+  - delay: 23
+    content: "\e]0;charlene@charlene-imt:~/personal/fluffy-hero-maker/traveller\e\\\e]7;file://charlene-imt/home/charlene/personal/fluffy-hero-maker/traveller\e\\(base) \e]0;charlene@charlene-imt: ~/personal/fluffy-hero-maker/traveller\a\e[01;32mcharlene@charlene-imt\e[00m:\e[01;34m~/personal/fluffy-hero-maker/traveller\e[00m$ "
+  - delay: 1854
+    content: t
+  - delay: 163
+    content: e
+  - delay: 76
+    content: r
+  - delay: 70
+    content: m
+  - delay: 170
+    content: i
+  - delay: 133
+    content: 'n'
+  - delay: 65
+    content: a
+  - delay: 134
+    content: l
+  - delay: 160
+    content: i
+  - delay: 47
+    content: z
+  - delay: 167
+    content: e
+  - delay: 210
+    content: r
+  - delay: 154
+    content: ' '
+  - delay: 1046
+    content: "\b\e[K"
+  - delay: 501
+    content: "\b\e[K"
+  - delay: 51
+    content: "\b\e[K"
+  - delay: 50
+    content: "\b\e[K"
+  - delay: 50
+    content: "\b\e[K"
+  - delay: 50
+    content: "\b\e[K"
+  - delay: 51
+    content: "\b\e[K"
+  - delay: 49
+    content: "\b\e[K"
+  - delay: 51
+    content: "\b\e[K"
+  - delay: 51
+    content: "\b\e[K"
+  - delay: 51
+    content: "\b\e[K"
+  - delay: 50
+    content: "\b\e[K"
+  - delay: 51
+    content: "\b\e[K"
+  - delay: 121
+    content: "logout\r\n"

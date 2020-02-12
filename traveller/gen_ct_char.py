@@ -36,7 +36,7 @@ def generate_traveller_character():
             ct_char.read_history()
             print(ct_char.char_details())
             save = input("Do you want to save file?  \n")
-            if save != "n":
+            if save == "y":
                 ct_char.save_character(ct_char.name)
 
 
