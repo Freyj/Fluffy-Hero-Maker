@@ -9,7 +9,9 @@
 <h1 class="title-traveller">Classic Traveller Character</h1>
 <h2 >{{character.name}}, {{character.service}}{% if character.rank > 0 %} {{rank}}{% endif %}, {{character.age}} years old. </h2>
 UPP: {{upp}}
-
+{% if noble_rank %}
+    <h3>Noble rank: {{noble_rank}}</h3>
+{% endif %}
 <button onclick="display('stats')" class="title-traveller">Stats</button>
 <ul>
     <li id="stats" class="history display">Stats:

@@ -5,7 +5,6 @@ from utils.dice_roller import sum_roll_dice, roll_die
 from traveller.consts_trav import *
 
 
-
 def roll_stats():
     """
         Rolls stats according to Classic Traveller's way
@@ -25,22 +24,6 @@ def roll_stats():
         "Soc": statistics[5]
     }
     return dict_stats
-
-
-def get_noble_rank(stats: dict):
-    soc = stats["Soc"]
-    if soc < 11:
-        return ""
-    elif soc == 11:
-        return "Knight, Knightess, Dame"
-    elif soc == 12:
-        return "Baron, Baronet, Baroness"
-    elif soc == 13:
-        return "Marquis, Marquesa, Marchioness"
-    elif soc == 14:
-        return "Count, Countess, Contessa"
-    elif soc == 15:
-        return "Duke, Duchess"
 
 
 def enlist(stats, service_name: str):

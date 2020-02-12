@@ -4,8 +4,8 @@ import json
 
 from sty import fg
 
-from traveller.funcs_ct import roll_stats, enlist, survive, try_commission, max_service_rank, try_promotion, \
-    get_noble_rank, age_stats, service_reenlistment, roll_skill, display_navy_skill_tables, \
+from traveller.funcs_ct import roll_stats, enlist, survive, try_commission, max_service_rank, try_promotion\
+    , age_stats, service_reenlistment, roll_skill, display_navy_skill_tables, \
     display_marines_skill_tables, display_scouts_skill_tables, display_merchants_skill_tables, \
     display_army_skill_tables, display_others_skill_tables, treat_benefits
 from utils.dice_roller import roll_die
@@ -168,7 +168,8 @@ class CTCharacter:
             self.age += 4
             self.terms += 1
             self.stats = age_stats(self.age, self.stats, self.history, automatic=automatic)
-            if 0 in self.stats.values():
+            # check for too low values, decrements by 1 or 2, so can reach 0 or -1
+            if 0 in self.stats.values() or -1 in self.stats.values():
                 self.history.append("Stats lowered too much, died of old age.")
                 self.survived = False
             if not automatic:
@@ -234,7 +235,7 @@ class CTCharacter:
             :return: a str
         """
         result_str = "UPP: {upp}".format(upp=self.get_upp())
-        rank = get_noble_rank(self.stats)
+        rank = self.get_noble_rank()
         if not rank == "":
             result_str += "\n" + rank
         if self.rank > 0:
@@ -381,6 +382,21 @@ class CTCharacter:
         roll = roll_die(6) + dm - 1  # offset for array
         self.cash += table[roll]
         self.history.append("Received {c} Credits as a muster-out benefit.".format(c=table[roll]))
+
+    def get_noble_rank(self):
+        soc = self.stats["Soc"]
+        if soc < 11:
+            return ""
+        elif soc == 11:
+            return "Knight, Knightess, Dame"
+        elif soc == 12:
+            return "Baron, Baronet, Baroness"
+        elif soc == 13:
+            return "Marquis, Marquesa, Marchioness"
+        elif soc == 14:
+            return "Count, Countess, Contessa"
+        elif soc == 15:
+            return "Duke, Duchess"
 
     def get_rank(self):
         """
