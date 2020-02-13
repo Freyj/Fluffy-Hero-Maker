@@ -83,8 +83,6 @@ class DnD5Character(Character):
             @:param attributes: a list of integer between 1 and 20
         """
         if type(attributes) == list and len(attributes) == 6:
-            for i in range(6):
-                assert(20 >= attributes[i] > 0)
             self.attributes = {
                 "Strength": attributes[0],
                 "Dexterity": attributes[1],
@@ -179,6 +177,16 @@ class DnD5Character(Character):
         if len(self.dnd_class.added_equipment) > 0:
             self.equipment.extend(self.dnd_class.added_equipment)
 
+    def update_saving_throws(self):
+        self.saving_throws = {
+            "Strength": get_modifier(self.attributes["Strength"]),
+            "Dexterity": get_modifier(self.attributes["Dexterity"]),
+            "Constitution": get_modifier(self.attributes["Constitution"]),
+            "Intelligence": get_modifier(self.attributes["Intelligence"]),
+            "Wisdom": get_modifier(self.attributes["Wisdom"]),
+            "Charisma": get_modifier(self.attributes["Charisma"]),
+        }
+
     def adjust_attributes_for_race(self):
         for i in self.race.abilities_plus_one:
             if i != '':
@@ -186,6 +194,7 @@ class DnD5Character(Character):
         for i in self.race.abilities_plus_two:
             if i != '':
                 self.attributes[i] += 2
+        self.update_saving_throws()
 
     def add_equipment(self, item):
         if item != '':

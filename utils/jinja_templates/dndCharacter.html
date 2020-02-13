@@ -5,12 +5,13 @@
 <ul>
     <li>Stats:
         <ul>
-            <li>Strength: {{character.attributes.Strength}}</li>
-            <li>Dexterity: {{character.attributes.Dexterity}}</li>
-            <li>Constitution: {{character.attributes.Constitution}}</li>
-            <li>Intelligence: {{character.attributes.Intelligence}}</li>
-            <li>Wisdom: {{character.attributes.Wisdom}}</li>
-            <li>Charisma: {{character.attributes.Charisma}}</li>
+            <li>Strength: {{character.attributes.Strength}},          Saving Throw: ({{character.saving_throws.Strength}})</li>
+            <li>Dexterity: {{character.attributes.Dexterity}},          Saving Throw: ({{character.saving_throws.Dexterity}})</li>
+            <li>Constitution: {{character.attributes.Constitution}},          Saving Throw: ({{character.saving_throws.Constitution}})</li>
+            <li>Intelligence: {{character.attributes.Intelligence}},          Saving Throw: ({{character.saving_throws.Intelligence}})</li>
+            <li>Wisdom: {{character.attributes.Wisdom}},          Saving Throw: ({{character.saving_throws.Wisdom}})</li>
+            <li>Charisma: {{character.attributes.Charisma}},          Saving Throw: ({{character.saving_throws.Charisma}})</li>
+            <li>Proficient Saving throws: {{character.proficient_saving_throws}}</li>
         </ul>
     </li>
     {% if character.race.racial_traits and character.race.racial_traits[0]%}
