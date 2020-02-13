@@ -1,0 +1,11 @@
+[
+  {
+    "name": "Blanket",
+    "type": "Adventuring Gear",
+    "sub_type": "",
+    "buy_price": "5sp",
+    "weight": 1.5,
+    "description": "This warm, woven blanket has straps so it can be rolled up and tied. Blankets are often used in conjunction with bedrolls to provide additional warmth or a ground cushion.",
+    "special": ""
+  }
+]

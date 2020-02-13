@@ -6,6 +6,7 @@ from databases.dnd5.dnd5_races_db import CREATE_RACE_TABLE_REQUEST, DROP_RACE_TA
 from databases.dnd5.dnd5_languages_db import CREATE_LANGUAGE_TABLE_REQUEST, DROP_LANGUAGE_TABLE_REQUEST
 from databases.dnd5.dnd5_monster_db import CREATE_MONSTER_TABLE_REQUEST, DROP_MONSTER_TABLE_REQUEST
 from databases.dnd5.dnd5_spell_db import CREATE_SPELL_TABLE_REQUEST, DROP_SPELL_TABLE_REQUEST
+from databases.pf.pf_item_db import CREATE_ITEM_TABLE_REQUEST, DROP_ITEM_TABLE_REQUEST
 
 
 def drop_all_tables():
@@ -35,6 +36,9 @@ def drop_all_tables():
     # Drop the classes table
     cursor.execute(DROP_CLASS_TABLE_REQUEST)
     connection.commit()
+    # Drop the items table (pf)
+    cursor.execute(DROP_ITEM_TABLE_REQUEST)
+    connection.commit()
     connection.close()
 
 
@@ -62,6 +66,9 @@ def create_dnd5_db():
     connection.commit()
     # create the classes table
     cursor.execute(CREATE_CLASS_TABLE_REQUEST)
+    connection.commit()
+    # create the items table (pf)
+    cursor.execute(CREATE_ITEM_TABLE_REQUEST)
     connection.commit()
     connection.close()
 

@@ -5,6 +5,7 @@ from databases.dnd5.dnd5_languages_db import insert_dnd5_language
 from databases.dnd5.dnd5_monster_db import insert_dnd5_monster_data
 from databases.dnd5.dnd5_races_db import insert_dnd5_race
 from databases.dnd5.dnd5_spell_db import insert_dnd5_spell_data
+from databases.pf.pf_item_db import insert_pf_items_data
 
 
 def create_database():
@@ -26,6 +27,7 @@ def initialize_all_data():
     insert_dnd5_race()
     insert_dnd5_classes()
     insert_dnd5_monster_data()
+    insert_pf_items_data()
 
 
 def delete_all_data():
