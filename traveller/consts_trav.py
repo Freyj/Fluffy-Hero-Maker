@@ -397,3 +397,20 @@ OTHERS_BENEFITS = [
     "Gun",
     "High Passage"
 ]
+
+GOVERNMENT_TYPES = [
+    "No government structure",
+    "Company/Corporation",
+    "Participating Democracy",
+    "Self-Perpetuating Oligarchy",
+    "Representative Democracy",
+    "Feudal Technocracy",
+    "Captive Government",
+    "Balkanization",
+    "Civil Service Bureaucracy",
+    "Impersonal Bureaucracy",
+    "Charismatic Dictator",
+    "Non-Charismatic Leader",
+    "Charismatic Oligarchy",
+    "Religious Dictatorship"
+]

@@ -4,6 +4,7 @@ from dnd5.DnD5Character import generate_random_dnd_character
 from databases.dnd5.dnd5_monster_db import get_random_monster, get_all_monsters_names_from_db, get_monster_by_name
 from databases.dnd5.dnd5_spell_db import get_random_spell, get_all_spell_names_from_db, look_for_spell_by_name
 from traveller.gen_ct_char import random_classic_traveller_character, random_classic_traveller_party_generator
+from traveller.gen_ct_system import random_ct_world_gen
 
 app = Flask(__name__, template_folder="../utils/jinja_templates")
 
@@ -74,7 +75,7 @@ def classic_traveller_rand_char(name=None, alive=None):
                            json_char=jsonforchar)
 
 
-@app.route("/classic_traveller-rand-party-gen")
+@app.route("/classic-traveller-rand-party-gen")
 def random_ct_party_gen():
     characters = random_classic_traveller_party_generator()
     for i in characters:
@@ -83,3 +84,9 @@ def random_ct_party_gen():
         i.noble_rank = i.get_noble_rank()
     return render_template('classic_traveller/ctParty.html',
                            characters=characters)
+
+
+@app.route("/classic-traveller-rand-world-gen")
+def random_classic_traveller_world_gen():
+    world = random_ct_world_gen()
+    return render_template('ctWorld.html', world=world)
