@@ -5,7 +5,7 @@ function displayStats(stats) {
   } else {
     x.style.display = "block";
   }
-};
+}
 
 function exportCharacter(character, name) {
   var element = document.createElement("a");
