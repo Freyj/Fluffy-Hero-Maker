@@ -16,44 +16,44 @@ def home():
 @app.route("/random-dnd-spell")
 def random_spell():
     spell = get_random_spell()
-    return render_template('dndSpell.html', spell=spell)
+    return render_template('dnd5/dndSpell.html', spell=spell)
 
 
 @app.route("/random-dnd-monster")
 def random_monster():
     monster = get_random_monster()
-    return render_template('dndMonster.html', monster=monster)
+    return render_template('dnd5/dndMonster.html', monster=monster)
 
 
 @app.route("/all-dnd-monsters")
 def get_all_monsters():
     monsterList = get_all_monsters_names_from_db()
-    return render_template('dndAllMonstersList.html', list=monsterList)
+    return render_template('dnd5/dndAllMonstersList.html', list=monsterList)
 
 
 @app.route("/all-dnd-spells")
 def get_all_spells():
     spellList = get_all_spell_names_from_db()
-    return render_template('dndAllSpellsList.html', list=spellList)
+    return render_template('dnd5/dndAllSpellsList.html', list=spellList)
 
 
 @app.route("/dnd-spell/<name>")
 def get_spell(name=None):
     spell = look_for_spell_by_name(name)
-    return render_template('dndSpell.html', spell=spell)
+    return render_template('dnd5/dndSpell.html', spell=spell)
 
 
 @app.route("/dnd-monster/<name>")
 def get_monster(name=None):
     spell = get_monster_by_name(name)
-    return render_template('dndMonster.html', monster=spell)
+    return render_template('dnd5/dndMonster.html', monster=spell)
 
 
 @app.route("/dnd-random-character-gen/<name>")
 @app.route("/dnd-random-character-gen/")
 def random_dnd_character(name=None):
     character = generate_random_dnd_character(name)
-    return render_template('dndCharacter.html', character=character)
+    return render_template('dnd5/dndCharacter.html', character=character)
 
 
 @app.route("/classic-traveller-rand-world-gen/")
@@ -61,12 +61,13 @@ def random_dnd_character(name=None):
 def classic_traveller_rand_char(name=None):
     character = random_classic_traveller_character(name)
     jsonforchar = character.export_character_to_json()
-    return render_template('ctCharacter.html',
+    return render_template('classic_traveller/ctCharacter.html',
                            character=character,
                            upp=character.get_upp(),
                            rank=character.get_rank(),
                            noble_rank=character.get_noble_rank(),
                            json_char=jsonforchar)
+
 
 @app.route("/classic_traveller-rand-party-gen")
 def random_ct_party_gen():
@@ -75,5 +76,5 @@ def random_ct_party_gen():
         i.upp = i.get_upp()
         i.rank_name = i.get_rank()
         i.noble_rank = i.get_noble_rank()
-    return render_template('ctParty.html',
+    return render_template('classic_traveller/ctParty.html',
                            characters=characters)
