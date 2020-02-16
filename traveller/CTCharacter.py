@@ -10,6 +10,7 @@ from traveller.funcs_ct import roll_stats, enlist, survive, try_commission, max_
     display_army_skill_tables, display_others_skill_tables, treat_benefits
 from utils.dice_roller import roll_die
 from traveller.consts_trav import *
+from utils.utilities import CTEncoder
 
 
 class CTCharacter:
@@ -521,6 +522,13 @@ class CTCharacter:
             f.write("\nDetails\n")
             f.write(self.char_details())
 
+    def export_character_to_json(self):
+        """
+            Changes the character to a json
+        """
+        character = json.dumps(self, cls=CTEncoder)
+        return character
+
     def get_upp(self):
         """
             Produces the Universal Personality Profile
@@ -534,4 +542,3 @@ class CTCharacter:
         upp += hex(self.stats["Edu"])[2:].upper()
         upp += hex(self.stats["Soc"])[2:].upper()
         return upp
-

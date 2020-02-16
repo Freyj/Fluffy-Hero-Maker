@@ -1,3 +1,4 @@
+import json
 from math import floor
 
 from utils.dice_roller import keep_n_highest_sum, sum_roll_dice
@@ -123,3 +124,7 @@ def str_to_list(string_to_change):
         resulting_list.append(item)
     return resulting_list
 
+
+class CTEncoder(json.JSONEncoder):
+    def default(self, o):
+        return o.__dict__
