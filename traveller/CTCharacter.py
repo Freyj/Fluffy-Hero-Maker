@@ -146,7 +146,7 @@ class CTCharacter:
                 if got_commission:
                     self.rank = 1
                     self.history.append("Received a commission.")
-                    self.history.append("\tBecame a {rank}.".format(rank=self.get_rank()))
+                    self.history.append("Became a {rank}.".format(rank=self.get_rank()))
                     self.skill_rolls += 1
                     self.get_commission_skills(automatic=automatic)
 
@@ -157,7 +157,7 @@ class CTCharacter:
                 if got_promoted:
                     self.history.append("Received a promotion")
                     self.rank += 1
-                    self.history.append("\tBecame a {rank}".format(rank=self.get_rank()))
+                    self.history.append("Became a {rank}".format(rank=self.get_rank()))
                     self.skill_rolls += 1
                     self.get_promotion_skills(automatic=automatic)
                 else:
@@ -200,6 +200,8 @@ class CTCharacter:
                 res = fg.li_yellow + i + fg.rs
             elif i.startswith("Enlisted"):
                 res = fg.blue + i + fg.rs
+            elif i.startswith("Became"):
+                res = "\t" + i
             else:
                 res = i
             print(res)
