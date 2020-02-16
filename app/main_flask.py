@@ -58,10 +58,13 @@ def random_dnd_character(name=None):
 @app.route("/classic-traveller-character-gen/<name>")
 def classic_traveller_rand_char(name=None):
     character = random_classic_traveller_character(name)
+    jsonforchar = character.export_character_to_json()
     return render_template('ctCharacter.html',
                            character=character,
                            upp=character.get_upp(),
-                           rank=character.get_rank(), noble_rank=character.get_noble_rank())
+                           rank=character.get_rank(),
+                           noble_rank=character.get_noble_rank(),
+                           json_char=jsonforchar)
 
 
 @app.route("/classic_traveller-rand-party-gen")

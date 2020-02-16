@@ -38,19 +38,27 @@ json files or want to update the database, you need to leave the -debug option o
   - `/` displays a home page with links to previous routes
   - `/classic-traveller-character-gen/<name>` displays a randomly generated classic traveller character with the name in
    `<name>`, and as classic traveller creation goes, they can end up dead during their career. Just reload ;)
+   You can then export the character as a json file, by using the Export button.
   - `/classic_traveller-rand-party-gen` displays a group of 4 randomly generated characters, all alive.
 
 
 ## What can I do with it?
 ### DnD 5th
-* You can create a character, picking a name, race, class, and background. 
-* You can display monster stats.
-* You can display spell stats.
+- cli version:
+  * You can create a character, picking a name, race, class, and background. 
+  * You can display monster stats.
+  * You can display spell stats.
+- flask version:
+  * You can create a random character.
+  * You can display spell stats and lists.
+  * You can display monster stats and lists.
 
 ### Classic Traveller
-* You can generate a character and save it at the end.
-* You can generate a character randomly.
-* You can generate a party of 4 random characters.
+- cli version:
+    * You can generate a character and save it at the end.
+- flask version:
+    * You can generate a character randomly and export it to json.
+    * You can generate a party of 4 random characters.
 
 ## What is lacking?
 A lot (just look at the issues).

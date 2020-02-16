@@ -7,12 +7,12 @@
 </head>
 <body class="traveller text-traveller">
 <h1 class="title-traveller">Classic Traveller Character</h1>
-<h2 >{{character.name}}, {{character.service}}{% if character.rank > 0 %} {{rank}}{% endif %}, {{character.age}} years old. </h2>
+<h2>{{character.name}}, {{character.service}}{% if character.rank > 0 %} {{rank}}{% endif %}, {{character.age}} years old. </h2>
 UPP: {{upp}}
 {% if noble_rank %}
     <h3>Noble rank: {{noble_rank}}</h3>
 {% endif %}
-<button onclick="display('stats')" class="title-traveller">Stats</button>
+<button onclick="displayStats('stats')" class="title-traveller">Stats</button>
 <ul>
     <li id="stats" class="history display">Stats:
         <ul>
@@ -32,6 +32,8 @@ UPP: {{upp}}
         </ul>
     </li>
 </ul>
+
+<button id="bouh" onclick="download({{json_char}})" class="title-traveller">Export</button>
 {% if character.survived %}
 {% if character.benefits %}
 <li>Benefits:
@@ -54,7 +56,7 @@ UPP: {{upp}}
     <h2>This character died during their service.</h2>
 {% endif %}
 
-<button onclick="display('history')" class="title-traveller">Character history</button>
+<button onclick="displayStats('history')" class="title-traveller">Character history</button>
 
 <div id="history" class="history display">
     <ul>
@@ -66,15 +68,9 @@ UPP: {{upp}}
     </ul>
 </div>
 
-<script>
-function display(stats) {
-  var x = document.getElementById(stats);
-  if (x.style.display === "block") {
-    x.style.display = "none";
-  } else {
-    x.style.display = "block";
-  }
-}
-</script>
+{% block javascript %}
+    <script src="{{ url_for('static',filename='ctCharacter.js') }}" type="text/javascript"></script>
+{% endblock %}
+
 </body>
 </html>
