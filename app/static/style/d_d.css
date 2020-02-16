@@ -1,0 +1,9 @@
+.spell_description {
+    border-left: 4px solid grey;
+    background-color: lightgrey;
+    border-radius: 8px;
+}
+
+.em {
+    font-weight: bold;
+}

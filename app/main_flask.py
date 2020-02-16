@@ -50,11 +50,13 @@ def get_monster(name=None):
 
 
 @app.route("/dnd-random-character-gen/<name>")
+@app.route("/dnd-random-character-gen/")
 def random_dnd_character(name=None):
     character = generate_random_dnd_character(name)
     return render_template('dndCharacter.html', character=character)
 
 
+@app.route("/classic-traveller-rand-world-gen/")
 @app.route("/classic-traveller-character-gen/<name>")
 def classic_traveller_rand_char(name=None):
     character = random_classic_traveller_character(name)
@@ -65,7 +67,6 @@ def classic_traveller_rand_char(name=None):
                            rank=character.get_rank(),
                            noble_rank=character.get_noble_rank(),
                            json_char=jsonforchar)
-
 
 @app.route("/classic_traveller-rand-party-gen")
 def random_ct_party_gen():

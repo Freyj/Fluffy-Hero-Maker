@@ -2,3 +2,4 @@ Flask
 pytest
 coverage
 sty
+fonttools

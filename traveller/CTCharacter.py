@@ -17,8 +17,11 @@ class CTCharacter:
     """
         Class for Classic Traveller characters
     """
-    def __init__(self):
-        self.name = ""
+    def __init__(self, name=None):
+        if name is None:
+            self.name = "Traveller"
+        else:
+            self.name = name
         self.stats = roll_stats()
         self.skills = {}
         self.service = ""
