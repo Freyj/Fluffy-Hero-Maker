@@ -50,8 +50,17 @@ def random_classic_traveller_character(name: str):
         character.term(automatic=True)
         if character.survived:
             if character.reenlisting == 0:
-                reenlist_roll = roll_die(2)
-                if reenlist_roll == 0:
+                # reenlisting is less likely if character is older (for randomness, because players would be more
+                # likely to leave service if the character is old)
+                roll_size = 2
+                if character.age > 36:
+                    roll_size = 3
+                elif character.age > 50:
+                    roll_size = 4
+                elif character.age > 60:
+                    roll_size = 5
+                reenlist_roll = roll_die(roll_size)
+                if reenlist_roll != roll_size:
                     stays_in_service = False
             elif character.reenlisting == -1:
                 stays_in_service = False
