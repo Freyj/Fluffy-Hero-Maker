@@ -126,5 +126,8 @@ def str_to_list(string_to_change):
 
 
 class CTEncoder(json.JSONEncoder):
-    def default(self, o):
+    """
+        https://github.com/PyCQA/pylint/issues/414 for the #pylint: disable=E0202
+    """
+    def default(self, o):  # pylint: disable=E0202
         return o.__dict__

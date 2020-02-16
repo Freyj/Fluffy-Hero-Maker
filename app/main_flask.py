@@ -1,4 +1,4 @@
-from flask import Flask, render_template, json
+from flask import Flask, render_template
 
 from characters.DnD5Character import generate_random_dnd_character
 from databases.dnd5.dnd5_monster_db import get_random_monster, get_all_monsters_names_from_db, get_monster_by_name
