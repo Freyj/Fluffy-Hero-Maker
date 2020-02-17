@@ -5,7 +5,7 @@ import re
 
 from sty import fg
 
-from traveller.funcs_ct import roll_stats, enlist, survive, try_commission, max_service_rank, try_promotion\
+from traveller.funcs_ct import roll_stats, enlist, survive, try_commission, max_service_rank, try_promotion \
     , age_stats, service_reenlistment, roll_skill, display_navy_skill_tables, \
     display_marines_skill_tables, display_scouts_skill_tables, display_merchants_skill_tables, \
     display_army_skill_tables, display_others_skill_tables
@@ -18,6 +18,7 @@ class CTCharacter:
     """
         Class for Classic Traveller characters
     """
+
     def __init__(self, name=None):
         if name is None:
             self.name = "Traveller"
@@ -128,7 +129,7 @@ class CTCharacter:
         elif self.service == "Merchants" and self.rank == 3:
             self.add_skill("Pilot", automatic=automatic)
 
-    def get_commission_skills(self ,automatic=False):
+    def get_commission_skills(self, automatic=False):
         """
             Gives characters skills granted by commission
         """
@@ -483,9 +484,10 @@ class CTCharacter:
                 if cash_max > 0:
                     x = input("Do you want cash or a benefit? You have {t} total rolls left (max {c} cash rolls)."
                               " c for cash, b for benefit\n".format(
-                        c=cash_max,
-                        t=total_rolls
-                    ))
+                                c=cash_max,
+                                t=total_rolls
+                                )
+                    )
                     if x == "c":
                         cash_max -= 1
                         total_rolls -= 1
