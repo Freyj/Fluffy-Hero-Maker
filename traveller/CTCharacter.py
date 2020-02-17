@@ -1,13 +1,14 @@
 # The Traveller game in all forms is owned by Far Future Enterprises. Copyright 1977 - 2008 Far Future Enterprises.
 # (CF : http://www.farfuture.net/FFEFairUsePolicy2008.pdf)
 import json
+import re
 
 from sty import fg
 
 from traveller.funcs_ct import roll_stats, enlist, survive, try_commission, max_service_rank, try_promotion\
     , age_stats, service_reenlistment, roll_skill, display_navy_skill_tables, \
     display_marines_skill_tables, display_scouts_skill_tables, display_merchants_skill_tables, \
-    display_army_skill_tables, display_others_skill_tables, treat_benefits
+    display_army_skill_tables, display_others_skill_tables
 from utils.dice_roller import roll_die
 from traveller.consts_trav import *
 from utils.utilities import CTEncoder
@@ -480,8 +481,8 @@ class CTCharacter:
         if not automatic:
             while total_rolls > 0:
                 if cash_max > 0:
-                    x = input("Do you want cash or a benefit? You have {t} total rolls left (max {c} cash rolls). c for cash, "
-                              "b for benefit\n".format(
+                    x = input("Do you want cash or a benefit? You have {t} total rolls left (max {c} cash rolls)."
+                              " c for cash, b for benefit\n".format(
                         c=cash_max,
                         t=total_rolls
                     ))
@@ -513,7 +514,7 @@ class CTCharacter:
                     total_rolls -= 1
                     benefits.append(self.roll_benefit())
 
-        self.benefits = treat_benefits(self.stats, benefits, self.history, automatic=automatic)
+        self.benefits = self.treat_benefits(benefits, automatic=automatic)
         self.calc_pension()
 
     def save_character(self, name):
@@ -547,3 +548,111 @@ class CTCharacter:
         upp += hex(self.stats["Edu"])[2:].upper()
         upp += hex(self.stats["Soc"])[2:].upper()
         return upp
+
+    def treat_benefits(self, benefits_list, automatic=False):
+        benefits = []
+        received_weapon = ""
+        for benefit in benefits_list:
+            print(benefit)
+            if benefit.startswith("+"):
+                skill_benefits = benefit[1:].split()
+                self.stats[skill_benefits[1]] += int(skill_benefits[0])
+                self.history.append("Improved {skill} by {am} as a muster-out benefit.".format(
+                    skill=skill_benefits[1],
+                    am=skill_benefits[0]))
+            elif benefit.startswith("Gun") or benefit.startswith("Blade"):
+                if received_weapon == "":
+                    received_weapon = self.benefit_weapon(benefit, automatic)
+                    benefits.append(received_weapon)
+                else:
+                    self.improve_weapon_skill(received_weapon)
+            else:
+                if benefit == "Travellers' Aid Society":
+                    if benefit not in benefits:
+                        benefits.append(benefit)
+                        self.history.append(
+                            "Received a membership of the {ben} as a muster-out benefit.".format(ben=benefit))
+                elif benefit not in ["High Passage", "Middle Passage", "Low Passage"]:
+                    benefits.append(benefit)
+                    self.history.append("Received a {ben} as a muster-out benefit.".format(ben=benefit))
+
+        high_pass_nb = sum(map(lambda i: i == "High Passage", benefits_list))
+        low_pass_nb = sum(map(lambda i: i == "Low Passage", benefits_list))
+        mid_pass_nb = sum(map(lambda i: i == "Middle Passage", benefits_list))
+        if high_pass_nb > 0:
+            benefits.append("{i} High Passage(s)".format(i=high_pass_nb))
+            self.history.append("Received {i} High Passage(s) as a muster-out benefit.".format(i=high_pass_nb))
+        if mid_pass_nb > 0:
+            benefits.append("{i} Middle Passage(s)".format(i=mid_pass_nb))
+            self.history.append("Received {i} Middle Passage(s) as a muster-out benefit.".format(i=mid_pass_nb))
+        if low_pass_nb > 0:
+            benefits.append("{i} Low Passage(s)".format(i=low_pass_nb))
+            self.history.append("Received {i} Low Passage(s) as a muster-out benefit.".format(i=low_pass_nb))
+        return benefits
+
+    def check_for_sub_skill(self, skill_group):
+        """
+            Checks if a skill type exists in the character skill set and returns the list of the sub skills
+            :param skill_group: the skill set to check for
+            :return: a list
+        """
+        matching_sub_skills = [x for x in self.skills if skill_group in x]
+        res_matches = []
+        for match in matching_sub_skills:
+            match = re.sub(skill_group, "", match)
+            match = match.replace(")", "")
+            match = match.replace("(", "")
+            res_matches.append(match)
+        return res_matches
+
+    def benefit_weapon(self, benefit, automatic=False):
+        """
+            If the benefit is a weapon, check for skills the character has and picks a weapon in this category if
+            automatic, else just displays the information
+            :param benefit: the weapon type
+            :param automatic: if it's automatic or not
+            :return: the weapon to add to the benefits
+        """
+        has_skill = self.check_for_sub_skill(benefit + " Combat")
+        # print("Skills are: {h}".format(h=has_skill))
+        if benefit == "Blade":
+            table = BLADE_CBT_CASC
+        else:
+            table = GUN_CBT_CASC
+        if not automatic:
+            if len(has_skill) > 0:
+                print("You have the following skills in {group}: {b}".format(
+                    group=benefit,
+                    b=has_skill
+                ))
+            print(table)
+            weapon = input("Choose a type of {w} to receive.\n".format(
+                w=benefit
+            ))
+            while weapon not in table:
+                weapon = input("Choose a type of {w} to receive.\n".format(
+                    w=benefit
+                ))
+            received_weapon = weapon
+        else:
+            if len(has_skill) > 0:
+                received_weapon = has_skill[0]
+            else:
+                weapon_choice = roll_die(len(table))
+                received_weapon = table[weapon_choice - 1]
+        self.history.append("Received a {w} as a muster-out benefit.".format(w=received_weapon))
+        return received_weapon
+
+    def improve_weapon_skill(self, weapon):
+        """
+            Improves a weapon skill in case of double picks
+            TODO:add choice if not automatic
+            :param weapon:
+            :return:
+        """
+        weapon_type = ""
+        if weapon in BLADE_CBT_CASC:
+            weapon_type = "Blade Combat"
+        elif weapon in GUN_CBT_CASC:
+            weapon_type = "Gun Combat"
+        self.add_skill(weapon_type + "(" + weapon + ")")
