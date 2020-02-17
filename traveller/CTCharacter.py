@@ -486,10 +486,9 @@ class CTCharacter:
                 if cash_max > 0:
                     x = input("Do you want cash or a benefit? You have {t} total rolls left (max {c} cash rolls)."
                               " c for cash, b for benefit\n".format(
-                                c=cash_max,
-                                t=total_rolls
-                                )
-                    )
+                        c=cash_max,
+                        t=total_rolls
+                    ))
                     if x == "c":
                         cash_max -= 1
                         total_rolls -= 1
