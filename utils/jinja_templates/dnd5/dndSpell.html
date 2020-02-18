@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style/global.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style/d_d.css') }}">
 </head>
+<a href="/">Home</a>
 <h1>DnD5 Spell Display</h1>
 <h2>{{spell.name}}</h2>
 <ul>
@@ -30,5 +31,3 @@
   <li><strong>At Higher Levels</strong>: {{spell.upgrade}}</li>
   {% endif %}
 </ul>
-
-<a href="/">Home</a>
