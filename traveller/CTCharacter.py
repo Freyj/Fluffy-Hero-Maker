@@ -467,6 +467,8 @@ class CTCharacter:
             Calculates and asks for player choices on mustering out rolls
             Automatic sets all choices to random
         """
+        if self.reenlisting == 0:
+            self.history.append("Chose to leave the {ser}".format(ser=self.service))
         total_rolls = self.terms
         bonus_ben = 0
         cash_max = 3
