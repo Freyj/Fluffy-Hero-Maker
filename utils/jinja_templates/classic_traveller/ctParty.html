@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style/traveller.css') }}">
 </head>
 <body class="traveller text-traveller">
+<a href="/">Home</a>
 <h1 class="title-traveller">Classic Traveller Random Party</h1>
 {% for character in characters %}
 <h2 >{{character.name}}, {{character.service}}{% if character.rank > 0 %} {{character.rank_name}}{% endif %}, {{character.age}} years old. </h2>
@@ -13,7 +14,7 @@ UPP: {{character.upp}}
 {% if noble_rank %}
     <h3>Noble rank: {{character.noble_rank}}</h3>
 {% endif %}
-<button onclick="display('stats{{character.name}}')" class="title-traveller">Stats</button>
+<button onclick="display('stats{{character.name}}')" class="button-traveller">Stats</button>
 <ul>
     <li id="stats{{character.name}}" class="history display">Stats:
         <ul>
@@ -55,7 +56,7 @@ UPP: {{character.upp}}
     <h2>This character died during their service.</h2>
 {% endif %}
 
-<button onclick="display('history{{character.name}}')" class="title-traveller">Character history</button>
+<button onclick="display('history{{character.name}}')" class="button-traveller">Character history</button>
 
 <div id="history{{character.name}}" class="history display">
     <ul>
@@ -79,5 +80,6 @@ function display(stats) {
   }
 }
 </script>
+<a href="/">Home</a>
 </body>
 </html>
