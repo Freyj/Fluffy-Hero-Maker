@@ -39,6 +39,7 @@ json files or want to update the database, you need to leave the -debug option o
   - `/classic-traveller-character-gen/<name>` displays a randomly generated classic traveller character with the name in
    `<name>`, and as classic traveller creation goes, they can end up dead during their career. Just reload ;)
    You can then export the character as a json file, by using the Export button.
+  - `/classic-traveller-character-gent/<name>/<anything>` you get a randomly generated classic traveller character that survived their term. 
   - `/classic_traveller-rand-party-gen` displays a group of 4 randomly generated characters, all alive.
 
 

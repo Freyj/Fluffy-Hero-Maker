@@ -3,6 +3,9 @@ from utils.dice_roller import roll_die
 
 
 def generate_traveller_character():
+    """
+        Runs a classic traveller character generation in CLI
+    """
     running = True
     while running:
         ct_char = CTCharacter()
@@ -40,37 +43,43 @@ def generate_traveller_character():
                 ct_char.save_character(ct_char.name)
 
 
-def random_classic_traveller_character(name: str):
-    character = CTCharacter()
-    choice_service = roll_die(6)
-    services = ["Navy", "Marines", "Army", "Others", "Scouts", "Merchants"]
-    character.choose_service(services[choice_service - 1], True)
-    stays_in_service = True
-    while character.survived and stays_in_service:
-        character.term(automatic=True)
-        if character.survived:
-            if character.reenlisting == 0:
-                # reenlisting is less likely if character is older (for randomness, because players would be more
-                # likely to leave service if the character is old)
-                roll_size = 2
-                if character.age > 36:
-                    roll_size = 3
-                elif character.age > 50:
-                    roll_size = 4
-                elif character.age > 60:
-                    roll_size = 5
-                reenlist_roll = roll_die(roll_size)
-                if reenlist_roll != roll_size:
+def random_classic_traveller_character(name: str, must_be_alive=False):
+    """
+        Produces a random character for classic traveller
+        :param name: the name of the character
+        :param must_be_alive: to forgo the rolls of characters that failed to
+            survive their term
+        :return: a CTCharacter object
+    """
+    valid_char = False
+    while not valid_char:
+        character = CTCharacter()
+        choice_service = roll_die(6)
+        services = ["Navy", "Marines", "Army", "Others", "Scouts", "Merchants"]
+        character.choose_service(services[choice_service - 1], True)
+        stays_in_service = True
+        while character.survived and stays_in_service:
+            character.term(automatic=True)
+            if character.survived:
+                if character.reenlisting == 0:
+                    reenlist_roll = roll_die(2)
+                    if reenlist_roll == 0:
+                        stays_in_service = False
+                elif character.reenlisting == -1:
                     stays_in_service = False
-            elif character.reenlisting == -1:
-                stays_in_service = False
-    if character.survived:
-        character.calc_muster_out(automatic=True)
-    character.name = name
+        if character.survived:
+            character.calc_muster_out(automatic=True)
+        if (must_be_alive and character.survived) or not must_be_alive:
+            valid_char = True
+        character.name = name
     return character
 
 
 def random_classic_traveller_party_generator():
+    """
+        Produces a party of 4 random characters for classic traveller, all alive
+        :return: an array of 4 CTCharacter objects
+    """
     characters = []
     for i in range(4):
         character = random_classic_traveller_character("Member {i}".format(i=i))
@@ -78,3 +87,4 @@ def random_classic_traveller_party_generator():
             character = random_classic_traveller_character("Member {i}".format(i=i))
         characters.append(character)
     return characters
+

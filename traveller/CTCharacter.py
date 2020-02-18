@@ -557,7 +557,6 @@ class CTCharacter:
         benefits = []
         received_weapon = ""
         for benefit in benefits_list:
-            print(benefit)
             if benefit.startswith("+"):
                 skill_benefits = benefit[1:].split()
                 self.stats[skill_benefits[1]] += int(skill_benefits[0])

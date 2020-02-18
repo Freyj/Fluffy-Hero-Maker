@@ -56,10 +56,15 @@ def random_dnd_character(name=None):
     return render_template('dnd5/dndCharacter.html', character=character)
 
 
-@app.route("/classic-traveller-rand-world-gen/")
+@app.route("/classic-traveller-character-gen/")
 @app.route("/classic-traveller-character-gen/<name>")
-def classic_traveller_rand_char(name=None):
-    character = random_classic_traveller_character(name)
+@app.route("/classic-traveller-character-gen/<name>/<alive>")
+def classic_traveller_rand_char(name=None, alive=None):
+    if alive is not None:
+        check_survival = True
+    else:
+        check_survival = False
+    character = random_classic_traveller_character(name, must_be_alive=check_survival)
     jsonforchar = character.export_character_to_json()
     return render_template('classic_traveller/ctCharacter.html',
                            character=character,
