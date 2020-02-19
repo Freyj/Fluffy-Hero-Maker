@@ -154,6 +154,8 @@ class CTCharacter:
                     self.history.append("Became a {rank}.".format(rank=self.get_rank()))
                     self.skill_rolls += 1
                     self.get_commission_skills(automatic=automatic)
+                    if not automatic:
+                        print("Received a commission, became a {rank}".format(rank=self.get_rank()))
 
                 else:
                     self.history.append("Failed to receive a commission.")
@@ -165,6 +167,8 @@ class CTCharacter:
                     self.history.append("Became a {rank}".format(rank=self.get_rank()))
                     self.skill_rolls += 1
                     self.get_promotion_skills(automatic=automatic)
+                    if not automatic:
+                        print("Received a promotion, became a {rank}".format(rank=self.get_rank()))
                 else:
                     self.history.append("Failed to get promoted.")
             if self.age == 18 or self.service == "Scouts":
@@ -390,6 +394,7 @@ class CTCharacter:
         roll = roll_die(6) + dm - 1  # offset for array
         self.cash += table[roll]
         self.history.append("Received {c} Credits as a muster-out benefit.".format(c=table[roll]))
+        return table[roll]
 
     def get_noble_rank(self):
         soc = self.stats["Soc"]
@@ -493,7 +498,8 @@ class CTCharacter:
                     if x == "c":
                         cash_max -= 1
                         total_rolls -= 1
-                        self.roll_cash()
+                        cash = self.roll_cash()
+                        print("{c} Credits".format(c=cash))
                     elif x == "b":
                         total_rolls -= 1
                         benefit = self.roll_benefit()
@@ -565,10 +571,10 @@ class CTCharacter:
                     am=skill_benefits[0]))
             elif benefit.startswith("Gun") or benefit.startswith("Blade"):
                 if received_weapon == "":
-                    received_weapon = self.benefit_weapon(benefit, automatic)
+                    received_weapon = self.benefit_weapon(benefit, automatic=automatic)
                     benefits.append(received_weapon)
                 else:
-                    self.improve_weapon_skill(received_weapon)
+                    self.improve_weapon_skill(received_weapon, automatic=automatic)
             else:
                 if benefit == "Travellers' Aid Society":
                     if benefit not in benefits:
@@ -646,11 +652,12 @@ class CTCharacter:
         self.history.append("Received a {w} as a muster-out benefit.".format(w=received_weapon))
         return received_weapon
 
-    def improve_weapon_skill(self, weapon):
+    def improve_weapon_skill(self, weapon, automatic=False):
         """
             Improves a weapon skill in case of double picks
             TODO:add choice if not automatic
             :param weapon:
+            :param automatic to avoid printing to console when doing an automatic char gen
             :return:
         """
         weapon_type = ""
@@ -658,4 +665,4 @@ class CTCharacter:
             weapon_type = "Blade Combat"
         elif weapon in GUN_CBT_CASC:
             weapon_type = "Gun Combat"
-        self.add_skill(weapon_type + "(" + weapon + ")")
+        self.add_skill(weapon_type + "(" + weapon + ")", automatic=automatic)

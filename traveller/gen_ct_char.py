@@ -10,6 +10,7 @@ def generate_traveller_character():
     while running:
         ct_char = CTCharacter()
         choice = ""
+        print("UPP: {upp}".format(upp=ct_char.get_upp()))
         while choice not in ["Navy", "Marines", "Army", "Others", "Scouts", "Merchants", "Q"]:
             choice = input("Choose service to try for: (Navy, Marines, Army, Scouts, Merchants, Others. Q to quit.)\n")
         if choice == "Q":
