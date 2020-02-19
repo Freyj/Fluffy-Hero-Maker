@@ -83,3 +83,11 @@ def random_ct_party_gen():
         i.noble_rank = i.get_noble_rank()
     return render_template('classic_traveller/ctParty.html',
                            characters=characters)
+
+
+@app.route("/pathfinder-random-char/<name>")
+@app.route("/pathfinder-random-char/")
+def random_pathfinder_char(name=None):
+    character = PFCHaracter(name)
+    return render_template('pathfinder/pfCharacter.html',
+                           character=character)
