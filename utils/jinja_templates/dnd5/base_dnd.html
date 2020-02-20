@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fluffy Hero Maker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/global.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/d_d.css') }}">
+</head>
+<body>
+<a href="/">Home</a>
+<a href="/dnd-random-character-gen/">Reload</a>
+  {% block content %}{% endblock %}
+</body>

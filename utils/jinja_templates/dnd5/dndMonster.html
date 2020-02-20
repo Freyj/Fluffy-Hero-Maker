@@ -1,6 +1,6 @@
-<!doctype html>
-<title>Fluffy Hero Maker</title>
-<a href="/">Home</a>
+{% extends 'dnd5/base_dnd.html' %}
+
+{% block content %}
 <h1>DnD5 Monster Display</h1>
 <h2>{{monster.name}}</h2>
 <h3>{{monster.size}} {{monster.monster_type}}, {{monster.alignment}}</h3>
@@ -80,3 +80,4 @@
     <li>Languages understood: {% for di in monster.languages_understood %} {{di}}, {% endfor%}</li>
     {% endif %}
 </ul>
+{% endblock %}
