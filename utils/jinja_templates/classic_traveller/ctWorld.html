@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Fluffy Hero Maker</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/traveller.css') }}">
 </head>
 <body class="traveller text-traveller">
+<a href="/">Home</a>
 <h1 class="title-traveller">Classic Traveller World</h1>
 <h2 >World: {{world.name}}, TL {{world.technological_level}}</h2>
 <ul>
-    <li>Size: {{world.size}}</li>
-    <li>Atmosphere: {{world.atmosphere}}</li>
-    <li>Hydrography: {{world.hydrography}}</li>
-    <li>Population: {{world.population}}</li>
-    <li>Government: {{world.government}}</li>
-    <li>Law Level: {{world.law_level}}</li>
-    <li>Technological Level: {{world.technological_level}}</li>
+    <li>Size: ({{world.size}})</li>
+    <li>Atmosphere: ({{world.atmosphere}})</li>
+    <li>Hydrography: ({{world.hydrography}})</li>
+    <li>Population: ({{world.population}})</li>
+    <li>Government: ({{world.government}})</li>
+    <li>Law Level: ({{world.law_level}})</li>
+    <li>Technological Level: ({{world.technological_level}})</li>
     <li>Trade Classifications:
         <ul>
             {% for class in world.classifications %}

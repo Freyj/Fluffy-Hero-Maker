@@ -1,25 +1,48 @@
+from traveller.consts_trav import STARPORT_TYPES, WORLD_SIZES, ATMOSPHERE_TYPES, HYDROGRAPHY, POPULATION, \
+    GOVERNMENT_TYPES, TECH_LEVELS, LAW_LEVELS
 from utils.dice_roller import roll_die, sum_roll_dice
 
 
 class CTHex:
-    def __init__(self, world_dm=0):
-        self.name = ""
-        self.hex = ""
+    def __init__(self, name="", world_dm=0, hex_position=""):
+        self.name = name
+        self.hex = hex_position
         self.has_world = False
-        self.has_gas_giant = True
+        self.has_gas_giant = False
+        self.gas_giant_number = 0
         self.starport = ""
         self.has_naval_base = False
         self.has_scout_base = False
+        self.worlds = []
 
         self.calc_world_presence(dm=world_dm)
-        self.calc_gas_giant_presence()
         if self.has_world:
+            self.calc_gas_giant_presence()
             self.calc_starport_type()
             self.calc_naval_base()
             self.calc_scout_base()
+            if self.has_gas_giant:
+                roll = roll_die(3)
+                self.gas_giant_number = roll
+            roll = roll_die(3)
+            for _ in range(roll):
+                self.worlds.append(CTWorld(self))
 
+    def description_str(self):
+        result_str = "Name: {n}\nHex: {h}".format(n=self.name, h=self.hex)
+        if self.has_scout_base:
+            result_str += "\nContains a Scout Base."
+        if self.has_naval_base:
+            result_str += "\nContains a Naval Base."
+        if self.starport != "":
+            result_str += "\nStarport {s}: {ds}".format(s=self.starport, ds=describe_starport(self.starport))
+        if self.has_gas_giant:
+            result_str += "\nContains {nb} gas giant(s).".format(nb=self.gas_giant_number)
         if self.has_world:
-            self.world = CTWorld(self)
+            result_str += "\nWorlds:"
+            for world in self.worlds:
+                result_str += "\n\t" + world.description_str()
+        return result_str
 
     def calc_world_presence(self, dm=0):
         """
@@ -35,8 +58,8 @@ class CTHex:
             Gas giants are common
         """
         roll = sum_roll_dice(6, 2)
-        if roll > 9:
-            self.has_gas_giant = False
+        if roll < 10:
+            self.has_gas_giant = True
 
     def calc_starport_type(self):
         """
@@ -71,20 +94,32 @@ class CTHex:
         """
         dm = 0
         if self.starport == "C":
-            dm = -1
+            dm += -1
         elif self.starport == "B":
-            dm = -2
+            dm += -2
         elif self.starport == "A":
-            dm = -3
+            dm += -3
         if self.starport not in ["E", "X"]:
-            roll = sum_roll_dice(6, 2)
+            roll = sum_roll_dice(6, 2) + dm
             if roll > 6:
                 self.has_scout_base = True
 
 
+def describe_starport(starport_letter: str):
+    res = ""
+    if starport_letter in ["A", "B", "C", "D", "E", "X"]:
+        res = STARPORT_TYPES[starport_letter]
+    else:
+        print("Error in starport letter")
+    return res
+
+
 class CTWorld:
-    def __init__(self, hexagon: CTHex):
-        self.name = ""
+    def __init__(self, hexagon: CTHex, name=None):
+        if name is None:
+            self.name = "Unnamed World"
+        else:
+            self.name = name
         self.hex = hexagon
         self.size = "0"
         self.atmosphere = "0"
@@ -144,7 +179,9 @@ class CTWorld:
             dm = int(self.atmosphere)
         roll = sum_roll_dice(6, 2) - 7 + dm
         if roll < 0:
-            self.hydrography = "0"
+            roll = 0
+        if roll > 10:
+            roll = 10
         hex_trans = hex(roll)[2:].upper()
         if len(hex_trans) > 1:
             hex_trans = hex_trans[len(hex_trans) - 1]
@@ -178,6 +215,10 @@ class CTWorld:
         else:
             gov = int(self.government)
         roll = sum_roll_dice(6, 2) - 7 + int(gov)
+        if roll < 0:
+            roll = 0
+        elif roll > 10:
+            roll = 10
         hex_trans = hex(roll)[2:].upper()
         if len(hex_trans) > 1:
             hex_trans = hex_trans[len(hex_trans) - 1]
@@ -276,20 +317,36 @@ class CTWorld:
                 classifications.append("Ice-capped")
         self.classifications = classifications
 
+    def description_str(self):
+        result_str = "{n} at hex {h}".format(n=self.name, h=self.hex.hex)
+        result_str += "\n\t\tTechnological Level: {tl}, {tltr}".format(tl=self.technological_level,
+                                                                       tltr=TECH_LEVELS[self.technological_level])
+        classifications = ""
+        for i in self.classifications:
+            classifications += i + ", "
+        classifications = classifications[:-2]
+        result_str += "\n\t\tTrade Classifications: {tc}".format(tc=classifications)
+        result_str += "\n\t\tSize: {s}\n\t\tAtmosphere: {at}".format(s=WORLD_SIZES[self.size],
+                                                                     at=ATMOSPHERE_TYPES[self.atmosphere])
+        result_str += "\n\t\tHydrography: {h}\n\t\tPopulation: {p}".format(h=HYDROGRAPHY[self.hydrography],
+                                                                           p=POPULATION[self.population])
+        result_str += "\n\t\tGovernment Type: {g}".format(g=GOVERNMENT_TYPES[self.government])
+        result_str += "\n\t\tLaw Level: {ll}".format(ll=LAW_LEVELS[self.law_level])
+        return result_str
 
-def random_ct_world_gen():
-    hexagon = CTHex()
-    world = CTWorld(hexagon)
+
+def random_ct_world_gen(name=None):
+    hexagon = CTHex(hex_position="0101", name="Test")
+    world = CTWorld(hexagon, name=name)
     return world
 
 
 if __name__ == "__main__":
     running = True
     while running:
-        hexagon = CTHex()
-        world = CTWorld(hexagon)
-        print(world.__dict__)
-        print(hexagon.__dict__)
-        x = input("Quit on Q\n")
+        x = input("Quit on Q, give hex position\n")
         if x == "Q":
             running = False
+        else:
+            hexagon = CTHex(hex_position=x, name="Test")
+            print(hexagon.description_str())

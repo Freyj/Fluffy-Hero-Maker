@@ -86,7 +86,8 @@ def random_ct_party_gen():
                            characters=characters)
 
 
-@app.route("/classic-traveller-rand-world-gen")
-def random_classic_traveller_world_gen():
-    world = random_ct_world_gen()
-    return render_template('ctWorld.html', world=world)
+@app.route("/classic-traveller-rand-world-gen/<name>")
+@app.route("/classic-traveller-rand-world-gen/")
+def random_classic_traveller_world_gen(name=None):
+    world = random_ct_world_gen(name=name)
+    return render_template('classic_traveller/ctWorld.html', world=world)
