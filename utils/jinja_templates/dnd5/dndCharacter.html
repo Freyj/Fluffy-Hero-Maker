@@ -1,6 +1,6 @@
-<!doctype html>
-<title>Fluffy Hero Maker</title>
-<a href="/">Home</a>
+{% extends 'dnd5/base_dnd.html' %}
+
+{% block content %}
 <h1>DnD5 Character</h1>
 <h2>{{character.name}}, {{character.race.name}} {{character.dnd_class.name}} {{character.level}}</h2>
 <ul>
@@ -48,3 +48,4 @@
     </li>
     <li>Age: {{character.age}}</li>
 </ul>
+{% endblock %}

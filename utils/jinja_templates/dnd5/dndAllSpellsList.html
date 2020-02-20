@@ -1,7 +1,8 @@
-<!doctype html>
-<title>Fluffy Hero Maker</title>
+{% extends 'dnd5/base_dnd.html' %}
+
+{% block content %}
 <h1>Database Spell List</h1>
-<a href="/">Home</a>
 <ul>
     {% for cl in list %} <li><a href="/dnd-spell/{{cl}}">{{cl}}</a></li> {% endfor %}
 </ul>
+{% endblock %}
