@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 
-from characters.DnD5Character import generate_random_dnd_character
+from dnd5.DnD5Character import generate_random_dnd_character
 from databases.dnd5.dnd5_monster_db import get_random_monster, get_all_monsters_names_from_db, get_monster_by_name
 from databases.dnd5.dnd5_spell_db import get_random_spell, get_all_spell_names_from_db, look_for_spell_by_name
 from traveller.gen_ct_char import random_classic_traveller_character, random_classic_traveller_party_generator
