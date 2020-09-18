@@ -291,10 +291,13 @@ class CTCharacter:
                     skill = roll_skill(self.stats["Edu"], self.service)
             if skill.startswith("1"):
                 split_skills = skill.split()
-                self.stats[split_skills[1]] += 1
-                self.history.append("Improved {skill} by 1".format(skill=split_skills[1]))
-                if not automatic:
-                    print("Improved {skill} by 1".format(skill=split_skills[1]))
+                if self.stats[split_skills[1]] < 15:
+                    self.stats[split_skills[1]] += 1
+                    if not automatic:
+                        print("Improved {skill} by 1".format(skill=split_skills[1]))
+                    self.history.append("Improved {skill} by 1".format(skill=split_skills[1]))
+                else:
+                    print("Going over the 15 point limit for a stat at creation for humans")
             elif skill.startswith("-"):
                 split_skills = skill[1:].split()
                 self.stats[split_skills[1]] -= 1
@@ -566,6 +569,9 @@ class CTCharacter:
             if benefit.startswith("+"):
                 skill_benefits = benefit[1:].split()
                 self.stats[skill_benefits[1]] += int(skill_benefits[0])
+                if self.stats[skill_benefits[1]] > 15:
+                    self.stats[skill_benefits[1]] = 15
+                    print("Went over 15 with {s}".format(s=skill_benefits[1]))
                 self.history.append("Improved {skill} by {am} as a muster-out benefit.".format(
                     skill=skill_benefits[1],
                     am=skill_benefits[0]))
