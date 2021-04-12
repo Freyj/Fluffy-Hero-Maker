@@ -10,7 +10,7 @@ class CTHex:
         self.has_world = False
         self.has_gas_giant = False
         self.gas_giant_number = 0
-        self.starport = ""
+        self.starport = "X"
         self.has_naval_base = False
         self.has_scout_base = False
         self.worlds = []

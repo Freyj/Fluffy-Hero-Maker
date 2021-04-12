@@ -57,6 +57,7 @@ json files or want to update the database, you need to leave the -debug option o
 
 ### Classic Traveller
 * You can generate a character and save it at the end.
+* You can generate a random world.
 - cli version:
     * You can generate a character and save it at the end.
 - flask version:
