@@ -1,12 +1,7 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Fluffy Hero Maker</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style/traveller.css') }}">
-</head>
-<body class="traveller text-traveller">
-<a href="/">Home</a>
+{% extends 'classic_traveller/base_ct.html' %}
+
+{% block content %}
+
 <h1 class="title-traveller">Classic Traveller World</h1>
 <h2 >World: {{world.name}}, TL {{world.technological_level}}</h2>
 <ul>
@@ -27,5 +22,4 @@
 </ul>
 
 
-</body>
-</html>
+{% endblock %}
