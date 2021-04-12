@@ -53,8 +53,9 @@ def random_classic_traveller_character(name: str, must_be_alive=False):
         :return: a CTCharacter object
     """
     valid_char = False
+    character = CTCharacter(name=name)
     while not valid_char:
-        character = CTCharacter()
+        character = CTCharacter(name=name)
         choice_service = roll_die(6)
         services = ["Navy", "Marines", "Army", "Others", "Scouts", "Merchants"]
         character.choose_service(services[choice_service - 1], True)
@@ -72,7 +73,6 @@ def random_classic_traveller_character(name: str, must_be_alive=False):
             character.calc_muster_out(automatic=True)
         if (must_be_alive and character.survived) or not must_be_alive:
             valid_char = True
-        character.name = name
     return character
 
 

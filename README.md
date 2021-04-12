@@ -41,7 +41,8 @@ json files or want to update the database, you need to leave the -debug option o
    You can then export the character as a json file, by using the Export button.
   - `/classic-traveller-character-gent/<name>/<anything>` you get a randomly generated classic traveller character that survived their term. 
   - `/classic_traveller-rand-party-gen` displays a group of 4 randomly generated characters, all alive.
-
+  - `/classic-traveller-rand-world-gen/<name>` displays a randomly generated world and its information, with a name 
+  in the URI.
 
 ## What can I do with it?
 ### DnD 5th
@@ -55,6 +56,8 @@ json files or want to update the database, you need to leave the -debug option o
   * You can display monster stats and lists.
 
 ### Classic Traveller
+* You can generate a character and save it at the end.
+* You can generate a random world.
 - cli version:
     * You can generate a character and save it at the end.
 - flask version:

@@ -1,0 +1,43 @@
+{% extends 'classic_traveller/base_ct.html' %}
+
+{% block content %}
+
+<h1 class="title-traveller">Classic Traveller World</h1>
+<h2 >World: {{world.name}}, TL {{world.technological_level}}</h2>
+
+{% if world.hex.has_scout_base %}
+<p>
+    System has a Scout Base.
+</p>
+{% endif %}
+{% if world.hex.has_naval_base %}
+<p>
+    System has a Naval Base.
+</p>
+{% endif %}
+{% if world.hex.has_gas_giant %}
+<p>
+    System has a Gas Giant.
+</p>
+{% endif %}
+
+<h3>UWP: {{world.hex.starport}} {{world.size}} {{world.atmosphere}} {{world.hydrography}} {{world.population}} {{world.government}} {{world.law_level}} {{world.technological_level}}</h3>
+<ul>
+    <li>Starport: ({{world.hex.starport}}): {{world.starport_desc}}</li>
+    <li>Size: ({{world.size}}): {{world.size_desc}}</li>
+    <li>Atmosphere: ({{world.atmosphere}}): {{world.atmosphere_desc}}</li>
+    <li>Hydrography: ({{world.hydrography}}): {{world.hydrography_desc}}</li>
+    <li>Population: ({{world.population}}): {{world.population_desc}}</li>
+    <li>Government: ({{world.government}}): {{world.government_desc}}</li>
+    <li>Law Level: ({{world.law_level}}): {{world.law_level_desc}}</li>
+    <li>Technological Level: ({{world.technological_level}}): {{world.technological_level_desc}}</li>
+    <li>Trade Classifications:
+        <ul>
+            {% for class in world.classifications %}
+            {{class}}
+            {% endfor %}
+        </ul>
+    </li>
+</ul>
+
+{% endblock %}
