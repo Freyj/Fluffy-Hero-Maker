@@ -121,16 +121,37 @@ class CTWorld:
         else:
             self.name = name
         self.hex = hexagon
-        self.size = "0"
+
         self.atmosphere = "0"
-        self.hydrography = "0"
-        self.population = "0"
         self.government = "0"
+        self.hydrography = "0"
         self.law_level = "0"
+        self.population = "0"
+        self.size = "0"
         self.technological_level = "0"
         self.classifications = []
 
+        self.atmosphere_desc = ""
+        self.government_desc = ""
+        self.hydrography_desc = ""
+        self.law_level_desc = ""
+        self.population_desc = ""
+        self.size_desc = ""
+        self.starport_desc = ""
+        self.technological_level_desc = ""
+
         self.calc_stats()
+        self.add_descs()
+
+    def add_descs(self):
+        self.starport_desc = STARPORT_TYPES[self.hex.starport]
+        self.size_desc = WORLD_SIZES[self.size]
+        self.atmosphere_desc = ATMOSPHERE_TYPES[self.atmosphere]
+        self.hydrography_desc = HYDROGRAPHY[self.hydrography]
+        self.population_desc = POPULATION[self.population]
+        self.government_desc = GOVERNMENT_TYPES[self.government]
+        self.law_level_desc = LAW_LEVELS[self.law_level]
+        self.technological_level_desc = TECH_LEVELS[self.technological_level]
 
     def calc_stats(self):
         self.calc_size()
