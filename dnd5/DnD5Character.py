@@ -82,7 +82,8 @@ class DnD5Character(Character):
             Set the characters attributes, from a list of 6 integers
             @:param attributes: a list of integer between 1 and 20
         """
-        if type(attributes) == list and len(attributes) == 6:
+
+        if isinstance(attributes, list) and len(attributes) == 6:
             self.attributes = {
                 "Strength": attributes[0],
                 "Dexterity": attributes[1],
@@ -330,9 +331,9 @@ def generate_random_dnd_character(name: str):
     # lists
     race_name_list = get_all_races_names()
     background_name_list = get_all_background_names()
-    language_list = get_all_languages()
+    # language_list = get_all_languages()
     classes_list = get_all_classes_names()
-    unrestricted_language_list = get_all_unrestricted_languages()
+    # unrestricted_language_list = get_all_unrestricted_languages()
 
     # randomly pick a race
     race_result = random.randint(0, len(race_name_list) - 1)

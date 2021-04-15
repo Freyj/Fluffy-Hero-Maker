@@ -33,19 +33,19 @@ RACE_DATA_DIR = 'databases/data/dnd5/races/'
 # 23: racial_trait_choices,
 # 24: armor_proficiencies_to_add
 
-CREATE_RACE_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_races (id integer primary key, name text, 
-abilities_plus_two, abilities_plus_one, languages_added, bonus_languages, skill_proficiencies_added, walking_speed, 
-flying_speed, burrowing_speed, climbing_speed, swimming_speed, age_bracket, racial_traits_names, 
-racial_traits_descriptions, vision, spells_to_add, weapon_proficiencies_to_add, tool_proficiencies_number, 
-tool_proficiencies_choices, cantrip_choices_number numeric, cantrip_choices, size, racial_trait_choices, 
+CREATE_RACE_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_races (id integer primary key, name text,
+abilities_plus_two, abilities_plus_one, languages_added, bonus_languages, skill_proficiencies_added, walking_speed,
+flying_speed, burrowing_speed, climbing_speed, swimming_speed, age_bracket, racial_traits_names,
+racial_traits_descriptions, vision, spells_to_add, weapon_proficiencies_to_add, tool_proficiencies_number,
+tool_proficiencies_choices, cantrip_choices_number numeric, cantrip_choices, size, racial_trait_choices,
 armor_proficiencies_to_add)'''
 
 
-INSERT_RACE_INTO_REQUEST = '''INSERT INTO dnd5_races (name, abilities_plus_two, abilities_plus_one, languages_added, 
-bonus_languages, skill_proficiencies_added, walking_speed, flying_speed, burrowing_speed, climbing_speed, 
-swimming_speed, age_bracket, racial_traits_names, racial_traits_descriptions, vision, spells_to_add, 
-weapon_proficiencies_to_add, tool_proficiencies_number, tool_proficiencies_choices, cantrip_choices_number, 
-cantrip_choices, size, racial_trait_choices, armor_proficiencies_to_add) values 
+INSERT_RACE_INTO_REQUEST = '''INSERT INTO dnd5_races (name, abilities_plus_two, abilities_plus_one, languages_added,
+bonus_languages, skill_proficiencies_added, walking_speed, flying_speed, burrowing_speed, climbing_speed,
+swimming_speed, age_bracket, racial_traits_names, racial_traits_descriptions, vision, spells_to_add,
+weapon_proficiencies_to_add, tool_proficiencies_number, tool_proficiencies_choices, cantrip_choices_number,
+cantrip_choices, size, racial_trait_choices, armor_proficiencies_to_add) values
 (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) '''
 
 DROP_RACE_TABLE_REQUEST = '''DROP TABLE IF EXISTS dnd5_races'''
@@ -114,10 +114,10 @@ def get_all_races_from_json_directory():
                     racial_trait_names = []
                     racial_trait_descriptions = []
                     # deal with racial traits
-                    for i in range(len(dnd_race["racial_traits"])):
-                        racial_trait_names.append(dnd_race["racial_traits"][i]["name"])
+                    for _, racial_trait in enumerate(dnd_race["racial_traits"]):
+                        racial_trait_names.append(racial_trait["name"])
                         # change , into ; in the strings to ease up stuff
-                        racial_trait_descriptions.append(dnd_race["racial_traits"][i]["description"].replace(',', ';'))
+                        racial_trait_descriptions.append(racial_trait["description"].replace(',', ';'))
                     # deal with racial traits choices
                     choices_list = dnd_race["racial_traits_choices"]
                     racial_trait_choices = ""
@@ -188,10 +188,10 @@ def change_record_into_race(record):
         race.name = record[1]
         race.abilities_plus_one = str_to_list(record[2])
         race.abilities_plus_two = str_to_list(record[3])
-        if record[4] is not '':
+        if record[4] != '':
             race.languages = str_to_list(record[4])
         race.bonus_languages = record[5]
-        if record[6] is not '':
+        if record[6] != '':
             skill_list = str_to_list(record[6])
             for skill in skill_list:
                 race.skill_proficiencies.add(skill)
@@ -203,7 +203,7 @@ def change_record_into_race(record):
             "swimming": record[11]
         }
         race.age_bracket = record[12].split(',')
-        if record[13] is not '':
+        if record[13] != '':
             racial_traits_names = str_to_list(record[13])
             racial_traits_descriptions = str_to_list(record[14])
             for i in range(len(racial_traits_names)):
@@ -212,11 +212,11 @@ def change_record_into_race(record):
                     "description": racial_traits_descriptions[i]
                 }
                 race.racial_traits.append(item)
-        if record[15] is not '':
+        if record[15] != '':
             race.vision.append((record[15]))
-        if record[16] is not '':
+        if record[16] != '':
             race.spells_to_add.append(record[16])
-        if record[17] is not '':
+        if record[17] != '':
             weapon_proficiencies = str_to_list(record[17])
             for prof in weapon_proficiencies:
                 race.weapon_proficiencies_to_add.append(prof)

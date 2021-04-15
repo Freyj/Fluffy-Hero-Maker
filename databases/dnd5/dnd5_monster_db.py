@@ -8,17 +8,17 @@ from utils.dice_roller import roll_die
 
 MONSTER_DATA_DIR = 'databases/data/dnd5/monsters/'
 
-CREATE_MONSTER_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_monsters 
+CREATE_MONSTER_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_monsters
                             (id integer primary key, name text not null, size text, alignment text, monster_type text,
-                             strength numeric, dexterity numeric, constitution numeric, intelligence numeric, 
+                             strength numeric, dexterity numeric, constitution numeric, intelligence numeric,
                              wisdom numeric, charisma numeric, walking_speed numeric, climbing_speed numeric,
-                             burrowing_speed numeric, flying_speed numeric, swimming_speed numeric, 
-                             save_throw_strength, save_throw_dexterity, save_throw_constitution, 
+                             burrowing_speed numeric, flying_speed numeric, swimming_speed numeric,
+                             save_throw_strength, save_throw_dexterity, save_throw_constitution,
                              save_throw_intelligence, save_throw_wisdom, save_throw_charisma, armor_class, hit_points,
                              hit_dice, passive_perception, xp, challenge, damage_immunities text, damage_resistance,
                              condition_immunities, senses, languages_spoken, languages_understood, actions, attacks,
-                             traits, cantrips, spells_lvl1, spell_slots_lvl1, spells_lvl2, spell_slots_lvl2, 
-                             spells_lvl3, spell_slots_lvl3, spells_lvl4, spell_slots_lvl4, spells_lvl5, 
+                             traits, cantrips, spells_lvl1, spell_slots_lvl1, spells_lvl2, spell_slots_lvl2,
+                             spells_lvl3, spell_slots_lvl3, spells_lvl4, spell_slots_lvl4, spells_lvl5,
                              spell_slots_lvl5, spells_lvl6, spell_slots_lvl6, spells_lvl7, spell_slots_lvl7,
                              spells_lvl8, spell_slots_lvl8, spells_lvl9, spell_slots_lvl9, description)'''
 

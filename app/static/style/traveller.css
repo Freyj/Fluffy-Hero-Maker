@@ -1,62 +1,59 @@
-/*---------------------------------------------------------------------------------------------------------------
+/* --------------------------------------------------------------------------------------------------------------
 -----------------------------------    body section for traveller    --------------------------------------------
----------------------------------------------------------------------------------------------------------------*/
-.traveller {
-    background-color: #000;
-    font-family : "Anita";
+--------------------------------------------------------------------------------------------------------------- */
+.traveller{
+  background-color: #000;
+  font-family: "Anita";
 }
 
 @font-face{
-    font-family: "Anita";
-    src : url('fonts/Anita.ttf');
+  font-family: "Anita";
+  src: url('fonts/Anita.ttf');
 }
 
-.text-traveller {
-    color: #fff;
+.text-traveller{
+  color: #fff;
 }
 
-.history {
-    display: none;
+.history{
+  display: none;
 }
 
-.stats {
-    display: none;
+.stats{
+  display: none;
 }
 
-/*---------------------------------------------------------------------------------------------------------------
+/* --------------------------------------------------------------------------------------------------------------
 ----------------------------------    title section for traveller    --------------------------------------------
----------------------------------------------------------------------------------------------------------------*/
+--------------------------------------------------------------------------------------------------------------- */
 
-.title-traveller {
-    color: #f00;
-    font-style: italic;
-    margin-bottom : 0;
-    font-size: xxx-large; /*Can be modify for less larger*/
+.title-traveller{
+  color: #f00;
+  font-style: italic;
+  margin-bottom: 0;
+  font-size: xxx-large; /* Can be modifiedy for less large */
 }
 
-.underline
-{
-    color: red;
-    width: 75%;
-    margin: 0 0 0 0;
-    height: 3px;
-    display: block;
-    background-color: red;
+.underline{
+  color: red;
+  width: 75%;
+  margin: 0 0 0 0;
+  height: 3px;
+  display: block;
+  background-color: red;
 }
 
-.underline-triangle
-{
-    width: 0;
-    height: 0;
-    border-bottom: 15px solid red;
-    border-right: 15px solid transparent;
-    display: block;
-    padding-top: 0px;
-    margin-top: -15px;
-    margin-left: 75%;
+.underline-triangle{
+  width: 0;
+  height: 0;
+  border-bottom: 15px solid red;
+  border-right: 15px solid transparent;
+  display: block;
+  padding-top: 0;
+  margin-top: -15px;
+  margin-left: 75%;
 }
 
-/*---------------------------------------------------------------------------------------------------------------
+/* --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------    other    --------------------------------------------------
----------------------------------------------------------------------------------------------------------------*/
-
+--------------------------------------------------------------------------------------------------------------- */

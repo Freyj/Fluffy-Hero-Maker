@@ -6,14 +6,14 @@ from dnd5.DnD5Background import DnD5Background
 
 BACKGROUND_DATA_DIR = 'databases/data/dnd5/backgrounds/'
 
-CREATE_BACKGROUND_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_backgrounds 
+CREATE_BACKGROUND_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_backgrounds
                                 (id integer primary key, name text not null, skill_proficiencies, bonus_languages 
-                                numeric, equipment text, feature text, personality_traits, ideals, bonds, flaws, 
+                                numeric, equipment text, feature text, personality_traits, ideals, bonds, flaws,
                                 background_description, feature_description, feature_choice, feature_choice_table)'''
 
-INSERT_BACKGROUND_INTO_REQUEST = '''INSERT INTO dnd5_backgrounds(name, skill_proficiencies, bonus_languages, equipment, 
+INSERT_BACKGROUND_INTO_REQUEST = '''INSERT INTO dnd5_backgrounds(name, skill_proficiencies, bonus_languages, equipment,
                                 feature, personality_traits, ideals, bonds, flaws, background_description,
-                                feature_description, feature_choice, feature_choice_table) 
+                                feature_description, feature_choice, feature_choice_table)
                                 values (?,?,?,?,?,?,?,?,?,?,?,?,?)'''
 
 DROP_BACKGROUND_TABLE_REQUEST = '''DROP TABLE IF EXISTS dnd5_backgrounds'''
@@ -124,7 +124,7 @@ def get_background_by_name(background_name: str):
             background.flaws = record[9].split('., ')
             background.description = record[10]
             background.feature_description = record[11]
-            if record[12] is not '':
+            if record[12] != '':
                 background.feature_choice = record[12]
                 background.feature_choice_table = record[13].split('.,')
         connection.close()

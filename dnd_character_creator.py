@@ -359,15 +359,15 @@ def dnd_character_creation():
     # Check for choices of class feature
     features = dnd_character.dnd_class.class_feature_choices
     if len(features) > 0:
-        for i in range(len(features)):
-            print("You get the following feature: " + features[i]["name"])
-            print(features[i]["description"])
-            choices = features[i]["choice_table"]
+        for _, feature in enumerate(features):
+            print("You get the following feature: " + feature["name"])
+            print(feature["description"])
+            choices = feature["choice_table"]
             for j in choices:
                 print("\t" + j["name"])
                 print("\t\t" + j["description"])
             choice = input()
-            dnd_character.dnd_class.choose_feature(features[i]["name"], choice)
+            dnd_character.dnd_class.choose_feature(feature["name"], choice)
 
     # Calculate HP at the end
     dnd_character.calc_hp_first_lvl()

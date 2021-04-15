@@ -8,7 +8,7 @@ from utils.dice_roller import roll_die
 SPELL_DATA_DIR = 'databases/data/dnd5/spells/'
 
 
-CREATE_SPELL_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_spells 
+CREATE_SPELL_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_spells
                         (id integer primary key, name text not null, school text, saving_throw text,
                          casting_time text, ritual int, range text, components text, duration text,
                          level integer, description text, need_concentration int, upgrade text, classes text
@@ -28,7 +28,7 @@ CREATE_SPELL_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_spells
 # 12: upgrade
 # 13: classes
 INSERT_SPELLS_INTO_REQUEST = '''INSERT INTO dnd5_spells
-                            (name, school, saving_throw, casting_time, ritual, range, components, duration, level, 
+                            (name, school, saving_throw, casting_time, ritual, range, components, duration, level,
                             description, need_concentration, upgrade, classes) values (?,?,?,?,?,?,?,?,?,?,?,?,?)'''
 
 

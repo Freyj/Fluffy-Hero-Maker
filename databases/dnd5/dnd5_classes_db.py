@@ -7,10 +7,10 @@ from dnd5.DnD5Class import DnD5Class
 
 CLASS_DATA_DIR = 'databases/data/dnd5/classes/'
 
-CREATE_CLASS_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_classes 
+CREATE_CLASS_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_classes
                                 (id integer primary key, name text not null, hit_dice, weapon_proficiencies_to_add,
-                                skill_proficiency_choices, class_features, armor_proficiencies, tool_proficiencies, 
-                                class_feature_choices, saving_throws_proficiencies, added_equipment, equipment_choices, 
+                                skill_proficiency_choices, class_features, armor_proficiencies, tool_proficiencies,
+                                class_feature_choices, saving_throws_proficiencies, added_equipment, equipment_choices,
                                 cantrip_number, spell_class_list, spells_1_number, spells_1_slots, casting_ability)'''
 
 # Structure of the database tuple # TODO: store it somewhere else
@@ -31,10 +31,10 @@ CREATE_CLASS_TABLE_REQUEST = '''CREATE TABLE IF NOT EXISTS dnd5_classes
 # 15: spell slots of lvl 1
 # 16: casting_ability
 
-INSERT_CLASS_INTO_REQUEST = '''INSERT INTO dnd5_classes(name, hit_dice, weapon_proficiencies_to_add,  
+INSERT_CLASS_INTO_REQUEST = '''INSERT INTO dnd5_classes(name, hit_dice, weapon_proficiencies_to_add, 
                                 skill_proficiency_choices, class_features, armor_proficiencies, tool_proficiencies,
-                                class_feature_choices, saving_throws_proficiencies, added_equipment, equipment_choices, 
-                                cantrip_number, spell_class_list, spells_1_number, spells_1_slots, casting_ability) 
+                                class_feature_choices, saving_throws_proficiencies, added_equipment, equipment_choices,
+                                cantrip_number, spell_class_list, spells_1_number, spells_1_slots, casting_ability)
                                 values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'''
 
 DROP_CLASS_TABLE_REQUEST = '''DROP TABLE IF EXISTS dnd5_classes'''

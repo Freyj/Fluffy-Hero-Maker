@@ -16,9 +16,9 @@ def list_to_str_with_number_and_line(table):
     """Creates a string from a list of strings and returns it
         with pretty printing and newlines already included"""
     table_string = ""
-    for i in range(len(table)):
-        number = i + 1
-        table_string += str(number) + ": " + (str(table[i])) + "\n"
+    for count, string in enumerate(table):
+        number = count + 1
+        table_string += str(number) + ": " + (str(string)) + "\n"
     table_string = table_string[:-2]
     return table_string
 
@@ -53,15 +53,15 @@ def generate_attributes(generation_type, stats=None):
     attributes = {}
     random_attributes = []
     if generation_type == 1:
-        for i in range(6):
+        for _ in range(6):
             random_attributes.append(keep_n_highest_sum(6, 4))
     if generation_type == 2:
         random_attributes = []
-        for i in range(6):
+        for _ in range(6):
             random_attributes.append(sum_roll_dice(6, 3))
     if generation_type == 3:
         random_attributes = []
-        for i in range(6):
+        for _ in range(6):
             roll_not_ok = True
             while roll_not_ok:
                 roll = sum_roll_dice(6, 3)
@@ -74,7 +74,7 @@ def generate_attributes(generation_type, stats=None):
         valid_results = False
         while not valid_results:
             random_attributes = []
-            for i in range(6):
+            for _ in range(6):
                 random_attributes.append(keep_n_highest_sum(6, 4))
             valid_results = 3 <= sum_modifiers(random_attributes) <= 7
 
