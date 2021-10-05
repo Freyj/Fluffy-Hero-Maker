@@ -23,34 +23,27 @@ def cli_display(character):
     print("Vision: " + ", ".join(character.vision))
 
     # Todo: change this into a function for attributes str result (like saving throws)
-    print("Attributes:\n\tStrength: "
-          + str(character.attributes["Strength"]) + "(" + str(get_modifier(character.attributes["Strength"])) + ")"
-          + "\n\tDexterity: " + str(character.attributes["Dexterity"]) + "("
-          + str(get_modifier(character.attributes["Dexterity"])) + ")"
-          + "\n\tConstitution: " + str(character.attributes["Constitution"])
-          + "(" + str(get_modifier(character.attributes["Constitution"])) + ")"
-          + "\n\tIntelligence: " + str(character.attributes["Intelligence"])
-          + "(" + str(get_modifier(character.attributes["Intelligence"])) + ")"
-          + "\n\tWisdom: " + str(character.attributes["Wisdom"]) + "("
-          + str(get_modifier(character.attributes["Wisdom"])) + ")"
-          + "\n\tCharisma: " + str(character.attributes["Charisma"])
-          + "(" + str(get_modifier(character.attributes["Charisma"])) + ")")
+    print("Attributes:")
+    for attribute in ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]:
+        att_score = character.attributes[attribute]
+        att_mod = get_modifier(att_score)
+        print(f"\t{attribute}: {att_score} ({att_mod})")
 
     print("Saving Throws: " + character.saving_throws_to_str())
     print("Saving Throws Proficiencies: " + ", ".join(character.proficient_saving_throws))
-    language_string = "Languages: " + ", ".join(character.languages)
-    print(language_string)
-    skill_proficiency_string = "Skill proficiencies: " + ", ".join(character.skill_proficiencies)
-    print(skill_proficiency_string)
-    if len(character.tool_proficiencies) > 0:
-        tool_proficiency_string = "Tool proficiencies: " + ", ".join(character.tool_proficiencies)
-        print(tool_proficiency_string)
-    if len(character.armor_proficiencies) > 0:
-        armor_proficiency_string = "Armor proficiencies: " + ", ".join(character.armor_proficiencies)
-        print(armor_proficiency_string)
-    if len(character.weapon_proficiencies) > 0:
-        weapon_proficiency_string = "Weapon proficiencies: " + ", ".join(character.weapon_proficiencies)
-        print(weapon_proficiency_string)
+    
+    for proficiency in [
+        ("Languages", character.languages),
+        ("Skill Proficiencies", character.skill_proficiencies),
+        ("Tool Proficiencies", character.tool_proficiencies),
+        ("Armor Proficiencies", character.armor_proficiencies),
+        ("Weapon Proficiencies", character.weapon_proficiencies)
+    ]:
+        p_str = proficiency[0]
+        p_values = proficiency[1]
+        if len(proficiency_values) > 0:
+            print(f"{p_str}: " + ", ".join(p_values) 
+
     print(character.race.racial_traits_to_string())
     if len(character.cantrips) > 0:
         print("Known Cantrips: ")
@@ -81,7 +74,7 @@ def dnd_character_creation():
     unrestricted_language_list = get_all_unrestricted_languages()
 
     # Name choice
-    print("Choose character name")
+    print("Choose character name:")
     character_name = input()
 
     # Stat generations
